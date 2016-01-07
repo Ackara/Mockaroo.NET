@@ -3,9 +3,9 @@ using System.IO;
 
 namespace Tests.Mockaroo.NET
 {
-    public class Api
+    public class ApiKey
     {
-        public static string GetKey()
+        public static string GetValue()
         {
             string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "API_Keys", "mockaroo.txt");
             return File.ReadAllText(path).Trim();

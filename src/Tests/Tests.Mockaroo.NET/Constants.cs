@@ -7,5 +7,6 @@
 
     public struct Artifact
     {
+        
     }
 }
