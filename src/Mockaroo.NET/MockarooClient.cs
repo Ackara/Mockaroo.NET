@@ -1,8 +1,5 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Net.Http;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Gigobyte.Mockaroo
@@ -13,28 +10,37 @@ namespace Gigobyte.Mockaroo
         {
             _apiKey = apiKey;
         }
-
+        
         public async Task<IEnumerable<T>> FetchDataAsync<T>(int count)
         {
+            var data = new LinkedList<T>();
             string url = string.Format(_urlFormat, _apiKey, count);
-            var request = new HttpRequestMessage(HttpMethod.Post, url);
-            request.Content = new StringContent("[{\"name\": \"name\", \"type\": \"Full Name\" }]");
-
+            
             using (var client = new HttpClient())
             {
                 var response = await client.PostAsync(url, new StringContent("[{\"name\": \"name\", \"type\": \"Full Name\" }]"));
-                System.Diagnostics.Debug.WriteLine(response.StatusCode);
-                System.Diagnostics.Debug.WriteLine(response.Content.ToString());
+                if (response.IsSuccessStatusCode)
+                {
+                    using (var reader = new System.IO.StreamReader(await response.Content.ReadAsStreamAsync()))
+                    {
+                        T record;
+                        while (!reader.EndOfStream)
+                        {
+                            record = TypeLoader.LoadData<T>(reader.ReadLine());
+                            data.AddLast(record);
+                        }
+                    }
+                }
             }
 
-            throw new NotImplementedException();
+            return data;
         }
 
         #region Private Members
-        
+
         private readonly string _apiKey;
         private readonly string _urlFormat = "http://www.mockaroo.com/api/generate.csv?key={0}&count={1}";
 
-        #endregion
+        #endregion Private Members
     }
 }

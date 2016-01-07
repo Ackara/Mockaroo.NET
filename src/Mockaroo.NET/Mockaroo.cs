@@ -2,7 +2,7 @@
 
 namespace Gigobyte.Mockaroo
 {
-    public static class Mockaroo
+    public static partial class Mockaroo
     {
         public static IEnumerable<T> FetchData<T>(string apiKey, int count)
         {
