@@ -6,7 +6,7 @@
     <ProjectGuid>{F7780D2C-0DA7-458D-ADA4-1105E4590A4A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tests.Mockaroo.NET</RootNamespace>
+    <RootNamespace>Tests.Mockaroo</RootNamespace>
     <AssemblyName>Tests.Mockaroo.NET</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -64,8 +64,9 @@
     <Compile Include="ApiKey.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="IntegrationTest\LiveTest.cs" />
+    <Compile Include="Mock\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitTest\UnitTest1.cs" />
+    <Compile Include="UnitTest\TypeLoaderTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Mockaroo.NET\Mockaroo.NET.csproj">
@@ -73,9 +74,7 @@
       <Name>Mockaroo.NET</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Mock\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />

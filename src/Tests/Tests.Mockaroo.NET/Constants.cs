@@ -1,4 +1,4 @@
-﻿namespace Tests.Mockaroo.NET
+﻿namespace Tests.Mockaroo
 {
     public struct Dev
     {
