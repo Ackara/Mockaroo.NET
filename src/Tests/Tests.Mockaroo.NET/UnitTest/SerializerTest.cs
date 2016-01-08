@@ -3,21 +3,20 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
 using System.Text.RegularExpressions;
-using Tests.Mockaroo.Mock;
 
 namespace Tests.Mockaroo.UnitTest
 {
     [TestClass]
-    public class TypeLoaderTest
+    public class SerializerTest
     {
         [TestMethod]
         [Owner(Dev.Ackara)]
         public void LoadPersonObject()
         {
             var sample = Person.GetSample();
-            string json = sample.ToCsv();
+            string json = sample.ToJson();
 
-            RunTypeLoaderTest<Person>(json, acceptanceCreteria: (x =>
+            RunTypeLoaderTest<Person>(json, acceptanceCriteria: (x =>
                 x.FullName == sample.FullName
                 &&
                 x.Age == sample.Age
@@ -53,7 +52,7 @@ namespace Tests.Mockaroo.UnitTest
 
         [TestMethod]
         [Owner(Dev.Ackara)]
-        public void LoadIntergetObject()
+        public void LoadIntegerObject()
         {
             var sample = 2016;
             RunTypeLoaderTest<int>(sample, (x => x == sample));
@@ -102,26 +101,26 @@ namespace Tests.Mockaroo.UnitTest
         internal void RunTypeLoaderTest(string data, string regexPattern)
         {
             // Arrange
-            var sut = new TypeLoader();
+            var sut = new Serializer();
 
             // Act
-            string result = sut.CreateInstance<string>(data);
+            string result = sut.Deserialize<string>(data);
             bool pass = new Regex(regexPattern).IsMatch(result);
 
             // Assert
             Assert.IsTrue(pass);
         }
 
-        internal void RunTypeLoaderTest<T>(object data, Func<T, bool> acceptanceCreteria)
+        internal void RunTypeLoaderTest<T>(object data, Func<T, bool> acceptanceCriteria)
         {
             // Arrange
-            var sut = new TypeLoader();
+            var sut = new Serializer();
 
             // Act
-            T result = sut.CreateInstance<T>(data.ToString());
+            T result = sut.Deserialize<T>(data.ToString());
 
             // Assert
-            Assert.IsTrue(acceptanceCreteria(result));
+            Assert.IsTrue(acceptanceCriteria(result));
         }
     }
 }

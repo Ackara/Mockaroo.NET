@@ -15,7 +15,7 @@
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <AssemblyVersion>1.0.2016.7</AssemblyVersion>
+    <AssemblyVersion>1.0.2016.8</AssemblyVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,14 +46,13 @@
     <Compile Include="Annotation\GenericFieldAttribute.cs" />
     <Compile Include="Annotation\NumberFieldAttribute.cs" />
     <Compile Include="IFieldInfo.cs" />
-    <Compile Include="TypeLoader.cs" />
+    <Compile Include="Serializer.cs" />
     <Compile Include="DataType.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataType.tt</DependentUpon>
     </Compile>
     <Compile Include="Extensions.cs" />
-    <Compile Include="Mockaroo.cs" />
     <Compile Include="MockarooClient.cs" />
     <Compile Include="Exception\MockarooException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,8 +64,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="mockaroo_data_types.csv" />
+    <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.1\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

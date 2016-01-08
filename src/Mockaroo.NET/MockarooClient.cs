@@ -10,26 +10,18 @@ namespace Gigobyte.Mockaroo
         {
             _apiKey = apiKey;
         }
-        
+
         public async Task<IEnumerable<T>> FetchDataAsync<T>(int count)
         {
             var data = new LinkedList<T>();
             string url = string.Format(_urlFormat, _apiKey, count);
-            
+
             using (var client = new HttpClient())
             {
                 var response = await client.PostAsync(url, new StringContent("[{\"name\": \"name\", \"type\": \"Full Name\" }]"));
                 if (response.IsSuccessStatusCode)
                 {
-                    using (var reader = new System.IO.StreamReader(await response.Content.ReadAsStreamAsync()))
-                    {
-                        T record;
-                        while (!reader.EndOfStream)
-                        {
-                            record = TypeLoader.LoadData<T>(reader.ReadLine());
-                            data.AddLast(record);
-                        }
-                    }
+                    string json = await response.Content.ReadAsStringAsync();
                 }
             }
 
@@ -39,7 +31,7 @@ namespace Gigobyte.Mockaroo
         #region Private Members
 
         private readonly string _apiKey;
-        private readonly string _urlFormat = "http://www.mockaroo.com/api/generate.csv?key={0}&count={1}";
+        private readonly string _urlFormat = "http://www.mockaroo.com/api/generate.json?key={0}&count={1}&array=true";
 
         #endregion Private Members
     }

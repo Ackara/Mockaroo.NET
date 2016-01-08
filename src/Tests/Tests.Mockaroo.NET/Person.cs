@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 
-namespace Tests.Mockaroo.Mock
+namespace Tests.Mockaroo
 {
     public class Person
     {
@@ -20,13 +20,22 @@ namespace Tests.Mockaroo.Mock
 
         public int Age { get; set; }
 
+        public double Height { get; set; }
+
         public decimal NetWorth { get; set; }
 
         public DateTime Dob { get; set; }
 
-        public string ToCsv()
+        public string ToJson()
         {
-            return $"{FullName}, {Age}, {NetWorth}, {Dob}";
+            string
+                age = $"\"{nameof(Age)}\": \"{Age}\"",
+                height = $"\"{nameof(Height)}\": \"{Height}\"",
+                net = $"\"{nameof(NetWorth)}\": \"{NetWorth}\"",
+                name = $"\"{nameof(FullName)}\": \"{FullName}\"",
+                dob = $"\"{nameof(Dob)}\": \"{Dob.ToString("yyyy-MM-dd HH:mm:ss")}\"";
+
+            return $"{{{name}, {age}, {height}, {net}, {dob}}}";
         }
     }
 }

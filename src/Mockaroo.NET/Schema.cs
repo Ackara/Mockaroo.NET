@@ -1,24 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace Gigobyte.Mockaroo
 {
-    public class Schema
+    public class Schema<T>
     {
-        #region Static Members
-
-        public Schema Create(Type type)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public Schema Create<T>()
-        {
-            return Create(typeof(T));
-        }
-
-        #endregion Static Members
-
         public Schema() : this(new IFieldInfo[0])
         {
         }
@@ -29,6 +16,11 @@ namespace Gigobyte.Mockaroo
         }
 
         public IList<IFieldInfo> Fields { get; set; }
+
+        public void Set(Expression<Func<T, object>> selector, Annotation.FieldInfoAttribute to)
+        {
+            
+        }
 
         public string ToJson()
         {
