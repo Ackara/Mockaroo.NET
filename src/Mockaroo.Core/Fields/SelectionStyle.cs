@@ -3,6 +3,7 @@
     public enum SelectionStyle
     {
         Random,
+
         Sequential
     }
 }

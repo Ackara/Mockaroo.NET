@@ -24,6 +24,12 @@ namespace Gigobyte.Mockaroo.Fields
         /// <value>The format to output.</value>
         public string Format { get; set; } = "%F %T";
 
+        /// <summary>
+        /// Converts the value of this instance to its JSON representation.
+        /// </summary>
+        /// <returns>
+        /// This instance JSON representation.
+        /// </returns>
         public override string ToJson()
         {
             return $"{BaseJson()}, \"min\": \"{Min.ToString(MockarooFormat)}\", \"max\": \"{Max.ToString(MockarooFormat)}\", \"format\": \"{Format}\"}}";

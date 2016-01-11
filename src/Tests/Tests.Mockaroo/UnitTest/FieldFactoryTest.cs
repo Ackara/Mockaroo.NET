@@ -8,9 +8,12 @@ namespace Tests.Mockaroo.UnitTest
     [TestClass]
     public class FieldFactoryTest
     {
+        /// <summary>
+        /// Assert <see cref="FieldFactory.Create(DataType)"/> returns a <see cref="IField"/> from every <see cref="DataType"/> value.
+        /// </summary>
         [TestMethod]
         [Owner(Dev.Ackara)]
-        public void CreateMockarooFieldFromDataType()
+        public void CreateMockarooFieldsFromDataType()
         {
             // Arrange
             var sut = new FieldFactory();

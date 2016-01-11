@@ -6,6 +6,12 @@
 
         public virtual int Max { get; set; } = 20;
 
+        /// <summary>
+        /// Converts the value of this instance to its JSON representation.
+        /// </summary>
+        /// <returns>
+        /// This instance JSON representation.
+        /// </returns>
         public override string ToJson()
         {
             return $"{BaseJson()}, \"min\": \"{Min}\", \"max\": \"{Max}\"}}";

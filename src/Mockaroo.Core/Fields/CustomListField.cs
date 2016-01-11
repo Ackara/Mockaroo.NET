@@ -17,6 +17,12 @@ namespace Gigobyte.Mockaroo.Fields
         /// <value>The selection.</value>
         public SelectionStyle Sequence { get; set; }
 
+        /// <summary>
+        /// Converts the value of this instance to its JSON representation.
+        /// </summary>
+        /// <returns>
+        /// This instance JSON representation.
+        /// </returns>
         public override string ToJson()
         {
             return $"{BaseJson()}, \"values\": [{string.Join(", ", Values.Select(x => $"\"{x}\""))}], \"selectionStyle\": \"{(Sequence).ToString()}\"}}";

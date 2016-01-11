@@ -8,10 +8,18 @@ using System.Text.RegularExpressions;
 
 namespace Gigobyte.Mockaroo
 {
+    /// <summary>
+    /// Represents a Mockaroo Schema.
+    /// </summary>
     public class Schema
     {
         #region Static Members
 
+        /// <summary>
+        /// Gets a list of <see cref="IField"/> based of the specified type.
+        /// </summary>
+        /// <param name="type">The type to generate the list of <see cref="IField"/> from.</param>
+        /// <returns>A list of <see cref="IField"/> based of the specified type.</returns>
         public static IEnumerable<IField> GetFields(Type type)
         {
             if (type.IsBuiltInType())
@@ -82,35 +90,66 @@ namespace Gigobyte.Mockaroo
 
         #endregion Static Members
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Schema"/> class.
+        /// </summary>
         public Schema() : this(new IField[0])
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Schema"/> class.
+        /// </summary>
+        /// <param name="mockarooFields">The Mockaroo fields.</param>
         public Schema(IEnumerable<IField> mockarooFields) : this(mockarooFields.ToArray())
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Schema"/> class.
+        /// </summary>
+        /// <param name="mockarooFields">The Mockaroo fields.</param>
         public Schema(params IField[] mockarooFields)
         {
             Fields = new List<IField>(mockarooFields);
         }
 
+        /// <summary>
+        /// Gets or sets the Mockaroo fields.
+        /// </summary>
+        /// <value>
+        /// The fields.
+        /// </value>
         public IList<IField> Fields { get; set; }
 
-        public void Remove(string propertyName)
+        /// <summary>
+        /// Removes the specified <see cref="IField"/> by it's name.
+        /// </summary>
+        /// <param name="fieldName">Name of the <see cref="IField"/>.</param>
+        public void Remove(string fieldName)
         {
             for (int i = 0; i < Fields.Count; i++)
-                if (Fields[i].Name == propertyName)
+                if (Fields[i].Name == fieldName)
                 {
                     Fields.RemoveAt(i);
                 }
         }
 
+        /// <summary>
+        /// Replaces the specified <see cref="IField"/> by it's name.
+        /// </summary>
+        /// <param name="fieldName">Name of the field.</param>
+        /// <param name="dataType">The Mockaroo data type.</param>
         public void Replace(string fieldName, DataType dataType)
         {
             Replace(fieldName, new FieldFactory().Create(dataType));
         }
 
+        /// <summary>
+        /// Replaces the specified <see cref="IField"/> by it's name.
+        /// </summary>
+        /// <param name="fieldName">Name of the field.</param>
+        /// <param name="fieldInfo">The Mockaroo field.</param>
         public void Replace(string fieldName, IField fieldInfo)
         {
             fieldInfo.Name = fieldName;
@@ -121,13 +160,17 @@ namespace Gigobyte.Mockaroo
                 }
         }
 
+        /// <summary>
+        /// Converts the value of this instance to its JSON representation.
+        /// </summary>
+        /// <returns>This instance JSON representation.</returns>
         public string ToJson()
         {
             var json = new System.Text.StringBuilder();
             json.AppendLine("[");
             foreach (var field in Fields)
             {
-                json.AppendFormat("{0},\r\n", field.ToJson());
+                json.AppendFormat(" {0},\r\n", field.ToJson());
             }
 
             json.RemoveLastComma();
@@ -136,8 +179,28 @@ namespace Gigobyte.Mockaroo
         }
     }
 
+    /// <summary>
+    /// Represents a Mockaroo Schema.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class Schema<T> : Schema
     {
+        #region Static Members
+
+        /// <summary>
+        /// Gets a list of <see cref="IField"/> based of the specified type.
+        /// </summary>
+        /// <returns>A list of <see cref="IField"/> based of the specified type.</returns>
+        public static IEnumerable<IField> GetFields()
+        {
+            return Schema.GetFields(typeof(T));
+        }
+
+        #endregion Static Members
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Schema{T}"/> class.
+        /// </summary>
         public Schema() : base()
         {
             foreach (var field in GetFields())
@@ -146,11 +209,10 @@ namespace Gigobyte.Mockaroo
             }
         }
 
-        public static IEnumerable<IField> GetFields()
-        {
-            return Schema.GetFields(typeof(T));
-        }
-
+        /// <summary>
+        /// Removes the specified <see cref="IField"/> by the property associated with it.
+        /// </summary>
+        /// <param name="property">The property associated to the <see cref="IField"/>.</param>
         public void Remove(Expression<Func<T, object>> property)
         {
             Match match = _lambdaPattern.Match(property.ToString());
@@ -160,6 +222,11 @@ namespace Gigobyte.Mockaroo
             }
         }
 
+        /// <summary>
+        /// Replaces the specified <see cref="IField"/> by the property associated with it.
+        /// </summary>
+        /// <param name="property">The property associated to the <see cref="IField"/>.</param>
+        /// <param name="dataType">The Mockaroo data type.</param>
         public void Replace(Expression<Func<T, object>> property, DataType dataType)
         {
             Match match = _lambdaPattern.Match(property.ToString());
@@ -169,6 +236,11 @@ namespace Gigobyte.Mockaroo
             }
         }
 
+        /// <summary>
+        /// Replaces the specified <see cref="IField"/> by the property associated with it.
+        /// </summary>
+        /// <param name="property">The property associated to the <see cref="IField"/>.</param>
+        /// <param name="fieldInfo">The Mockaroo field.</param>
         public void Replace(Expression<Func<T, object>> property, IField fieldInfo)
         {
             Match match = _lambdaPattern.Match(property.ToString());

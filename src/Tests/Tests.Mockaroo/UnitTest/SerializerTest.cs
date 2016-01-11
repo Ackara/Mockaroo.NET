@@ -38,33 +38,12 @@ namespace Tests.Mockaroo.UnitTest
         }
 
         /// <summary>
-        /// Assert <see cref="Serializer.Deserialize(string, Type)"/> can convert json to an object.
-        /// </summary>
-        [TestMethod]
-        [Owner(Dev.Ackara)]
-        public void DeserializeJsonToObject()
-        {
-            // Arrange
-            var sut = new Serializer();
-            var sample = FakeObject.GetSample();
-
-            // Act
-            var result = (FakeObject)sut.Deserialize(sample.ToJson(), sample.GetType());
-
-            // Assert
-            Assert.AreEqual(sample.DateValue, result.DateValue);
-            Assert.AreEqual(sample.Int32Value, result.Int32Value);
-            Assert.AreEqual(sample.StringValue, result.StringValue);
-            Assert.AreEqual(sample.DecimalValue, result.DecimalValue);
-        }
-
-        /// <summary>
         /// Assert <see cref="Serializer.Deserialize(JObject, Type)"/> can deserialize a full
         /// response from the Mockaroo server.
         /// </summary>
         [TestMethod]
         [Owner(Dev.Ackara)]
-        [DataSource(Data.CSV, "response_body_list.csv", "response_body_list#csv", DataAccessMethod.Sequential)]
+        [DataSource(Data.CSV, Artifact.ResponseBodyList, Artifact.ResponseBodyList, DataAccessMethod.Sequential)]
         public void DeserializeSampleResponsesFromMockarooServer()
         {
             // Arrange
@@ -86,6 +65,27 @@ namespace Tests.Mockaroo.UnitTest
 
             // Assert
             Assert.IsTrue(errors.Length == 0, errors.ToString());
+        }
+
+        /// <summary>
+        /// Assert <see cref="Serializer.Deserialize(string, Type)"/> can convert json to an object.
+        /// </summary>
+        [TestMethod]
+        [Owner(Dev.Ackara)]
+        public void DeserializeJsonToSpecifedObject()
+        {
+            // Arrange
+            var sut = new Serializer();
+            var sample = FakeObject.GetSample();
+
+            // Act
+            var result = (FakeObject)sut.Deserialize(sample.ToJson(), sample.GetType());
+
+            // Assert
+            Assert.AreEqual(sample.DateValue, result.DateValue);
+            Assert.AreEqual(sample.Int32Value, result.Int32Value);
+            Assert.AreEqual(sample.StringValue, result.StringValue);
+            Assert.AreEqual(sample.DecimalValue, result.DecimalValue);
         }
     }
 }

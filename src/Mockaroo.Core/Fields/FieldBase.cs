@@ -13,6 +13,10 @@
             set { value.Between(minInclusive: 0, maxInclusive: 99); }
         }
 
+        /// <summary>
+        /// Converts the value of this instance to its JSON representation.
+        /// </summary>
+        /// <returns>This instance JSON representation.</returns>
         public virtual string ToJson()
         {
             return BaseJson() + "}";

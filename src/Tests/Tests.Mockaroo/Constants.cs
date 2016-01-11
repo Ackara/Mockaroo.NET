@@ -11,7 +11,7 @@
             ApprovalsDir = "Approvals",
             SampleDataDir = "SampleData\\",
             DataXLSX = (SampleDataDir + "data.xlsx"),
-            ResponseBody = (SampleDataDir + "response_body_list.csv");
+            ResponseBodyList = "response_body_list.csv";
     }
 
     public struct Data
@@ -24,6 +24,5 @@
             BuiltInDataSheet = "Built-In_Data_Types$",
             CSV = "Microsoft.VisualStudio.TestTools.DataSource.CSV",
             ExcelConnectiongString = "Dsn=Excel Files;dbq=|DataDirectory|\\data.xlsx";
-
     }
 }
