@@ -1,0 +1,463 @@
+﻿[
+  {
+    "name": "BitcoinAddressField",
+    "type": "Bitcoin Address",
+    "percentBlank": "0"
+  },
+  {
+    "name": "BlankField",
+    "type": "Blank",
+    "percentBlank": "0"
+  },
+  {
+    "name": "BooleanField",
+    "type": "Boolean",
+    "percentBlank": "0"
+  },
+  {
+    "name": "CityField",
+    "type": "City",
+    "percentBlank": "0"
+  },
+  {
+    "name": "ColorField",
+    "type": "Color",
+    "percentBlank": "0"
+  },
+  {
+    "name": "CompanyNameField",
+    "type": "Company Name",
+    "percentBlank": "0"
+  },
+  {
+    "name": "CountryField",
+    "type": "Country",
+    "percentBlank": "0"
+  },
+  {
+    "name": "CountryCodeField",
+    "type": "Country Code",
+    "percentBlank": "0"
+  },
+  {
+    "name": "CreditCardNumberField",
+    "type": "Credit Card #",
+    "percentBlank": "0"
+  },
+  {
+    "name": "CreditCardTypeField",
+    "type": "Credit Card Type",
+    "percentBlank": "0"
+  },
+  {
+    "name": "CurrencyField",
+    "type": "Currency",
+    "percentBlank": "0"
+  },
+  {
+    "name": "CurrencyCodeField",
+    "type": "Currency Code",
+    "percentBlank": "0"
+  },
+  {
+    "name": "CustomListField",
+    "type": "Custom List",
+    "percentBlank": "0",
+    "values": [ "a", "b", "c" ],
+    "selectionStyle": "Random"
+  },
+  {
+    "name": "DatasetColumnField",
+    "type": "Dataset Column",
+    "percentBlank": "0"
+  },
+  {
+    "name": "DateField",
+    "type": "Date",
+    "percentBlank": "0",
+    "min": "04/04/1975",
+    "max": "01/10/2016",
+    "format": "%F %T"
+  },
+  {
+    "name": "DomainNameField",
+    "type": "Domain Name",
+    "percentBlank": "0"
+  },
+  {
+    "name": "DrugCompanyField",
+    "type": "Drug Company",
+    "percentBlank": "0"
+  },
+  {
+    "name": "DrugNameBrandField",
+    "type": "Drug Name (Brand)",
+    "percentBlank": "0"
+  },
+  {
+    "name": "DrugNameGenericField",
+    "type": "Drug Name (Generic)",
+    "percentBlank": "0"
+  },
+  {
+    "name": "EmailAddressField",
+    "type": "Email Address",
+    "percentBlank": "0"
+  },
+  {
+    "name": "EncryptField",
+    "type": "Encrypt",
+    "percentBlank": "0"
+  },
+  {
+    "name": "FamilyNameChineseField",
+    "type": "Family Name (Chinese)",
+    "percentBlank": "0"
+  },
+  {
+    "name": "FDANDCCodeField",
+    "type": "FDA NDC Code",
+    "percentBlank": "0"
+  },
+  {
+    "name": "FileNameField",
+    "type": "File Name",
+    "percentBlank": "0"
+  },
+  {
+    "name": "FirstNameField",
+    "type": "First Name",
+    "percentBlank": "0"
+  },
+  {
+    "name": "FirstNameEuropeanField",
+    "type": "First Name (European)",
+    "percentBlank": "0"
+  },
+  {
+    "name": "FirstNameFemaleField",
+    "type": "First Name (Female)",
+    "percentBlank": "0"
+  },
+  {
+    "name": "FirstNameMaleField",
+    "type": "First Name (Male)",
+    "percentBlank": "0"
+  },
+  {
+    "name": "FormulaField",
+    "type": "Formula",
+    "percentBlank": "0"
+  },
+  {
+    "name": "FrequencyField",
+    "type": "Frequency",
+    "percentBlank": "0"
+  },
+  {
+    "name": "FullNameField",
+    "type": "Full Name",
+    "percentBlank": "0"
+  },
+  {
+    "name": "GenderField",
+    "type": "Gender",
+    "percentBlank": "0"
+  },
+  {
+    "name": "GenderAbbreviatedField",
+    "type": "Gender (abbrev)",
+    "percentBlank": "0"
+  },
+  {
+    "name": "GivenNameChineseField",
+    "type": "Given Name (Chinese)",
+    "percentBlank": "0"
+  },
+  {
+    "name": "GUIDField",
+    "type": "GUID",
+    "percentBlank": "0"
+  },
+  {
+    "name": "HexColorField",
+    "type": "Hex Color",
+    "percentBlank": "0"
+  },
+  {
+    "name": "IBANField",
+    "type": "IBAN",
+    "percentBlank": "0"
+  },
+  {
+    "name": "ICD9DiagnosisCodeField",
+    "type": "ICD9 Diagnosis Code",
+    "percentBlank": "0"
+  },
+  {
+    "name": "ICD9DxDescLongField",
+    "type": "ICD9 Dx Desc (Long)",
+    "percentBlank": "0"
+  },
+  {
+    "name": "ICD9DxDescShortField",
+    "type": "ICD9 Dx Desc (Short)",
+    "percentBlank": "0"
+  },
+  {
+    "name": "ICD9ProcDescLongField",
+    "type": "ICD9 Proc Desc (Long)",
+    "percentBlank": "0"
+  },
+  {
+    "name": "ICD9ProcDescShortField",
+    "type": "ICD9 Proc Desc (Short)",
+    "percentBlank": "0"
+  },
+  {
+    "name": "ICD9ProcedureCodeField",
+    "type": "ICD9 Procedure Code",
+    "percentBlank": "0"
+  },
+  {
+    "name": "IPAddressV4Field",
+    "type": "IP Address v4",
+    "percentBlank": "0"
+  },
+  {
+    "name": "IPAddressV6Field",
+    "type": "IP Address v6",
+    "percentBlank": "0"
+  },
+  {
+    "name": "ISBNField",
+    "type": "ISBN",
+    "percentBlank": "0"
+  },
+  {
+    "name": "JobTitleField",
+    "type": "Job Title",
+    "percentBlank": "0"
+  },
+  {
+    "name": "JSONArrayField",
+    "type": "JSON Array",
+    "percentBlank": "0"
+  },
+  {
+    "name": "LanguageField",
+    "type": "Language",
+    "percentBlank": "0"
+  },
+  {
+    "name": "LastNameField",
+    "type": "Last Name",
+    "percentBlank": "0"
+  },
+  {
+    "name": "LatitudeField",
+    "type": "Latitude",
+    "percentBlank": "0"
+  },
+  {
+    "name": "LinkedInSkillField",
+    "type": "LinkedIn Skill",
+    "percentBlank": "0"
+  },
+  {
+    "name": "LongitudeField",
+    "type": "Longitude",
+    "percentBlank": "0"
+  },
+  {
+    "name": "MACAddressField",
+    "type": "MAC Address",
+    "percentBlank": "0"
+  },
+  {
+    "name": "MIMETypeField",
+    "type": "MIME Type",
+    "percentBlank": "0"
+  },
+  {
+    "name": "MoneyField",
+    "type": "Money",
+    "percentBlank": "0"
+  },
+  {
+    "name": "MongoDBObjectIDField",
+    "type": "MongoDB ObjectID",
+    "percentBlank": "0"
+  },
+  {
+    "name": "NaughtyStringField",
+    "type": "Naughty String",
+    "percentBlank": "0"
+  },
+  {
+    "name": "NormalDistributionField",
+    "type": "Normal Distribution",
+    "percentBlank": "0"
+  },
+  {
+    "name": "NumberField",
+    "type": "Number",
+    "percentBlank": "0",
+    "min": "1",
+    "max": "100",
+    "decimals": "0"
+  },
+  {
+    "name": "ParagraphsField",
+    "type": "Paragraphs",
+    "percentBlank": "0"
+  },
+  {
+    "name": "PasswordField",
+    "type": "Password",
+    "percentBlank": "0"
+  },
+  {
+    "name": "PhoneField",
+    "type": "Phone",
+    "percentBlank": "0"
+  },
+  {
+    "name": "PostalCodeField",
+    "type": "Postal Code",
+    "percentBlank": "0"
+  },
+  {
+    "name": "RaceField",
+    "type": "Race",
+    "percentBlank": "0"
+  },
+  {
+    "name": "RegularExpressionField",
+    "type": "Regular Expression",
+    "percentBlank": "0"
+  },
+  {
+    "name": "RowNumberField",
+    "type": "Row Number",
+    "percentBlank": "0"
+  },
+  {
+    "name": "ScenarioField",
+    "type": "Scenario",
+    "percentBlank": "0"
+  },
+  {
+    "name": "SentencesField",
+    "type": "Sentences",
+    "percentBlank": "0"
+  },
+  {
+    "name": "SequenceField",
+    "type": "Sequence",
+    "percentBlank": "0"
+  },
+  {
+    "name": "ShirtSizeField",
+    "type": "Shirt Size",
+    "percentBlank": "0"
+  },
+  {
+    "name": "ShortHexColorField",
+    "type": "Short Hex Color",
+    "percentBlank": "0"
+  },
+  {
+    "name": "SQLExpressionField",
+    "type": "SQL Expression",
+    "percentBlank": "0"
+  },
+  {
+    "name": "SSNField",
+    "type": "SSN",
+    "percentBlank": "0"
+  },
+  {
+    "name": "StateField",
+    "type": "State",
+    "percentBlank": "0"
+  },
+  {
+    "name": "StateAbbreviatedField",
+    "type": "State (abbrev)",
+    "percentBlank": "0"
+  },
+  {
+    "name": "StreetAddressField",
+    "type": "Street Address",
+    "percentBlank": "0"
+  },
+  {
+    "name": "StreetNameField",
+    "type": "Street Name",
+    "percentBlank": "0"
+  },
+  {
+    "name": "StreetNumberField",
+    "type": "Street Number",
+    "percentBlank": "0"
+  },
+  {
+    "name": "StreetSuffixField",
+    "type": "Street Suffix",
+    "percentBlank": "0"
+  },
+  {
+    "name": "SuffixField",
+    "type": "Suffix",
+    "percentBlank": "0"
+  },
+  {
+    "name": "TemplateField",
+    "type": "Template",
+    "percentBlank": "0"
+  },
+  {
+    "name": "TimeField",
+    "type": "Time",
+    "percentBlank": "0"
+  },
+  {
+    "name": "TimeZoneField",
+    "type": "Time Zone",
+    "percentBlank": "0"
+  },
+  {
+    "name": "TitleField",
+    "type": "Title",
+    "percentBlank": "0"
+  },
+  {
+    "name": "TopLevelDomainField",
+    "type": "Top Level Domain",
+    "percentBlank": "0"
+  },
+  {
+    "name": "URLField",
+    "type": "URL",
+    "percentBlank": "0"
+  },
+  {
+    "name": "UserAgentField",
+    "type": "User Agent",
+    "percentBlank": "0"
+  },
+  {
+    "name": "UserNameField",
+    "type": "Username",
+    "percentBlank": "0"
+  },
+  {
+    "name": "WordsField",
+    "type": "Words",
+    "percentBlank": "0",
+    "min": "10",
+    "max": "20"
+  }
+]
+

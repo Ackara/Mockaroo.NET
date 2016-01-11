@@ -1,0 +1,178 @@
+﻿<#@ template hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+using System;
+using System.Collections.Generic;
+
+namespace Gigobyte.Mockaroo
+{
+	public enum <#= EnumTypeName #>
+	{
+<# 
+	PushIndent("\t\t");
+	WriteLine(GenerateTypeCodes());
+	ClearIndent();
+#>
+	}
+
+	public static partial class Extensions
+	{
+		public static string ToMockarooTypeName(this <#= EnumTypeName #> dataType)
+		{
+			switch(dataType)
+			{
+				default:
+				return string.Empty;
+
+<# 
+	PushIndent("\t\t\t\t");
+	WriteLine(GenerateExtensionMethod());
+	ClearIndent();
+#>
+			}
+		}
+	}
+}
+
+namespace Gigobyte.Mockaroo.Fields
+{
+	public partial class FieldFactory
+	{
+		public FieldFactory()
+		{
+<# 
+	foreach (var type in FetchDataTypes())
+	{
+		WriteLine(string.Format("\t\t\t{0}.Add({1}.{2}, Type.GetType(\"Gigobyte.Mockaroo.Fields.{2}Field\"));", DictionaryTypeName, EnumTypeName, ToEnumName(type), type));
+	}
+#>
+		}
+
+		public IField Create(<#= EnumTypeName #> dataType)
+		{
+			return (IField)Activator.CreateInstance(<#= DictionaryTypeName #>[dataType]);
+		}
+
+		#region Private Members
+
+		private IDictionary<<#= EnumTypeName #>, Type> <#= DictionaryTypeName #> = new Dictionary<<#= EnumTypeName #>, Type>();
+
+		#endregion Private Members
+	}
+
+<# 
+	PushIndent("\t");
+	WriteLine(GenerateFieldTypes());
+	ClearIndent();
+#>
+}
+<#+ 
+public const string EnumTypeName = "DataType", DictionaryTypeName = "_fieldTypes";
+
+public string GenerateFieldTypes()
+{
+	var text = new System.Text.StringBuilder();
+
+	foreach (var type in FetchDataTypes())
+	{
+		text.AppendFormat("public partial class {0}Field : FieldBase", ToEnumName(type));
+		text.AppendLine();
+		text.AppendLine("{");
+		
+		text.AppendLine("\t/// <summary>");
+		text.AppendLine("\t/// Get the mockaroo data type.");
+		text.AppendLine("\t/// </summary>");
+		text.AppendFormat("\tpublic override {0} Type {{ get {{ return {0}.{1}; }} }}", EnumTypeName, ToEnumName(type));
+		text.AppendLine();
+
+		text.AppendLine("}");
+	}
+
+	return text.ToString();
+}
+
+public string GenerateExtensionMethod()
+{
+	var text = new System.Text.StringBuilder();
+
+	foreach (var type in FetchDataTypes())
+	{
+		 text.AppendFormat("case {1}.{0}:\r\n", ToEnumName(type), EnumTypeName);
+		 text.AppendFormat("return \"{0}\";\r\n\r\n", type);
+	}
+
+	return text.ToString().Trim();
+}
+
+public string GenerateTypeCodes()
+{
+	var text = new System.Text.StringBuilder();
+
+	foreach (var type in FetchDataTypes())
+	{
+		 text.AppendFormat("{0},", ToEnumName(type));
+		 text.AppendLine();
+	}
+	return text.ToString().Trim();
+}
+
+public IEnumerable<string> FetchDataTypes()
+{
+	string path = Path.Combine(Host.ResolveAssemblyReference("$(ProjectDir)"), "Fields", "mockaroo_type_list.csv");
+	string[] lines = File.ReadAllLines(path);
+
+	for (int i = 0; i < lines.Length; i++)
+	{
+		string val = lines[i];
+		if(!string.IsNullOrWhiteSpace(val))
+		{
+			yield return val;
+		}
+	}
+}
+
+public string ToEnumName(string text)
+{
+	switch(text)
+	{
+		case "Gender (abbrev)":
+			text = "GenderAbbreviated";
+			break;
+
+		case "State (abbrev)":
+			text = "StateAbbreviated";
+			break;
+			
+		case "Credit Card #":
+			text = "CreditCardNumber";
+			break;
+
+		case "Username":
+			text = "UserName";
+			break;
+	}
+
+	return ToPascalCase(text);
+}
+
+public string ToPascalCase(string text, params char[] separator)
+{
+	if (text.Length == 1) return text.ToUpper();
+	else
+	{
+		if (separator.Length == 0) separator = new char[] { ' ' };
+		string[] words = text.Split(separator, System.StringSplitOptions.RemoveEmptyEntries);
+		string pascal = "";
+		
+		foreach (var word in words)
+		{
+			pascal += char.ToUpper(word[0]) + word.Substring(1);
+		}
+		
+		return new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9]").Replace(pascal, "");
+	}
+}
+#>
