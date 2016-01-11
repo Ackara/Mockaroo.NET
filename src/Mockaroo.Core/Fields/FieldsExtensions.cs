@@ -2,10 +2,10 @@
 {
     public static class FieldsExtensions
     {
-        public static int Between(this int value, int min, int max)
+        public static int Between(this int value, int minInclusive, int maxInclusive)
         {
-            if (value >= max) return max;
-            else if (value <= min) return min;
+            if (value >= maxInclusive) return maxInclusive;
+            else if (value <= minInclusive) return minInclusive;
             else return value;
         }
     }

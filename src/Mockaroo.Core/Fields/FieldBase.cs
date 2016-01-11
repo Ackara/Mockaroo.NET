@@ -10,7 +10,7 @@
         public int BlankPercentage
         {
             get { return _blankPercentage; }
-            set { value.Between(min: 0, max: 99); }
+            set { value.Between(minInclusive: 0, maxInclusive: 99); }
         }
 
         public virtual string ToJson()
@@ -26,7 +26,7 @@
         protected virtual string ToDebuggerView()
         {
             string name = (string.IsNullOrEmpty(Name) ? "<Empty>" : Name);
-            return $"{{{name}: {Type}}}";
+            return $"{{{name}: {Type.ToMockarooTypeName()}}}";
         }
 
         #region Private Members
