@@ -50,5 +50,5 @@ IEnumerable<Employee> data = await client.FetchDataAsync<Employee>(schema, recor
 PM> Install-Package Gigobyte.Mockaroo.Core
 ```
 
-## License
+## Copyright and License
 Mockaroo is Copyright © 2015 Ackara Zangetsu and other contributors under the [MIT License](https://opensource.org/licenses/MIT).
