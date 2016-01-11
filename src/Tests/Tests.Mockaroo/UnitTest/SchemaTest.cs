@@ -70,6 +70,7 @@ namespace Tests.Mockaroo.UnitTest
             var count = 0;
             var dotNetType = $"{TestContext.DataRow[Data.TypeColumn]}";
             var expectedFieldType = Assembly.GetAssembly(typeof(IField)).GetType($"{typeof(IField).Namespace}.{TestContext.DataRow[Data.FieldColumn]}");
+
             TestContext.WriteLine("input: {0}", dotNetType);
             TestContext.WriteLine("expected: {0}", expectedFieldType);
 
