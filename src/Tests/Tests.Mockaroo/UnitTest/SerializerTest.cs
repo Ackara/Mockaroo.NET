@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 using System;
-using System.IO;
 
 namespace Tests.Mockaroo.UnitTest
 {
@@ -70,16 +69,16 @@ namespace Tests.Mockaroo.UnitTest
         {
             // Arrange
             var sut = new Serializer();
-            var path = Convert.ToString(TestContext.DataRow["Path"]);
-            var json = File.ReadAllText(path);
+            var fileName = Convert.ToString(TestContext.DataRow["File"]);
+            var json = SampleData.GetFileContent(fileName);
             var errors = new System.Text.StringBuilder();
 
-            TestContext.WriteLine("input: {0}", path);
-            
+            TestContext.WriteLine("input: {0}", fileName);
+
             // Act
             foreach (JObject obj in JArray.Parse(json))
             {
-                if(sut.Deserialize(obj, typeof(MockarooSchemaSpec)) == null)
+                if (sut.Deserialize(obj, typeof(MockarooSchemaSpec)) == null)
                 {
                     errors.AppendLine($"unable to parse => {obj.ToString()}");
                 }

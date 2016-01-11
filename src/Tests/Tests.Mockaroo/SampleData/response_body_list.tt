@@ -5,7 +5,7 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".csv" encoding="utf-8" #>
-Row,Path
+Row,File
 <# 
 	int index = 0;
 	string targetDir = Path.Combine(Host.ResolveAssemblyReference("$(TargetDir)"), "SampleData");
@@ -13,7 +13,7 @@ Row,Path
 	{
 		if (System.IO.Path.GetFileName(path).StartsWith("responseBody"))
 		{
-			WriteLine("{0},{1}", index++, path);
+			WriteLine("{0},{1}", index++, System.IO.Path.GetFileName(path));
 		}
 	}
 #>
