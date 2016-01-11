@@ -42,12 +42,13 @@ IEnumerable<Employee> data = await client.FetchDataAsync<Employee>(schema, recor
 ```
 
 ## Available on NuGet
+[![license](https://img.shields.io/badge/license-MIT%20License-blue.svg)](https://github.com/Ackara/Mockaroo.NET/blob/master/LICENSE)
 [![version](https://img.shields.io/nuget/v/Gigobyte.Daterpillar.Core.svg?style=flat-square)](https://www.nuget.org/packages?q=Gigobyte.Daterpillar.Core)
 [![downloads](https://img.shields.io/nuget/dt/Gigobyte.Daterpillar.Core.svg)](https://img.shields.io/nuget/dt/Gigobyte.Daterpillar.Core.svg)
 
 ```
-PM > Install-Package Gigobyte.Mockaroo.Core
+PM> Install-Package Gigobyte.Mockaroo.Core
 ```
 
 ## License
-[MIT License](https://opensource.org/licenses/MIT)
+Mockaroo is Copyright © 2015 Ackara Zangetsu and other contributors under the [MIT License](https://opensource.org/licenses/MIT).
