@@ -20,7 +20,7 @@ namespace Tests.Mockaroo.UnitTest
             var dataTypes = Enum.GetValues(typeof(DataType));
 
             var errors = new System.Text.StringBuilder();
-
+            
             // Act
             foreach (var type in dataTypes)
             {

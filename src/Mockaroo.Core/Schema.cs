@@ -136,21 +136,21 @@ namespace Gigobyte.Mockaroo
         }
 
         /// <summary>
-        /// Replaces the specified <see cref="IField"/> by it's name.
+        /// Find and replace the specified <see cref="IField"/> by it's name.
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="dataType">The Mockaroo data type.</param>
-        public void Replace(string fieldName, DataType dataType)
+        public void Assign(string fieldName, DataType dataType)
         {
-            Replace(fieldName, new FieldFactory().Create(dataType));
+            Assign(fieldName, new FieldFactory().Create(dataType));
         }
 
         /// <summary>
-        /// Replaces the specified <see cref="IField"/> by it's name.
+        /// Find and replace the specified <see cref="IField"/> by it's name.
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="fieldInfo">The Mockaroo field.</param>
-        public void Replace(string fieldName, IField fieldInfo)
+        public void Assign(string fieldName, IField fieldInfo)
         {
             fieldInfo.Name = fieldName;
             for (int i = 0; i < Fields.Count; i++)
@@ -170,7 +170,7 @@ namespace Gigobyte.Mockaroo
             json.AppendLine("[");
             foreach (var field in Fields)
             {
-                json.AppendFormat(" {0},\r\n", field.ToJson());
+                json.AppendFormat("{0},\r\n", field.ToJson());
             }
 
             json.RemoveLastComma();
@@ -223,30 +223,30 @@ namespace Gigobyte.Mockaroo
         }
 
         /// <summary>
-        /// Replaces the specified <see cref="IField"/> by the property associated with it.
+        /// Find and replace the specified <see cref="IField"/> by the property associated with it.
         /// </summary>
         /// <param name="property">The property associated to the <see cref="IField"/>.</param>
         /// <param name="dataType">The Mockaroo data type.</param>
-        public void Replace(Expression<Func<T, object>> property, DataType dataType)
+        public void Assign(Expression<Func<T, object>> property, DataType dataType)
         {
             Match match = _lambdaPattern.Match(property.ToString());
             if (match.Success)
             {
-                Replace(match.Groups["property"].Value, new FieldFactory().Create(dataType));
+                Assign(match.Groups["property"].Value, new FieldFactory().Create(dataType));
             }
         }
 
         /// <summary>
-        /// Replaces the specified <see cref="IField"/> by the property associated with it.
+        /// Find and replace the specified <see cref="IField"/> by the property associated with it.
         /// </summary>
         /// <param name="property">The property associated to the <see cref="IField"/>.</param>
         /// <param name="fieldInfo">The Mockaroo field.</param>
-        public void Replace(Expression<Func<T, object>> property, IField fieldInfo)
+        public void Assign(Expression<Func<T, object>> property, IField fieldInfo)
         {
             Match match = _lambdaPattern.Match(property.ToString());
             if (match.Success)
             {
-                Replace(match.Groups["property"].Value, fieldInfo);
+                Assign(match.Groups["property"].Value, fieldInfo);
             }
         }
 

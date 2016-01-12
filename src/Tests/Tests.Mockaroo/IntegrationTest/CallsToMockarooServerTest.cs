@@ -148,7 +148,7 @@ namespace Tests.Mockaroo.IntegrationTest
         {
             // Arrange
             var schema = new Schema<FakeObject>();
-            schema.Replace(x => x.DateValue, new DateField() { Max = new DateTime(2016, 01, 01) });
+            schema.Assign(x => x.DateValue, new DateField() { Max = new DateTime(2016, 01, 01) });
             var client = new MockarooClient(MockarooApiKey);
 
             // Act

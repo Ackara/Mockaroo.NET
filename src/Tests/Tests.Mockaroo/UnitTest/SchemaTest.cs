@@ -27,7 +27,7 @@ namespace Tests.Mockaroo.UnitTest
         }
 
         /// <summary>
-        /// Assert <see cref="Schema.Replace(string, IField)"/> replaces existing <see cref="IField"/>.
+        /// Assert <see cref="Schema.Assign(string, IField)"/> replaces existing <see cref="IField"/>.
         /// </summary>
         [TestMethod]
         [Owner(Dev.Ackara)]
@@ -35,8 +35,8 @@ namespace Tests.Mockaroo.UnitTest
         {
             var sut = new Schema<FakeObject>();
 
-            sut.Replace(x => x.StringValue, DataType.FullName);
-            sut.Replace(x => x.DateValue, new DateField() { Max = new DateTime(2016, 01, 01) });
+            sut.Assign(x => x.StringValue, DataType.FullName);
+            sut.Assign(x => x.DateValue, new DateField() { Max = new DateTime(2016, 01, 01) });
             var json = sut.ToJson();
 
             Approvals.VerifyJson(json);
@@ -137,7 +137,7 @@ namespace Tests.Mockaroo.UnitTest
         {
             // Arrange
             var sut = new Schema<FakeObject>();
-            sut.Replace(x => x.DateValue, new DateField() { Max = new DateTime(2016, 01, 01) });
+            sut.Assign(x => x.DateValue, new DateField() { Max = new DateTime(2016, 01, 01) });
             var pattern = @"(?i)\[\s*({(""[_a-z 0-9]+"": (""[^"",{}\[\]]+""+|\[(""[^"",{}\[\]]+"",? ?)+\]),? ?)+},?\s*)+\]";
 
             // Act

@@ -1,5 +1,8 @@
 ﻿namespace Gigobyte.Mockaroo
 {
+    /// <summary>
+    /// The Mockaroo server HTTP response format.
+    /// </summary>
     public enum ResponseFormat
     {
         /// <summary>

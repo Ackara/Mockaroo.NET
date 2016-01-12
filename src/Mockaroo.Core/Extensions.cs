@@ -3,6 +3,9 @@ using System.Reflection;
 
 namespace Gigobyte.Mockaroo
 {
+    /// <summary>
+    /// Extensions methods in <see cref="Gigobyte.Mockaroo"/> name space.
+    /// </summary>
     public static partial class Extensions
     {
         internal static bool IsBuiltInType(this Type type)
