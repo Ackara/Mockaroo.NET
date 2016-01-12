@@ -63,10 +63,10 @@
     <Compile Include="Serializer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Fields\MockarooFields.tt">
+    <None Include="Fields\MockarooFields.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>MockarooFields.cs</LastGenOutput>
-    </Content>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -78,6 +78,10 @@
     </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

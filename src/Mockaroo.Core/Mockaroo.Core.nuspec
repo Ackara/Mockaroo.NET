@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/Ackara/Mockaroo.NET/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/Ackara/Mockaroo.NET</projectUrl>
+    <iconUrl>http://i777.photobucket.com/albums/yy53/xxxAckaraxxx/mockaroo%20logo_zps7vlcknkm.jpg</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Stable release.</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>sample data mockaroo rest api</tags>
+  </metadata>
+</package>

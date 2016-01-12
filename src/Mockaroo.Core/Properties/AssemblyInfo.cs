@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Mockaroo.Core")]
 [assembly: AssemblyDescription("A portable class library that allows you to generate sample data based on your object type using the Mockaroo API.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Gigobyte")]
+[assembly: AssemblyCompany("Ackara")]
 [assembly: AssemblyProduct("Mockaroo.Core")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
@@ -26,5 +26,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.2016.10")]
-[assembly: AssemblyFileVersion("1.0.2016.10")]
+[assembly: AssemblyVersion("1.1.16012")]
+[assembly: AssemblyFileVersion("1.1.16012")]
