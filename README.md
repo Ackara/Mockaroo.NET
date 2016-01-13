@@ -55,8 +55,8 @@ Currently there are over 85+ data types to choose from, check out the [Mockaroo 
 
 ## Available on NuGet
 [![license](https://img.shields.io/badge/license-MIT%20License-blue.svg)](https://github.com/Ackara/Mockaroo.NET/blob/master/LICENSE)
-[![version](https://img.shields.io/nuget/v/Gigobyte.Daterpillar.Core.svg?style=flat-square)](https://www.nuget.org/packages?q=Gigobyte.Daterpillar.Core)
-[![downloads](https://img.shields.io/nuget/dt/Gigobyte.Daterpillar.Core.svg)](https://img.shields.io/nuget/dt/Gigobyte.Daterpillar.Core.svg)
+[![version](https://img.shields.io/nuget/v/Gigobyte.Mockaroo.Core.svg?style=flat-square)](https://www.nuget.org/packages?q=Gigobyte.Mockaroo.Core)
+[![downloads](https://img.shields.io/nuget/dt/Gigobyte.Mockaroo.Core.svg)](https://img.shields.io/nuget/dt/Gigobyte.Mockaroo.Core.svg)
 
 ```
 PM> Install-Package Gigobyte.Mockaroo.Core
