@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Gigobyte.Mockaroo
 {
+    /// <summary>
+    /// Provides methods to communicate with the Mockaroo REST API.
+    /// </summary>
     public class MockarooClient
     {
         /// <summary>
@@ -29,7 +32,7 @@ namespace Gigobyte.Mockaroo
         }
 
         /// <summary>
-        /// Sends asynchronous request to http://mockaroo.com.
+        /// Sends asynchronous request for sample data to http://mockaroo.com.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="records">The number of records to return.</param>
@@ -40,7 +43,7 @@ namespace Gigobyte.Mockaroo
         }
 
         /// <summary>
-        /// Sends asynchronous request to http://mockaroo.com.
+        /// Sends asynchronous request for sample data to http://mockaroo.com.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="schema">The Mockaroo schema used to generate the data.</param>
@@ -52,7 +55,7 @@ namespace Gigobyte.Mockaroo
         }
 
         /// <summary>
-        /// Sends asynchronous request to http://mockaroo.com.
+        /// Sends asynchronous request for sample data to http://mockaroo.com.
         /// </summary>
         /// <param name="returnType">The expected type of the object in collection.</param>
         /// <param name="records">The number of records to return.</param>
@@ -63,7 +66,7 @@ namespace Gigobyte.Mockaroo
         }
 
         /// <summary>
-        /// Sends asynchronous request to http://mockaroo.com.
+        /// Sends asynchronous request for sample data to http://mockaroo.com.
         /// </summary>
         /// <param name="returnType">The expected type of the object in collection.</param>
         /// <param name="schema">The Mockaroo schema used to generate the data.</param>
@@ -96,7 +99,7 @@ namespace Gigobyte.Mockaroo
         }
 
         /// <summary>
-        /// Sends asynchronous request to http://mockaroo.com.
+        /// Sends asynchronous request for sample data to http://mockaroo.com.
         /// </summary>
         /// <param name="schema">The Mockaroo schema used to generate the data.</param>
         /// <param name="records">The number of records to return.</param>

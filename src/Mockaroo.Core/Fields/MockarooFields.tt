@@ -78,12 +78,15 @@ public string GenerateFieldTypes()
 
 	foreach (var type in FetchDataTypes())
 	{
+		text.AppendLine("/// <summary>");
+		text.AppendLine(string.Format("/// Represents a {0} field.", type));
+		text.AppendLine("/// </summary>");
 		text.AppendFormat("public partial class {0}Field : FieldBase", ToEnumName(type));
 		text.AppendLine();
 		text.AppendLine("{");
 		
 		text.AppendLine("\t/// <summary>");
-		text.AppendLine("\t/// Get the mockaroo data type.");
+		text.AppendLine("\t/// Get the Mockaroo data type.");
 		text.AppendLine("\t/// </summary>");
 		text.AppendFormat("\tpublic override {0} Type {{ get {{ return {0}.{1}; }} }}", EnumTypeName, ToEnumName(type));
 		text.AppendLine();
