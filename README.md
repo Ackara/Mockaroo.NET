@@ -1,5 +1,5 @@
 # Mockaroo.NET
-Mockaroo.NET is a portable class library that allows you to generate sample data based a C# objects using the [Mockaroo API](https://www.mockaroo.com/).
+Mockaroo.NET is a portable class library that allows you to generate sample data based a C# objects using the [Mockaroo REST API](https://mockaroo.com/api/docs).
 
 ## Getting Started
 Lets say you have the following class.
@@ -63,4 +63,4 @@ PM> Install-Package Gigobyte.Mockaroo.Core
 ```
 
 ## Copyright and License
-Mockaroo is Copyright © 2015 Ackara Zangetsu and other contributors under the [MIT License](https://opensource.org/licenses/MIT).
+Mockaroo is Copyright © 2015 Ackara and other contributors under the [MIT License](https://opensource.org/licenses/MIT).
