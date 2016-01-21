@@ -30,7 +30,7 @@ This will examine the Employee class properties, then generate random sample obj
 }]
 ```
 
-If Lorem Ipsum text not to your liking, you can fine-tune the data returned using the following.
+If Lorem Ipsum text is not to your liking, you can fine-tune the data returned using the following.
 
 ```csharp
 var schema = new Schema<Employee>();
