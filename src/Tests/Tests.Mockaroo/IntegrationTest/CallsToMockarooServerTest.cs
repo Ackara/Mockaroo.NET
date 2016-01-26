@@ -12,7 +12,7 @@ namespace Tests.Mockaroo.IntegrationTest
 {
     [TestClass]
     [DeploymentItem(Artifact.DataXLSX)]
-    //[Ignore(/* Assign the "MockarooApiKey" variable with your Mockaroo API key to run these test. */)]
+    [Ignore(/* Assign the "MockarooApiKey" variable with your Mockaroo API key to run these test. */)]
     public class CallsToMockarooServerTest
     {
         public static string MockarooApiKey = ApiKey.GetValue();
