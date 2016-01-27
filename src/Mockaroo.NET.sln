@@ -31,10 +31,8 @@ Global
 		{A22355AA-E619-4F8B-82A6-D6855248E917} = {498F3AAF-3EE9-4D7E-B2A5-7479987CB705}
 	EndGlobalSection
 	GlobalSection(AutomaticVersions) = postSolution
-		UpdateAssemblyVersion = True
-		UpdateAssemblyFileVersion = True
+		UpdateAssemblyVersion = False
+		UpdateAssemblyFileVersion = False
 		UpdateAssemblyInfoVersion = False
-		AssemblyVersionSettings = IncrementOnDemand.Increment.DateStamp.None
-		AssemblyFileVersionSettings = IncrementOnDemand.Increment.DateStamp.None
 	EndGlobalSection
 EndGlobal
