@@ -1,4 +1,3 @@
-[![build](https://gigobyte.visualstudio.com/DefaultCollection/_apis/public/build/definitions/a19f3f95-a50f-4fed-81c2-6355526e64a7/6/badge)](https://gigobyte.visualstudio.com/DefaultCollection/_apis/public/build/definitions/a19f3f95-a50f-4fed-81c2-6355526e64a7/6/badge)
 # Mockaroo.NET
 Mockaroo.NET is a portable class library that allows you to generate sample data based a C# objects using the [Mockaroo REST API](https://mockaroo.com/api/docs).
 
