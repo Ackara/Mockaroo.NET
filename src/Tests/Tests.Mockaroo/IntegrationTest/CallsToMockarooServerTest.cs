@@ -86,7 +86,7 @@ namespace Tests.Mockaroo.IntegrationTest
         public async Task FetchLargeDataSetFromMockarooServer()
         {
             // Arrange
-            int rows = 300, count = 0;
+            int rows = 20, count = 0;
             var sut = new MockarooClient(MockarooApiKey);
 
             // Act
