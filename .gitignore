@@ -194,5 +194,7 @@ FakesAssemblies/
 
 # Visual Studio 6 workspace options file
 *.opt
-src/Tests/Tests.Mockaroo/apikey.txt
+
+# Solution specific files
+apikey.txt
 *.GhostDoc.*
