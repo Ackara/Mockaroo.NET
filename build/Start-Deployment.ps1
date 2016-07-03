@@ -12,10 +12,11 @@ This script depends on the psake module.
 #>
 
 Param(
+    [Parameter(Position=2)]
     [string[]]$TaskList = @("default"),
 
     [Parameter(Position=1)]
-    [string]$NuGetKey = $nul
+    [string]$NuGetKey = $null
 )
 
 Clear-Host;
