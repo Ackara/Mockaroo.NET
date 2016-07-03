@@ -13,8 +13,8 @@ using System.Text.RegularExpressions;
 namespace Tests.Mockaroo.UnitTest
 {
     [TestClass]
-    [DeploymentItem(Artifact.DataXLSX)]
-    [UseApprovalSubdirectory(Artifact.ApprovalsDir)]
+    [DeploymentItem(SampleData.DirectoryName)]
+    [UseApprovalSubdirectory("Approvals")]
     [UseReporter(typeof(DiffReporter), typeof(ClipboardReporter))]
     public class SchemaTest
     {
@@ -63,13 +63,13 @@ namespace Tests.Mockaroo.UnitTest
         /// </summary>
         [TestMethod]
         [Owner(Dev.Ackara)]
-        [DataSource(Data.ODBC, Data.ExcelConnectiongString, Data.BuiltInDataSheet, DataAccessMethod.Sequential)]
+        [DataSource(DDT.CSV, DDT.Connection.DataTypes, TestFile.DataTypeMap, DataAccessMethod.Sequential)]
         public void CreateMockarooFieldFromPrimitiveTypes()
         {
             // Arrange
             var count = 0;
-            var dotNetType = $"{TestContext.DataRow[Data.TypeColumn]}";
-            var expectedFieldType = Assembly.GetAssembly(typeof(IField)).GetType($"{typeof(IField).Namespace}.{TestContext.DataRow[Data.FieldColumn]}");
+            var dotNetType = $"{TestContext.DataRow[DDT.Column.Type]}";
+            var expectedFieldType = Assembly.GetAssembly(typeof(IField)).GetType($"{typeof(IField).Namespace}.{TestContext.DataRow[DDT.Column.Field]}");
 
             TestContext.WriteLine("input: {0}", dotNetType);
             TestContext.WriteLine("expected: {0}", expectedFieldType);

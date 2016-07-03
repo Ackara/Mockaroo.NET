@@ -6,6 +6,8 @@ namespace Tests.Mockaroo
 {
     public class SampleData
     {
+        public const string DirectoryName = "SampleData";
+
         public static FileInfo GetFile(string filename)
         {
             string searchPattern = "*" + Path.GetExtension(filename);

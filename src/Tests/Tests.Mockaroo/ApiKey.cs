@@ -7,8 +7,14 @@ namespace Tests.Mockaroo
     {
         public static string GetValue()
         {
-            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "API_Keys", "mockaroo.txt");
-            return File.ReadAllText(path).Trim();
+            string key = null;
+
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, TestFile.ApiKey);
+            if (File.Exists(path)) key = File.ReadAllText(path).Trim();
+            else throw new FileNotFoundException($"Cannot find '{path}'.");
+
+            if (string.IsNullOrEmpty(key)) throw new NullReferenceException("The api key cannot be null.");
+            else return key;
         }
     }
 }

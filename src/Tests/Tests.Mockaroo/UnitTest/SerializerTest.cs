@@ -6,28 +6,27 @@ using System;
 namespace Tests.Mockaroo.UnitTest
 {
     [TestClass]
-    [DeploymentItem(Artifact.SampleDataDir)]
+    [DeploymentItem(SampleData.DirectoryName)]
     public class SerializerTest
     {
         public TestContext TestContext { get; set; }
 
         /// <summary>
-        /// Assert <see cref="Serializer.Deserialize(string, Type)"/> can convert json to a
-        /// primitive type.
+        /// Assert <see cref="Serializer.Deserialize(string, Type)"/> can convert json to a primitive type.
         /// </summary>
         [TestMethod]
         [Owner(Dev.Ackara)]
-        [DataSource(Data.ODBC, Data.ExcelConnectiongString, Data.BuiltInDataSheet, DataAccessMethod.Sequential)]
+        [DataSource(DDT.CSV, DDT.Connection.DataTypes, TestFile.DataTypeMap, DataAccessMethod.Sequential)]
         public void DeserializeJsonToPrimitiveType()
         {
             // Arrange
             var sut = new Serializer();
-            var value = TestContext.DataRow[Data.ValueColumn];
-            var dataType = Type.GetType($"System.{Convert.ToString(TestContext.DataRow[Data.TypeColumn])}");
+            var value = TestContext.DataRow[DDT.Column.Value];
+            var dataType = Type.GetType($"System.{Convert.ToString(TestContext.DataRow[DDT.Column.Type])}");
 
             string json = $"{{\"{dataType.Name}\": \"{value}\"}}";
             TestContext.WriteLine("input: {0}={1}", dataType, value);
-            if (dataType == typeof(char)) System.Diagnostics.Debugger.Break();
+
             // Act
             var result = sut.Deserialize(json, dataType);
 
@@ -43,7 +42,7 @@ namespace Tests.Mockaroo.UnitTest
         /// </summary>
         [TestMethod]
         [Owner(Dev.Ackara)]
-        [DataSource(Data.CSV, Artifact.ResponseBodyList, Artifact.ResponseBodyList, DataAccessMethod.Sequential)]
+        [DataSource(DDT.CSV, TestFile.ResponseBodyList, TestFile.ResponseBodyList, DataAccessMethod.Sequential)]
         public void DeserializeSampleResponsesFromMockarooServer()
         {
             // Arrange
@@ -72,7 +71,7 @@ namespace Tests.Mockaroo.UnitTest
         /// </summary>
         [TestMethod]
         [Owner(Dev.Ackara)]
-        public void DeserializeJsonToSpecifedObject()
+        public void DeserializeJsonToSpecifiedObject()
         {
             // Arrange
             var sut = new Serializer();

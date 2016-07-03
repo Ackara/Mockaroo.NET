@@ -1,6 +1,4 @@
-﻿using ApprovalTests.Namers;
-using ApprovalTests.Reporters;
-using Gigobyte.Mockaroo;
+﻿using Gigobyte.Mockaroo;
 using Gigobyte.Mockaroo.Fields;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -11,8 +9,8 @@ using System.Threading.Tasks;
 namespace Tests.Mockaroo.IntegrationTest
 {
     [TestClass]
-    [DeploymentItem(Artifact.DataXLSX)]
-    [Ignore(/* Assign the "MockarooApiKey" variable with your Mockaroo API key to run these test. */)]
+    [DeploymentItem(TestFile.ApiKey)]
+    [DeploymentItem(SampleData.DirectoryName)]
     public class CallsToMockarooServerTest
     {
         public static string MockarooApiKey = ApiKey.GetValue();
@@ -31,13 +29,13 @@ namespace Tests.Mockaroo.IntegrationTest
         /// </summary>
         [TestMethod]
         [Owner(Dev.Ackara)]
-        [DataSource(Data.ODBC, Data.ExcelConnectiongString, Data.BuiltInDataSheet, DataAccessMethod.Sequential)]
+        [DataSource(DDT.CSV, DDT.Connection.DataTypes, TestFile.DataTypeMap, DataAccessMethod.Sequential)]
         public async Task FetchPrimitiveDataFromMockarooServer()
         {
             // Arrange
             int rows = 2, count = 0;
             var sut = new MockarooClient(MockarooApiKey);
-            var dataType = Type.GetType($"System.{Convert.ToString(TestContext.DataRow[Data.TypeColumn])}");
+            var dataType = Type.GetType($"System.{Convert.ToString(TestContext.DataRow[DDT.Column.Type])}");
 
             // Act
             var data = await sut.FetchDataAsync(dataType, rows);
@@ -105,8 +103,8 @@ namespace Tests.Mockaroo.IntegrationTest
         }
 
         /// <summary>
-        /// Assert <see cref="MockarooClient.FetchDataAsync( Type,Schema, int)"/> can retrieve a
-        /// data sample from all Mockaroo data types.
+        /// Assert <see cref="MockarooClient.FetchDataAsync( Type,Schema, int)"/> can retrieve a data
+        /// sample from all Mockaroo data types.
         /// </summary>
         /// <returns>Task.</returns>
         [TestMethod]
