@@ -198,3 +198,4 @@ FakesAssemblies/
 # Solution specific files
 apikey.txt
 *.GhostDoc.*
+*.exe
