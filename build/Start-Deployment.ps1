@@ -14,6 +14,7 @@ This script depends on the psake module.
 Param(
     [string[]]$TaskList = @("default"),
 
+    [Parameter(Position=1)]
     [string]$NuGetKey = $nul
 )
 
