@@ -1,3 +1,8 @@
+App Bundle ID
+App Name
+App Version
+Avatar
+Base64 Image URL
 Bitcoin Address
 Blank
 Boolean
@@ -17,6 +22,7 @@ Domain Name
 Drug Company
 Drug Name (Brand)
 Drug Name (Generic)
+Dummy Image URL
 Email Address
 Encrypt
 Family Name (Chinese)
@@ -42,7 +48,9 @@ ICD9 Proc Desc (Long)
 ICD9 Proc Desc (Short)
 ICD9 Procedure Code
 IP Address v4
+IP Address v4 CIDR
 IP Address v6
+IP Address v6 CIDR
 ISBN
 Job Title
 JSON Array
@@ -52,6 +60,7 @@ Latitude
 LinkedIn Skill
 Longitude
 MAC Address
+MD5
 MIME Type
 Money
 MongoDB ObjectID
@@ -61,6 +70,7 @@ Number
 Paragraphs
 Password
 Phone
+Poisson Distribution
 Postal Code
 Race
 Regular Expression
@@ -68,6 +78,8 @@ Row Number
 Scenario
 Sentences
 Sequence
+SHA1
+SHA256
 Shirt Size
 Short Hex Color
 SQL Expression

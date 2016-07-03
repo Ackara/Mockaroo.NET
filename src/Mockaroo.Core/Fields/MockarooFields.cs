@@ -5,6 +5,11 @@ namespace Gigobyte.Mockaroo
 {
 	public enum DataType
 	{
+		AppBundleID,
+		AppName,
+		AppVersion,
+		Avatar,
+		Base64ImageURL,
 		BitcoinAddress,
 		Blank,
 		Boolean,
@@ -24,6 +29,7 @@ namespace Gigobyte.Mockaroo
 		DrugCompany,
 		DrugNameBrand,
 		DrugNameGeneric,
+		DummyImageURL,
 		EmailAddress,
 		Encrypt,
 		FamilyNameChinese,
@@ -49,7 +55,9 @@ namespace Gigobyte.Mockaroo
 		ICD9ProcDescShort,
 		ICD9ProcedureCode,
 		IPAddressV4,
+		IPAddressV4CIDR,
 		IPAddressV6,
+		IPAddressV6CIDR,
 		ISBN,
 		JobTitle,
 		JSONArray,
@@ -59,6 +67,7 @@ namespace Gigobyte.Mockaroo
 		LinkedInSkill,
 		Longitude,
 		MACAddress,
+		MD5,
 		MIMEType,
 		Money,
 		MongoDBObjectID,
@@ -68,6 +77,7 @@ namespace Gigobyte.Mockaroo
 		Paragraphs,
 		Password,
 		Phone,
+		PoissonDistribution,
 		PostalCode,
 		Race,
 		RegularExpression,
@@ -75,6 +85,8 @@ namespace Gigobyte.Mockaroo
 		Scenario,
 		Sentences,
 		Sequence,
+		SHA1,
+		SHA256,
 		ShirtSize,
 		ShortHexColor,
 		SQLExpression,
@@ -106,6 +118,21 @@ namespace Gigobyte.Mockaroo
 				default:
 				return string.Empty;
 
+				case DataType.AppBundleID:
+				return "App Bundle ID";
+				
+				case DataType.AppName:
+				return "App Name";
+				
+				case DataType.AppVersion:
+				return "App Version";
+				
+				case DataType.Avatar:
+				return "Avatar";
+				
+				case DataType.Base64ImageURL:
+				return "Base64 Image URL";
+				
 				case DataType.BitcoinAddress:
 				return "Bitcoin Address";
 				
@@ -162,6 +189,9 @@ namespace Gigobyte.Mockaroo
 				
 				case DataType.DrugNameGeneric:
 				return "Drug Name (Generic)";
+				
+				case DataType.DummyImageURL:
+				return "Dummy Image URL";
 				
 				case DataType.EmailAddress:
 				return "Email Address";
@@ -238,8 +268,14 @@ namespace Gigobyte.Mockaroo
 				case DataType.IPAddressV4:
 				return "IP Address v4";
 				
+				case DataType.IPAddressV4CIDR:
+				return "IP Address v4 CIDR";
+				
 				case DataType.IPAddressV6:
 				return "IP Address v6";
+				
+				case DataType.IPAddressV6CIDR:
+				return "IP Address v6 CIDR";
 				
 				case DataType.ISBN:
 				return "ISBN";
@@ -268,6 +304,9 @@ namespace Gigobyte.Mockaroo
 				case DataType.MACAddress:
 				return "MAC Address";
 				
+				case DataType.MD5:
+				return "MD5";
+				
 				case DataType.MIMEType:
 				return "MIME Type";
 				
@@ -295,6 +334,9 @@ namespace Gigobyte.Mockaroo
 				case DataType.Phone:
 				return "Phone";
 				
+				case DataType.PoissonDistribution:
+				return "Poisson Distribution";
+				
 				case DataType.PostalCode:
 				return "Postal Code";
 				
@@ -315,6 +357,12 @@ namespace Gigobyte.Mockaroo
 				
 				case DataType.Sequence:
 				return "Sequence";
+				
+				case DataType.SHA1:
+				return "SHA1";
+				
+				case DataType.SHA256:
+				return "SHA256";
 				
 				case DataType.ShirtSize:
 				return "Shirt Size";
@@ -386,6 +434,11 @@ namespace Gigobyte.Mockaroo.Fields
 	{
 		public FieldFactory()
 		{
+			_fieldTypes.Add(DataType.AppBundleID, Type.GetType("Gigobyte.Mockaroo.Fields.AppBundleIDField"));
+			_fieldTypes.Add(DataType.AppName, Type.GetType("Gigobyte.Mockaroo.Fields.AppNameField"));
+			_fieldTypes.Add(DataType.AppVersion, Type.GetType("Gigobyte.Mockaroo.Fields.AppVersionField"));
+			_fieldTypes.Add(DataType.Avatar, Type.GetType("Gigobyte.Mockaroo.Fields.AvatarField"));
+			_fieldTypes.Add(DataType.Base64ImageURL, Type.GetType("Gigobyte.Mockaroo.Fields.Base64ImageURLField"));
 			_fieldTypes.Add(DataType.BitcoinAddress, Type.GetType("Gigobyte.Mockaroo.Fields.BitcoinAddressField"));
 			_fieldTypes.Add(DataType.Blank, Type.GetType("Gigobyte.Mockaroo.Fields.BlankField"));
 			_fieldTypes.Add(DataType.Boolean, Type.GetType("Gigobyte.Mockaroo.Fields.BooleanField"));
@@ -405,6 +458,7 @@ namespace Gigobyte.Mockaroo.Fields
 			_fieldTypes.Add(DataType.DrugCompany, Type.GetType("Gigobyte.Mockaroo.Fields.DrugCompanyField"));
 			_fieldTypes.Add(DataType.DrugNameBrand, Type.GetType("Gigobyte.Mockaroo.Fields.DrugNameBrandField"));
 			_fieldTypes.Add(DataType.DrugNameGeneric, Type.GetType("Gigobyte.Mockaroo.Fields.DrugNameGenericField"));
+			_fieldTypes.Add(DataType.DummyImageURL, Type.GetType("Gigobyte.Mockaroo.Fields.DummyImageURLField"));
 			_fieldTypes.Add(DataType.EmailAddress, Type.GetType("Gigobyte.Mockaroo.Fields.EmailAddressField"));
 			_fieldTypes.Add(DataType.Encrypt, Type.GetType("Gigobyte.Mockaroo.Fields.EncryptField"));
 			_fieldTypes.Add(DataType.FamilyNameChinese, Type.GetType("Gigobyte.Mockaroo.Fields.FamilyNameChineseField"));
@@ -430,7 +484,9 @@ namespace Gigobyte.Mockaroo.Fields
 			_fieldTypes.Add(DataType.ICD9ProcDescShort, Type.GetType("Gigobyte.Mockaroo.Fields.ICD9ProcDescShortField"));
 			_fieldTypes.Add(DataType.ICD9ProcedureCode, Type.GetType("Gigobyte.Mockaroo.Fields.ICD9ProcedureCodeField"));
 			_fieldTypes.Add(DataType.IPAddressV4, Type.GetType("Gigobyte.Mockaroo.Fields.IPAddressV4Field"));
+			_fieldTypes.Add(DataType.IPAddressV4CIDR, Type.GetType("Gigobyte.Mockaroo.Fields.IPAddressV4CIDRField"));
 			_fieldTypes.Add(DataType.IPAddressV6, Type.GetType("Gigobyte.Mockaroo.Fields.IPAddressV6Field"));
+			_fieldTypes.Add(DataType.IPAddressV6CIDR, Type.GetType("Gigobyte.Mockaroo.Fields.IPAddressV6CIDRField"));
 			_fieldTypes.Add(DataType.ISBN, Type.GetType("Gigobyte.Mockaroo.Fields.ISBNField"));
 			_fieldTypes.Add(DataType.JobTitle, Type.GetType("Gigobyte.Mockaroo.Fields.JobTitleField"));
 			_fieldTypes.Add(DataType.JSONArray, Type.GetType("Gigobyte.Mockaroo.Fields.JSONArrayField"));
@@ -440,6 +496,7 @@ namespace Gigobyte.Mockaroo.Fields
 			_fieldTypes.Add(DataType.LinkedInSkill, Type.GetType("Gigobyte.Mockaroo.Fields.LinkedInSkillField"));
 			_fieldTypes.Add(DataType.Longitude, Type.GetType("Gigobyte.Mockaroo.Fields.LongitudeField"));
 			_fieldTypes.Add(DataType.MACAddress, Type.GetType("Gigobyte.Mockaroo.Fields.MACAddressField"));
+			_fieldTypes.Add(DataType.MD5, Type.GetType("Gigobyte.Mockaroo.Fields.MD5Field"));
 			_fieldTypes.Add(DataType.MIMEType, Type.GetType("Gigobyte.Mockaroo.Fields.MIMETypeField"));
 			_fieldTypes.Add(DataType.Money, Type.GetType("Gigobyte.Mockaroo.Fields.MoneyField"));
 			_fieldTypes.Add(DataType.MongoDBObjectID, Type.GetType("Gigobyte.Mockaroo.Fields.MongoDBObjectIDField"));
@@ -449,6 +506,7 @@ namespace Gigobyte.Mockaroo.Fields
 			_fieldTypes.Add(DataType.Paragraphs, Type.GetType("Gigobyte.Mockaroo.Fields.ParagraphsField"));
 			_fieldTypes.Add(DataType.Password, Type.GetType("Gigobyte.Mockaroo.Fields.PasswordField"));
 			_fieldTypes.Add(DataType.Phone, Type.GetType("Gigobyte.Mockaroo.Fields.PhoneField"));
+			_fieldTypes.Add(DataType.PoissonDistribution, Type.GetType("Gigobyte.Mockaroo.Fields.PoissonDistributionField"));
 			_fieldTypes.Add(DataType.PostalCode, Type.GetType("Gigobyte.Mockaroo.Fields.PostalCodeField"));
 			_fieldTypes.Add(DataType.Race, Type.GetType("Gigobyte.Mockaroo.Fields.RaceField"));
 			_fieldTypes.Add(DataType.RegularExpression, Type.GetType("Gigobyte.Mockaroo.Fields.RegularExpressionField"));
@@ -456,6 +514,8 @@ namespace Gigobyte.Mockaroo.Fields
 			_fieldTypes.Add(DataType.Scenario, Type.GetType("Gigobyte.Mockaroo.Fields.ScenarioField"));
 			_fieldTypes.Add(DataType.Sentences, Type.GetType("Gigobyte.Mockaroo.Fields.SentencesField"));
 			_fieldTypes.Add(DataType.Sequence, Type.GetType("Gigobyte.Mockaroo.Fields.SequenceField"));
+			_fieldTypes.Add(DataType.SHA1, Type.GetType("Gigobyte.Mockaroo.Fields.SHA1Field"));
+			_fieldTypes.Add(DataType.SHA256, Type.GetType("Gigobyte.Mockaroo.Fields.SHA256Field"));
 			_fieldTypes.Add(DataType.ShirtSize, Type.GetType("Gigobyte.Mockaroo.Fields.ShirtSizeField"));
 			_fieldTypes.Add(DataType.ShortHexColor, Type.GetType("Gigobyte.Mockaroo.Fields.ShortHexColorField"));
 			_fieldTypes.Add(DataType.SQLExpression, Type.GetType("Gigobyte.Mockaroo.Fields.SQLExpressionField"));
@@ -490,6 +550,56 @@ namespace Gigobyte.Mockaroo.Fields
 		#endregion Private Members
 	}
 
+	/// <summary>
+	/// Represents a App Bundle ID field.
+	/// </summary>
+	public partial class AppBundleIDField : FieldBase
+	{
+		/// <summary>
+		/// Get the Mockaroo data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.AppBundleID; } }
+	}
+	/// <summary>
+	/// Represents a App Name field.
+	/// </summary>
+	public partial class AppNameField : FieldBase
+	{
+		/// <summary>
+		/// Get the Mockaroo data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.AppName; } }
+	}
+	/// <summary>
+	/// Represents a App Version field.
+	/// </summary>
+	public partial class AppVersionField : FieldBase
+	{
+		/// <summary>
+		/// Get the Mockaroo data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.AppVersion; } }
+	}
+	/// <summary>
+	/// Represents a Avatar field.
+	/// </summary>
+	public partial class AvatarField : FieldBase
+	{
+		/// <summary>
+		/// Get the Mockaroo data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.Avatar; } }
+	}
+	/// <summary>
+	/// Represents a Base64 Image URL field.
+	/// </summary>
+	public partial class Base64ImageURLField : FieldBase
+	{
+		/// <summary>
+		/// Get the Mockaroo data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.Base64ImageURL; } }
+	}
 	/// <summary>
 	/// Represents a Bitcoin Address field.
 	/// </summary>
@@ -679,6 +789,16 @@ namespace Gigobyte.Mockaroo.Fields
 		/// Get the Mockaroo data type.
 		/// </summary>
 		public override DataType Type { get { return DataType.DrugNameGeneric; } }
+	}
+	/// <summary>
+	/// Represents a Dummy Image URL field.
+	/// </summary>
+	public partial class DummyImageURLField : FieldBase
+	{
+		/// <summary>
+		/// Get the Mockaroo data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.DummyImageURL; } }
 	}
 	/// <summary>
 	/// Represents a Email Address field.
@@ -931,6 +1051,16 @@ namespace Gigobyte.Mockaroo.Fields
 		public override DataType Type { get { return DataType.IPAddressV4; } }
 	}
 	/// <summary>
+	/// Represents a IP Address v4 CIDR field.
+	/// </summary>
+	public partial class IPAddressV4CIDRField : FieldBase
+	{
+		/// <summary>
+		/// Get the Mockaroo data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.IPAddressV4CIDR; } }
+	}
+	/// <summary>
 	/// Represents a IP Address v6 field.
 	/// </summary>
 	public partial class IPAddressV6Field : FieldBase
@@ -939,6 +1069,16 @@ namespace Gigobyte.Mockaroo.Fields
 		/// Get the Mockaroo data type.
 		/// </summary>
 		public override DataType Type { get { return DataType.IPAddressV6; } }
+	}
+	/// <summary>
+	/// Represents a IP Address v6 CIDR field.
+	/// </summary>
+	public partial class IPAddressV6CIDRField : FieldBase
+	{
+		/// <summary>
+		/// Get the Mockaroo data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.IPAddressV6CIDR; } }
 	}
 	/// <summary>
 	/// Represents a ISBN field.
@@ -1031,6 +1171,16 @@ namespace Gigobyte.Mockaroo.Fields
 		public override DataType Type { get { return DataType.MACAddress; } }
 	}
 	/// <summary>
+	/// Represents a MD5 field.
+	/// </summary>
+	public partial class MD5Field : FieldBase
+	{
+		/// <summary>
+		/// Get the Mockaroo data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.MD5; } }
+	}
+	/// <summary>
 	/// Represents a MIME Type field.
 	/// </summary>
 	public partial class MIMETypeField : FieldBase
@@ -1121,6 +1271,16 @@ namespace Gigobyte.Mockaroo.Fields
 		public override DataType Type { get { return DataType.Phone; } }
 	}
 	/// <summary>
+	/// Represents a Poisson Distribution field.
+	/// </summary>
+	public partial class PoissonDistributionField : FieldBase
+	{
+		/// <summary>
+		/// Get the Mockaroo data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.PoissonDistribution; } }
+	}
+	/// <summary>
 	/// Represents a Postal Code field.
 	/// </summary>
 	public partial class PostalCodeField : FieldBase
@@ -1189,6 +1349,26 @@ namespace Gigobyte.Mockaroo.Fields
 		/// Get the Mockaroo data type.
 		/// </summary>
 		public override DataType Type { get { return DataType.Sequence; } }
+	}
+	/// <summary>
+	/// Represents a SHA1 field.
+	/// </summary>
+	public partial class SHA1Field : FieldBase
+	{
+		/// <summary>
+		/// Get the Mockaroo data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.SHA1; } }
+	}
+	/// <summary>
+	/// Represents a SHA256 field.
+	/// </summary>
+	public partial class SHA256Field : FieldBase
+	{
+		/// <summary>
+		/// Get the Mockaroo data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.SHA256; } }
 	}
 	/// <summary>
 	/// Represents a Shirt Size field.
