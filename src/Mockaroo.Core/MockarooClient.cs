@@ -1,6 +1,8 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -60,9 +62,9 @@ namespace Gigobyte.Mockaroo
         /// <param name="returnType">The expected type of the object in collection.</param>
         /// <param name="records">The number of records to return.</param>
         /// <returns>A collection of <typeparamref name="T"/> objects.</returns>
-        public async Task<IEnumerable<object>> FetchDataAsync(Type returnType, int records)
+        public Task<IEnumerable<object>> FetchDataAsync(Type returnType, int records)
         {
-            return await FetchDataAsync(returnType, new Schema(Schema.GetFields(returnType)), records);
+            return FetchDataAsync(returnType, new Schema(Schema.GetFields(returnType)), records);
         }
 
         /// <summary>
@@ -75,27 +77,17 @@ namespace Gigobyte.Mockaroo
         /// <exception cref="System.Net.WebException"></exception>
         public async Task<IEnumerable<object>> FetchDataAsync(Type returnType, Schema schema, int records)
         {
-            var data = new LinkedList<object>();
-
-            using (var client = new HttpClient())
+            using (var rawData = (await FetchDataAsync(schema, records, ResponseFormat.JSON)))
             {
-                string mockarooRestApiAddress = string.Format(_urlFormat, _mockarooApiKey, records, "json");
-                string requestBody = schema.ToJson();
+                ICollection<object> data = new List<object>(records);
 
-                using (var response = await client.PostAsync(mockarooRestApiAddress, new StringContent(requestBody)))
+                var json = new JsonTextReader(new StreamReader(rawData));
+                foreach (JObject obj in JArray.Load(json))
                 {
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string json = await response.Content.ReadAsStringAsync();
-                        foreach (JObject obj in JArray.Parse(json))
-                        {
-                            data.AddLast(_serializer.Deserialize(obj, returnType));
-                        }
-                    }
-                    else throw new System.Net.WebException($"[Status={response.StatusCode}]: {response.ReasonPhrase}");
+                    data.Add(_serializer.Deserialize(obj, returnType));
                 }
+                return data;
             }
-            return data;
         }
 
         /// <summary>
@@ -106,14 +98,14 @@ namespace Gigobyte.Mockaroo
         /// <param name="format">The response format.</param>
         /// <returns>A collection of <typeparamref name="T"/> objects.</returns>
         /// <exception cref="System.Net.WebException"></exception>
-        public async Task<System.IO.Stream> FetchDataAsync(Schema schema, int records, ResponseFormat format = ResponseFormat.JSON)
+        public async Task<Stream> FetchDataAsync(Schema schema, int records, ResponseFormat format = ResponseFormat.JSON)
         {
             using (var client = new HttpClient())
             {
-                string mockarooRestApiAddress = string.Format(_urlFormat, _mockarooApiKey, records, format).ToLower();
+                string endpoint = string.Format(_urlFormat, _mockarooApiKey, records, format).ToLower();
                 string requestBody = schema.ToJson();
 
-                var response = await client.PostAsync(mockarooRestApiAddress, new StringContent(requestBody));
+                var response = await client.PostAsync(endpoint, new StringContent(requestBody));
                 if (response.IsSuccessStatusCode)
                 {
                     return await response.Content.ReadAsStreamAsync();
