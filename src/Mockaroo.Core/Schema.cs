@@ -1,6 +1,8 @@
 ﻿using Gigobyte.Mockaroo.Fields;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -14,6 +16,19 @@ namespace Gigobyte.Mockaroo
     public class Schema
     {
         #region Static Members
+
+        //public static Schema Load(Stream stream)
+        //{
+        //    using (var reader = new StreamReader(stream))
+        //    {
+        //        return Parse(reader.ReadToEnd());
+        //    }
+        //}
+
+        //public static Schema Parse(string json)
+        //{
+        //    return JsonConvert.DeserializeObject<Schema>(json);
+        //}
 
         /// <summary>
         /// Gets a list of <see cref="IField"/> based of the specified type.
@@ -100,6 +115,12 @@ namespace Gigobyte.Mockaroo
         /// <summary>
         /// Initializes a new instance of the <see cref="Schema"/> class.
         /// </summary>
+        /// <param name="type">The target type.</param>
+        public Schema(Type type) : this(Schema.GetFields(type)) { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Schema"/> class.
+        /// </summary>
         /// <param name="mockarooFields">The Mockaroo fields.</param>
         public Schema(IEnumerable<IField> mockarooFields) : this(mockarooFields.ToArray())
         {
@@ -117,9 +138,7 @@ namespace Gigobyte.Mockaroo
         /// <summary>
         /// Gets or sets the Mockaroo fields.
         /// </summary>
-        /// <value>
-        /// The fields.
-        /// </value>
+        /// <value>The fields.</value>
         public IList<IField> Fields { get; set; }
 
         /// <summary>
