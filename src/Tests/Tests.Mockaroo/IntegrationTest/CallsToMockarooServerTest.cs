@@ -33,7 +33,7 @@ namespace Tests.Mockaroo.IntegrationTest
         public async Task FetchPrimitiveDataFromMockarooServer()
         {
             // Arrange
-            int rows = 2, count = 0;
+            int rows = 1, count = 0;
             var sut = new MockarooClient(MockarooApiKey);
             var dataType = Type.GetType($"System.{Convert.ToString(TestContext.DataRow[DDT.Column.Type])}");
 
@@ -76,31 +76,7 @@ namespace Tests.Mockaroo.IntegrationTest
 
             Assert.AreEqual(rows, count);
         }
-
-        /// <summary>
-        /// Assert <see cref="MockarooClient.FetchDataAsync( Type,Schema, int)"/> can retrieve a
-        /// large data set from mockaroo server.
-        /// </summary>
-        [TestMethod]
-        [Owner(Dev.Ackara)]
-        public async Task FetchLargeDataSetFromMockarooServer()
-        {
-            // Arrange
-            int rows = 20, count = 0;
-            var sut = new MockarooClient(MockarooApiKey);
-
-            // Act
-            var data = await sut.FetchDataAsync<string>(rows);
-
-            // Assert
-            foreach (var record in data)
-            {
-                count++;
-                Assert.IsNotNull(record);
-            }
-
-            Assert.AreEqual(rows, count);
-        }
+        
 
         /// <summary>
         /// Assert <see cref="MockarooClient.FetchDataAsync( Type,Schema, int)"/> can retrieve a data

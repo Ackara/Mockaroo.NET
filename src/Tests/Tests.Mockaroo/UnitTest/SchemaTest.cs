@@ -14,7 +14,7 @@ namespace Tests.Mockaroo.UnitTest
 {
     [TestClass]
     [DeploymentItem(SampleData.DirectoryName)]
-    [UseApprovalSubdirectory("Approvals")]
+    [UseApprovalSubdirectory(nameof(ApprovalTests))]
     [UseReporter(typeof(DiffReporter), typeof(ClipboardReporter))]
     public class SchemaTest
     {
@@ -25,6 +25,18 @@ namespace Tests.Mockaroo.UnitTest
         {
             ApprovalTests.Maintenance.ApprovalMaintenance.CleanUpAbandonedFiles();
         }
+
+        //[TestMethod]
+        //[Owner(Dev.Ackara)]
+        //public void Load_should_create_a_new_schema_object_when_a_stream_is_passed()
+        //{
+        //    // Act
+        //    var data = SampleData.GetFile(TestFile.RequestBody).OpenRead();
+        //    var sut = Schema.Load(data);
+
+        //    // Assert
+        //    CollectionAssert.AllItemsAreNotNull(sut.Fields.ToArray());
+        //}
 
         /// <summary>
         /// Assert <see cref="Schema.Assign(string, IField)"/> replaces existing <see cref="IField"/>.

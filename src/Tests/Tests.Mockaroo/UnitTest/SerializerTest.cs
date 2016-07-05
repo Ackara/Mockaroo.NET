@@ -1,4 +1,5 @@
 ﻿using Gigobyte.Mockaroo;
+using Gigobyte.Mockaroo.Serialization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 using System;

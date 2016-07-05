@@ -63,12 +63,15 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
     <Compile Include="ApiKey.cs" />
+    <Compile Include="SimpleObject.cs" />
     <Compile Include="TestFile.cs" />
     <Compile Include="DDT.cs" />
     <Compile Include="Dev.cs" />
@@ -84,6 +87,7 @@
     <Compile Include="UnitTest\FieldFactoryTest.cs" />
     <Compile Include="UnitTest\SchemaTest.cs" />
     <Compile Include="UnitTest\SerializerTest.cs" />
+    <Compile Include="UnitTest\ClrSerializerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -94,7 +98,9 @@
     <None Include="SampleData\data.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="SampleData\requestBody.json" />
+    <None Include="SampleData\requestBody.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="SampleData\responseBody1.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
