@@ -11,6 +11,15 @@ namespace Gigobyte.Mockaroo
     [JsonArray]
     public class Schema : List<IField>
     {
+        #region Static Members
+
+        public static Schema LoadFrom(Type type)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        #endregion
+
         public Schema() : base()
         {
         }

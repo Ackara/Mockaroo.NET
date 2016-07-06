@@ -1,0 +1,102 @@
+App Bundle ID
+App Name
+App Version
+Avatar
+Base64 Image URL
+Bitcoin Address
+Blank
+Boolean
+City
+Color
+Company Name
+Country
+Country Code
+Credit Card #
+Credit Card Type
+Currency
+Currency Code
+Custom List
+Dataset Column
+Date
+Domain Name
+Drug Company
+Drug Name (Brand)
+Drug Name (Generic)
+Dummy Image URL
+Email Address
+Encrypt
+Family Name (Chinese)
+FDA NDC Code
+File Name
+First Name
+First Name (European)
+First Name (Female)
+First Name (Male)
+Formula
+Frequency
+Full Name
+Gender
+Gender (abbrev)
+Given Name (Chinese)
+GUID
+Hex Color
+IBAN
+ICD9 Diagnosis Code
+ICD9 Dx Desc (Long)
+ICD9 Dx Desc (Short)
+ICD9 Proc Desc (Long)
+ICD9 Proc Desc (Short)
+ICD9 Procedure Code
+IP Address v4
+IP Address v4 CIDR
+IP Address v6
+IP Address v6 CIDR
+ISBN
+Job Title
+JSON Array
+Language
+Last Name
+Latitude
+LinkedIn Skill
+Longitude
+MAC Address
+MD5
+MIME Type
+Money
+MongoDB ObjectID
+Naughty String
+Normal Distribution
+Number
+Paragraphs
+Password
+Phone
+Poisson Distribution
+Postal Code
+Race
+Regular Expression
+Row Number
+Scenario
+Sentences
+Sequence
+SHA1
+SHA256
+Shirt Size
+Short Hex Color
+SQL Expression
+SSN
+State
+State (abbrev)
+Street Address
+Street Name
+Street Number
+Street Suffix
+Suffix
+Template
+Time
+Time Zone
+Title
+Top Level Domain
+URL
+User Agent
+Username
+Words

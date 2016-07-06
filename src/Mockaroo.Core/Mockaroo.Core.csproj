@@ -42,6 +42,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\IDataAdapter.cs" />
+    <Compile Include="Converters\ISchemaAdapter.cs" />
     <Compile Include="DataType.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -74,6 +76,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Format.cs" />
     <Compile Include="Schema.cs" />
+    <Compile Include="Serialization\ISerializer.cs" />
+    <Compile Include="Serialization\SchemaSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Fields\FieldFactory.tt">
@@ -105,9 +109,7 @@
     </Content>
     <Content Include="T4Utilities.tt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Serialization\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>
