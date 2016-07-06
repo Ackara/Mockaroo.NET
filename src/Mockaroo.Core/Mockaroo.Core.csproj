@@ -39,38 +39,46 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
-    <None Include="Fields\mockaroo_type_list.csv" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataType.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataType.tt</DependentUpon>
+    </Compile>
     <Compile Include="Extensions.cs" />
+    <Compile Include="ExtensionsT4.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ExtensionsT4.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Fields\BaseTypes.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BaseTypes.tt</DependentUpon>
+    </Compile>
     <Compile Include="Fields\CustomListField.cs" />
     <Compile Include="Fields\DateField.cs" />
     <Compile Include="Fields\FieldBase.cs" />
-    <Compile Include="Fields\FieldFactory.cs" />
-    <Compile Include="Fields\FieldsExtensions.cs" />
-    <Compile Include="Fields\IField.cs" />
-    <Compile Include="Fields\MockarooFields.cs">
-      <DependentUpon>MockarooFields.tt</DependentUpon>
+    <Compile Include="Fields\FieldFactory.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>FieldFactory.tt</DependentUpon>
     </Compile>
+    <Compile Include="Fields\IField.cs" />
     <Compile Include="Fields\NumberField.cs" />
     <Compile Include="Fields\SelectionStyle.cs" />
     <Compile Include="Fields\WordsField.cs" />
-    <Compile Include="IMockarooSerializer.cs" />
-    <Compile Include="MockarooClient.cs" />
+    <Compile Include="Mockaroo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ResponseFormat.cs" />
+    <Compile Include="Format.cs" />
     <Compile Include="Schema.cs" />
-    <Compile Include="Serialization\ClrSerializer.cs" />
-    <Compile Include="Serialization\IClrSerializer.cs" />
-    <Compile Include="Serializer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Fields\MockarooFields.tt">
+    <None Include="Fields\FieldFactory.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>MockarooFields.cs</LastGenOutput>
+      <LastGenOutput>FieldFactory.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -81,6 +89,24 @@
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataType.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DataType.cs</LastGenOutput>
+    </Content>
+    <Content Include="ExtensionsT4.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ExtensionsT4.cs</LastGenOutput>
+    </Content>
+    <Content Include="Fields\BaseTypes.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BaseTypes.cs</LastGenOutput>
+    </Content>
+    <Content Include="T4Utilities.tt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Serialization\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <PropertyGroup>

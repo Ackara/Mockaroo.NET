@@ -1,6 +1,4 @@
-﻿using Gigobyte.Mockaroo;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
 using System.Reflection;
 
@@ -40,23 +38,7 @@ namespace Mockaroo.Commands
 
         protected override int Process()
         {
-            Options.Rows = 2;
-            try
-            {
-                var client = new MockarooClient(Options.Key);
-                Type dataType = FindTheMostSpecificType();
-                IEnumerable<object> data = client.FetchDataAsync(dataType, new Schema(dataType), Options.Rows).Result;
-                // TODO: save to file.
-
-                return ExitCode.Success;
-            }
-            catch (Exception ex)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Unable to execute command.");
-                Console.WriteLine(ex.Message);
-                return ExitCode.UnknownError;
-            }
+            throw new System.NotImplementedException();
         }
 
         private Type FindTheMostSpecificType()

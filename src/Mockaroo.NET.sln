@@ -9,8 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mockaroo.Core", "Mockaroo.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Mockaroo", "Tests\Tests.Mockaroo\Tests.Mockaroo.csproj", "{A22355AA-E619-4F8B-82A6-D6855248E917}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2BACA3C0-81E0-44A9-9D3F-AD8BF8530C03}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2BACA3C0-81E0-44A9-9D3F-AD8BF8530C03}"
 	ProjectSection(SolutionItems) = preProject
+		Mockaroo.Core\mockaroo data types.csv = Mockaroo.Core\mockaroo data types.csv
 		Mockaroo.Core\Mockaroo.Core.nuspec = Mockaroo.Core\Mockaroo.Core.nuspec
 	EndProjectSection
 EndProject

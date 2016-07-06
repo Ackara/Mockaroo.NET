@@ -6,7 +6,7 @@
 
         public struct Connection
         {
-            public const string DataTypes = ("|DataDirectory|\\" + TestFile.DataTypeMap);
+            public const string DataTypes = ("|DataDirectory|\\" );
         }
 
         public struct Column
