@@ -1,11 +1,10 @@
-﻿using Newtonsoft.Json;
-
-namespace Gigobyte.Mockaroo.Fields
+﻿namespace Gigobyte.Mockaroo.Fields
 {
     /// <summary>
     /// Base class for <see cref="IField"/>.
     /// </summary>
     /// <seealso cref="Gigobyte.Mockaroo.Fields.IField"/>
+    [System.Runtime.Serialization.DataContract]
     [System.Diagnostics.DebuggerDisplay("{ToDebuggerView()}")]
     public abstract class FieldBase : IField
     {
@@ -19,7 +18,6 @@ namespace Gigobyte.Mockaroo.Fields
         /// Gets the data type.
         /// </summary>
         /// <value>The data type.</value>
-        [JsonProperty("type")]
         public abstract DataType Type { get; }
 
         /// <summary>
@@ -37,7 +35,7 @@ namespace Gigobyte.Mockaroo.Fields
         /// </summary>
         /// <value>The formula.</value>
         public string Formula { get; set; }
-        
+
         /// <summary>
         /// Get the string value that will represent this instance in the debugger window.
         /// </summary>
