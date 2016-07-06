@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Gigobyte.Mockaroo;
+using Gigobyte.Mockaroo.Fields;
+using System;
 using System.IO;
 using System.Linq;
 
@@ -20,6 +22,27 @@ namespace Tests.Mockaroo
         public static string GetFileContent(string filename)
         {
             return File.ReadAllText(GetFile(filename).FullName);
+        }
+
+        public static Schema CreateSchema()
+        {
+            return new Schema(
+                new WordsField()
+                {
+                    Name = "Title",
+                    Min = 3,
+                    Max = 5
+                },
+                new NumberField()
+                {
+                    Name = "Views",
+                    Min = 3,
+                    Max = 1000
+                },
+                new DateField()
+                {
+                    Name = "PostDate"
+                });
         }
     }
 }

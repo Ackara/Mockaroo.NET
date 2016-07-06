@@ -1,0 +1,44 @@
+﻿[
+    
+  {
+        
+    "type":  "Words",
+        
+    "name":  "Title",
+        
+    "percentBlank":  "0",
+        
+    "formula":  ""
+  
+    },
+    
+  {
+        
+    "type":  "Number",
+        
+    "name":  "Views",
+        
+    "percentBlank":  "0",
+        
+    "formula":  ""
+  
+    },
+    
+  {
+        
+    "type":  "Date",
+        
+        
+
+        
+    "format":  "%F %T",
+        
+    "name":  "PostDate",
+        
+    "percentBlank":  "0",
+        
+    "formula":  ""
+  
+    }
+
+]

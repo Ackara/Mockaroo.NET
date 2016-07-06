@@ -71,16 +71,21 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ApiKey.cs" />
+    <Compile Include="Asset.cs" />
+    <Compile Include="SchemaEqualityComparer.cs" />
     <Compile Include="SimpleObject.cs" />
     <Compile Include="DDT.cs" />
     <Compile Include="Dev.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleData.cs" />
-    <Compile Include="UnitTest\SchemaTest.cs" />
+    <Compile Include="UnitTest\SchemaSerializerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="SampleData\basic_schema.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="apikey.txt">
@@ -98,7 +103,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="IntegrationTest\" />
-    <Folder Include="SampleData\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 namespace Gigobyte.Mockaroo.Serialization
 {
@@ -6,7 +7,7 @@ namespace Gigobyte.Mockaroo.Serialization
     {
         T ReadObject<T>(Stream stream);
 
-        object ReadObject(Stream stream);
+        object ReadObject(Type type, Stream stream);
 
         void WriteObject(object obj, Stream stream);
     }
