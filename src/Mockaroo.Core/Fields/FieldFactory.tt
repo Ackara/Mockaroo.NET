@@ -1,0 +1,32 @@
+﻿<#@ template hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ include file="../T4Utilities.tt" #>
+<#@ output extension=".cs" #>
+namespace Gigobyte.Mockaroo.Fields
+{
+	public partial class FieldFactory
+	{
+		public IField Create(<#= EnumTypeName #> dataType)
+		{
+			switch(dataType)
+			{
+				default:
+					throw new System.Exception($"'{dataType}' is not a unknown data type.");
+
+<# 
+	PushIndent("\t\t\t\t");
+	foreach (var type in FetchDataTypes())
+	{
+		WriteLine("case {0}.{1}: ", EnumTypeName, ToEnumName(type));
+		WriteLine("\treturn new {0}Field();", ToEnumName(type));
+		WriteLine("");
+	}
+	PopIndent();
+#>
+			}
+		}
+	}
+}

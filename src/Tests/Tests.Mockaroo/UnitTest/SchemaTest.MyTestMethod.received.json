@@ -1,0 +1,19 @@
+﻿[
+    
+  {
+        
+    "Min":  10,
+        
+    "Max":  20,
+        
+    "name":  "Fullname",
+        
+    "percentBlank":  0,
+        
+    "formula":  null,
+        
+    "type":  "Words"
+  
+    }
+
+]

@@ -1,0 +1,46 @@
+﻿<#@ template hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ include file="T4Utilities.tt" #>
+<#@ output extension=".cs" #>
+namespace Gigobyte.Mockaroo
+{
+	public static partial class Extensions
+	{
+		/// <summary>
+		/// Converts a <see cref="DataType"/> to it's official type name.
+		/// </summary>
+		/// <param name="dataType">Type of the data.</param>
+		/// <returns>System.String.</returns>
+		public static string ToMockarooTypeName(this <#= EnumTypeName #> dataType)
+		{
+			switch(dataType)
+			{
+				default:
+				return string.Empty;
+
+<# 
+	PushIndent("\t\t\t\t");
+	WriteLine(GenerateExtensionMethod());
+	ClearIndent();
+#>
+			}
+		}
+	}
+}
+<#+ 
+public string GenerateExtensionMethod()
+{
+	var text = new System.Text.StringBuilder();
+
+	foreach (var type in FetchDataTypes())
+	{
+		 text.AppendFormat("case {1}.{0}:\r\n", ToEnumName(type), EnumTypeName);
+		 text.AppendFormat("return \"{0}\";\r\n\r\n", type);
+	}
+
+	return text.ToString().Trim();
+}
+#>
