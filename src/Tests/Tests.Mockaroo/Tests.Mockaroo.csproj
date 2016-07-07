@@ -71,15 +71,15 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ApiKey.cs" />
-    <Compile Include="Asset.cs" />
     <Compile Include="SchemaEqualityComparer.cs" />
     <Compile Include="SimpleObject.cs" />
-    <Compile Include="DDT.cs" />
+    <Compile Include="Test.cs" />
     <Compile Include="Dev.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleData.cs" />
     <Compile Include="IntegrationTest\MockarooClientTest.cs" />
-    <Compile Include="Trait.cs" />
+    <Compile Include="UnitTest\ClrSchemaSerializerTest.cs" />
+    <Compile Include="UnitTest\SchemaSerializerBaseTest.cs" />
     <Compile Include="UnitTest\SchemaSerializerTest.cs" />
   </ItemGroup>
   <ItemGroup>

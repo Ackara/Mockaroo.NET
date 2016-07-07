@@ -47,6 +47,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataType.tt</DependentUpon>
     </Compile>
+    <Compile Include="Exceptions\MockarooException.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="ExtensionsT4.cs">
       <AutoGen>True</AutoGen>
@@ -61,10 +62,11 @@
     <Compile Include="Fields\CustomListField.cs" />
     <Compile Include="Fields\DateField.cs" />
     <Compile Include="Fields\FieldBase.cs" />
-    <Compile Include="Fields\FieldFactory.cs">
+    <Compile Include="Fields\FieldFactory.cs" />
+    <Compile Include="Fields\FieldFactoryT4.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>FieldFactory.tt</DependentUpon>
+      <DependentUpon>FieldFactoryT4.tt</DependentUpon>
     </Compile>
     <Compile Include="Fields\IField.cs" />
     <Compile Include="Fields\IFieldFactory.cs" />
@@ -76,13 +78,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Format.cs" />
     <Compile Include="Schema.cs" />
+    <Compile Include="Serialization\ClrSchemaSerializer.cs" />
     <Compile Include="Serialization\ISerializable.cs" />
-    <Compile Include="Serialization\ISerializer.cs" />
+    <Compile Include="Serialization\ISchemaSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Fields\FieldFactory.tt">
+    <None Include="Fields\FieldFactoryT4.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>FieldFactory.cs</LastGenOutput>
+      <LastGenOutput>FieldFactoryT4.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>

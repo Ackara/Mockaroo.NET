@@ -9,7 +9,7 @@ namespace Tests.Mockaroo
         {
             string key = null;
 
-            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "apikey.txt");
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Test.File.ApiKey);
             if (File.Exists(path)) key = File.ReadAllText(path).Trim();
             else throw new FileNotFoundException($"Cannot find '{path}'.");
 

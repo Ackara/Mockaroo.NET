@@ -43,7 +43,7 @@ namespace Tests.Mockaroo.UnitTest
         {
             // Arrange
             var sut = new Schema();
-            var sampleFile = SampleData.GetFile(Asset.SchemaJson);
+            var sampleFile = SampleData.GetFile(Test.File.SchemaJson);
 
             // Act
             sut.Deserialize(sampleFile.OpenRead());
