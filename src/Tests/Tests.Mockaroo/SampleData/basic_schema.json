@@ -1,3 +1,27 @@
 ﻿[
-  {}
+  {
+    "name": "Title",
+    "type": "Words",
+    "percentageBlank": "0",
+    "formula": "",
+    "min": "3",
+    "max": "5"
+  },
+  {
+    "name": "Views",
+    "type": "Number",
+    "percentageBlank": "0",
+    "formula": "",
+    "min": "3",
+    "max": "1000",
+    "decimals": "0"
+  },
+  {
+    "name": "PostDate",
+    "type": "Date",
+    "percentageBlank": "0",
+    "formula": "",
+    "min": "04/04/1975",
+    "max": "07/06/2016"
+  }
 ]

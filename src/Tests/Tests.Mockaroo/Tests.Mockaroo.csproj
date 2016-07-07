@@ -78,6 +78,8 @@
     <Compile Include="Dev.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleData.cs" />
+    <Compile Include="IntegrationTest\MockarooClientTest.cs" />
+    <Compile Include="Trait.cs" />
     <Compile Include="UnitTest\SchemaSerializerTest.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -86,6 +88,7 @@
     <None Include="SampleData\basic_schema.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="SampleData\basic_server_response.json" />
   </ItemGroup>
   <ItemGroup>
     <None Include="apikey.txt">
@@ -101,9 +104,7 @@
       <Name>Mockaroo.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="IntegrationTest\" />
-  </ItemGroup>
+  <ItemGroup />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
