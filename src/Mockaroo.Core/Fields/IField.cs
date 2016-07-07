@@ -32,5 +32,11 @@ namespace Gigobyte.Mockaroo.Fields
         /// <value>The percent blank.</value>
         [DataMember(Name = "percentBlank")]
         int BlankPercentage { get; set; }
+
+        /// <summary>
+        /// Get the json representation of this object.
+        /// </summary>
+        /// <returns>A json object.</returns>
+        string ToJson();
     }
 }

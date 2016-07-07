@@ -36,6 +36,11 @@
         /// <value>The formula.</value>
         public string Formula { get; set; }
 
+        public virtual string ToJson()
+        {
+            return $"{{\"name\":\"{Name}\",\"type\":\"{Type}\",\"percentageBlank\":\"{_blankPercentage}\",\"formula\":\"{Formula}\"}}";
+        }
+
         /// <summary>
         /// Get the string value that will represent this instance in the debugger window.
         /// </summary>

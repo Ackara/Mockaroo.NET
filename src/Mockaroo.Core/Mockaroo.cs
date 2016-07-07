@@ -4,6 +4,8 @@ namespace Gigobyte.Mockaroo
 {
     public class Mockaroo
     {
+        public static readonly string DateFormat = "MM/dd/yyyy";
+
         public static Uri Endpoint(string apiKey, int records, Format format = Format.JSON)
         {
             return new UriBuilder("http", "www.mockaroo.com")

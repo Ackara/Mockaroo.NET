@@ -1,4 +1,6 @@
-﻿namespace Gigobyte.Mockaroo.Fields
+﻿using System.Linq;
+
+namespace Gigobyte.Mockaroo.Fields
 {
     public partial class CustomListField
     {
@@ -12,6 +14,12 @@
         /// Gets or sets the whether the <see cref="Values"/> provided should be returned randomly or sequentially.
         /// </summary>
         /// <value>The selection.</value>
-        public SelectionStyle Sequence { get; set; }
+        public Arrangement Sequence { get; set; }
+
+        public override string ToJson()
+        {
+            string part1 = base.ToJson().TrimEnd('}');
+            return $"{part1},\"selectionStyle\":\"{Sequence.ToString().ToLower()}\",\"values\":[{string.Join(",", Values.Select(x => $"\"{x}\""))}]}}";
+        }
     }
 }

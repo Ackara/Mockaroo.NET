@@ -24,7 +24,13 @@ namespace Gigobyte.Mockaroo.Fields
         /// more at http://ruby-doc.org/core-1.9.3/Time.html#method-i-strftime. Defaults to ISO 8601 format.
         /// </summary>
         /// <value>The format to output.</value>
-        [JsonProperty("format")]
-        public string Format { get; set; } = "%F %T";
+        //[JsonProperty("format")]
+        //public string Format { get; set; } = "%F %T";
+
+        public override string ToJson()
+        {
+            string firstHalf = base.ToJson().TrimEnd('}');
+            return $"{firstHalf},\"min\":\"{Min.Date.ToString(Mockaroo.DateFormat)}\",\"max\":\"{Max.ToString(Mockaroo.DateFormat)}\"}}";
+        }
     }
 }
