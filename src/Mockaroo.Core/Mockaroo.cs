@@ -43,13 +43,13 @@ namespace Gigobyte.Mockaroo
             /// (optional) When generating json data, Mockaroo will omit keys with null values if
             /// this is set to false.
             /// </summary>
-            public const string Include_nulls = "include_nulls";
+            public const string IncludeNulls = "include_nulls";
 
             /// <summary>
             /// (optional) Only relevant for csv format. Set to false to omit the header row.
             /// Defaults to true.
             /// </summary>
-            public const string Include_header = "include_header";
+            public const string IncludeHeader = "include_header";
 
             /// <summary>
             /// (optional) The name of a saved schema to use. If this parameter is not specified, you
@@ -60,12 +60,12 @@ namespace Gigobyte.Mockaroo
             /// <summary>
             /// (optional, only used when format is xml) The name to give to the root element in the document.
             /// </summary>
-            public const string Root_element = "root_element";
+            public const string RootElement = "root_element";
 
             /// <summary>
             ///(optional, only used when format is xml) The name to give to each element representing a record.
             /// </summary>
-            public const string Record_element = "record_element";
+            public const string RecordElement = "record_element";
 
             /// <summary>
             /// (optional, only used when format is custom) The character to use as a column separator.
@@ -75,7 +75,7 @@ namespace Gigobyte.Mockaroo
             /// <summary>
             /// (optional, only used when format is custom) "unix" or "windows".
             /// </summary>
-            public const string Line_ending = "line_ending";
+            public const string LineEnding = "line_ending";
 
             /// <summary>
             /// (optional, only used when format is csv, txt, or custom) true to include the BOM

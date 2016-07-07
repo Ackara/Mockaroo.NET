@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Gigobyte.Mockaroo.Fields;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Net.Http;
 using System.Text;
@@ -8,9 +9,14 @@ namespace Gigobyte.Mockaroo
 {
     public class MockarooClient
     {
-        public MockarooClient(string apiKey)
+        public MockarooClient(string apiKey) : this(string.Empty, null)
+        {
+        }
+
+        public MockarooClient(string apiKey, IFieldFactory factory)
         {
             _apiKey = apiKey;
+            _factory = factory;
         }
 
         #region Asynchronous Methods
@@ -29,7 +35,7 @@ namespace Gigobyte.Mockaroo
                 {
                     string responseBody = await response?.Content?.ReadAsStringAsync();
                     responseBody = JObject.Parse(responseBody).Value<string>("error");
-                    throw new System.Net.WebException($"[Response={response.StatusCode}]: {responseBody}.");
+                    throw new Exceptions.MockarooException($"[{response.StatusCode}]: {responseBody}.");
                 }
             }
         }
@@ -39,6 +45,7 @@ namespace Gigobyte.Mockaroo
         #region Private Members
 
         private readonly string _apiKey;
+        private readonly IFieldFactory _factory;
 
         #endregion Private Members
     }
