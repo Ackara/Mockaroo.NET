@@ -38,7 +38,7 @@
 
         public virtual string ToJson()
         {
-            return $"{{\"name\":\"{Name}\",\"type\":\"{Type}\",\"percentageBlank\":\"{_blankPercentage}\",\"formula\":\"{Formula}\"}}";
+            return $"{{\"name\":\"{Name}\",\"type\":\"{Type.ToMockarooTypeName()}\",\"percentageBlank\":\"{_blankPercentage}\",\"formula\":\"{Formula}\"}}";
         }
 
         /// <summary>
