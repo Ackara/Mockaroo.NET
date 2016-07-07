@@ -29,22 +29,44 @@ namespace Tests.Mockaroo
             return new Schema(
                 new WordsField()
                 {
-                    Name = "Title",
+                    Name = nameof(SimpleObject.StringValue),
                     Min = 3,
                     Max = 5
                 },
                 new NumberField()
                 {
-                    Name = "Views",
+                    Name = nameof(SimpleObject.IntegerValue),
                     Min = 3,
                     Max = 1000
                 },
+                new NumberField()
+                {
+                    Name = nameof(SimpleObject.DecimalValue),
+                    Min = 10,
+                    Max = 100
+                },
+                new CustomListField()
+                {
+                    Name = nameof(SimpleObject.CharValue),
+                    Values = new string[] { "a", "b", "c" }
+                },
                 new DateField()
                 {
-                    Name = "PostDate",
+                    Name = nameof(SimpleObject.DateValue),
                     Min = new DateTime(2000, 01, 01),
                     Max = new DateTime(2010, 01, 01)
                 });
+        }
+
+        public static Schema CreateSchemaWithDefaults()
+        {
+            return new Schema(
+                new WordsField() { Name = nameof(SimpleObject.StringValue) },
+                new NumberField() { Name = nameof(SimpleObject.IntegerValue) },
+                new NumberField() { Name = nameof(SimpleObject.DecimalValue) },
+                new CustomListField() { Name = nameof(SimpleObject.CharValue) },
+                new DateField() { Name = nameof(SimpleObject.DateValue) }
+                );
         }
     }
 }

@@ -7,14 +7,14 @@
 <#@ output extension=".cs" #>
 namespace Gigobyte.Mockaroo.Fields
 {
-	public partial class FieldFactory
+	public partial class FieldFactory : IFieldFactory
 	{
-		public IField Create(<#= EnumTypeName #> dataType)
+		public IField CreateInstance(<#= EnumTypeName #> dataType)
 		{
 			switch(dataType)
 			{
 				default:
-					throw new System.Exception($"'{dataType}' is not a unknown data type.");
+					throw new System.ArgumentException($"'{dataType}' is not a unknown data type.");
 
 <# 
 	PushIndent("\t\t\t\t");

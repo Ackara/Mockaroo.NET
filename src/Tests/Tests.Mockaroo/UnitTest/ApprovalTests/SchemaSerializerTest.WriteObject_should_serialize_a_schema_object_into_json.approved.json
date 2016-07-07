@@ -1,6 +1,6 @@
 ﻿[
     {
-        "name": "Title",
+        "name": "StringValue",
         "type": "Words",
         "percentageBlank": "0",
         "formula": "",
@@ -8,7 +8,7 @@
         "max": "5"
     },
     {
-        "name": "Views",
+        "name": "IntegerValue",
         "type": "Number",
         "percentageBlank": "0",
         "formula": "",
@@ -17,7 +17,28 @@
         "decimals": "0"
     },
     {
-        "name": "PostDate",
+        "name": "DecimalValue",
+        "type": "Number",
+        "percentageBlank": "0",
+        "formula": "",
+        "min": "10",
+        "max": "100",
+        "decimals": "0"
+    },
+    {
+        "name": "CharValue",
+        "type": "Custom List",
+        "percentageBlank": "0",
+        "formula": "",
+        "selectionStyle": "random",
+        "values": [
+            "a",
+            "b",
+            "c"
+        ]
+    },
+    {
+        "name": "DateValue",
         "type": "Date",
         "percentageBlank": "0",
         "formula": "",

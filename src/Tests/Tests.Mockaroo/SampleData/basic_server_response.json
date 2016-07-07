@@ -1,12 +1,16 @@
 ﻿[
   {
-    "Title": "dapibus at diam",
-    "Views": 260,
-    "PostDate": "2004-08-02T14:36:11+00:00"
+    "StringValue": "ut massa quis augue",
+    "IntegerValue": 29,
+    "DecimalValue": 86,
+    "CharValue": "b",
+    "DateValue": "2000-11-26T13:47:55+00:00"
   },
   {
-    "Title": "nibh ligula nec sem",
-    "Views": 141,
-    "PostDate": "2002-05-21T06:32:01+00:00"
+    "StringValue": "neque duis bibendum morbi non",
+    "IntegerValue": 397,
+    "DecimalValue": 55,
+    "CharValue": "a",
+    "DateValue": "2009-09-30T19:41:25+00:00"
   }
 ]
