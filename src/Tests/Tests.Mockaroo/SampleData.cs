@@ -41,7 +41,9 @@ namespace Tests.Mockaroo
                 },
                 new DateField()
                 {
-                    Name = "PostDate"
+                    Name = "PostDate",
+                    Min = new DateTime(2000, 01, 01),
+                    Max = new DateTime(2010, 01, 01)
                 });
         }
     }

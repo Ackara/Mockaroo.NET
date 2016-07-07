@@ -3,7 +3,6 @@ using ApprovalTests.Namers;
 using ApprovalTests.Reporters;
 using Gigobyte.Mockaroo;
 using Gigobyte.Mockaroo.Fields;
-using Gigobyte.Mockaroo.Serialization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 
@@ -15,23 +14,24 @@ namespace Tests.Mockaroo.UnitTest
     [UseReporter(typeof(DiffReporter), typeof(ClipboardReporter))]
     public class SchemaSerializerTest
     {
+        [ClassCleanup]
+        public static void Cleanup()
+        {
+            ApprovalTests.Maintenance.ApprovalMaintenance.CleanUpAbandonedFiles();
+        }
+
         [TestMethod]
         [Owner(Dev.Ackara)]
         public void WriteObject_should_serialize_a_schema_object_into_json()
         {
             // Arrange
             string serializedData;
-            var sut = new SchemaSerializer();
-            var sample = SampleData.CreateSchema();
+            var sut = SampleData.CreateSchema();
 
             // Act
-
-            using (var memory = new MemoryStream())
-            {
-                sut.WriteObject(sample, memory);
-                using (var reader = new StreamReader(memory))
-                { serializedData = reader.ReadToEnd(); }
-            }
+            var data = sut.Serialize();
+            using (var reader = new StreamReader(data))
+            { serializedData = reader.ReadToEnd(); }
 
             // Assert
             Approvals.VerifyJson(serializedData);
@@ -42,20 +42,16 @@ namespace Tests.Mockaroo.UnitTest
         public void ReadObject_should_create_a_schema_object_from_a_stream_of_json()
         {
             // Arrange
-            Schema deserializedSchema;
-            var sut = new SchemaSerializer();
+            var sut = new Schema();
             var sampleFile = SampleData.GetFile(Asset.SchemaJson);
 
             // Act
-            using (var serializedData = sampleFile.OpenRead())
-            {
-                deserializedSchema = sut.ReadObject<Schema>(serializedData);
-            }
+            sut.Deserialize(sampleFile.OpenRead());
 
             // Assert
-            Assert.AreEqual(3, deserializedSchema.Count);
-            Assert.AreEqual(DataType.AppName, deserializedSchema[0].Type);
-            Assert.IsInstanceOfType(deserializedSchema[1], typeof(WordsField));
+            Assert.AreEqual(3, sut.Count);
+            Assert.AreEqual(DataType.Words, sut[0].Type);
+            Assert.IsInstanceOfType(sut[1], typeof(NumberField));
         }
     }
 }

@@ -1,44 +1,27 @@
 ﻿[
-    
-  {
-        
-    "type":  "Words",
-        
-    "name":  "Title",
-        
-    "percentBlank":  "0",
-        
-    "formula":  ""
-  
+    {
+        "name": "Title",
+        "type": "Words",
+        "percentageBlank": "0",
+        "formula": "",
+        "min": "3",
+        "max": "5"
     },
-    
-  {
-        
-    "type":  "Number",
-        
-    "name":  "Views",
-        
-    "percentBlank":  "0",
-        
-    "formula":  ""
-  
+    {
+        "name": "Views",
+        "type": "Number",
+        "percentageBlank": "0",
+        "formula": "",
+        "min": "3",
+        "max": "1000",
+        "decimals": "0"
     },
-    
-  {
-        
-    "type":  "Date",
-        
-        
-
-        
-    "format":  "%F %T",
-        
-    "name":  "PostDate",
-        
-    "percentBlank":  "0",
-        
-    "formula":  ""
-  
+    {
+        "name": "PostDate",
+        "type": "Date",
+        "percentageBlank": "0",
+        "formula": "",
+        "min": "01/01/2000",
+        "max": "01/01/2010"
     }
-
 ]

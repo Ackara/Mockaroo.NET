@@ -9,6 +9,6 @@ namespace Gigobyte.Mockaroo.Serialization
 
         object ReadObject(Type type, Stream stream);
 
-        void WriteObject(object obj, Stream stream);
+        Stream WriteObject(object obj);
     }
 }
