@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 
 namespace Gigobyte.Mockaroo
 {
@@ -23,7 +24,8 @@ namespace Gigobyte.Mockaroo
 
         public static bool IsBasicType(this Type type)
         {
-            switch (type.Name)
+            if (type.GetTypeInfo().IsEnum) { return true; }
+            else switch (type.Name)
             {
                 default:
                     return false;

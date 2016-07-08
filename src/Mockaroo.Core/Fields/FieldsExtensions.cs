@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 using System.Reflection;
 
 namespace Gigobyte.Mockaroo.Fields
@@ -9,7 +11,8 @@ namespace Gigobyte.Mockaroo.Fields
         {
             if (type.GetTypeInfo().IsEnum)
             {
-                throw new System.NotImplementedException();
+                var values = Enum.GetValues(type).Cast<int>().Select(x => (x.ToString()));
+                return new CustomListField() { Values = values.ToArray() };
             }
             else switch (type.Name)
                 {
