@@ -41,11 +41,16 @@
             return $"{{\"name\":\"{Name}\",\"type\":\"{Type.ToMockarooTypeName()}\",\"percentageBlank\":\"{_blankPercentage}\",\"formula\":\"{Formula}\"}}";
         }
 
+        protected string BaseJson()
+        {
+            return ToJson().TrimEnd('}');
+        }
+
         /// <summary>
         /// Get the string value that will represent this instance in the debugger window.
         /// </summary>
         /// <returns></returns>
-        internal string ToDebuggerView()
+        protected virtual string ToDebuggerView()
         {
             string name = (string.IsNullOrEmpty(Name) ? "<Empty>" : Name);
             return $"{{{name}: {Type.ToMockarooTypeName()}}}";

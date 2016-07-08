@@ -8,12 +8,14 @@ namespace Gigobyte.Mockaroo.Fields
     {
         internal static IField AsField(this Type type)
         {
-            if (type.GetTypeInfo().IsEnum)
+            TypeInfo typeInfo = type.GetTypeInfo();
+            if (typeInfo.IsEnum)
             {
                 var values = Enum.GetValues(type).Cast<int>().Select(x => (x.ToString()));
                 return new CustomListField() { Values = values.ToArray() };
             }
-            else switch (type.Name)
+            //else if (typeInfo.IsArray) { return new JSONArrayField(); }
+            else switch (typeInfo.Name)
                 {
                     case nameof(Byte):
                         return new NumberField() { Name = type.Name, Min = byte.MinValue, Max = byte.MaxValue };

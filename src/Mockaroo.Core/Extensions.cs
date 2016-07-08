@@ -24,7 +24,8 @@ namespace Gigobyte.Mockaroo
 
         internal static bool IsBasicType(this Type type)
         {
-            if (type.GetTypeInfo().IsEnum) { return true; }
+            TypeInfo typeInfo = type.GetTypeInfo();
+            if (typeInfo.IsEnum /*|| typeInfo.IsArray*/) { return true; }
             else switch (type.Name)
                 {
                     default:

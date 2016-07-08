@@ -10,7 +10,7 @@ namespace Tests.Mockaroo.UnitTest
     [TestClass]
     [UseApprovalSubdirectory(nameof(ApprovalTests))]
     [UseReporter(typeof(DiffReporter), typeof(ClipboardReporter))]
-    public class ClrSchemaAdapterTest
+    public class ClrSchemaSerializerTest
     {
         public TestContext TestContext { get; set; }
 
@@ -24,7 +24,7 @@ namespace Tests.Mockaroo.UnitTest
         [Owner(Dev.Ackara)]
         public void ConvertToSchema_should_convert_a_basic_clr_type_into_a_schema_object()
         {
-            var sut = new ClrSchemaAdapter();
+            var sut = new ClrSchemaSerializer();
             var schema = sut.ConvertToSchema(typeof(SimpleObject));
 
             Approvals.VerifyJson(schema.ToJson());
@@ -34,7 +34,7 @@ namespace Tests.Mockaroo.UnitTest
         [Owner(Dev.Ackara)]
         public void ConvertToSchema_should_convert_a_complex_clr_type_into_a_schema_object()
         {
-            var sut = new ClrSchemaAdapter();
+            var sut = new ClrSchemaSerializer();
             var schema = sut.ConvertToSchema(typeof(ComplexObject));
 
             Approvals.VerifyJson(schema.ToJson());

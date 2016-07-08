@@ -156,5 +156,21 @@
         "formula": "",
         "min": "01/01/0001",
         "max": "12/31/9999"
+    },
+    {
+        "name": "Embedded.Day",
+        "type": "Custom List",
+        "percentageBlank": "0",
+        "formula": "",
+        "selectionStyle": "random",
+        "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+        ]
     }
 ]

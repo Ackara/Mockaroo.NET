@@ -4,9 +4,9 @@ using System.Reflection;
 
 namespace Gigobyte.Mockaroo.Serialization
 {
-    public class ClrSchemaAdapter : ISchemaAdapter
+    public class ClrSchemaSerializer : ISchemaAdapter
     {
-        public ClrSchemaAdapter()
+        public ClrSchemaSerializer()
         {
         }
 
@@ -30,8 +30,6 @@ namespace Gigobyte.Mockaroo.Serialization
 
         #region Private Members
 
-        private readonly IFieldFactory _factory;
-
         private void BuildSchema(Schema schema, Type type, string parentPropertyName = "")
         {
             IField field;
@@ -41,8 +39,7 @@ namespace Gigobyte.Mockaroo.Serialization
 
                 if (propertyInfo.CanWrite && propertyInfo.CanWrite)
                 {
-                    bool isBasicType = propertyInfo.PropertyType.IsBasicType();
-                    if (isBasicType)
+                    if (propertyInfo.PropertyType.IsBasicType())
                     {
                         field = propertyInfo.PropertyType.AsField();
                         field.Name = parentPropertyName + propertyInfo.Name;
