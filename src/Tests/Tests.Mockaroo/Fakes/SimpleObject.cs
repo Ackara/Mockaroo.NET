@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Tests.Mockaroo
+namespace Tests.Mockaroo.Fakes
 {
     public class SimpleObject
     {

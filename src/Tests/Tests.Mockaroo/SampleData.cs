@@ -3,6 +3,7 @@ using Gigobyte.Mockaroo.Fields;
 using System;
 using System.IO;
 using System.Linq;
+using Tests.Mockaroo.Fakes;
 
 namespace Tests.Mockaroo
 {
@@ -27,24 +28,25 @@ namespace Tests.Mockaroo
         public static Schema CreateSchema()
         {
             return new Schema(
-                new WordsField()
-                {
-                    Name = nameof(SimpleObject.StringValue),
-                    Min = 3,
-                    Max = 5
-                },
-                new NumberField()
-                {
-                    Name = nameof(SimpleObject.IntegerValue),
-                    Min = 3,
-                    Max = 1000
-                },
+                 new NumberField()
+                 {
+                     Name = nameof(SimpleObject.IntegerValue),
+                     Min = 3,
+                     Max = 1000
+                 },
                 new NumberField()
                 {
                     Name = nameof(SimpleObject.DecimalValue),
                     Min = 10,
                     Max = 100
                 },
+                new WordsField()
+                {
+                    Name = nameof(SimpleObject.StringValue),
+                    Min = 3,
+                    Max = 5
+                },
+
                 new CustomListField()
                 {
                     Name = nameof(SimpleObject.CharValue),
@@ -61,10 +63,10 @@ namespace Tests.Mockaroo
         public static Schema CreateSchemaWithDefaults()
         {
             return new Schema(
-                new WordsField() { Name = nameof(SimpleObject.StringValue) },
                 new NumberField() { Name = nameof(SimpleObject.IntegerValue) },
                 new NumberField() { Name = nameof(SimpleObject.DecimalValue) },
                 new CustomListField() { Name = nameof(SimpleObject.CharValue) },
+                new WordsField() { Name = nameof(SimpleObject.StringValue) },
                 new DateField() { Name = nameof(SimpleObject.DateValue) }
                 );
         }

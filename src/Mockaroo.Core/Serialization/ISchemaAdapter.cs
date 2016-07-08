@@ -1,6 +1,6 @@
 ﻿namespace Gigobyte.Mockaroo.Serialization
 {
-    public interface ISchemaSerializer
+    public interface ISchemaAdapter
     {
         Schema ConvertToSchema(object value);
 

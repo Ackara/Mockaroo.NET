@@ -1,13 +1,5 @@
 ﻿[
     {
-        "name": "StringValue",
-        "type": "Words",
-        "percentageBlank": "0",
-        "formula": "",
-        "min": "3",
-        "max": "5"
-    },
-    {
         "name": "IntegerValue",
         "type": "Number",
         "percentageBlank": "0",
@@ -24,6 +16,14 @@
         "min": "10",
         "max": "100",
         "decimals": "0"
+    },
+    {
+        "name": "StringValue",
+        "type": "Words",
+        "percentageBlank": "0",
+        "formula": "",
+        "min": "3",
+        "max": "5"
     },
     {
         "name": "CharValue",

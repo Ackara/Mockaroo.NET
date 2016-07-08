@@ -1,4 +1,8 @@
-﻿namespace Tests.Mockaroo
+﻿using System;
+using System.IO;
+using System.Linq;
+
+namespace Tests.Mockaroo
 {
     public class Test
     {
@@ -14,9 +18,20 @@
             public const string BasicResponse = "basic_server_response.json";
         }
 
-        public struct Data
+        public class Data
         {
+            public const string DirectoryName = "SampleData";
+
             public const string CsvProvider = "Microsoft.VisualStudio.TestTools.DataSource.CSV";
+
+            public static FileInfo GetFile(string filename)
+            {
+                string searchPattern = "*" + Path.GetExtension(filename);
+                string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+
+                return new DirectoryInfo(baseDirectory).GetFiles(searchPattern, SearchOption.AllDirectories)
+                    .First(x => x.Name == filename);
+            }
 
             public struct Connection
             {

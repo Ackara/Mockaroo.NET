@@ -2,11 +2,11 @@
 {
     public partial class NumberField
     {
-        public virtual int Min { get; set; } = 1;
+        public int Min { get; set; } = int.MinValue;
 
-        public virtual int Max { get; set; } = 100;
+        public int Max { get; set; } = int.MaxValue;
 
-        public virtual int Decimals { get; set; }
+        public int Decimals { get; set; }
 
         public override string ToJson()
         {

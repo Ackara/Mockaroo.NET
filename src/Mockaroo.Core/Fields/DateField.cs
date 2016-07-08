@@ -10,14 +10,14 @@ namespace Gigobyte.Mockaroo.Fields
         /// </summary>
         /// <value>The minimum date.</value>
         [JsonProperty("min")]
-        public DateTime Min { get; set; } = new DateTime(1975, 04, 04);
+        public DateTime Min { get; set; } = DateTime.MinValue;
 
         /// <summary>
         /// Gets or sets the maximum date.
         /// </summary>
         /// <value>The maximum date.</value>
         [JsonProperty("max")]
-        public DateTime Max { get; set; } = DateTime.Now;
+        public DateTime Max { get; set; } = DateTime.MaxValue;
 
         /// <summary>
         /// Gets or sets The format to output. This can be any format directive supported by ruby see

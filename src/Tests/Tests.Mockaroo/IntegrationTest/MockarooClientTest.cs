@@ -10,12 +10,13 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Tests.Mockaroo.Fakes;
 
 namespace Tests.Mockaroo.IntegrationTest
 {
     [TestClass]
     [DeploymentItem(Test.File.ApiKey)]
-    [DeploymentItem(SampleData.DirectoryName)]
+    [DeploymentItem(Test.Data.DirectoryName)]
     [UseApprovalSubdirectory(nameof(ApprovalTests))]
     [UseReporter(typeof(DiffReporter), typeof(ClipboardReporter))]
     public class MockarooClientTest
@@ -36,7 +37,7 @@ namespace Tests.Mockaroo.IntegrationTest
         {
             // Arrange
             var apiKey = ApiKey.GetValue();
-            var schema = SampleData.CreateSchema();
+            var schema = CreateSchema();
             int records = Convert.ToInt32(TestContext.Properties["records"] ?? 1);
             var endpoint = Gigobyte.Mockaroo.Mockaroo.Endpoint(apiKey, records, Format.JSON);
 
@@ -76,7 +77,7 @@ namespace Tests.Mockaroo.IntegrationTest
         public async Task FetchDataAsync_should_thrown_an_exception_when_an_error_occurs()
         {
             // Arrange
-            var schema = SampleData.CreateSchema();
+            var schema = CreateSchema();
             var endpoint = Gigobyte.Mockaroo.Mockaroo.Endpoint(ApiKey.GetValue(), 1, Format.JSON);
 
             // Act
@@ -87,6 +88,43 @@ namespace Tests.Mockaroo.IntegrationTest
                 Assert.Fail("'{0}' was not thrown.", nameof(MockarooException));
             }
             catch (MockarooException ex) { TestContext.WriteLine("message: {0}", ex.Message); throw; }
+        }
+
+        #region Samples
+
+        public static Schema CreateSchema()
+        {
+            return new Schema(
+                 new NumberField()
+                 {
+                     Name = nameof(SimpleObject.IntegerValue),
+                     Min = 3,
+                     Max = 1000
+                 },
+                new NumberField()
+                {
+                    Name = nameof(SimpleObject.DecimalValue),
+                    Min = 10,
+                    Max = 100
+                },
+                new WordsField()
+                {
+                    Name = nameof(SimpleObject.StringValue),
+                    Min = 3,
+                    Max = 5
+                },
+
+                new CustomListField()
+                {
+                    Name = nameof(SimpleObject.CharValue),
+                    Values = new string[] { "a", "b", "c" }
+                },
+                new DateField()
+                {
+                    Name = nameof(SimpleObject.DateValue),
+                    Min = new DateTime(2000, 01, 01),
+                    Max = new DateTime(2010, 01, 01)
+                });
         }
 
         internal static IEnumerable<IField> GetAllFieldTypes()
@@ -102,5 +140,7 @@ namespace Tests.Mockaroo.IntegrationTest
                 }
             }
         }
+
+        #endregion Samples
     }
 }
