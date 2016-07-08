@@ -31,8 +31,8 @@ namespace Tests.Mockaroo.IntegrationTest
 
         [TestMethod]
         [Owner(Dev.Ackara)]
-        [TestProperty(Test.Property.Records, "2")]
         [TestCategory(Test.Trait.Integration)]
+        [TestProperty(Test.Property.Records, "2")]
         public async Task FetchDataAsync_should_export_data_from_the_mockaroo_restful_service()
         {
             // Arrange
@@ -51,8 +51,8 @@ namespace Tests.Mockaroo.IntegrationTest
 
         [TestMethod]
         [Owner(Dev.Ackara)]
-        [TestProperty(Test.Property.Records, "2")]
         [TestCategory(Test.Trait.Integration)]
+        [TestProperty(Test.Property.Records, "2")]
         public async Task FetchDataAsync_should_export_data_contain_all_known_data_types_from_the_mockaroo_restful_service()
         {
             // Arrange

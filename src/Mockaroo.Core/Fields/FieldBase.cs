@@ -43,7 +43,7 @@
 
         protected string BaseJson()
         {
-            return ToJson().TrimEnd('}');
+            return $"{{\"name\":\"{Name}\",\"type\":\"{Type.ToMockarooTypeName()}\",\"percentageBlank\":\"{_blankPercentage}\",\"formula\":\"{Formula}\"";
         }
 
         /// <summary>

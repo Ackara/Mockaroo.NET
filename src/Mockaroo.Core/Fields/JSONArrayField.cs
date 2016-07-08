@@ -6,9 +6,10 @@
 
         public int Max { get; set; } = 5;
 
-        public override string ToJson()
-        {
-            return $"{BaseJson()},\"minItems\":\"{Min}\",\"maxItems\":\"{Max}\"}}";
-        }
+        /// TODO: override this method
+        //public override string ToJson()
+        //{
+        //    return $"{BaseJson()},\"minItems\":\"{Min}\",\"maxItems\":\"{Max}\"}}";
+        //}
     }
 }
