@@ -31,14 +31,14 @@ namespace Tests.Mockaroo.IntegrationTest
 
         [TestMethod]
         [Owner(Dev.Ackara)]
-        [TestProperty("records", "2")]
+        [TestProperty(Test.Property.Records, "2")]
         [TestCategory(Test.Trait.Integration)]
         public async Task FetchDataAsync_should_export_data_from_the_mockaroo_restful_service()
         {
             // Arrange
             var apiKey = ApiKey.GetValue();
             var schema = CreateSchema();
-            int records = Convert.ToInt32(TestContext.Properties["records"] ?? 1);
+            int records = Convert.ToInt32(TestContext.Properties[Test.Property.Records] ?? 1);
             var endpoint = Gigobyte.Mockaroo.Mockaroo.Endpoint(apiKey, records, Format.JSON);
 
             // Act
@@ -51,12 +51,12 @@ namespace Tests.Mockaroo.IntegrationTest
 
         [TestMethod]
         [Owner(Dev.Ackara)]
-        [TestProperty("records", "2")]
+        [TestProperty(Test.Property.Records, "2")]
         [TestCategory(Test.Trait.Integration)]
         public async Task FetchDataAsync_should_export_data_contain_all_known_data_types_from_the_mockaroo_restful_service()
         {
             // Arrange
-            var records = Convert.ToInt32(TestContext.Properties["records"] ?? 1);
+            var records = Convert.ToInt32(TestContext.Properties[Test.Property.Records] ?? 1);
             var endpoint = Gigobyte.Mockaroo.Mockaroo.Endpoint(ApiKey.GetValue(), records, Format.JSON);
 
             var schema = new Schema(GetAllFieldTypes());
@@ -64,7 +64,6 @@ namespace Tests.Mockaroo.IntegrationTest
             // Act
             var data = await MockarooClient.FetchDataAsync(endpoint, schema);
             var json = JArray.Parse(Encoding.Default.GetString(data));
-            System.Diagnostics.Debug.WriteLine(json.ToString());
 
             // Assert
             Assert.AreEqual(records, json.Count);

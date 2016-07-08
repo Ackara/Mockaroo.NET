@@ -11,6 +11,11 @@ namespace Tests.Mockaroo
             public const string Integration = nameof(IntegrationTest);
         }
 
+        public struct Property
+        {
+            public const string Records = "records";
+        }
+
         public struct File
         {
             public const string ApiKey = "apikey.txt";
