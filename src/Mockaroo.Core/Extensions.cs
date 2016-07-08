@@ -22,39 +22,39 @@ namespace Gigobyte.Mockaroo
             else return value;
         }
 
-        public static bool IsBasicType(this Type type)
+        internal static bool IsBasicType(this Type type)
         {
             if (type.GetTypeInfo().IsEnum) { return true; }
             else switch (type.Name)
-            {
-                default:
-                    return false;
+                {
+                    default:
+                        return false;
 
-                case nameof(Boolean):
+                    case nameof(Boolean):
 
-                case nameof(Char):
-                case nameof(String):
+                    case nameof(Char):
+                    case nameof(String):
 
-                case nameof(Byte):
-                case nameof(SByte):
+                    case nameof(Byte):
+                    case nameof(SByte):
 
-                case nameof(Int16):
-                case nameof(UInt16):
+                    case nameof(Int16):
+                    case nameof(UInt16):
 
-                case nameof(Int32):
-                case nameof(UInt32):
+                    case nameof(Int32):
+                    case nameof(UInt32):
 
-                case nameof(Int64):
-                case nameof(UInt64):
+                    case nameof(Int64):
+                    case nameof(UInt64):
 
-                case nameof(Single):
-                case nameof(Double):
-                case nameof(Decimal):
+                    case nameof(Single):
+                    case nameof(Double):
+                    case nameof(Decimal):
 
-                case nameof(TimeSpan):
-                case nameof(DateTime):
-                    return true;
-            }
+                    case nameof(TimeSpan):
+                    case nameof(DateTime):
+                        return true;
+                }
         }
     }
 }

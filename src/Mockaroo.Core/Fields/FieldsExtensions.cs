@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Linq;
-using System.Collections.Generic;
 using System.Reflection;
 
 namespace Gigobyte.Mockaroo.Fields
 {
     public static class FieldsExtensions
     {
-        public static IField AsField(this Type type)
+        internal static IField AsField(this Type type)
         {
             if (type.GetTypeInfo().IsEnum)
             {
