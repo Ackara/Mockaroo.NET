@@ -52,39 +52,27 @@ namespace Gigobyte.Mockaroo.Serialization
 
                 if (property.CanRead && property.CanWrite)
                 {
+                    parentPropertyName = $"{parentPropertyName}{property.Name}.";
+
                     switch (GetBuildPath(property.PropertyType))
                     {
                         default:
                         case BuildPath.Basic:
                             field = property.PropertyType.AsField();
-                            field.Name = parentPropertyName + property.Name;
-
                             schema.Add(field);
                             break;
 
                         case BuildPath.Complex:
-                            parentPropertyName = $"{parentPropertyName}{property.Name}.";
                             BuildSchema(schema, property.PropertyType, parentPropertyName);
                             parentPropertyName = string.Empty;
                             break;
 
-                        case BuildPath.Array:
-                            parentPropertyName = $"{parentPropertyName}{property.Name}.";
-                            field = new JSONArrayField() { Name = parentPropertyName };
-                            
+                        case BuildPath.BasicCollection:
 
                             break;
 
-                        case BuildPath.Collection:
-                            parentPropertyName = $"{parentPropertyName}{property.Name}.";
-                            
-                            schema.Add(new JSONArrayField() { Name = parentPropertyName });
-                            Type elementType = GetCollectionElementType(property.PropertyType);
-                            // if basic
-                            
-                            // if complex
+                        case BuildPath.ComplexCollection:
 
-                            BuildSchema(schema, elementType, parentPropertyName);
                             parentPropertyName = string.Empty;
                             break;
                     }
@@ -106,14 +94,23 @@ namespace Gigobyte.Mockaroo.Serialization
 
         private BuildPath GetBuildPath(Type propertyType)
         {
+            bool isCollection = false;
             TypeInfo typeInfo = propertyType.GetTypeInfo();
 
-            if (typeInfo.IsEnum) { return BuildPath.Basic; }
-            else if (typeof(IEnumerable).GetTypeInfo().IsAssignableFrom(typeInfo)) return BuildPath.Collection;
-            else switch (propertyType.Name)
+            if (typeof(IEnumerable).GetTypeInfo().IsAssignableFrom(typeInfo))
+            {
+                isCollection = true;
+                typeInfo = GetCollectionElementType(propertyType).GetTypeInfo();
+            }
+
+            if (typeInfo.IsEnum)
+            {
+                return isCollection ? BuildPath.BasicCollection : BuildPath.Basic;
+            }
+            else switch (typeInfo.Name)
                 {
                     default:
-                        return BuildPath.Complex;
+                        return isCollection ? BuildPath.ComplexCollection : BuildPath.Complex;
 
                     case nameof(Boolean):
 
@@ -138,7 +135,7 @@ namespace Gigobyte.Mockaroo.Serialization
 
                     case nameof(TimeSpan):
                     case nameof(DateTime):
-                        return BuildPath.Basic;
+                        return isCollection ? BuildPath.BasicCollection : BuildPath.Basic;
                 }
         }
 
@@ -146,8 +143,8 @@ namespace Gigobyte.Mockaroo.Serialization
         {
             Basic,
             Complex,
-            Array,
-            Collection
+            BasicCollection,
+            ComplexCollection
         }
 
         #endregion Private Members
