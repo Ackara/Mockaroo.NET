@@ -7,7 +7,7 @@
 <#@ output extension=".cs" #>
 namespace Gigobyte.Mockaroo.Fields
 {
-	public partial class FieldFactory : IFieldFactory
+	public partial class FieldFactory : IFieldFactory<<#= EnumTypeName #>>
 	{
 		public IField CreateInstance(<#= EnumTypeName #> dataType)
 		{

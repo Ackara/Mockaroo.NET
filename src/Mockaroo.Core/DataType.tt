@@ -9,6 +9,10 @@ namespace Gigobyte.Mockaroo
 {
 	public enum <#= EnumTypeName #>
 	{
+		/// <summary>
+		/// None
+		/// </summary>
+		None,
 <# 
 	PushIndent("\t\t");
 	WriteLine(GenerateTypeCodes());

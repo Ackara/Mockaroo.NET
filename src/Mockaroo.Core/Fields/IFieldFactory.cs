@@ -1,7 +1,7 @@
 ﻿namespace Gigobyte.Mockaroo.Fields
 {
-    public interface IFieldFactory
+    public interface IFieldFactory<T>
     {
-        IField CreateInstance(DataType dataType);
+        IField CreateInstance(T value);
     }
 }

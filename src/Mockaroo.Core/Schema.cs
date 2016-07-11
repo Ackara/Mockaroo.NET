@@ -51,7 +51,7 @@ namespace Gigobyte.Mockaroo
             for (int i = 0; i < Count; i++)
             {
                 separator = (i < (Count - 1) ? "," : string.Empty);
-                writer.Write(string.Format("{0}{1}", this[i].ToJson(), separator));
+                writer.Write(string.Format("{0}{1}", base[i].ToJson(), separator));
             }
             writer.Write(']');
             writer.Flush();

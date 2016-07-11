@@ -1,7 +1,4 @@
-﻿using System;
-using System.Reflection;
-
-namespace Gigobyte.Mockaroo
+﻿namespace Gigobyte.Mockaroo
 {
     /// <summary>
     /// Extension methods for <see cref="Gigobyte.Mockaroo"/> name space.
@@ -20,42 +17,6 @@ namespace Gigobyte.Mockaroo
             if (value >= maxInclusive) return maxInclusive;
             else if (value <= minInclusive) return minInclusive;
             else return value;
-        }
-
-        internal static bool IsBasicType(this Type type)
-        {
-            TypeInfo typeInfo = type.GetTypeInfo();
-            if (typeInfo.IsEnum /*|| typeInfo.IsArray*/) { return true; }
-            else switch (type.Name)
-                {
-                    default:
-                        return false;
-
-                    case nameof(Boolean):
-
-                    case nameof(Char):
-                    case nameof(String):
-
-                    case nameof(Byte):
-                    case nameof(SByte):
-
-                    case nameof(Int16):
-                    case nameof(UInt16):
-
-                    case nameof(Int32):
-                    case nameof(UInt32):
-
-                    case nameof(Int64):
-                    case nameof(UInt64):
-
-                    case nameof(Single):
-                    case nameof(Double):
-                    case nameof(Decimal):
-
-                    case nameof(TimeSpan):
-                    case nameof(DateTime):
-                        return true;
-                }
         }
     }
 }

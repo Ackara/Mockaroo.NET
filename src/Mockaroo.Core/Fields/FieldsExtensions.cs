@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Linq;
 using System.Reflection;
 
@@ -14,7 +15,10 @@ namespace Gigobyte.Mockaroo.Fields
                 var values = Enum.GetValues(type).Cast<int>().Select(x => (x.ToString()));
                 return new CustomListField() { Values = values.ToArray() };
             }
-            //else if (typeInfo.IsArray) { return new JSONArrayField(); }
+            //else if (typeof(IEnumerable).GetTypeInfo().IsAssignableFrom(typeInfo))
+            //{
+            //    return new JSONArrayField() { Name = type.Name };
+            //}
             else switch (typeInfo.Name)
                 {
                     case nameof(Byte):

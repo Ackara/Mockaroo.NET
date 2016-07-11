@@ -1,6 +1,6 @@
 ﻿namespace Gigobyte.Mockaroo.Fields
 {
-	public partial class FieldFactory : IFieldFactory
+	public partial class FieldFactory : IFieldFactory<DataType>
 	{
 		public IField CreateInstance(DataType dataType)
 		{

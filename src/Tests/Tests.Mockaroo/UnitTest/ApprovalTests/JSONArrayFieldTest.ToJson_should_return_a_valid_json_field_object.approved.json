@@ -1,0 +1,20 @@
+﻿{
+    "name": "Contacts",
+    "type": "JSON Array",
+    "percentageBlank": "0",
+    "formula": "",
+    "minItems": "1",
+    "maxItems": "5"
+},
+{
+    "name": "Contacts.Id",
+    "type": "Row Number",
+    "percentageBlank": "0",
+    "formula": ""
+},
+{
+    "name": "Contacts.Name",
+    "type": "Full Name",
+    "percentageBlank": "0",
+    "formula": ""
+}

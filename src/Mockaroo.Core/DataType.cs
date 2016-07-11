@@ -3,6 +3,10 @@
 	public enum DataType
 	{
 		/// <summary>
+		/// None
+		/// </summary>
+		None,
+		/// <summary>
 		/// App Bundle ID
 		/// </summary>
 		AppBundleID,

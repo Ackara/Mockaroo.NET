@@ -13,7 +13,7 @@ namespace Gigobyte.Mockaroo
         {
         }
 
-        public MockarooClient(string apiKey, IFieldFactory factory)
+        public MockarooClient(string apiKey, IFieldFactory<Type> factory)
         {
             _apiKey = apiKey;
             _factory = factory;
@@ -45,7 +45,7 @@ namespace Gigobyte.Mockaroo
         #region Private Members
 
         private readonly string _apiKey;
-        private readonly IFieldFactory _factory;
+        private readonly IFieldFactory<Type> _factory;
 
         #endregion Private Members
     }
