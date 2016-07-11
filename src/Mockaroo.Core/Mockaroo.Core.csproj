@@ -61,6 +61,7 @@
     </Compile>
     <Compile Include="Fields\CustomListField.cs" />
     <Compile Include="Fields\DateField.cs" />
+    <Compile Include="Fields\Factory\ClrFactory.cs" />
     <Compile Include="Fields\FieldBase.cs" />
     <Compile Include="Fields\FieldFactoryT4.cs">
       <AutoGen>True</AutoGen>

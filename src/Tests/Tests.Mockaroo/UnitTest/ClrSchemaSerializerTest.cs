@@ -11,7 +11,7 @@ namespace Tests.Mockaroo.UnitTest
 {
     [TestClass]
     [UseApprovalSubdirectory(nameof(ApprovalTests))]
-    [UseReporter(typeof(DiffReporter), typeof(ClipboardReporter))]
+    [UseReporter(typeof(FileLauncherReporter), typeof(ClipboardReporter))]
     public class ClrSchemaSerializerTest
     {
         public TestContext TestContext { get; set; }

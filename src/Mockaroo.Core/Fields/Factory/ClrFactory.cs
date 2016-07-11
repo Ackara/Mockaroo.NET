@@ -3,11 +3,11 @@ using System.Collections;
 using System.Linq;
 using System.Reflection;
 
-namespace Gigobyte.Mockaroo.Fields
+namespace Gigobyte.Mockaroo.Fields.Factory
 {
-    public static class FieldsExtensions
+    public class ClrFactory : IFieldFactory<Type>
     {
-        internal static IField AsField(this Type type)
+        public IField CreateInstance(Type type)
         {
             TypeInfo typeInfo = type.GetTypeInfo();
             if (typeInfo.IsEnum)

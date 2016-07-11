@@ -45,8 +45,6 @@ namespace Gigobyte.Mockaroo.Fields
 
         public void Add(IField item, bool appendName)
         {
-            if (appendName) item.Name = $"{Name}.{item.Name}";
-
             if (_count >= _items.Length) ResizeCollection();
             _items[_count++] = item;
         }
@@ -109,13 +107,14 @@ namespace Gigobyte.Mockaroo.Fields
 
         public override string ToJson()
         {
-            string childrenJson = "";
-            for (int i = 0; i < _count; i++)
-            {
-                childrenJson += (_items[i].ToJson() + ",");
-            }
+            //string childrenJson = "";
+            //for (int i = 0; i < _count; i++)
+            //{
+            //    childrenJson += (_items[i].ToJson() + ",");
+            //}
 
-            return $"{base.BaseJson()},\"minItems\":\"{Min}\",\"maxItems\":\"{Max}\"}},{childrenJson.TrimEnd(',')}";
+            //return $"{base.BaseJson()},\"minItems\":\"{Min}\",\"maxItems\":\"{Max}\"}},{childrenJson.TrimEnd(',')}";
+            return $"{base.BaseJson()},\"minItems\":\"{Min}\",\"maxItems\":\"{Max}\"}}";
         }
 
         #region Private Members
