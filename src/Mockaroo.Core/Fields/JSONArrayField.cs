@@ -114,7 +114,7 @@ namespace Gigobyte.Mockaroo.Fields
             //}
 
             //return $"{base.BaseJson()},\"minItems\":\"{Min}\",\"maxItems\":\"{Max}\"}},{childrenJson.TrimEnd(',')}";
-            return $"{base.BaseJson()},\"minItems\":\"{Min}\",\"maxItems\":\"{Max}\"}}";
+            return $"{base.BaseJson()},\"minItems\":{Min},\"maxItems\":{Max}}}";
         }
 
         #region Private Members

@@ -11,6 +11,12 @@ namespace Tests.Mockaroo.UnitTest
     [UseReporter(typeof(DiffReporter), typeof(ClipboardReporter))]
     public class JSONArrayFieldTest
     {
+        [ClassCleanup]
+        public static void Cleanup()
+        {
+            ApprovalTests.Maintenance.ApprovalMaintenance.CleanUpAbandonedFiles();
+        }
+
         [TestMethod]
         [Owner(Dev.Ackara)]
         public void Add_should_insert_a_new_item_when_capacity_has_been_reached()
@@ -90,8 +96,6 @@ namespace Tests.Mockaroo.UnitTest
         {
             // Arrange
             var sut = new JSONArrayField() { Name = "Contacts" };
-            sut.Add(new RowNumberField() { Name = "Id" });
-            sut.Add(new FullNameField() { Name = "Name" });
 
             // Act
             var json = sut.ToJson();

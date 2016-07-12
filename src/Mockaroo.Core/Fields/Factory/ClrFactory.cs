@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Linq;
 using System.Reflection;
+using Gigobyte.Mockaroo.Fields;
 
 namespace Gigobyte.Mockaroo.Fields.Factory
 {
@@ -15,7 +16,7 @@ namespace Gigobyte.Mockaroo.Fields.Factory
                 var values = Enum.GetValues(type).Cast<int>().Select(x => (x.ToString()));
                 return new CustomListField() { Values = values.ToArray() };
             }
-            else if (typeof(IEnumerable).GetTypeInfo().IsAssignableFrom(typeInfo))
+            else if (type != typeof(string) && typeof(IEnumerable).GetTypeInfo().IsAssignableFrom(typeInfo))
             {
                 return new JSONArrayField() { Name = type.Name };
             }

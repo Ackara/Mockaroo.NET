@@ -1,4 +1,4 @@
-﻿namespace Gigobyte.Mockaroo.Fields
+﻿namespace Gigobyte.Mockaroo.Fields.Factory
 {
     public interface IFieldFactory<T>
     {

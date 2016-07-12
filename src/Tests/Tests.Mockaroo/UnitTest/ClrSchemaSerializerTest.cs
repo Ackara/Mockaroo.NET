@@ -10,8 +10,9 @@ using Tests.Mockaroo.Fakes;
 namespace Tests.Mockaroo.UnitTest
 {
     [TestClass]
+    [DeploymentItem(Test.Data.DirectoryName)]
     [UseApprovalSubdirectory(nameof(ApprovalTests))]
-    [UseReporter(typeof(FileLauncherReporter), typeof(ClipboardReporter))]
+    [UseReporter(typeof(DiffReporter), typeof(ClipboardReporter))]
     public class ClrSchemaSerializerTest
     {
         public TestContext TestContext { get; set; }
@@ -57,6 +58,25 @@ namespace Tests.Mockaroo.UnitTest
             Assert.AreEqual(8184, result.DateValue.Year);
             Assert.AreEqual(DayOfWeek.Tuesday, result.Day);
             Assert.AreEqual("velit vivamus vel nulla eget eros elementum pellentesque quisque porta volutpat", result.StringValue);
+        }
+
+        [TestMethod]
+        [Owner(Dev.Ackara)]
+        public void ReadObject_should_deserialize_a_bytes_array_into_a_complex_clr_object()
+        {
+            // Arrange
+            var sut = new ClrSchemaSerializer();
+            var data = File.ReadAllBytes(Test.Data.GetFile(Test.File.BasicResponse).FullName);
+
+            // Act
+            var result = sut.ReadObject<ComplexObject>(data);
+
+            // Assert
+            Assert.AreEqual(676558325, result.IntegerValue);
+            Assert.AreEqual(5, result.IntArray.Length);
+            Assert.IsNotNull(result.MultiLvl);
+            Assert.IsNotNull(result.Nested1);
+            Assert.IsNotNull(result.Points);
         }
     }
 }

@@ -1,13 +1,18 @@
 ﻿using Gigobyte.Mockaroo.Fields;
+using Gigobyte.Mockaroo.Fields.Factory;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
+using System.IO;
 using System.Reflection;
+using System.Text;
 
 namespace Gigobyte.Mockaroo.Serialization
 {
     public class ClrSchemaSerializer : ISchemaSerializer
     {
-        public ClrSchemaSerializer() : this(new Fields.Factory.ClrFactory())
+        public ClrSchemaSerializer() : this(new ClrFactory())
         {
         }
 
@@ -31,7 +36,19 @@ namespace Gigobyte.Mockaroo.Serialization
 
         public object ReadObject(Type type, byte[] data)
         {
-            throw new NotImplementedException();
+            using (var reader = new JsonTextReader(new StreamReader(new MemoryStream(data))))
+            {
+                var instance = Activator.CreateInstance(type);
+                var array = JArray.Load(reader);
+
+                foreach (var obj in array)
+                {
+                   return JsonConvert.DeserializeObject(obj.ToString(), type);
+                }
+
+                throw new System.NotImplementedException();
+                //return instance;
+            }
         }
 
         public T ReadObject<T>(byte[] data)
@@ -48,7 +65,7 @@ namespace Gigobyte.Mockaroo.Serialization
             IField field;
             foreach (var property in type.GetRuntimeProperties())
             {
-                if (rootType == property.PropertyType) { continue; }  /* A guard against an infinite recursive loop */
+                if (rootType == property.PropertyType || type == property.PropertyType ) { continue; }  /* A guard against an infinite recursive loop */
 
                 if (property.CanRead && property.CanWrite)
                 {
@@ -58,7 +75,6 @@ namespace Gigobyte.Mockaroo.Serialization
                     {
                         default:
                         case BuildPath.Basic:
-                            //field = property.PropertyType.AsField();
                             field = _factory.CreateInstance(property.PropertyType);
                             field.Name = (parentPropertyName + property.Name);
                             schema.Add(field);
@@ -67,29 +83,27 @@ namespace Gigobyte.Mockaroo.Serialization
                         case BuildPath.Complex:
                             parentPropertyName = $"{parentPropertyName}{property.Name}.";
                             BuildSchema(schema, property.PropertyType, rootType, parentPropertyName);
-                            parentPropertyName = string.Empty;
+                            parentPropertyName = Backtrack(parentPropertyName);
                             break;
 
                         case BuildPath.BasicCollection:
-                            //field = property.PropertyType.AsField();
                             field = _factory.CreateInstance(property.PropertyType);
                             field.Name = (parentPropertyName + property.Name);
                             schema.Add(field);
 
-                            field = elementType.AsField();
+                            field = _factory.CreateInstance(elementType);
                             field.Name = $"{parentPropertyName}{property.Name}.{elementType.Name}";
                             schema.Add(field);
                             break;
 
                         case BuildPath.ComplexCollection:
-                            //field = property.PropertyType.AsField();
                             field = _factory.CreateInstance(property.PropertyType);
                             field.Name = (parentPropertyName + property.Name);
                             schema.Add(field);
 
                             parentPropertyName = $"{parentPropertyName}{property.Name}.";
                             BuildSchema(schema, elementType, rootType, parentPropertyName);
-                            parentPropertyName = string.Empty;
+                            parentPropertyName = Backtrack(parentPropertyName);
                             break;
                     }
                 }
@@ -156,6 +170,14 @@ namespace Gigobyte.Mockaroo.Serialization
             {
                 return collectionType.GenericTypeArguments[0];
             }
+        }
+
+
+        private string Backtrack(string value)
+        {
+            string[] parts = value.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
+            int index = parts.Length -2;
+            return ((index < 0) ? string.Empty : (parts[index] + '.'));
         }
 
         private enum BuildPath

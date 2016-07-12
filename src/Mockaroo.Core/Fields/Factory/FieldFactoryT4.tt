@@ -3,9 +3,9 @@
 <#@ import namespace="System.IO" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-<#@ include file="../T4Utilities.tt" #>
+<#@ include file="../../T4Utilities.tt" #>
 <#@ output extension=".cs" #>
-namespace Gigobyte.Mockaroo.Fields
+namespace Gigobyte.Mockaroo.Fields.Factory
 {
 	public partial class FieldFactory : IFieldFactory<<#= EnumTypeName #>>
 	{

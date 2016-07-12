@@ -63,14 +63,14 @@
     <Compile Include="Fields\DateField.cs" />
     <Compile Include="Fields\Factory\ClrFactory.cs" />
     <Compile Include="Fields\FieldBase.cs" />
-    <Compile Include="Fields\FieldFactoryT4.cs">
+    <Compile Include="Fields\Factory\FieldFactoryT4.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FieldFactoryT4.tt</DependentUpon>
     </Compile>
     <Compile Include="Fields\FieldsExtensions.cs" />
     <Compile Include="Fields\IField.cs" />
-    <Compile Include="Fields\IFieldFactory.cs" />
+    <Compile Include="Fields\Factory\IFieldFactory.cs" />
     <Compile Include="Fields\JSONArrayField.cs" />
     <Compile Include="Fields\NumberField.cs" />
     <Compile Include="Arrangement.cs" />
@@ -85,7 +85,7 @@
     <Compile Include="Serialization\ISchemaSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Fields\FieldFactoryT4.tt">
+    <None Include="Fields\Factory\FieldFactoryT4.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>FieldFactoryT4.cs</LastGenOutput>
     </None>

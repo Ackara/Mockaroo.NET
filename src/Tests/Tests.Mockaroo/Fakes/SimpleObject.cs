@@ -4,6 +4,11 @@ namespace Tests.Mockaroo.Fakes
 {
     public class SimpleObject
     {
+        public SimpleObject()
+        {
+
+        }
+
         public int IntegerValue { get; set; }
 
         public float DecimalValue { get; set; }
