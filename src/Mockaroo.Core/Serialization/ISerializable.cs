@@ -6,6 +6,8 @@ namespace Gigobyte.Mockaroo.Serialization
     {
         Stream Serialize();
 
+        void Deserialize(byte[] bytes);
+
         void Deserialize(Stream stream);
     }
 }
