@@ -4,7 +4,6 @@
     /// Base class for <see cref="IField"/>.
     /// </summary>
     /// <seealso cref="Gigobyte.Mockaroo.Fields.IField"/>
-    [System.Runtime.Serialization.DataContract]
     [System.Diagnostics.DebuggerDisplay("{ToDebuggerView()}")]
     public abstract class FieldBase : IField
     {
@@ -59,7 +58,6 @@
         #region Private Members
 
         private int _blankPercentage;
-        private string _dataType;
 
         #endregion Private Members
     }
