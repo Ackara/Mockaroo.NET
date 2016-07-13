@@ -6,8 +6,8 @@ namespace Gigobyte.Mockaroo.Serialization
     {
         Schema ConvertToSchema(object value);
 
-        object ReadObject(Type type, byte[] data);
+        object[] ReadObject(Type type, byte[] data);
 
-        T ReadObject<T>(byte[] data);
+        T[] ReadObject<T>(byte[] data);
     }
 }
