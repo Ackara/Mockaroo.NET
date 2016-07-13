@@ -59,7 +59,7 @@ namespace Tests.Mockaroo.IntegrationTest
             var records = Convert.ToInt32(TestContext.Properties[Test.Property.Records] ?? 1);
             var endpoint = Gigobyte.Mockaroo.Mockaroo.Endpoint(ApiKey.GetValue(), records, Format.JSON);
 
-            var schema = new Schema(GetAllFieldTypes());
+            var schema = new Schema(fields: GetAllFieldTypes());
 
             // Act
             var data = await MockarooClient.FetchDataAsync(endpoint, schema);

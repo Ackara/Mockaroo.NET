@@ -62,11 +62,11 @@ namespace Gigobyte.Mockaroo.Serialization
 
         private IFieldFactory<Type> _factory;
 
-        private void BuildObject(Type type, JToken json, object instance, string classHeiracrchy = "")
+        private void BuildObject(Type type, JToken json, object instance, string classHierarchy = "")
         {
             foreach (var property in type.GetRuntimeProperties())
             {
-                if (classHeiracrchy.Contains(property.PropertyType.Name)) continue; /* A guard against an infinite recursive loop */
+                if (classHierarchy.Contains(property.PropertyType.Name)) continue; /* A guard against an infinite recursive loop */
 
                 if (property.CanRead && property.CanWrite)
                 {
@@ -86,7 +86,7 @@ namespace Gigobyte.Mockaroo.Serialization
 
                         case BuildPath.Complex:
                             childInstance = Activator.CreateInstance(property.PropertyType);
-                            BuildObject(property.PropertyType, json[property.Name], childInstance, $"{classHeiracrchy}.{property.PropertyType.Name}");
+                            BuildObject(property.PropertyType, json[property.Name], childInstance, $"{classHierarchy}.{property.PropertyType.Name}");
                             property.SetValue(instance, childInstance);
                             break;
 
@@ -103,7 +103,7 @@ namespace Gigobyte.Mockaroo.Serialization
                             foreach (var item in json[property.Name])
                             {
                                 childInstance = Activator.CreateInstance(collectionElementType);
-                                BuildObject(collectionElementType, item, childInstance, $"{classHeiracrchy}.{collectionElementType.Name}");
+                                BuildObject(collectionElementType, item, childInstance, $"{classHierarchy}.{collectionElementType.Name}");
                                 collection[index++] = childInstance;
                             }
 

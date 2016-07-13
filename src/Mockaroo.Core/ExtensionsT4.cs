@@ -1,5 +1,8 @@
 ﻿namespace Gigobyte.Mockaroo
 {
+	/// <summary>
+    /// Provides helper methods for the <see cref="Gigobyte.Mockaroo" />.
+    /// </summary>
 	public static partial class Extensions
 	{
 		/// <summary>
@@ -9,316 +12,433 @@
 		/// <returns>System.String.</returns>
 		public static string ToMockarooTypeName(this DataType dataType)
 		{
-			switch(dataType)
+			switch (dataType)
 			{
 				default:
-				return string.Empty;
-
+					return string.Empty;
 				case DataType.AppBundleID:
-				return "App Bundle ID";
-				
+					return "App Bundle ID";
 				case DataType.AppName:
-				return "App Name";
-				
+					return "App Name";
 				case DataType.AppVersion:
-				return "App Version";
-				
+					return "App Version";
 				case DataType.Avatar:
-				return "Avatar";
-				
+					return "Avatar";
 				case DataType.Base64ImageURL:
-				return "Base64 Image URL";
-				
+					return "Base64 Image URL";
 				case DataType.BitcoinAddress:
-				return "Bitcoin Address";
-				
+					return "Bitcoin Address";
 				case DataType.Blank:
-				return "Blank";
-				
+					return "Blank";
 				case DataType.Boolean:
-				return "Boolean";
-				
+					return "Boolean";
 				case DataType.City:
-				return "City";
-				
+					return "City";
 				case DataType.Color:
-				return "Color";
-				
+					return "Color";
 				case DataType.CompanyName:
-				return "Company Name";
-				
+					return "Company Name";
 				case DataType.Country:
-				return "Country";
-				
+					return "Country";
 				case DataType.CountryCode:
-				return "Country Code";
-				
+					return "Country Code";
 				case DataType.CreditCardNumber:
-				return "Credit Card #";
-				
+					return "Credit Card #";
 				case DataType.CreditCardType:
-				return "Credit Card Type";
-				
+					return "Credit Card Type";
 				case DataType.Currency:
-				return "Currency";
-				
+					return "Currency";
 				case DataType.CurrencyCode:
-				return "Currency Code";
-				
+					return "Currency Code";
 				case DataType.CustomList:
-				return "Custom List";
-				
+					return "Custom List";
 				case DataType.DatasetColumn:
-				return "Dataset Column";
-				
+					return "Dataset Column";
 				case DataType.Date:
-				return "Date";
-				
+					return "Date";
 				case DataType.DomainName:
-				return "Domain Name";
-				
+					return "Domain Name";
 				case DataType.DrugCompany:
-				return "Drug Company";
-				
+					return "Drug Company";
 				case DataType.DrugNameBrand:
-				return "Drug Name (Brand)";
-				
+					return "Drug Name (Brand)";
 				case DataType.DrugNameGeneric:
-				return "Drug Name (Generic)";
-				
+					return "Drug Name (Generic)";
 				case DataType.DummyImageURL:
-				return "Dummy Image URL";
-				
+					return "Dummy Image URL";
 				case DataType.EmailAddress:
-				return "Email Address";
-				
+					return "Email Address";
 				case DataType.Encrypt:
-				return "Encrypt";
-				
+					return "Encrypt";
 				case DataType.FamilyNameChinese:
-				return "Family Name (Chinese)";
-				
+					return "Family Name (Chinese)";
 				case DataType.FDANDCCode:
-				return "FDA NDC Code";
-				
+					return "FDA NDC Code";
 				case DataType.FileName:
-				return "File Name";
-				
+					return "File Name";
 				case DataType.FirstName:
-				return "First Name";
-				
+					return "First Name";
 				case DataType.FirstNameEuropean:
-				return "First Name (European)";
-				
+					return "First Name (European)";
 				case DataType.FirstNameFemale:
-				return "First Name (Female)";
-				
+					return "First Name (Female)";
 				case DataType.FirstNameMale:
-				return "First Name (Male)";
-				
+					return "First Name (Male)";
 				case DataType.Formula:
-				return "Formula";
-				
+					return "Formula";
 				case DataType.Frequency:
-				return "Frequency";
-				
+					return "Frequency";
 				case DataType.FullName:
-				return "Full Name";
-				
+					return "Full Name";
 				case DataType.Gender:
-				return "Gender";
-				
+					return "Gender";
 				case DataType.GenderAbbreviated:
-				return "Gender (abbrev)";
-				
+					return "Gender (abbrev)";
 				case DataType.GivenNameChinese:
-				return "Given Name (Chinese)";
-				
+					return "Given Name (Chinese)";
 				case DataType.GUID:
-				return "GUID";
-				
+					return "GUID";
 				case DataType.HexColor:
-				return "Hex Color";
-				
+					return "Hex Color";
 				case DataType.IBAN:
-				return "IBAN";
-				
+					return "IBAN";
 				case DataType.ICD9DiagnosisCode:
-				return "ICD9 Diagnosis Code";
-				
+					return "ICD9 Diagnosis Code";
 				case DataType.ICD9DxDescLong:
-				return "ICD9 Dx Desc (Long)";
-				
+					return "ICD9 Dx Desc (Long)";
 				case DataType.ICD9DxDescShort:
-				return "ICD9 Dx Desc (Short)";
-				
+					return "ICD9 Dx Desc (Short)";
 				case DataType.ICD9ProcDescLong:
-				return "ICD9 Proc Desc (Long)";
-				
+					return "ICD9 Proc Desc (Long)";
 				case DataType.ICD9ProcDescShort:
-				return "ICD9 Proc Desc (Short)";
-				
+					return "ICD9 Proc Desc (Short)";
 				case DataType.ICD9ProcedureCode:
-				return "ICD9 Procedure Code";
-				
+					return "ICD9 Procedure Code";
 				case DataType.IPAddressV4:
-				return "IP Address v4";
-				
+					return "IP Address v4";
 				case DataType.IPAddressV4CIDR:
-				return "IP Address v4 CIDR";
-				
+					return "IP Address v4 CIDR";
 				case DataType.IPAddressV6:
-				return "IP Address v6";
-				
+					return "IP Address v6";
 				case DataType.IPAddressV6CIDR:
-				return "IP Address v6 CIDR";
-				
+					return "IP Address v6 CIDR";
 				case DataType.ISBN:
-				return "ISBN";
-				
+					return "ISBN";
 				case DataType.JobTitle:
-				return "Job Title";
-				
+					return "Job Title";
 				case DataType.JSONArray:
-				return "JSON Array";
-				
+					return "JSON Array";
 				case DataType.Language:
-				return "Language";
-				
+					return "Language";
 				case DataType.LastName:
-				return "Last Name";
-				
+					return "Last Name";
 				case DataType.Latitude:
-				return "Latitude";
-				
+					return "Latitude";
 				case DataType.LinkedInSkill:
-				return "LinkedIn Skill";
-				
+					return "LinkedIn Skill";
 				case DataType.Longitude:
-				return "Longitude";
-				
+					return "Longitude";
 				case DataType.MACAddress:
-				return "MAC Address";
-				
+					return "MAC Address";
 				case DataType.MD5:
-				return "MD5";
-				
+					return "MD5";
 				case DataType.MIMEType:
-				return "MIME Type";
-				
+					return "MIME Type";
 				case DataType.Money:
-				return "Money";
-				
+					return "Money";
 				case DataType.MongoDBObjectID:
-				return "MongoDB ObjectID";
-				
+					return "MongoDB ObjectID";
 				case DataType.NaughtyString:
-				return "Naughty String";
-				
+					return "Naughty String";
 				case DataType.NormalDistribution:
-				return "Normal Distribution";
-				
+					return "Normal Distribution";
 				case DataType.Number:
-				return "Number";
-				
+					return "Number";
 				case DataType.Paragraphs:
-				return "Paragraphs";
-				
+					return "Paragraphs";
 				case DataType.Password:
-				return "Password";
-				
+					return "Password";
 				case DataType.Phone:
-				return "Phone";
-				
+					return "Phone";
 				case DataType.PoissonDistribution:
-				return "Poisson Distribution";
-				
+					return "Poisson Distribution";
 				case DataType.PostalCode:
-				return "Postal Code";
-				
+					return "Postal Code";
 				case DataType.Race:
-				return "Race";
-				
+					return "Race";
 				case DataType.RegularExpression:
-				return "Regular Expression";
-				
+					return "Regular Expression";
 				case DataType.RowNumber:
-				return "Row Number";
-				
+					return "Row Number";
 				case DataType.Scenario:
-				return "Scenario";
-				
+					return "Scenario";
 				case DataType.Sentences:
-				return "Sentences";
-				
+					return "Sentences";
 				case DataType.Sequence:
-				return "Sequence";
-				
+					return "Sequence";
 				case DataType.SHA1:
-				return "SHA1";
-				
+					return "SHA1";
 				case DataType.SHA256:
-				return "SHA256";
-				
+					return "SHA256";
 				case DataType.ShirtSize:
-				return "Shirt Size";
-				
+					return "Shirt Size";
 				case DataType.ShortHexColor:
-				return "Short Hex Color";
-				
+					return "Short Hex Color";
 				case DataType.SQLExpression:
-				return "SQL Expression";
-				
+					return "SQL Expression";
 				case DataType.SSN:
-				return "SSN";
-				
+					return "SSN";
 				case DataType.State:
-				return "State";
-				
+					return "State";
 				case DataType.StateAbbreviated:
-				return "State (abbrev)";
-				
+					return "State (abbrev)";
 				case DataType.StreetAddress:
-				return "Street Address";
-				
+					return "Street Address";
 				case DataType.StreetName:
-				return "Street Name";
-				
+					return "Street Name";
 				case DataType.StreetNumber:
-				return "Street Number";
-				
+					return "Street Number";
 				case DataType.StreetSuffix:
-				return "Street Suffix";
-				
+					return "Street Suffix";
 				case DataType.Suffix:
-				return "Suffix";
-				
+					return "Suffix";
 				case DataType.Template:
-				return "Template";
-				
+					return "Template";
 				case DataType.Time:
-				return "Time";
-				
+					return "Time";
 				case DataType.TimeZone:
-				return "Time Zone";
-				
+					return "Time Zone";
 				case DataType.Title:
-				return "Title";
-				
+					return "Title";
 				case DataType.TopLevelDomain:
-				return "Top Level Domain";
-				
+					return "Top Level Domain";
 				case DataType.URL:
-				return "URL";
-				
+					return "URL";
 				case DataType.UserAgent:
-				return "User Agent";
-				
+					return "User Agent";
 				case DataType.UserName:
-				return "Username";
-				
+					return "Username";
 				case DataType.Words:
-				return "Words";
+					return "Words";
+			}
+		}
+
+		/// <summary>
+		/// Coverts a string to a <see cref="DataType"/>.
+		/// </summary>
+		/// <param name="typeName">Name of the data type.</param>
+        /// <returns>DataType.</returns>
+		/// <exception cref="System.ArgumentException"></exception>
+		public static DataType ToDataType(this string typeName)
+		{
+			switch (typeName)
+			{
+				default:
+					throw new System.ArgumentException($"'{typeName}' is not a valid value.", nameof(typeName));
+				case "App Bundle ID":
+					return DataType.AppBundleID;
+				case "App Name":
+					return DataType.AppName;
+				case "App Version":
+					return DataType.AppVersion;
+				case "Avatar":
+					return DataType.Avatar;
+				case "Base64 Image URL":
+					return DataType.Base64ImageURL;
+				case "Bitcoin Address":
+					return DataType.BitcoinAddress;
+				case "Blank":
+					return DataType.Blank;
+				case "Boolean":
+					return DataType.Boolean;
+				case "City":
+					return DataType.City;
+				case "Color":
+					return DataType.Color;
+				case "Company Name":
+					return DataType.CompanyName;
+				case "Country":
+					return DataType.Country;
+				case "Country Code":
+					return DataType.CountryCode;
+				case "Credit Card #":
+					return DataType.CreditCardNumber;
+				case "Credit Card Type":
+					return DataType.CreditCardType;
+				case "Currency":
+					return DataType.Currency;
+				case "Currency Code":
+					return DataType.CurrencyCode;
+				case "Custom List":
+					return DataType.CustomList;
+				case "Dataset Column":
+					return DataType.DatasetColumn;
+				case "Date":
+					return DataType.Date;
+				case "Domain Name":
+					return DataType.DomainName;
+				case "Drug Company":
+					return DataType.DrugCompany;
+				case "Drug Name (Brand)":
+					return DataType.DrugNameBrand;
+				case "Drug Name (Generic)":
+					return DataType.DrugNameGeneric;
+				case "Dummy Image URL":
+					return DataType.DummyImageURL;
+				case "Email Address":
+					return DataType.EmailAddress;
+				case "Encrypt":
+					return DataType.Encrypt;
+				case "Family Name (Chinese)":
+					return DataType.FamilyNameChinese;
+				case "FDA NDC Code":
+					return DataType.FDANDCCode;
+				case "File Name":
+					return DataType.FileName;
+				case "First Name":
+					return DataType.FirstName;
+				case "First Name (European)":
+					return DataType.FirstNameEuropean;
+				case "First Name (Female)":
+					return DataType.FirstNameFemale;
+				case "First Name (Male)":
+					return DataType.FirstNameMale;
+				case "Formula":
+					return DataType.Formula;
+				case "Frequency":
+					return DataType.Frequency;
+				case "Full Name":
+					return DataType.FullName;
+				case "Gender":
+					return DataType.Gender;
+				case "Gender (abbrev)":
+					return DataType.GenderAbbreviated;
+				case "Given Name (Chinese)":
+					return DataType.GivenNameChinese;
+				case "GUID":
+					return DataType.GUID;
+				case "Hex Color":
+					return DataType.HexColor;
+				case "IBAN":
+					return DataType.IBAN;
+				case "ICD9 Diagnosis Code":
+					return DataType.ICD9DiagnosisCode;
+				case "ICD9 Dx Desc (Long)":
+					return DataType.ICD9DxDescLong;
+				case "ICD9 Dx Desc (Short)":
+					return DataType.ICD9DxDescShort;
+				case "ICD9 Proc Desc (Long)":
+					return DataType.ICD9ProcDescLong;
+				case "ICD9 Proc Desc (Short)":
+					return DataType.ICD9ProcDescShort;
+				case "ICD9 Procedure Code":
+					return DataType.ICD9ProcedureCode;
+				case "IP Address v4":
+					return DataType.IPAddressV4;
+				case "IP Address v4 CIDR":
+					return DataType.IPAddressV4CIDR;
+				case "IP Address v6":
+					return DataType.IPAddressV6;
+				case "IP Address v6 CIDR":
+					return DataType.IPAddressV6CIDR;
+				case "ISBN":
+					return DataType.ISBN;
+				case "Job Title":
+					return DataType.JobTitle;
+				case "JSON Array":
+					return DataType.JSONArray;
+				case "Language":
+					return DataType.Language;
+				case "Last Name":
+					return DataType.LastName;
+				case "Latitude":
+					return DataType.Latitude;
+				case "LinkedIn Skill":
+					return DataType.LinkedInSkill;
+				case "Longitude":
+					return DataType.Longitude;
+				case "MAC Address":
+					return DataType.MACAddress;
+				case "MD5":
+					return DataType.MD5;
+				case "MIME Type":
+					return DataType.MIMEType;
+				case "Money":
+					return DataType.Money;
+				case "MongoDB ObjectID":
+					return DataType.MongoDBObjectID;
+				case "Naughty String":
+					return DataType.NaughtyString;
+				case "Normal Distribution":
+					return DataType.NormalDistribution;
+				case "Number":
+					return DataType.Number;
+				case "Paragraphs":
+					return DataType.Paragraphs;
+				case "Password":
+					return DataType.Password;
+				case "Phone":
+					return DataType.Phone;
+				case "Poisson Distribution":
+					return DataType.PoissonDistribution;
+				case "Postal Code":
+					return DataType.PostalCode;
+				case "Race":
+					return DataType.Race;
+				case "Regular Expression":
+					return DataType.RegularExpression;
+				case "Row Number":
+					return DataType.RowNumber;
+				case "Scenario":
+					return DataType.Scenario;
+				case "Sentences":
+					return DataType.Sentences;
+				case "Sequence":
+					return DataType.Sequence;
+				case "SHA1":
+					return DataType.SHA1;
+				case "SHA256":
+					return DataType.SHA256;
+				case "Shirt Size":
+					return DataType.ShirtSize;
+				case "Short Hex Color":
+					return DataType.ShortHexColor;
+				case "SQL Expression":
+					return DataType.SQLExpression;
+				case "SSN":
+					return DataType.SSN;
+				case "State":
+					return DataType.State;
+				case "State (abbrev)":
+					return DataType.StateAbbreviated;
+				case "Street Address":
+					return DataType.StreetAddress;
+				case "Street Name":
+					return DataType.StreetName;
+				case "Street Number":
+					return DataType.StreetNumber;
+				case "Street Suffix":
+					return DataType.StreetSuffix;
+				case "Suffix":
+					return DataType.Suffix;
+				case "Template":
+					return DataType.Template;
+				case "Time":
+					return DataType.Time;
+				case "Time Zone":
+					return DataType.TimeZone;
+				case "Title":
+					return DataType.Title;
+				case "Top Level Domain":
+					return DataType.TopLevelDomain;
+				case "URL":
+					return DataType.URL;
+				case "User Agent":
+					return DataType.UserAgent;
+				case "Username":
+					return DataType.UserName;
+				case "Words":
+					return DataType.Words;
 			}
 		}
 	}

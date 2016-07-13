@@ -1,13 +1,14 @@
 ﻿using Gigobyte.Mockaroo.Fields;
+using Gigobyte.Mockaroo.Fields.Factory;
 using Gigobyte.Mockaroo.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
 
 namespace Gigobyte.Mockaroo
 {
-    [JsonArray]
     public class Schema : List<IField>, ISerializable
     {
         #region Static Members
@@ -26,20 +27,21 @@ namespace Gigobyte.Mockaroo
 
         #endregion Static Members
 
-        public Schema() : base()
+        public Schema() : this(new FieldFactory(), new IField[0])
         {
         }
 
-        public Schema(int capacity) : base(capacity)
+        public Schema(params IField[] fields) : this(new FieldFactory(), fields)
         {
         }
 
-        public Schema(params IField[] fields) : base(fields)
+        public Schema(IEnumerable<IField> fields) : this(null, fields)
         {
         }
 
-        public Schema(IEnumerable<IField> collection) : base(collection)
+        public Schema(IFieldFactory<DataType> factory, IEnumerable<IField> fields) : base(fields)
         {
+            _factory = factory;
         }
 
         public Stream Serialize()
@@ -67,7 +69,15 @@ namespace Gigobyte.Mockaroo
 
         public void Deserialize(Stream stream)
         {
-            
+            using (var reader = new JsonTextReader(new StreamReader(stream)))
+            {
+                foreach (var json in JArray.Load(reader))
+                {
+                    var type = Type.GetType($"{nameof(Gigobyte)}.{nameof(Gigobyte.Mockaroo)}.{nameof(Fields)}.{json["type"].Value<string>().ToDataType()}Field");
+                    IField field = (IField)JsonConvert.DeserializeObject(json.ToString(), type);
+                    Add(field);
+                }
+            }
         }
 
         public string ToJson()
@@ -77,5 +87,12 @@ namespace Gigobyte.Mockaroo
                 return reader.ReadToEnd();
             }
         }
+
+        #region Private Members
+
+        private readonly IFieldFactory<DataType> _factory;
+        private readonly ISchemaSerializer _serializer;
+
+        #endregion Private Members
     }
 }

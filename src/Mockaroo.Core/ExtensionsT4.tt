@@ -7,40 +7,64 @@
 <#@ output extension=".cs" #>
 namespace Gigobyte.Mockaroo
 {
+	/// <summary>
+    /// Provides helper methods for the <see cref="Gigobyte.Mockaroo" />.
+    /// </summary>
 	public static partial class Extensions
 	{
 		/// <summary>
-		/// Converts a <see cref="DataType"/> to it's official type name.
+		/// Converts a <see cref="<#= EnumTypeName #>"/> to it's official type name.
 		/// </summary>
 		/// <param name="dataType">Type of the data.</param>
 		/// <returns>System.String.</returns>
 		public static string ToMockarooTypeName(this <#= EnumTypeName #> dataType)
 		{
-			switch(dataType)
+			switch (dataType)
 			{
 				default:
-				return string.Empty;
+					return string.Empty;
+				<# GenerateToTypeNameMethod(); #>
+			}
+		}
 
-<# 
-	PushIndent("\t\t\t\t");
-	WriteLine(GenerateExtensionMethod());
-	ClearIndent();
-#>
+		/// <summary>
+		/// Coverts a string to a <see cref="<#= EnumTypeName #>"/>.
+		/// </summary>
+		/// <param name="typeName">Name of the data type.</param>
+        /// <returns>DataType.</returns>
+		/// <exception cref="System.ArgumentException"></exception>
+		public static <#= EnumTypeName #> To<#= EnumTypeName #>(this string typeName)
+		{
+			switch (typeName)
+			{
+				default:
+					throw new System.ArgumentException($"'{typeName}' is not a valid value.", nameof(typeName));
+				<#  GenerateToDataTypeMethod(); #>
 			}
 		}
 	}
 }
 <#+ 
-public string GenerateExtensionMethod()
+public void GenerateToTypeNameMethod()
 {
-	var text = new System.Text.StringBuilder();
-
+	PushIndent("\t\t\t\t");
 	foreach (var type in FetchDataTypes())
 	{
-		 text.AppendFormat("case {1}.{0}:\r\n", ToEnumName(type), EnumTypeName);
-		 text.AppendFormat("return \"{0}\";\r\n\r\n", type);
+		WriteLine("case {1}.{0}:", ToEnumName(type), EnumTypeName);
+		WriteLine("\treturn \"{0}\";", type);
+	}
+	PopIndent();
+}
+
+public void GenerateToDataTypeMethod()
+{
+	PushIndent("\t\t\t\t");
+	foreach (var type in FetchDataTypes())
+	{
+		WriteLine("case \"{0}\":", type);
+		WriteLine("\treturn {0}.{1};", EnumTypeName, ToEnumName(type));
 	}
 
-	return text.ToString().Trim();
+	PopIndent();
 }
 #>
