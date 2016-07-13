@@ -6,6 +6,7 @@ using Gigobyte.Mockaroo.Fields;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
+using System.Text;
 using Tests.Mockaroo.Fakes;
 
 namespace Tests.Mockaroo.UnitTest
@@ -41,19 +42,24 @@ namespace Tests.Mockaroo.UnitTest
 
         [TestMethod]
         [Owner(Dev.Ackara)]
-        public void ReadObject_should_create_a_schema_object_from_a_stream_of_json()
+        public void ReadObject_should_create_a_schema_object_from_a_serialized_schema_object()
         {
             // Arrange
-            var sut = new Schema();
-            var sampleFile = Test.Data.GetFile(Test.File.SchemaJson);
+            var sut = CreateSchema();
+            var actual = new Schema();
+            string serializedData1, serializedData2;
 
             // Act
-            sut.Deserialize(sampleFile.OpenRead());
+            using (var reader = new StreamReader(sut.Serialize()))
+            { serializedData1 = reader.ReadToEnd(); }
+
+            actual.Deserialize(Encoding.UTF8.GetBytes(serializedData1));
+
+            using (var reader = new StreamReader(actual.Serialize()))
+            { serializedData2 = reader.ReadToEnd(); }
 
             // Assert
-            Assert.AreEqual(3, sut.Count);
-            Assert.AreEqual(DataType.Words, sut[0].Type);
-            Assert.IsInstanceOfType(sut[1], typeof(NumberField));
+            Assert.AreEqual(serializedData1, serializedData2);
         }
 
         #region Samples
