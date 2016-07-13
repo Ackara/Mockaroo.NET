@@ -1,8 +1,0 @@
-﻿{
-    "name": "Contacts",
-    "type": "JSON Array",
-    "percentageBlank": "0",
-    "formula": "",
-    "minItems": 1,
-    "maxItems": 5
-}
