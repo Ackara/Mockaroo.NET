@@ -39,7 +39,7 @@ Push-Location (Split-Path $PSScriptRoot -Parent);
 
 # Start deployment
 Invoke-psake `
-    -buildFile "$PWD\build\deploy.ps1"  `
+    -buildFile "$PWD\build\build.ps1"  `
     -taskList $TaskList `
     -framework 4.5.2 `
     -properties @{
