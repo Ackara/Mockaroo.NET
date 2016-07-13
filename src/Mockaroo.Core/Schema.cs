@@ -60,9 +60,14 @@ namespace Gigobyte.Mockaroo
             return memory;
         }
 
+        public void Deserialize(byte[] data)
+        {
+            Deserialize(new MemoryStream(data));
+        }
+
         public void Deserialize(Stream stream)
         {
-            throw new NotImplementedException();
+            
         }
 
         public string ToJson()
