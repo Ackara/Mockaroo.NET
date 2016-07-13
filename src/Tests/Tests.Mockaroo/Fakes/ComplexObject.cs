@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Tests.Mockaroo.Fakes
 {
@@ -6,10 +7,10 @@ namespace Tests.Mockaroo.Fakes
     {
         public ComplexObject()
         {
-            //RecursionProblem1 = new ComplexObject();
             //Nested1 = new SimpleObject();
             //Nested2 = new SimpleObject();
             //Points = new Point[0];
+            //MultiLvl = new MultiLevelObject();
         }
 
         public int IntegerValue { get; set; }
@@ -28,7 +29,7 @@ namespace Tests.Mockaroo.Fakes
 
         public SimpleObject Nested2 { get; set; }
 
-        public System.Collections.Generic.IList<Point> Points { get; set; }
+        public List<Point> Points { get; set; }
 
         public ComplexObject RecursionProblem1 { get; set; }
 

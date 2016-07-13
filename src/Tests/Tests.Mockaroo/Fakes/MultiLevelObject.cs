@@ -8,7 +8,7 @@
 
         public SimpleObject Simple { get; set; }
 
-        public ComplexObject Promblem { get;set; }
+        public ComplexObject Problem { get;set; }
 
 
     }

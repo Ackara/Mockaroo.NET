@@ -5,6 +5,7 @@ using Gigobyte.Mockaroo.Serialization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
+using System.Linq;
 using Tests.Mockaroo.Fakes;
 
 namespace Tests.Mockaroo.UnitTest
@@ -52,7 +53,7 @@ namespace Tests.Mockaroo.UnitTest
             var data = File.ReadAllBytes(Test.Data.GetFile(Test.File.BasicResponse).FullName);
 
             // Act
-            var result = sut.ReadObject<SimpleObject>(data);
+            var result = sut.ReadObject<SimpleObject>(data).First();
 
             // Assert
             Assert.AreEqual(8184, result.DateValue.Year);
@@ -66,10 +67,10 @@ namespace Tests.Mockaroo.UnitTest
         {
             // Arrange
             var sut = new ClrSchemaSerializer();
-            var data = File.ReadAllBytes(Test.Data.GetFile(Test.File.BasicResponse).FullName);
+            var data = File.ReadAllBytes(Test.Data.GetFile(Test.File.VeryComplexResponse).FullName);
 
             // Act
-            var result = sut.ReadObject<ComplexObject>(data);
+            var result = sut.ReadObject<ComplexObject>(data).First();
 
             // Assert
             Assert.AreEqual(676558325, result.IntegerValue);

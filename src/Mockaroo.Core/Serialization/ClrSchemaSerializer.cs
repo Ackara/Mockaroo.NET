@@ -5,8 +5,8 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
 using System.IO;
+using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace Gigobyte.Mockaroo.Serialization
 {
@@ -34,38 +34,93 @@ namespace Gigobyte.Mockaroo.Serialization
             else throw new ArgumentException($"This object can only convert objects of type '{nameof(System)}.{nameof(Type)}'.", nameof(value));
         }
 
-        public object ReadObject(Type type, byte[] data)
+        public object[] ReadObject(Type type, byte[] bytes)
         {
-            using (var reader = new JsonTextReader(new StreamReader(new MemoryStream(data))))
+            using (var reader = new JsonTextReader(new StreamReader(new MemoryStream(bytes))))
             {
-                var instance = Activator.CreateInstance(type);
                 var array = JArray.Load(reader);
+                var data = new object[array.Count];
+                int index = 0;
 
-                foreach (var obj in array)
+                foreach (JObject obj in array)
                 {
-                   return JsonConvert.DeserializeObject(obj.ToString(), type);
+                    object instance = Activator.CreateInstance(type);
+                    BuildObject(type, obj, instance, type.Name);
+                    data[index++] = instance;
                 }
 
-                throw new System.NotImplementedException();
-                //return instance;
+                return data;
             }
         }
 
-        public T ReadObject<T>(byte[] data)
+        public T[] ReadObject<T>(byte[] data)
         {
-            return (T)ReadObject(typeof(T), data);
+            return ReadObject(typeof(T), data).Cast<T>().ToArray();
         }
 
         #region Private Members
 
         private IFieldFactory<Type> _factory;
 
+        private void BuildObject(Type type, JToken json, object instance, string classHeiracrchy = "")
+        {
+            foreach (var property in type.GetRuntimeProperties())
+            {
+                if (classHeiracrchy.Contains(property.PropertyType.Name)) continue; /* A guard against an infinite recursive loop */
+
+                if (property.CanRead && property.CanWrite)
+                {
+                    Type collectionElementType;
+                    object propertyValue, childInstance;
+
+                    switch (GetBuildPath(property.PropertyType, out collectionElementType))
+                    {
+                        default:
+                        case BuildPath.Basic:
+                            propertyValue = property.PropertyType.GetTypeInfo().IsEnum ?
+                                propertyValue = Enum.Parse(property.PropertyType, json[property.Name].Value<string>()) :
+                                propertyValue = Convert.ChangeType(json[property.Name].Value<string>(), property.PropertyType);
+
+                            property.SetValue(instance, propertyValue);
+                            break;
+
+                        case BuildPath.Complex:
+                            childInstance = Activator.CreateInstance(property.PropertyType);
+                            BuildObject(property.PropertyType, json[property.Name], childInstance, $"{classHeiracrchy}.{property.PropertyType.Name}");
+                            property.SetValue(instance, childInstance);
+                            break;
+
+                        case BuildPath.BasicCollection:
+                            propertyValue = string.Join(",", json[property.Name].Select(x => x[collectionElementType.Name].Value<string>()));
+                            propertyValue = JsonConvert.DeserializeObject($"[{propertyValue}]", property.PropertyType);
+                            property.SetValue(instance, propertyValue);
+                            break;
+
+                        case BuildPath.ComplexCollection:
+                            int index = 0;
+                            var collection = new object[json[property.Name].Count()];
+
+                            foreach (var item in json[property.Name])
+                            {
+                                childInstance = Activator.CreateInstance(collectionElementType);
+                                BuildObject(collectionElementType, item, childInstance, $"{classHeiracrchy}.{collectionElementType.Name}");
+                                collection[index++] = childInstance;
+                            }
+
+                            propertyValue = JsonConvert.DeserializeObject(JsonConvert.SerializeObject(collection), property.PropertyType);
+                            property.SetValue(instance, propertyValue);
+                            break;
+                    }
+                }
+            }
+        }
+
         private void BuildSchema(Schema schema, Type type, Type rootType, string parentPropertyName = "")
         {
             IField field;
             foreach (var property in type.GetRuntimeProperties())
             {
-                if (rootType == property.PropertyType || type == property.PropertyType ) { continue; }  /* A guard against an infinite recursive loop */
+                if (rootType == property.PropertyType || type == property.PropertyType) { continue; }  /* A guard against an infinite recursive loop */
 
                 if (property.CanRead && property.CanWrite)
                 {
@@ -172,11 +227,10 @@ namespace Gigobyte.Mockaroo.Serialization
             }
         }
 
-
         private string Backtrack(string value)
         {
             string[] parts = value.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
-            int index = parts.Length -2;
+            int index = parts.Length - 2;
             return ((index < 0) ? string.Empty : (parts[index] + '.'));
         }
 
