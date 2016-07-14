@@ -6,28 +6,44 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq.Expressions;
+using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
 
 namespace Gigobyte.Mockaroo
 {
+    [DataContract]
     public class Schema : List<IField>, ISerializable
     {
         #region Static Members
 
-        public static Schema Load(Stream stream)
+        public static Schema Parse(string json)
         {
-            var schema = new Schema();
-            schema.Deserialize(stream);
-            return schema;
+            return Load(new MemoryStream(System.Text.Encoding.UTF8.GetBytes(json)));
         }
 
-        public static Schema LoadFrom(Type type)
+        public static Schema Load(Stream stream)
         {
-            throw new System.NotImplementedException();
+            using (stream)
+            {
+                var schema = new Schema();
+                schema.Deserialize(stream);
+                return schema;
+            }
+        }
+
+        public static IEnumerable<IField> GetFields(Type type)
+        {
+            return new ClrSchemaSerializer().ConvertToSchema(type);
         }
 
         #endregion Static Members
 
         public Schema() : this(new FieldFactory(), new IField[0])
+        {
+        }
+
+        public Schema(Type type) : this(new FieldFactory(), GetFields(type))
         {
         }
 
@@ -41,7 +57,33 @@ namespace Gigobyte.Mockaroo
 
         public Schema(IFieldFactory<DataType> factory, IEnumerable<IField> fields) : base(fields)
         {
-            _factory = factory;
+            Factory = factory;
+        }
+
+        protected readonly IFieldFactory<DataType> Factory;
+
+        public void Assign(string fieldName, DataType dataType)
+        {
+            Assign(fieldName, Factory.CreateInstance(dataType));
+        }
+
+        public void Assign(string fieldName, IField field)
+        {
+            field.Name = fieldName;
+            for (int i = 0; i < Count; i++)
+                if (this[i].Name == fieldName)
+                {
+                    this[i] = field;
+                }
+        }
+
+        public void Remove(string fieldName)
+        {
+            for (int i = 0; i < Count; i++)
+                if (this[i].Name == fieldName)
+                {
+                    base.RemoveAt(i);
+                }
         }
 
         public Stream Serialize()
@@ -87,12 +129,75 @@ namespace Gigobyte.Mockaroo
                 return reader.ReadToEnd();
             }
         }
+    }
 
-        #region Private Members
+    public class Schema<T> : Schema
+    {
+        #region Static Members
 
-        private readonly IFieldFactory<DataType> _factory;
-        private readonly ISchemaSerializer _serializer;
+        /// <summary>
+        /// Gets a list of <see cref="IField"/> based of the specified type.
+        /// </summary>
+        /// <returns>A list of <see cref="IField"/> based of the specified type.</returns>
+        public static IEnumerable<IField> GetFields()
+        {
+            return GetFields(typeof(T));
+        }
 
-        #endregion Private Members
+        #endregion Static Members
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Schema{T}"/> class.
+        /// </summary>
+        public Schema() : base(typeof(T))
+        {
+        }
+
+        /// <summary>
+        /// Removes the specified <see cref="IField"/> by the property associated with it.
+        /// </summary>
+        /// <param name="property">The property associated to the <see cref="IField"/>.</param>
+        public void Remove(Expression<Func<T, object>> property)
+        {
+            Match match = _lambdaPattern.Match(property.ToString());
+            if (match.Success)
+            {
+                Remove(match.Groups["property"].Value);
+            }
+        }
+
+        /// <summary>
+        /// Find and replace the specified <see cref="IField"/> by the property associated with it.
+        /// </summary>
+        /// <param name="property">The property associated to the <see cref="IField"/>.</param>
+        /// <param name="dataType">The Mockaroo data type.</param>
+        public void Assign(Expression<Func<T, object>> property, DataType dataType)
+        {
+            Match match = _lambdaPattern.Match(property.ToString());
+            if (match.Success)
+            {
+                Assign(match.Groups["property"].Value, Factory.CreateInstance(dataType));
+            }
+        }
+
+        /// <summary>
+        /// Find and replace the specified <see cref="IField"/> by the property associated with it.
+        /// </summary>
+        /// <param name="property">The property associated to the <see cref="IField"/>.</param>
+        /// <param name="fieldInfo">The Mockaroo field.</param>
+        public void Assign(Expression<Func<T, object>> property, IField fieldInfo)
+        {
+            Match match = _lambdaPattern.Match(property.ToString());
+            if (match.Success)
+            {
+                Assign(match.Groups["property"].Value, fieldInfo);
+            }
+        }
+
+        #region Private Member
+
+        private readonly Regex _lambdaPattern = new Regex(@"(?i)[_a-z0-9]+\.(?<property>[_a-z0-9]+)");
+
+        #endregion Private Member
     }
 }

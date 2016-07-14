@@ -62,6 +62,24 @@ namespace Tests.Mockaroo.UnitTest
             Assert.AreEqual(serializedData1, serializedData2);
         }
 
+        [TestMethod]
+        [Owner(Dev.Ackara)]
+        public void Assign_should_override_a_field_instance_of_the_schema_when_invoked()
+        {
+            // Arrange
+            var sut = new Schema<Article>();
+            DataType oldType, newType;
+
+            // Act
+            oldType = sut[0].Type;
+            sut.Assign(x => x.Title, DataType.FullName);
+            newType = sut[0].Type;
+
+            // Assert
+            Assert.AreNotEqual(oldType, newType);
+            Assert.AreEqual(DataType.FullName, newType);
+        }
+
         #region Samples
 
         public static Schema CreateSchema()
@@ -97,6 +115,11 @@ namespace Tests.Mockaroo.UnitTest
                     Min = new DateTime(2000, 01, 01),
                     Max = new DateTime(2010, 01, 01)
                 });
+        }
+
+        public class Article
+        {
+            public string Title { get; set; }
         }
 
         #endregion Samples
