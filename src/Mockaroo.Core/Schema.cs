@@ -77,13 +77,15 @@ namespace Gigobyte.Mockaroo
                 }
         }
 
-        public void Remove(string fieldName)
+        public bool Remove(string fieldName)
         {
             for (int i = 0; i < Count; i++)
                 if (this[i].Name == fieldName)
                 {
                     base.RemoveAt(i);
+                    return true;
                 }
+            return false;
         }
 
         public Stream Serialize()
@@ -157,13 +159,14 @@ namespace Gigobyte.Mockaroo
         /// Removes the specified <see cref="IField"/> by the property associated with it.
         /// </summary>
         /// <param name="property">The property associated to the <see cref="IField"/>.</param>
-        public void Remove(Expression<Func<T, object>> property)
+        public bool Remove(Expression<Func<T, object>> property)
         {
-            Match match = _lambdaPattern.Match(property.ToString());
+            Match match = _lambdaPattern.Match(property.ToString().Replace($"{nameof(Extensions.Item)}().", string.Empty));
             if (match.Success)
             {
-                Remove(match.Groups["property"].Value);
+                return Remove(match.Value.TrimStart('.'));
             }
+            else return false;
         }
 
         /// <summary>
@@ -173,30 +176,26 @@ namespace Gigobyte.Mockaroo
         /// <param name="dataType">The Mockaroo data type.</param>
         public void Assign(Expression<Func<T, object>> property, DataType dataType)
         {
-            Match match = _lambdaPattern.Match(property.ToString());
-            if (match.Success)
-            {
-                Assign(match.Groups["property"].Value, Factory.CreateInstance(dataType));
-            }
+            Assign(property, Factory.CreateInstance(dataType));
         }
 
         /// <summary>
         /// Find and replace the specified <see cref="IField"/> by the property associated with it.
         /// </summary>
         /// <param name="property">The property associated to the <see cref="IField"/>.</param>
-        /// <param name="fieldInfo">The Mockaroo field.</param>
-        public void Assign(Expression<Func<T, object>> property, IField fieldInfo)
+        /// <param name="field">The Mockaroo field.</param>
+        public void Assign(Expression<Func<T, object>> property, IField field)
         {
-            Match match = _lambdaPattern.Match(property.ToString());
+            Match match = _lambdaPattern.Match(property.ToString().Replace($"{nameof(Extensions.Item)}().", string.Empty));
             if (match.Success)
             {
-                Assign(match.Groups["property"].Value, fieldInfo);
+                Assign(match.Value.TrimStart('.'), field);
             }
         }
 
         #region Private Member
 
-        private readonly Regex _lambdaPattern = new Regex(@"(?i)[_a-z0-9]+\.(?<property>[_a-z0-9]+)");
+        private readonly Regex _lambdaPattern = new Regex(@"(\.[a-zA-Z0-9]+)+");
 
         #endregion Private Member
     }

@@ -18,5 +18,10 @@
             else if (value <= minInclusive) return minInclusive;
             else return value;
         }
+
+        public static T Item<T>(this System.Collections.Generic.IEnumerable<T> collection)
+        {
+            return System.Activator.CreateInstance<T>();
+        }
     }
 }

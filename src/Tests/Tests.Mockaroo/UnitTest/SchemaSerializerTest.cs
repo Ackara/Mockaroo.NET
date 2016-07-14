@@ -4,6 +4,7 @@ using ApprovalTests.Reporters;
 using Gigobyte.Mockaroo;
 using Gigobyte.Mockaroo.Fields;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Shouldly;
 using System;
 using System.IO;
 using System.Text;
@@ -64,20 +65,44 @@ namespace Tests.Mockaroo.UnitTest
 
         [TestMethod]
         [Owner(Dev.Ackara)]
-        public void Assign_should_override_a_field_instance_of_the_schema_when_invoked()
+        public void Assign_should_override_a_field_instance_within_a_schema_when_invoked()
         {
             // Arrange
-            var sut = new Schema<Article>();
-            DataType oldType, newType;
+            var sut = new Schema<Message>();
 
             // Act
-            oldType = sut[0].Type;
-            sut.Assign(x => x.Title, DataType.FullName);
-            newType = sut[0].Type;
+
+            /// case 1: The property is one level down the member tree.
+            sut.Assign(x => x.Text, DataType.FullName);
+            var newTextType = sut[0].Type;
+
+            /// case 2: The property is two levels down the member tree.
+            sut.Assign(x => x.Writer.Name, DataType.FullName);
+            var newNameType = sut[2].Type;
+
+            /// case 3: The property is two levels down the member tree.
+            sut.Assign(x => x.Writer.Reviews.Item().Rating, DataType.RowNumber);
+            var newRatingType = sut[4].Type;
 
             // Assert
-            Assert.AreNotEqual(oldType, newType);
-            Assert.AreEqual(DataType.FullName, newType);
+            newTextType.ShouldBe(DataType.FullName);
+            newNameType.ShouldBe(DataType.FullName);
+            newRatingType.ShouldBe(DataType.RowNumber);
+        }
+
+
+        [TestMethod]
+        [Owner(Dev.Ackara)]
+        public void Remove_should_return_true_when_a_field_instance_is_delete_from_the_schema()
+        {
+            // Arrange
+            var sut = new Schema<Message>();
+
+            // Act
+            var fieldWasRemoved = sut.Remove(x => x.Writer.Id);
+
+            // Assert
+            fieldWasRemoved.ShouldBeTrue();
         }
 
         #region Samples
@@ -117,9 +142,25 @@ namespace Tests.Mockaroo.UnitTest
                 });
         }
 
-        public class Article
+        public class Message
         {
-            public string Title { get; set; }
+            public string Text { get; set; }
+
+            public Author Writer { get; set; }
+        }
+
+        public class Author
+        {
+            public int Id { get; set; }
+
+            public string Name { get; set; }
+
+            public Review[] Reviews { get; set; }
+        }
+
+        public class Review
+        {
+            public int Rating { get; set; }
         }
 
         #endregion Samples
