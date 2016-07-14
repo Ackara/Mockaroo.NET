@@ -1,9 +1,10 @@
 # Mockaroo.NET
+[![license](https://img.shields.io/badge/license-MIT%20License-blue.svg)](https://github.com/Ackara/Mockaroo.NET/blob/master/LICENSE) [![version](https://img.shields.io/nuget/v/Gigobyte.Mockaroo.Core.svg?style=flat-square)](https://www.nuget.org/packages?q=Gigobyte.Mockaroo.Core)
 
-|Master|Development|
-|------|-----------|
-|![master](https://gigobyte.visualstudio.com/_apis/public/build/definitions/a2f0cdc6-0844-4f92-94e3-31763d79467f/26/badge)|![development](https://gigobyte.visualstudio.com/_apis/public/build/definitions/a2f0cdc6-0844-4f92-94e3-31763d79467f/27/badge)|
-
+|   |Master|Development|
+|---|------|-----------|
+|**Build Status:**||![master](https://gigobyte.visualstudio.com/_apis/public/build/definitions/a2f0cdc6-0844-4f92-94e3-31763d79467f/26/badge)|![development](https://gigobyte.visualstudio.com/_apis/public/build/definitions/a2f0cdc6-0844-4f92-94e3-31763d79467f/27/badge)|
+----------
 Mockaroo.NET is a portable class library that allows you to generate sample data based on C# objects using the [Mockaroo REST API](https://mockaroo.com/api/docs).
 
 ## How it works
