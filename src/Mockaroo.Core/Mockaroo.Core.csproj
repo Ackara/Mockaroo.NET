@@ -25,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Gigobyte.Mockaroo.Core.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -81,9 +82,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Format.cs" />
     <Compile Include="Schema.cs" />
-    <Compile Include="Serialization\ClrMockarooSerializer.cs" />
+    <Compile Include="Serialization\ClrDataAdapter.cs" />
+    <Compile Include="Serialization\ClrSchemaConverter.cs" />
     <Compile Include="Serialization\ClrSchemaSerializer.cs" />
-    <Compile Include="Serialization\IMockarooSerializer.cs" />
+    <Compile Include="Serialization\IDataAdapter.cs" />
+    <Compile Include="Serialization\ISchemaConverter.cs" />
     <Compile Include="Serialization\ISerializable.cs" />
     <Compile Include="Serialization\ISchemaSerializer.cs" />
   </ItemGroup>
