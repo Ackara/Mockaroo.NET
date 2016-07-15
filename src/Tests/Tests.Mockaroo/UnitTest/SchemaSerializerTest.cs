@@ -80,13 +80,18 @@ namespace Tests.Mockaroo.UnitTest
             sut.Assign(x => x.Writer.Name, DataType.FullName);
             var newNameType = sut[2].Type;
 
-            /// case 3: The property is two levels down the member tree.
+            /// case 3: The property is a list of objects.
+            sut.Assign(x => x.Tags, DataType.AppName);
+            var newTagType = sut[5].Type;
+
+            /// case 4: The property is a list of objects.
             sut.Assign(x => x.Writer.Reviews.Item().Rating, DataType.RowNumber);
             var newRatingType = sut[4].Type;
 
             // Assert
             newTextType.ShouldBe(DataType.FullName);
             newNameType.ShouldBe(DataType.FullName);
+            newTagType.ShouldBe(DataType.AppName);
             newRatingType.ShouldBe(DataType.RowNumber);
         }
 
@@ -147,6 +152,8 @@ namespace Tests.Mockaroo.UnitTest
             public string Text { get; set; }
 
             public Author Writer { get; set; }
+
+            public string[] Tags { get; set; }
         }
 
         public class Author

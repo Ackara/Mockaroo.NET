@@ -1,7 +1,7 @@
-﻿using Gigobyte.Mockaroo.Fields;
-using Gigobyte.Mockaroo.Fields.Factory;
+﻿using Gigobyte.Mockaroo.Serialization;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,17 +10,15 @@ namespace Gigobyte.Mockaroo
 {
     public class MockarooClient
     {
-        public MockarooClient(string apiKey) : this(string.Empty, null)
+        public MockarooClient(string apiKey) : this(apiKey, new ClrSchemaSerializer())
         {
         }
 
-        public MockarooClient(string apiKey, IFieldFactory<Type> factory)
+        public MockarooClient(string apiKey, ISchemaSerializer serializer)
         {
             _apiKey = apiKey;
-            _factory = factory;
+            _serializer = serializer;
         }
-
-        #region Asynchronous Methods
 
         public static async Task<byte[]> FetchDataAsync(Uri endpoint, Schema schema)
         {
@@ -41,12 +39,44 @@ namespace Gigobyte.Mockaroo
             }
         }
 
-        #endregion Asynchronous Methods
+        public IEnumerable<T> FetchData<T>(int records)
+        {
+            byte[] data = FetchDataAsync(Mockaroo.Endpoint(_apiKey, records), new Schema(typeof(T))).Result;
+            return _serializer.ReadObject<T>(data);
+        }
+
+        public IEnumerable<T> FetchData<T>(Schema schema, int records)
+        {
+            byte[] data = FetchDataAsync(Mockaroo.Endpoint(_apiKey, records), schema).Result;
+            return _serializer.ReadObject<T>(data);
+        }
+
+        public byte[] FetchData(Schema schema, int records, Format format = Format.JSON)
+        {
+            return FetchDataAsync(Mockaroo.Endpoint(_apiKey, records, format), schema).Result;
+        }
+
+        public async Task<IEnumerable<T>> FetchDataAsync<T>(int records)
+        {
+            byte[] data = await FetchDataAsync(Mockaroo.Endpoint(_apiKey, records), new Schema(typeof(T)));
+            return _serializer.ReadObject<T>(data);
+        }
+
+        public async Task<IEnumerable<T>> FetchDataAsync<T>(Schema schema, int records)
+        {
+            byte[] data = await FetchDataAsync(Mockaroo.Endpoint(_apiKey, records), schema);
+            return _serializer.ReadObject<T>(data);
+        }
+
+        public Task<byte[]> FetchDataAsync(Schema schema, int records, Format format = Format.JSON)
+        {
+            return FetchDataAsync(Mockaroo.Endpoint(_apiKey, records, format), schema);
+        }
 
         #region Private Members
 
         private readonly string _apiKey;
-        private readonly IFieldFactory<Type> _factory;
+        private readonly ISchemaSerializer _serializer;
 
         #endregion Private Members
     }

@@ -5,6 +5,7 @@ using Gigobyte.Mockaroo.Exceptions;
 using Gigobyte.Mockaroo.Fields;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
+using Shouldly;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -66,7 +67,24 @@ namespace Tests.Mockaroo.IntegrationTest
             var json = JArray.Parse(Encoding.Default.GetString(data));
 
             // Assert
-            Assert.AreEqual(records, json.Count);
+            json.Count.ShouldBe(records);
+        }
+
+        [TestMethod]
+        [Owner(Dev.Ackara)]
+        [TestCategory(Test.Trait.Integration)]
+        [TestProperty(Test.Property.Records, "2")]
+        public void FetchData_should_export_data_from_mockaroo_and_deserialize_it_into_a_object()
+        {
+            // Arrange
+            var sut = new MockarooClient(ApiKey.GetValue());
+            var records = Convert.ToInt32(TestContext.Properties[Test.Property.Records] ?? 1);
+
+            // Act
+            var results = sut.FetchData<SimpleObject>(records);
+
+            // Assert
+            results.ShouldNotBeEmpty();
         }
 
         [TestMethod]
