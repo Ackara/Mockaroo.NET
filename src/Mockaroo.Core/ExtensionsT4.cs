@@ -1,15 +1,15 @@
 ﻿namespace Gigobyte.Mockaroo
 {
 	/// <summary>
-    /// Provides helper methods for the <see cref="Gigobyte.Mockaroo" />.
+    /// Provides helper methods for the <see cref="Gigobyte.Mockaroo" /> namespace.
     /// </summary>
 	public static partial class Extensions
 	{
 		/// <summary>
-		/// Converts a <see cref="DataType"/> to it's official type name.
+		/// Converts this <see cref="DataType" /> instance to its equivalent <see cref="string" /> representation.
 		/// </summary>
 		/// <param name="dataType">Type of the data.</param>
-		/// <returns>System.String.</returns>
+		/// <returns>A <see cref="string" />.</returns>
 		public static string ToMockarooTypeName(this DataType dataType)
 		{
 			switch (dataType)
@@ -224,10 +224,10 @@
 		}
 
 		/// <summary>
-		/// Coverts a string to a <see cref="DataType"/>.
+		/// Converts the string representation of a <see cref="DataType" /> into its <see cref="DataType" /> equivalent.
 		/// </summary>
 		/// <param name="typeName">Name of the data type.</param>
-        /// <returns>DataType.</returns>
+        /// <returns>A <see cref="DataType" />.</returns>
 		/// <exception cref="System.ArgumentException"></exception>
 		public static DataType ToDataType(this string typeName)
 		{

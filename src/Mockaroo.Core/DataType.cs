@@ -1,11 +1,10 @@
 ﻿namespace Gigobyte.Mockaroo
 {
+	/// <summary>
+    /// Represents a Mockaroo data type.
+    /// </summary>
 	public enum DataType
 	{
-		/// <summary>
-		/// None
-		/// </summary>
-		None,
 		/// <summary>
 		/// App Bundle ID
 		/// </summary>

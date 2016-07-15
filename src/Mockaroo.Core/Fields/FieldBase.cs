@@ -35,12 +35,16 @@
         /// <value>The formula.</value>
         public string Formula { get; set; }
 
+        /// <summary>
+        /// Converts this instance into its equivalent json representation.
+        /// </summary>
+        /// <returns>A json representation of the instance.</returns>
         public virtual string ToJson()
         {
             return $"{{\"name\":\"{Name}\",\"type\":\"{Type.ToMockarooTypeName()}\",\"percentageBlank\":\"{_blankPercentage}\",\"formula\":\"{Formula}\"}}";
         }
 
-        protected string BaseJson()
+        internal string BaseJson()
         {
             return $"{{\"name\":\"{Name}\",\"type\":\"{Type.ToMockarooTypeName()}\",\"percentageBlank\":\"{_blankPercentage}\",\"formula\":\"{Formula}\"";
         }

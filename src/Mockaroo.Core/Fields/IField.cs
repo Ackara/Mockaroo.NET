@@ -2,6 +2,9 @@
 
 namespace Gigobyte.Mockaroo.Fields
 {
+    /// <summary>
+    /// Defines methods and properties that represents a Mockaroo data type.
+    /// </summary>
     public interface IField
     {
         /// <summary>
@@ -34,9 +37,9 @@ namespace Gigobyte.Mockaroo.Fields
         int BlankPercentage { get; set; }
 
         /// <summary>
-        /// Get the json representation of this object.
+        /// Converts this instance into its equivalent json representation.
         /// </summary>
-        /// <returns>A json object.</returns>
+        /// <returns>A json representation of the instance.</returns>
         string ToJson();
     }
 }

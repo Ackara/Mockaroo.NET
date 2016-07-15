@@ -41,11 +41,11 @@ namespace Tests.Mockaroo.IntegrationTest
             var schema = CreateSchema();
             int records = Convert.ToInt32(TestContext.Properties[Test.Property.Records] ?? 1);
             var endpoint = Gigobyte.Mockaroo.Mockaroo.Endpoint(apiKey, records, Format.JSON);
-
+            
             // Act
             var data = await MockarooClient.FetchDataAsync(endpoint, schema);
             var json = JArray.Parse(Encoding.Default.GetString(data));
-
+            
             // Assert
             Assert.AreEqual(records, json.Count);
         }

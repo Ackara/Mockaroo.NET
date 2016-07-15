@@ -2,20 +2,33 @@
 
 namespace Gigobyte.Mockaroo
 {
-    public class Mockaroo
+    /// <summary>
+    /// Exposes the static variables and resources used by the Mockaroo API.
+    /// </summary>
+    public static class Mockaroo
     {
+        /// <summary>
+        /// The default date format.
+        /// </summary>
         public static readonly string DateFormat = "MM/dd/yyyy";
 
+        /// <summary>
+        /// Gets the Mockaroo API endpoint.
+        /// </summary>
+        /// <param name="apiKey">Your API key.</param>
+        /// <param name="records">The the number of records to retrieve.</param>
+        /// <param name="format">The response format.</param>
+        /// <returns>Uri.</returns>
         public static Uri Endpoint(string apiKey, int records, Format format = Format.JSON)
         {
-            return new UriBuilder("http", "www.mockaroo.com")
+            return new UriBuilder("https", "www.mockaroo.com")
             {
                 Path = $"api/generate.{format}".ToLower(),
                 Query = $"key={apiKey}&array=true&count={records}"
             }.Uri;
         }
 
-        public struct QueryStringParameters
+        public struct QueryStringParameter
         {
             /// <summary>
             /// Your api key.

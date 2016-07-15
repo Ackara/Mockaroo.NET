@@ -23,8 +23,9 @@ public string GenerateFieldBaseTypes()
 	foreach (var type in FetchDataTypes())
 	{
 		text.AppendLine("/// <summary>");
-		text.AppendLine(string.Format("/// Represents a Mockaroo ({0}) field.", type));
+		text.AppendLine(string.Format("/// Represents a Mockaroo ({0}) data type.", type));
 		text.AppendLine("/// </summary>");
+		text.AppendLine("/// <seealso cref=\"Gigobyte.Mockaroo.Fields.FieldBase\" />");
 		text.AppendFormat("public partial class {0}Field : FieldBase", ToEnumName(type));
 		text.AppendLine();
 		text.AppendLine("{");

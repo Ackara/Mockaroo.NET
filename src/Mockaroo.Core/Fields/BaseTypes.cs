@@ -1,8 +1,9 @@
 ﻿namespace Gigobyte.Mockaroo.Fields
 {
 	/// <summary>
-	/// Represents a Mockaroo (App Bundle ID) field.
+	/// Represents a Mockaroo (App Bundle ID) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class AppBundleIDField : FieldBase
 	{
 		/// <summary>
@@ -11,8 +12,9 @@
 		public override DataType Type { get { return DataType.AppBundleID; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (App Name) field.
+	/// Represents a Mockaroo (App Name) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class AppNameField : FieldBase
 	{
 		/// <summary>
@@ -21,8 +23,9 @@
 		public override DataType Type { get { return DataType.AppName; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (App Version) field.
+	/// Represents a Mockaroo (App Version) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class AppVersionField : FieldBase
 	{
 		/// <summary>
@@ -31,8 +34,9 @@
 		public override DataType Type { get { return DataType.AppVersion; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Avatar) field.
+	/// Represents a Mockaroo (Avatar) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class AvatarField : FieldBase
 	{
 		/// <summary>
@@ -41,8 +45,9 @@
 		public override DataType Type { get { return DataType.Avatar; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Base64 Image URL) field.
+	/// Represents a Mockaroo (Base64 Image URL) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class Base64ImageURLField : FieldBase
 	{
 		/// <summary>
@@ -51,8 +56,9 @@
 		public override DataType Type { get { return DataType.Base64ImageURL; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Bitcoin Address) field.
+	/// Represents a Mockaroo (Bitcoin Address) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class BitcoinAddressField : FieldBase
 	{
 		/// <summary>
@@ -61,8 +67,9 @@
 		public override DataType Type { get { return DataType.BitcoinAddress; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Blank) field.
+	/// Represents a Mockaroo (Blank) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class BlankField : FieldBase
 	{
 		/// <summary>
@@ -71,8 +78,9 @@
 		public override DataType Type { get { return DataType.Blank; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Boolean) field.
+	/// Represents a Mockaroo (Boolean) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class BooleanField : FieldBase
 	{
 		/// <summary>
@@ -81,8 +89,9 @@
 		public override DataType Type { get { return DataType.Boolean; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (City) field.
+	/// Represents a Mockaroo (City) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class CityField : FieldBase
 	{
 		/// <summary>
@@ -91,8 +100,9 @@
 		public override DataType Type { get { return DataType.City; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Color) field.
+	/// Represents a Mockaroo (Color) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class ColorField : FieldBase
 	{
 		/// <summary>
@@ -101,8 +111,9 @@
 		public override DataType Type { get { return DataType.Color; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Company Name) field.
+	/// Represents a Mockaroo (Company Name) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class CompanyNameField : FieldBase
 	{
 		/// <summary>
@@ -111,8 +122,9 @@
 		public override DataType Type { get { return DataType.CompanyName; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Country) field.
+	/// Represents a Mockaroo (Country) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class CountryField : FieldBase
 	{
 		/// <summary>
@@ -121,8 +133,9 @@
 		public override DataType Type { get { return DataType.Country; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Country Code) field.
+	/// Represents a Mockaroo (Country Code) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class CountryCodeField : FieldBase
 	{
 		/// <summary>
@@ -131,8 +144,9 @@
 		public override DataType Type { get { return DataType.CountryCode; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Credit Card #) field.
+	/// Represents a Mockaroo (Credit Card #) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class CreditCardNumberField : FieldBase
 	{
 		/// <summary>
@@ -141,8 +155,9 @@
 		public override DataType Type { get { return DataType.CreditCardNumber; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Credit Card Type) field.
+	/// Represents a Mockaroo (Credit Card Type) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class CreditCardTypeField : FieldBase
 	{
 		/// <summary>
@@ -151,8 +166,9 @@
 		public override DataType Type { get { return DataType.CreditCardType; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Currency) field.
+	/// Represents a Mockaroo (Currency) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class CurrencyField : FieldBase
 	{
 		/// <summary>
@@ -161,8 +177,9 @@
 		public override DataType Type { get { return DataType.Currency; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Currency Code) field.
+	/// Represents a Mockaroo (Currency Code) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class CurrencyCodeField : FieldBase
 	{
 		/// <summary>
@@ -171,8 +188,9 @@
 		public override DataType Type { get { return DataType.CurrencyCode; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Custom List) field.
+	/// Represents a Mockaroo (Custom List) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class CustomListField : FieldBase
 	{
 		/// <summary>
@@ -181,8 +199,9 @@
 		public override DataType Type { get { return DataType.CustomList; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Dataset Column) field.
+	/// Represents a Mockaroo (Dataset Column) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class DatasetColumnField : FieldBase
 	{
 		/// <summary>
@@ -191,8 +210,9 @@
 		public override DataType Type { get { return DataType.DatasetColumn; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Date) field.
+	/// Represents a Mockaroo (Date) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class DateField : FieldBase
 	{
 		/// <summary>
@@ -201,8 +221,9 @@
 		public override DataType Type { get { return DataType.Date; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Domain Name) field.
+	/// Represents a Mockaroo (Domain Name) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class DomainNameField : FieldBase
 	{
 		/// <summary>
@@ -211,8 +232,9 @@
 		public override DataType Type { get { return DataType.DomainName; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Drug Company) field.
+	/// Represents a Mockaroo (Drug Company) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class DrugCompanyField : FieldBase
 	{
 		/// <summary>
@@ -221,8 +243,9 @@
 		public override DataType Type { get { return DataType.DrugCompany; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Drug Name (Brand)) field.
+	/// Represents a Mockaroo (Drug Name (Brand)) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class DrugNameBrandField : FieldBase
 	{
 		/// <summary>
@@ -231,8 +254,9 @@
 		public override DataType Type { get { return DataType.DrugNameBrand; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Drug Name (Generic)) field.
+	/// Represents a Mockaroo (Drug Name (Generic)) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class DrugNameGenericField : FieldBase
 	{
 		/// <summary>
@@ -241,8 +265,9 @@
 		public override DataType Type { get { return DataType.DrugNameGeneric; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Dummy Image URL) field.
+	/// Represents a Mockaroo (Dummy Image URL) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class DummyImageURLField : FieldBase
 	{
 		/// <summary>
@@ -251,8 +276,9 @@
 		public override DataType Type { get { return DataType.DummyImageURL; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Email Address) field.
+	/// Represents a Mockaroo (Email Address) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class EmailAddressField : FieldBase
 	{
 		/// <summary>
@@ -261,8 +287,9 @@
 		public override DataType Type { get { return DataType.EmailAddress; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Encrypt) field.
+	/// Represents a Mockaroo (Encrypt) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class EncryptField : FieldBase
 	{
 		/// <summary>
@@ -271,8 +298,9 @@
 		public override DataType Type { get { return DataType.Encrypt; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Family Name (Chinese)) field.
+	/// Represents a Mockaroo (Family Name (Chinese)) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class FamilyNameChineseField : FieldBase
 	{
 		/// <summary>
@@ -281,8 +309,9 @@
 		public override DataType Type { get { return DataType.FamilyNameChinese; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (FDA NDC Code) field.
+	/// Represents a Mockaroo (FDA NDC Code) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class FDANDCCodeField : FieldBase
 	{
 		/// <summary>
@@ -291,8 +320,9 @@
 		public override DataType Type { get { return DataType.FDANDCCode; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (File Name) field.
+	/// Represents a Mockaroo (File Name) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class FileNameField : FieldBase
 	{
 		/// <summary>
@@ -301,8 +331,9 @@
 		public override DataType Type { get { return DataType.FileName; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (First Name) field.
+	/// Represents a Mockaroo (First Name) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class FirstNameField : FieldBase
 	{
 		/// <summary>
@@ -311,8 +342,9 @@
 		public override DataType Type { get { return DataType.FirstName; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (First Name (European)) field.
+	/// Represents a Mockaroo (First Name (European)) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class FirstNameEuropeanField : FieldBase
 	{
 		/// <summary>
@@ -321,8 +353,9 @@
 		public override DataType Type { get { return DataType.FirstNameEuropean; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (First Name (Female)) field.
+	/// Represents a Mockaroo (First Name (Female)) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class FirstNameFemaleField : FieldBase
 	{
 		/// <summary>
@@ -331,8 +364,9 @@
 		public override DataType Type { get { return DataType.FirstNameFemale; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (First Name (Male)) field.
+	/// Represents a Mockaroo (First Name (Male)) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class FirstNameMaleField : FieldBase
 	{
 		/// <summary>
@@ -341,8 +375,9 @@
 		public override DataType Type { get { return DataType.FirstNameMale; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Formula) field.
+	/// Represents a Mockaroo (Formula) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class FormulaField : FieldBase
 	{
 		/// <summary>
@@ -351,8 +386,9 @@
 		public override DataType Type { get { return DataType.Formula; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Frequency) field.
+	/// Represents a Mockaroo (Frequency) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class FrequencyField : FieldBase
 	{
 		/// <summary>
@@ -361,8 +397,9 @@
 		public override DataType Type { get { return DataType.Frequency; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Full Name) field.
+	/// Represents a Mockaroo (Full Name) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class FullNameField : FieldBase
 	{
 		/// <summary>
@@ -371,8 +408,9 @@
 		public override DataType Type { get { return DataType.FullName; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Gender) field.
+	/// Represents a Mockaroo (Gender) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class GenderField : FieldBase
 	{
 		/// <summary>
@@ -381,8 +419,9 @@
 		public override DataType Type { get { return DataType.Gender; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Gender (abbrev)) field.
+	/// Represents a Mockaroo (Gender (abbrev)) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class GenderAbbreviatedField : FieldBase
 	{
 		/// <summary>
@@ -391,8 +430,9 @@
 		public override DataType Type { get { return DataType.GenderAbbreviated; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Given Name (Chinese)) field.
+	/// Represents a Mockaroo (Given Name (Chinese)) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class GivenNameChineseField : FieldBase
 	{
 		/// <summary>
@@ -401,8 +441,9 @@
 		public override DataType Type { get { return DataType.GivenNameChinese; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (GUID) field.
+	/// Represents a Mockaroo (GUID) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class GUIDField : FieldBase
 	{
 		/// <summary>
@@ -411,8 +452,9 @@
 		public override DataType Type { get { return DataType.GUID; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Hex Color) field.
+	/// Represents a Mockaroo (Hex Color) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class HexColorField : FieldBase
 	{
 		/// <summary>
@@ -421,8 +463,9 @@
 		public override DataType Type { get { return DataType.HexColor; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (IBAN) field.
+	/// Represents a Mockaroo (IBAN) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class IBANField : FieldBase
 	{
 		/// <summary>
@@ -431,8 +474,9 @@
 		public override DataType Type { get { return DataType.IBAN; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (ICD9 Diagnosis Code) field.
+	/// Represents a Mockaroo (ICD9 Diagnosis Code) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class ICD9DiagnosisCodeField : FieldBase
 	{
 		/// <summary>
@@ -441,8 +485,9 @@
 		public override DataType Type { get { return DataType.ICD9DiagnosisCode; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (ICD9 Dx Desc (Long)) field.
+	/// Represents a Mockaroo (ICD9 Dx Desc (Long)) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class ICD9DxDescLongField : FieldBase
 	{
 		/// <summary>
@@ -451,8 +496,9 @@
 		public override DataType Type { get { return DataType.ICD9DxDescLong; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (ICD9 Dx Desc (Short)) field.
+	/// Represents a Mockaroo (ICD9 Dx Desc (Short)) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class ICD9DxDescShortField : FieldBase
 	{
 		/// <summary>
@@ -461,8 +507,9 @@
 		public override DataType Type { get { return DataType.ICD9DxDescShort; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (ICD9 Proc Desc (Long)) field.
+	/// Represents a Mockaroo (ICD9 Proc Desc (Long)) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class ICD9ProcDescLongField : FieldBase
 	{
 		/// <summary>
@@ -471,8 +518,9 @@
 		public override DataType Type { get { return DataType.ICD9ProcDescLong; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (ICD9 Proc Desc (Short)) field.
+	/// Represents a Mockaroo (ICD9 Proc Desc (Short)) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class ICD9ProcDescShortField : FieldBase
 	{
 		/// <summary>
@@ -481,8 +529,9 @@
 		public override DataType Type { get { return DataType.ICD9ProcDescShort; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (ICD9 Procedure Code) field.
+	/// Represents a Mockaroo (ICD9 Procedure Code) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class ICD9ProcedureCodeField : FieldBase
 	{
 		/// <summary>
@@ -491,8 +540,9 @@
 		public override DataType Type { get { return DataType.ICD9ProcedureCode; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (IP Address v4) field.
+	/// Represents a Mockaroo (IP Address v4) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class IPAddressV4Field : FieldBase
 	{
 		/// <summary>
@@ -501,8 +551,9 @@
 		public override DataType Type { get { return DataType.IPAddressV4; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (IP Address v4 CIDR) field.
+	/// Represents a Mockaroo (IP Address v4 CIDR) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class IPAddressV4CIDRField : FieldBase
 	{
 		/// <summary>
@@ -511,8 +562,9 @@
 		public override DataType Type { get { return DataType.IPAddressV4CIDR; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (IP Address v6) field.
+	/// Represents a Mockaroo (IP Address v6) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class IPAddressV6Field : FieldBase
 	{
 		/// <summary>
@@ -521,8 +573,9 @@
 		public override DataType Type { get { return DataType.IPAddressV6; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (IP Address v6 CIDR) field.
+	/// Represents a Mockaroo (IP Address v6 CIDR) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class IPAddressV6CIDRField : FieldBase
 	{
 		/// <summary>
@@ -531,8 +584,9 @@
 		public override DataType Type { get { return DataType.IPAddressV6CIDR; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (ISBN) field.
+	/// Represents a Mockaroo (ISBN) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class ISBNField : FieldBase
 	{
 		/// <summary>
@@ -541,8 +595,9 @@
 		public override DataType Type { get { return DataType.ISBN; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Job Title) field.
+	/// Represents a Mockaroo (Job Title) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class JobTitleField : FieldBase
 	{
 		/// <summary>
@@ -551,8 +606,9 @@
 		public override DataType Type { get { return DataType.JobTitle; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (JSON Array) field.
+	/// Represents a Mockaroo (JSON Array) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class JSONArrayField : FieldBase
 	{
 		/// <summary>
@@ -561,8 +617,9 @@
 		public override DataType Type { get { return DataType.JSONArray; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Language) field.
+	/// Represents a Mockaroo (Language) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class LanguageField : FieldBase
 	{
 		/// <summary>
@@ -571,8 +628,9 @@
 		public override DataType Type { get { return DataType.Language; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Last Name) field.
+	/// Represents a Mockaroo (Last Name) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class LastNameField : FieldBase
 	{
 		/// <summary>
@@ -581,8 +639,9 @@
 		public override DataType Type { get { return DataType.LastName; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Latitude) field.
+	/// Represents a Mockaroo (Latitude) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class LatitudeField : FieldBase
 	{
 		/// <summary>
@@ -591,8 +650,9 @@
 		public override DataType Type { get { return DataType.Latitude; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (LinkedIn Skill) field.
+	/// Represents a Mockaroo (LinkedIn Skill) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class LinkedInSkillField : FieldBase
 	{
 		/// <summary>
@@ -601,8 +661,9 @@
 		public override DataType Type { get { return DataType.LinkedInSkill; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Longitude) field.
+	/// Represents a Mockaroo (Longitude) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class LongitudeField : FieldBase
 	{
 		/// <summary>
@@ -611,8 +672,9 @@
 		public override DataType Type { get { return DataType.Longitude; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (MAC Address) field.
+	/// Represents a Mockaroo (MAC Address) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class MACAddressField : FieldBase
 	{
 		/// <summary>
@@ -621,8 +683,9 @@
 		public override DataType Type { get { return DataType.MACAddress; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (MD5) field.
+	/// Represents a Mockaroo (MD5) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class MD5Field : FieldBase
 	{
 		/// <summary>
@@ -631,8 +694,9 @@
 		public override DataType Type { get { return DataType.MD5; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (MIME Type) field.
+	/// Represents a Mockaroo (MIME Type) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class MIMETypeField : FieldBase
 	{
 		/// <summary>
@@ -641,8 +705,9 @@
 		public override DataType Type { get { return DataType.MIMEType; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Money) field.
+	/// Represents a Mockaroo (Money) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class MoneyField : FieldBase
 	{
 		/// <summary>
@@ -651,8 +716,9 @@
 		public override DataType Type { get { return DataType.Money; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (MongoDB ObjectID) field.
+	/// Represents a Mockaroo (MongoDB ObjectID) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class MongoDBObjectIDField : FieldBase
 	{
 		/// <summary>
@@ -661,8 +727,9 @@
 		public override DataType Type { get { return DataType.MongoDBObjectID; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Naughty String) field.
+	/// Represents a Mockaroo (Naughty String) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class NaughtyStringField : FieldBase
 	{
 		/// <summary>
@@ -671,8 +738,9 @@
 		public override DataType Type { get { return DataType.NaughtyString; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Normal Distribution) field.
+	/// Represents a Mockaroo (Normal Distribution) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class NormalDistributionField : FieldBase
 	{
 		/// <summary>
@@ -681,8 +749,9 @@
 		public override DataType Type { get { return DataType.NormalDistribution; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Number) field.
+	/// Represents a Mockaroo (Number) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class NumberField : FieldBase
 	{
 		/// <summary>
@@ -691,8 +760,9 @@
 		public override DataType Type { get { return DataType.Number; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Paragraphs) field.
+	/// Represents a Mockaroo (Paragraphs) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class ParagraphsField : FieldBase
 	{
 		/// <summary>
@@ -701,8 +771,9 @@
 		public override DataType Type { get { return DataType.Paragraphs; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Password) field.
+	/// Represents a Mockaroo (Password) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class PasswordField : FieldBase
 	{
 		/// <summary>
@@ -711,8 +782,9 @@
 		public override DataType Type { get { return DataType.Password; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Phone) field.
+	/// Represents a Mockaroo (Phone) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class PhoneField : FieldBase
 	{
 		/// <summary>
@@ -721,8 +793,9 @@
 		public override DataType Type { get { return DataType.Phone; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Poisson Distribution) field.
+	/// Represents a Mockaroo (Poisson Distribution) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class PoissonDistributionField : FieldBase
 	{
 		/// <summary>
@@ -731,8 +804,9 @@
 		public override DataType Type { get { return DataType.PoissonDistribution; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Postal Code) field.
+	/// Represents a Mockaroo (Postal Code) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class PostalCodeField : FieldBase
 	{
 		/// <summary>
@@ -741,8 +815,9 @@
 		public override DataType Type { get { return DataType.PostalCode; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Race) field.
+	/// Represents a Mockaroo (Race) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class RaceField : FieldBase
 	{
 		/// <summary>
@@ -751,8 +826,9 @@
 		public override DataType Type { get { return DataType.Race; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Regular Expression) field.
+	/// Represents a Mockaroo (Regular Expression) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class RegularExpressionField : FieldBase
 	{
 		/// <summary>
@@ -761,8 +837,9 @@
 		public override DataType Type { get { return DataType.RegularExpression; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Row Number) field.
+	/// Represents a Mockaroo (Row Number) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class RowNumberField : FieldBase
 	{
 		/// <summary>
@@ -771,8 +848,9 @@
 		public override DataType Type { get { return DataType.RowNumber; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Scenario) field.
+	/// Represents a Mockaroo (Scenario) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class ScenarioField : FieldBase
 	{
 		/// <summary>
@@ -781,8 +859,9 @@
 		public override DataType Type { get { return DataType.Scenario; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Sentences) field.
+	/// Represents a Mockaroo (Sentences) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class SentencesField : FieldBase
 	{
 		/// <summary>
@@ -791,8 +870,9 @@
 		public override DataType Type { get { return DataType.Sentences; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Sequence) field.
+	/// Represents a Mockaroo (Sequence) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class SequenceField : FieldBase
 	{
 		/// <summary>
@@ -801,8 +881,9 @@
 		public override DataType Type { get { return DataType.Sequence; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (SHA1) field.
+	/// Represents a Mockaroo (SHA1) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class SHA1Field : FieldBase
 	{
 		/// <summary>
@@ -811,8 +892,9 @@
 		public override DataType Type { get { return DataType.SHA1; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (SHA256) field.
+	/// Represents a Mockaroo (SHA256) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class SHA256Field : FieldBase
 	{
 		/// <summary>
@@ -821,8 +903,9 @@
 		public override DataType Type { get { return DataType.SHA256; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Shirt Size) field.
+	/// Represents a Mockaroo (Shirt Size) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class ShirtSizeField : FieldBase
 	{
 		/// <summary>
@@ -831,8 +914,9 @@
 		public override DataType Type { get { return DataType.ShirtSize; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Short Hex Color) field.
+	/// Represents a Mockaroo (Short Hex Color) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class ShortHexColorField : FieldBase
 	{
 		/// <summary>
@@ -841,8 +925,9 @@
 		public override DataType Type { get { return DataType.ShortHexColor; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (SQL Expression) field.
+	/// Represents a Mockaroo (SQL Expression) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class SQLExpressionField : FieldBase
 	{
 		/// <summary>
@@ -851,8 +936,9 @@
 		public override DataType Type { get { return DataType.SQLExpression; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (SSN) field.
+	/// Represents a Mockaroo (SSN) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class SSNField : FieldBase
 	{
 		/// <summary>
@@ -861,8 +947,9 @@
 		public override DataType Type { get { return DataType.SSN; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (State) field.
+	/// Represents a Mockaroo (State) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class StateField : FieldBase
 	{
 		/// <summary>
@@ -871,8 +958,9 @@
 		public override DataType Type { get { return DataType.State; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (State (abbrev)) field.
+	/// Represents a Mockaroo (State (abbrev)) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class StateAbbreviatedField : FieldBase
 	{
 		/// <summary>
@@ -881,8 +969,9 @@
 		public override DataType Type { get { return DataType.StateAbbreviated; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Street Address) field.
+	/// Represents a Mockaroo (Street Address) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class StreetAddressField : FieldBase
 	{
 		/// <summary>
@@ -891,8 +980,9 @@
 		public override DataType Type { get { return DataType.StreetAddress; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Street Name) field.
+	/// Represents a Mockaroo (Street Name) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class StreetNameField : FieldBase
 	{
 		/// <summary>
@@ -901,8 +991,9 @@
 		public override DataType Type { get { return DataType.StreetName; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Street Number) field.
+	/// Represents a Mockaroo (Street Number) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class StreetNumberField : FieldBase
 	{
 		/// <summary>
@@ -911,8 +1002,9 @@
 		public override DataType Type { get { return DataType.StreetNumber; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Street Suffix) field.
+	/// Represents a Mockaroo (Street Suffix) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class StreetSuffixField : FieldBase
 	{
 		/// <summary>
@@ -921,8 +1013,9 @@
 		public override DataType Type { get { return DataType.StreetSuffix; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Suffix) field.
+	/// Represents a Mockaroo (Suffix) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class SuffixField : FieldBase
 	{
 		/// <summary>
@@ -931,8 +1024,9 @@
 		public override DataType Type { get { return DataType.Suffix; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Template) field.
+	/// Represents a Mockaroo (Template) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class TemplateField : FieldBase
 	{
 		/// <summary>
@@ -941,8 +1035,9 @@
 		public override DataType Type { get { return DataType.Template; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Time) field.
+	/// Represents a Mockaroo (Time) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class TimeField : FieldBase
 	{
 		/// <summary>
@@ -951,8 +1046,9 @@
 		public override DataType Type { get { return DataType.Time; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Time Zone) field.
+	/// Represents a Mockaroo (Time Zone) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class TimeZoneField : FieldBase
 	{
 		/// <summary>
@@ -961,8 +1057,9 @@
 		public override DataType Type { get { return DataType.TimeZone; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Title) field.
+	/// Represents a Mockaroo (Title) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class TitleField : FieldBase
 	{
 		/// <summary>
@@ -971,8 +1068,9 @@
 		public override DataType Type { get { return DataType.Title; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Top Level Domain) field.
+	/// Represents a Mockaroo (Top Level Domain) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class TopLevelDomainField : FieldBase
 	{
 		/// <summary>
@@ -981,8 +1079,9 @@
 		public override DataType Type { get { return DataType.TopLevelDomain; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (URL) field.
+	/// Represents a Mockaroo (URL) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class URLField : FieldBase
 	{
 		/// <summary>
@@ -991,8 +1090,9 @@
 		public override DataType Type { get { return DataType.URL; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (User Agent) field.
+	/// Represents a Mockaroo (User Agent) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class UserAgentField : FieldBase
 	{
 		/// <summary>
@@ -1001,8 +1101,9 @@
 		public override DataType Type { get { return DataType.UserAgent; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Username) field.
+	/// Represents a Mockaroo (Username) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class UserNameField : FieldBase
 	{
 		/// <summary>
@@ -1011,8 +1112,9 @@
 		public override DataType Type { get { return DataType.UserName; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (Words) field.
+	/// Represents a Mockaroo (Words) data type.
 	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
 	public partial class WordsField : FieldBase
 	{
 		/// <summary>

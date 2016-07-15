@@ -14,10 +14,13 @@
         /// <value>The maximum.</value>
         public int Max { get; set; } = 20;
 
+        /// <summary>
+        /// Converts this instance into its equivalent json representation.
+        /// </summary>
+        /// <returns>A json representation of the instance.</returns>
         public override string ToJson()
         {
-            string firstHalf = base.ToJson().TrimEnd('}');
-            return $"{firstHalf},\"min\":\"{Min}\",\"max\":\"{Max}\"}}";
+            return $"{BaseJson()},\"min\":\"{Min}\",\"max\":\"{Max}\"}}";
         }
     }
 }
