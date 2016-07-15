@@ -2,12 +2,19 @@
 using System.Collections;
 using System.Linq;
 using System.Reflection;
-using Gigobyte.Mockaroo.Fields;
 
 namespace Gigobyte.Mockaroo.Fields.Factory
 {
+    /// <summary>
+    /// Defines a method to create an <see cref="IField"/> from a specified value.
+    /// </summary>
     public class ClrFactory : IFieldFactory<Type>
     {
+        /// <summary>
+        /// Creates a <see cref="IField"/> instance from the <see cref="Type"/> value.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns></returns>
         public IField CreateInstance(Type type)
         {
             TypeInfo typeInfo = type.GetTypeInfo();

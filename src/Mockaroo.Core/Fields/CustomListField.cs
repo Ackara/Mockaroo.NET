@@ -16,6 +16,12 @@ namespace Gigobyte.Mockaroo.Fields
         /// <value>The selection.</value>
         public Arrangement Sequence { get; set; }
 
+        /// <summary>
+        /// Converts this instance into its equivalent json representation.
+        /// </summary>
+        /// <returns>
+        /// A json representation of the instance.
+        /// </returns>
         public override string ToJson()
         {
             string part1 = base.ToJson().TrimEnd('}');

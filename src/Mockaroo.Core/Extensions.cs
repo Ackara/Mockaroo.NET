@@ -27,7 +27,7 @@
         /// <returns>T.</returns>
         /// <remarks>
         /// This method was intended to be used when denoting the property name of a item in a
-        /// collection, when using the <see cref="Schema.Assign(string, DataType)/&gt;"/> method.
+        /// collection, when using the <see cref="Schema.Assign(string, DataType)"/> method.
         /// </remarks>
         /// <example>
         /// <code>

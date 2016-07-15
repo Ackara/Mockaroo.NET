@@ -28,6 +28,9 @@ namespace Gigobyte.Mockaroo
             }.Uri;
         }
 
+        /// <summary>
+        /// The http://mockaroo.com endpoint query parameters.
+        /// </summary>
         public struct QueryStringParameter
         {
             /// <summary>

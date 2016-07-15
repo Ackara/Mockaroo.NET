@@ -15,8 +15,8 @@ namespace Gigobyte.Mockaroo
     /// <summary>
     /// Represents a Mockaroo schema.
     /// </summary>
-    /// <seealso cref="System.Collections.Generic.List{Gigobyte.Mockaroo.Fields.IField}"/>
-    /// <seealso cref="Gigobyte.Mockaroo.Serialization.ISerializable"/>
+    /// <seealso cref="System.Collections.Generic.List{IField}" />
+    /// <seealso cref="ISerializable" />
     [DataContract]
     public class Schema : List<IField>, ISerializable
     {

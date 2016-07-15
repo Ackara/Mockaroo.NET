@@ -8,7 +8,7 @@ namespace Gigobyte.Mockaroo.Serialization
     public interface ISerializable
     {
         /// <summary>
-        /// Serializes this instance into an <see cref="byte[]"/>.
+        /// Serializes this instance into an byte array.
         /// </summary>
         /// <returns>Stream.</returns>
         Stream Serialize();
