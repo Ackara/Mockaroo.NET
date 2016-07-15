@@ -2,7 +2,7 @@
 
 namespace Gigobyte.Mockaroo
 {
-    public class Mockaroo
+    public static class Mockaroo
     {
         public static readonly string DateFormat = "MM/dd/yyyy";
 
@@ -15,7 +15,7 @@ namespace Gigobyte.Mockaroo
             }.Uri;
         }
 
-        public struct QueryStringParameters
+        public struct QueryStringParameter
         {
             /// <summary>
             /// Your api key.
