@@ -85,6 +85,7 @@
     <Compile Include="IntegrationTest\MockarooClientTest.cs" />
     <Compile Include="UnitTest\ClrSchemaSerializerTest.cs" />
     <Compile Include="UnitTest\SchemaSerializerTest.cs" />
+    <Compile Include="UnitTest\ClrMockarooSerializerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
