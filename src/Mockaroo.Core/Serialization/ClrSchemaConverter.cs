@@ -1,10 +1,7 @@
 ﻿using Gigobyte.Mockaroo.Fields;
 using Gigobyte.Mockaroo.Fields.Factory;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
-using System.Linq;
 using System.Reflection;
 
 namespace Gigobyte.Mockaroo.Serialization
@@ -12,25 +9,30 @@ namespace Gigobyte.Mockaroo.Serialization
     /// <summary>
     /// Provides a method to create a <see cref="Schema"/> instance from a <see cref="Type"/>.
     /// </summary>
-    /// <seealso cref="Gigobyte.Mockaroo.Serialization.ISchemaConverter" />
+    /// <seealso cref="Gigobyte.Mockaroo.Serialization.ISchemaConverter"/>
     public class ClrSchemaConverter : ISchemaConverter
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ClrSchemaConverter"/> class.
+        /// </summary>
         public ClrSchemaConverter() : this(new ClrFactory())
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ClrSchemaConverter"/> class.
+        /// </summary>
+        /// <param name="factory">The factory.</param>
         public ClrSchemaConverter(IFieldFactory<Type> factory)
         {
             _factory = factory;
         }
 
         /// <summary>
-        /// Creates a new <see cref="Schema" /> instance using the specified value.
+        /// Creates a new <see cref="Schema"/> instance using the specified value.
         /// </summary>
         /// <param name="value">The value.</param>
-        /// <returns>
-        /// A <see cref="Schema" />.
-        /// </returns>
+        /// <returns>A <see cref="Schema"/>.</returns>
         /// <exception cref="System.ArgumentException"></exception>
         public Schema Convert(object value)
         {
@@ -42,20 +44,20 @@ namespace Gigobyte.Mockaroo.Serialization
         }
 
         /// <summary>
-        /// Creates a new <see cref="Schema" /> instance using the specified type.
+        /// Creates a new <see cref="Schema"/> instance using the specified type.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <returns>A <see cref="Schema" />.</returns>
+        /// <returns>A <see cref="Schema"/>.</returns>
         public Schema Convert<T>()
         {
             return Convert(typeof(T));
         }
 
         /// <summary>
-        /// Creates a new <see cref="Schema" /> instance using the specified type.
+        /// Creates a new <see cref="Schema"/> instance using the specified type.
         /// </summary>
         /// <param name="type">The type.</param>
-        /// <returns>A <see cref="Schema" />.</returns>
+        /// <returns>A <see cref="Schema"/>.</returns>
         public Schema Convert(Type type)
         {
             var schema = new Schema();
@@ -68,59 +70,6 @@ namespace Gigobyte.Mockaroo.Serialization
 
         private IFieldFactory<Type> _factory;
 
-        private void BuildObject(Type type, JToken json, object instance, string classHierarchy = "")
-        {
-            foreach (var property in type.GetRuntimeProperties())
-            {
-                if (classHierarchy.Contains(property.PropertyType.Name)) continue; /* A guard against an infinite recursive loop */
-
-                if (property.CanRead && property.CanWrite)
-                {
-                    Type collectionElementType;
-                    object propertyValue, childInstance;
-
-                    switch (GetBuildPath(property.PropertyType, out collectionElementType))
-                    {
-                        default:
-                        case BuildPath.Basic:
-                            propertyValue = property.PropertyType.GetTypeInfo().IsEnum ?
-                                propertyValue = Enum.Parse(property.PropertyType, json[property.Name].Value<string>()) :
-                                propertyValue = System.Convert.ChangeType(json[property.Name].Value<string>(), property.PropertyType);
-
-                            property.SetValue(instance, propertyValue);
-                            break;
-
-                        case BuildPath.Complex:
-                            childInstance = Activator.CreateInstance(property.PropertyType);
-                            BuildObject(property.PropertyType, json[property.Name], childInstance, $"{classHierarchy}.{property.PropertyType.Name}");
-                            property.SetValue(instance, childInstance);
-                            break;
-
-                        case BuildPath.BasicCollection:
-                            propertyValue = string.Join(",", json[property.Name].Select(x => x[collectionElementType.Name].Value<string>()));
-                            propertyValue = JsonConvert.DeserializeObject($"[{propertyValue}]", property.PropertyType);
-                            property.SetValue(instance, propertyValue);
-                            break;
-
-                        case BuildPath.ComplexCollection:
-                            int index = 0;
-                            var collection = new object[json[property.Name].Count()];
-
-                            foreach (var item in json[property.Name])
-                            {
-                                childInstance = Activator.CreateInstance(collectionElementType);
-                                BuildObject(collectionElementType, item, childInstance, $"{classHierarchy}.{collectionElementType.Name}");
-                                collection[index++] = childInstance;
-                            }
-
-                            propertyValue = JsonConvert.DeserializeObject(JsonConvert.SerializeObject(collection), property.PropertyType);
-                            property.SetValue(instance, propertyValue);
-                            break;
-                    }
-                }
-            }
-        }
-
         private void BuildSchema(Schema schema, Type type, Type rootType, string parentPropertyName = "")
         {
             IField field;
@@ -131,7 +80,6 @@ namespace Gigobyte.Mockaroo.Serialization
                 if (property.CanRead && property.CanWrite)
                 {
                     Type elementType;
-
                     switch (GetBuildPath(property.PropertyType, out elementType))
                     {
                         default:
