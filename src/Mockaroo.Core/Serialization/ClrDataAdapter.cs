@@ -35,7 +35,7 @@ namespace Gigobyte.Mockaroo.Serialization
         /// <exception cref="ArgumentException"></exception>
         public object Transform(byte[] data, object arg)
         {
-            if (typeof(Type) == arg.GetType())
+            if (arg is Type)
             {
                 return Transform(data, (Type)arg);
             }

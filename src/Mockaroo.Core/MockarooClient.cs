@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ namespace Gigobyte.Mockaroo
         /// Initializes a new instance of the <see cref="MockarooClient"/> class.
         /// </summary>
         /// <param name="apiKey">Your API key.</param>
-        public MockarooClient(string apiKey) : this(apiKey, new ClrSchemaSerializer())
+        public MockarooClient(string apiKey) : this(apiKey, new ClrDataAdapter())
         {
         }
 
@@ -25,11 +26,11 @@ namespace Gigobyte.Mockaroo
         /// Initializes a new instance of the <see cref="MockarooClient"/> class.
         /// </summary>
         /// <param name="apiKey">Your API key.</param>
-        /// <param name="serializer">The serializer.</param>
-        public MockarooClient(string apiKey, ISchemaSerializer serializer)
+        /// <param name="adapter">The serializer.</param>
+        public MockarooClient(string apiKey, IDataAdapter adapter)
         {
             _apiKey = apiKey;
-            _serializer = serializer;
+            _adapter = adapter;
         }
 
         /// <summary>
@@ -67,7 +68,7 @@ namespace Gigobyte.Mockaroo
         public IEnumerable<T> FetchData<T>(int records)
         {
             byte[] data = FetchDataAsync(Mockaroo.Endpoint(_apiKey, records), new Schema(typeof(T))).Result;
-            return _serializer.ReadObject<T>(data);
+            return ((object[])_adapter.Transform(data, typeof(T))).Cast<T>();
         }
 
         /// <summary>
@@ -80,7 +81,7 @@ namespace Gigobyte.Mockaroo
         public IEnumerable<T> FetchData<T>(Schema schema, int records)
         {
             byte[] data = FetchDataAsync(Mockaroo.Endpoint(_apiKey, records), schema).Result;
-            return _serializer.ReadObject<T>(data);
+            return ((object[])_adapter.Transform(data, typeof(T))).Cast<T>();
         }
 
         /// <summary>
@@ -104,7 +105,7 @@ namespace Gigobyte.Mockaroo
         public async Task<IEnumerable<T>> FetchDataAsync<T>(int records)
         {
             byte[] data = await FetchDataAsync(Mockaroo.Endpoint(_apiKey, records), new Schema(typeof(T)));
-            return _serializer.ReadObject<T>(data);
+            return ((object[])_adapter.Transform(data, typeof(T))).Cast<T>();
         }
 
         /// <summary>
@@ -117,7 +118,7 @@ namespace Gigobyte.Mockaroo
         public async Task<IEnumerable<T>> FetchDataAsync<T>(Schema schema, int records)
         {
             byte[] data = await FetchDataAsync(Mockaroo.Endpoint(_apiKey, records), schema);
-            return _serializer.ReadObject<T>(data);
+            return ((object[])_adapter.Transform(data, typeof(T))).Cast<T>();
         }
 
         /// <summary>
@@ -135,7 +136,7 @@ namespace Gigobyte.Mockaroo
         #region Private Members
 
         private readonly string _apiKey;
-        private readonly ISchemaSerializer _serializer;
+        private readonly IDataAdapter _adapter;
 
         #endregion Private Members
     }
