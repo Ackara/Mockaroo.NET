@@ -84,7 +84,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IntegrationTest\MockarooClientTest.cs" />
     <Compile Include="UnitTest\ClrSchemaConverterTest.cs" />
-    <Compile Include="UnitTest\ClrSchemaSerializerTest.cs" />
     <Compile Include="UnitTest\SchemaSerializerTest.cs" />
     <Compile Include="UnitTest\ClrDataAdapterTest.cs" />
   </ItemGroup>

@@ -84,11 +84,9 @@
     <Compile Include="Schema.cs" />
     <Compile Include="Serialization\ClrDataAdapter.cs" />
     <Compile Include="Serialization\ClrSchemaConverter.cs" />
-    <Compile Include="Serialization\ClrSchemaSerializer.cs" />
     <Compile Include="Serialization\IDataAdapter.cs" />
     <Compile Include="Serialization\ISchemaConverter.cs" />
     <Compile Include="Serialization\ISerializable.cs" />
-    <Compile Include="Serialization\ISchemaSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Fields\Factory\FieldFactoryT4.tt">

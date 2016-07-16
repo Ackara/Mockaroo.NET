@@ -32,11 +32,11 @@ namespace Tests.Mockaroo.UnitTest
         public void Transform_should_deserialize_mockaroo_data_into_a_complex_object()
         {
             // Arrange
-            var sut = new ClrSchemaSerializer();
+            var sut = new ClrDataAdapter();
             var data = File.ReadAllBytes(Test.Data.GetFile(Test.File.VeryComplexResponse).FullName);
 
             // Act
-            var result = sut.ReadObject<ComplexObject>(data).First();
+            var result = sut.Transform<ComplexObject>(data).First();
 
             // Assert
             Assert.AreEqual(676558325, result.IntegerValue);
@@ -47,6 +47,18 @@ namespace Tests.Mockaroo.UnitTest
         }
 
         #region Samples
+
+        public struct Point
+        {
+            public int X { get; set; }
+
+            public int Y { get; set; }
+
+            public override string ToString()
+            {
+                return $"X:{X} Y:{Y}";
+            }
+        }
 
         public class SimpleObject
         {
@@ -101,18 +113,6 @@ namespace Tests.Mockaroo.UnitTest
             public SimpleObject Simple { get; set; }
 
             public ComplexObject Problem { get; set; }
-        }
-
-        public struct Point
-        {
-            public int X { get; set; }
-
-            public int Y { get; set; }
-
-            public override string ToString()
-            {
-                return $"X:{X} Y:{Y}";
-            }
         }
 
         #endregion Samples

@@ -15,8 +15,8 @@ namespace Gigobyte.Mockaroo
     /// <summary>
     /// Represents a Mockaroo schema.
     /// </summary>
-    /// <seealso cref="System.Collections.Generic.List{IField}" />
-    /// <seealso cref="ISerializable" />
+    /// <seealso cref="System.Collections.Generic.List{IField}"/>
+    /// <seealso cref="ISerializable"/>
     [DataContract]
     public class Schema : List<IField>, ISerializable
     {
@@ -56,7 +56,7 @@ namespace Gigobyte.Mockaroo
         /// <returns>A list of <see cref="IField"/> based of the specified type.</returns>
         public static IEnumerable<IField> GetFields(Type type)
         {
-            return new ClrSchemaSerializer().ConvertToSchema(type);
+            return new ClrSchemaConverter().Convert(type);
         }
 
         #endregion Static Members

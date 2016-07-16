@@ -36,7 +36,7 @@ namespace Gigobyte.Mockaroo.Serialization
         /// <exception cref="System.ArgumentException"></exception>
         public Schema Convert(object value)
         {
-            if (typeof(Type) == value.GetType())
+            if (value is Type)
             {
                 return Convert((Type)value);
             }
