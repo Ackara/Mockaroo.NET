@@ -112,7 +112,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Mockaroo.Core\Mockaroo.Core.csproj">
+    <ProjectReference Include="..\Mockaroo.Core\Mockaroo.Core.csproj">
       <Project>{ceecb2c1-370c-4cd6-b030-2a316de4a08f}</Project>
       <Name>Mockaroo.Core</Name>
     </ProjectReference>
