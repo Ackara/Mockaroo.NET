@@ -41,7 +41,16 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
+    <None Include="mockaroo_schema.xsd">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>mockaroo_schema.tt</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
+    <None Include="XMLSchema1.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataType.cs">
@@ -115,6 +124,10 @@
     <Content Include="Fields\BaseTypes.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>BaseTypes.cs</LastGenOutput>
+    </Content>
+    <Content Include="mockaroo_schema.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>mockaroo_schema.xsd</LastGenOutput>
     </Content>
     <Content Include="T4Utilities.tt" />
   </ItemGroup>
