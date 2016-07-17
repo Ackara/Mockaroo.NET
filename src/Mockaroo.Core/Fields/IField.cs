@@ -1,4 +1,5 @@
 ﻿using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 namespace Gigobyte.Mockaroo.Fields
 {
@@ -11,21 +12,21 @@ namespace Gigobyte.Mockaroo.Fields
         /// Gets or sets the identifier of this field.
         /// </summary>
         /// <value>The name.</value>
-        [DataMember(Name = "name")]
+        
         string Name { get; set; }
 
         /// <summary>
         /// Gets the data type.
         /// </summary>
         /// <value>The data type.</value>
-        [DataMember(Name = "type")]
+        
         DataType Type { get; }
 
         /// <summary>
         /// Gets or sets the Ruby script to generate data based on custom logic. see more at https://mockaroo.com/help/formulas
         /// </summary>
         /// <value>The formula.</value>
-        [DataMember(Name = "formula")]
+        
         string Formula { get; set; }
 
         /// <summary>
@@ -33,7 +34,7 @@ namespace Gigobyte.Mockaroo.Fields
         /// values will be null
         /// </summary>
         /// <value>The percent blank.</value>
-        [DataMember(Name = "percentBlank")]
+        
         int BlankPercentage { get; set; }
 
         /// <summary>

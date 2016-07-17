@@ -7,8 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq.Expressions;
-using System.Runtime.Serialization;
 using System.Text.RegularExpressions;
+using System.Xml.Serialization;
 
 namespace Gigobyte.Mockaroo
 {
@@ -17,7 +17,6 @@ namespace Gigobyte.Mockaroo
     /// </summary>
     /// <seealso cref="System.Collections.Generic.List{IField}"/>
     /// <seealso cref="ISerializable"/>
-    [DataContract]
     public class Schema : List<IField>, ISerializable
     {
         #region Static Members

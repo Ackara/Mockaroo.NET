@@ -6,7 +6,6 @@ using Gigobyte.Mockaroo.Fields;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shouldly;
 using System;
-using System.IO;
 using System.Text;
 using Tests.Mockaroo.Fakes;
 

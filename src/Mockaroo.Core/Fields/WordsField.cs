@@ -1,4 +1,6 @@
-﻿namespace Gigobyte.Mockaroo.Fields
+﻿using System.Xml.Serialization;
+
+namespace Gigobyte.Mockaroo.Fields
 {
     public partial class WordsField
     {
