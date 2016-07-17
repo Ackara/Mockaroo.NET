@@ -34,8 +34,7 @@ namespace Tests.Mockaroo.UnitTest
 
             // Act
             var data = sut.Serialize();
-            using (var reader = new StreamReader(data))
-            { serializedData = reader.ReadToEnd(); }
+            serializedData = Encoding.Default.GetString(data);
 
             // Assert
             Approvals.VerifyJson(serializedData);
@@ -51,13 +50,11 @@ namespace Tests.Mockaroo.UnitTest
             string serializedData1, serializedData2;
 
             // Act
-            using (var reader = new StreamReader(sut.Serialize()))
-            { serializedData1 = reader.ReadToEnd(); }
+            serializedData1 = Encoding.Default.GetString(sut.Serialize());
 
             actual.Deserialize(Encoding.UTF8.GetBytes(serializedData1));
 
-            using (var reader = new StreamReader(actual.Serialize()))
-            { serializedData2 = reader.ReadToEnd(); }
+            serializedData2 = Encoding.Default.GetString(actual.Serialize());
 
             // Assert
             Assert.AreEqual(serializedData1, serializedData2);

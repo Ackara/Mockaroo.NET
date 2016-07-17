@@ -11,7 +11,7 @@ namespace Gigobyte.Mockaroo.Serialization
         /// Serializes this instance into an byte array.
         /// </summary>
         /// <returns>Stream.</returns>
-        Stream Serialize();
+        byte[] Serialize();
 
         /// <summary>
         /// Deserializes the specified bytes into a .NET object.

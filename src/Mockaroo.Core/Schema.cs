@@ -154,22 +154,25 @@ namespace Gigobyte.Mockaroo
         /// Serializes this instance.
         /// </summary>
         /// <returns>Stream.</returns>
-        public Stream Serialize()
+        public byte[] Serialize()
         {
-            var memory = new MemoryStream();
-            var writer = new StreamWriter(memory);
-            var separator = string.Empty;
-            writer.Write('[');
-            for (int i = 0; i < Count; i++)
+            using (var memory = new MemoryStream())
             {
-                separator = (i < (Count - 1) ? "," : string.Empty);
-                writer.Write(string.Format("{0}{1}", base[i].ToJson(), separator));
+                using (var writer = new StreamWriter(memory))
+                {
+                    var separator = string.Empty;
+                    writer.Write('[');
+                    for (int i = 0; i < Count; i++)
+                    {
+                        separator = (i < (Count - 1) ? "," : string.Empty);
+                        writer.Write(string.Format("{0}{1}", base[i].ToJson(), separator));
+                    }
+                    writer.Write(']');
+                    writer.Flush();
+                    
+                    return memory.ToArray();
+                }
             }
-            writer.Write(']');
-            writer.Flush();
-            memory.Seek(0, SeekOrigin.Begin);
-
-            return memory;
         }
 
         /// <summary>
@@ -204,10 +207,8 @@ namespace Gigobyte.Mockaroo
         /// <returns>The JSON representation of the instance.</returns>
         public string ToJson()
         {
-            using (var reader = new StreamReader(Serialize()))
-            {
-                return reader.ReadToEnd();
-            }
+            byte[] bytes = Serialize();
+            return System.Text.Encoding.UTF8.GetString(bytes, 0, bytes.Length);
         }
     }
 
