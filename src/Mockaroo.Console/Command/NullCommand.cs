@@ -1,4 +1,4 @@
-﻿namespace Mockaroo.Commands
+﻿namespace Mockaroo.Command
 {
     public class NullCommand : ICommand
     {

@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text.RegularExpressions;
 
-namespace Mockaroo.Commands
+namespace Mockaroo.Command
 {
     public static class Extensions
     {

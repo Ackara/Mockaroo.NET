@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Mockaroo.Commands
+namespace Mockaroo.Command
 {
     public abstract class CommandTemplate<T> : ICommand
     {

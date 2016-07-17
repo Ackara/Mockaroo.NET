@@ -3,7 +3,7 @@ using CommandLine.Text;
 using System;
 using System.Reflection;
 
-namespace Mockaroo.Commands
+namespace Mockaroo.Command
 {
     public class Verbs
     {

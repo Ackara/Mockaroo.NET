@@ -1,6 +1,6 @@
 ﻿using CommandLine;
 
-namespace Mockaroo.Commands
+namespace Mockaroo.Command
 {
     public class ExportClrVerbOptions : ExportVerbOptionsBase
     {

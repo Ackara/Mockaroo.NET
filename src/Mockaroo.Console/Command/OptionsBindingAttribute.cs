@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Mockaroo.Commands
+namespace Mockaroo.Command
 {
     [AttributeUsage(AttributeTargets.Class, Inherited = true, AllowMultiple = false)]
     public sealed class OptionsBindingAttribute : Attribute

@@ -1,4 +1,4 @@
-﻿using Mockaroo.Commands;
+﻿using Mockaroo.Command;
 using System;
 
 namespace Mockaroo

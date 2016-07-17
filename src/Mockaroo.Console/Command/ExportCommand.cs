@@ -2,7 +2,7 @@
 using System.IO;
 using System.Reflection;
 
-namespace Mockaroo.Commands
+namespace Mockaroo.Command
 {
     [OptionsBinding(typeof(ExportClrVerbOptions))]
     public class ExportCommand : CommandTemplate<ExportClrVerbOptions>
