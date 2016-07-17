@@ -108,8 +108,8 @@ namespace Gigobyte.Mockaroo
         protected readonly IFieldFactory<DataType> Factory;
 
         /// <summary>
-        /// Find and replace the first <see cref="IField"/> object within this instance with a <see
-        /// cref="IField"/> that corresponds with specified <see cref="DataType"/>.
+        /// Replace the <see cref="IField"/> object within this instance with a <see cref="IField"/>
+        /// that is associated with the specified <see cref="DataType"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="dataType">Type of the data.</param>
@@ -119,8 +119,8 @@ namespace Gigobyte.Mockaroo
         }
 
         /// <summary>
-        /// Find and replace the first <see cref="IField"/> object within this instance with the
-        /// specified instance.
+        /// Replace the <see cref="IField"/> object within this instance with specified <see
+        /// cref="IField"/>. specified instance.
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="field">The field.</param>
@@ -253,7 +253,8 @@ namespace Gigobyte.Mockaroo
         }
 
         /// <summary>
-        /// Find and replace the specified <see cref="IField"/> by the property associated with it.
+        /// Replace the <see cref="IField"/> object within this instance with a <see cref="IField"/>
+        /// that is associated with the specified <see cref="DataType"/>.
         /// </summary>
         /// <param name="property">The property associated to the <see cref="IField"/>.</param>
         /// <param name="dataType">The Mockaroo data type.</param>
@@ -263,7 +264,7 @@ namespace Gigobyte.Mockaroo
         }
 
         /// <summary>
-        /// Find and replace the specified <see cref="IField"/> by the property associated with it.
+        /// Replace the <see cref="IField"/> object within this instance with specified <see cref="IField"/>.
         /// </summary>
         /// <param name="property">The property associated to the <see cref="IField"/>.</param>
         /// <param name="field">The Mockaroo field.</param>
