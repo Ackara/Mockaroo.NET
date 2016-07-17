@@ -43,7 +43,7 @@ namespace Gigobyte.Mockaroo
             using (stream)
             {
                 var schema = new Schema();
-                schema.Deserialize(stream);
+                schema.ReadBytes(stream);
                 return schema;
             }
         }
@@ -151,10 +151,10 @@ namespace Gigobyte.Mockaroo
         }
 
         /// <summary>
-        /// Serializes this instance.
+        /// Serializes this instance according to the https://mockaroo.com json schema specification.
         /// </summary>
-        /// <returns>Stream.</returns>
-        public byte[] Serialize()
+        /// <returns>A System.Byte[].</returns>
+        public byte[] ToBytes()
         {
             using (var memory = new MemoryStream())
             {
@@ -169,7 +169,7 @@ namespace Gigobyte.Mockaroo
                     }
                     writer.Write(']');
                     writer.Flush();
-                    
+
                     return memory.ToArray();
                 }
             }
@@ -179,17 +179,18 @@ namespace Gigobyte.Mockaroo
         /// Deserializes the specified data.
         /// </summary>
         /// <param name="data">The data.</param>
-        public void Deserialize(byte[] data)
+        public void ReadBytes(byte[] data)
         {
-            Deserialize(new MemoryStream(data));
+            ReadBytes(new MemoryStream(data));
         }
 
         /// <summary>
         /// Deserializes the specified stream.
         /// </summary>
         /// <param name="stream">The stream.</param>
-        public void Deserialize(Stream stream)
+        public void ReadBytes(Stream stream)
         {
+            Clear();
             using (var reader = new JsonTextReader(new StreamReader(stream)))
             {
                 foreach (var json in JArray.Load(reader))
@@ -207,7 +208,7 @@ namespace Gigobyte.Mockaroo
         /// <returns>The JSON representation of the instance.</returns>
         public string ToJson()
         {
-            byte[] bytes = Serialize();
+            byte[] bytes = ToBytes();
             return System.Text.Encoding.UTF8.GetString(bytes, 0, bytes.Length);
         }
     }

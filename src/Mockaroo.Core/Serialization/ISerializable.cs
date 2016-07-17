@@ -10,19 +10,19 @@ namespace Gigobyte.Mockaroo.Serialization
         /// <summary>
         /// Serializes this instance into an byte array.
         /// </summary>
-        /// <returns>Stream.</returns>
-        byte[] Serialize();
+        /// <returns>A System.Byte[].</returns>
+        byte[] ToBytes();
 
         /// <summary>
-        /// Deserializes the specified bytes into a .NET object.
+        /// Deserializes the specified bytes into a instance.
         /// </summary>
         /// <param name="data">The bytes.</param>
-        void Deserialize(byte[] data);
+        void ReadBytes(byte[] data);
 
         /// <summary>
-        /// Deserializes the specified bytes into a .NET object.
+        /// Deserializes the specified bytes into a instance.
         /// </summary>
         /// <param name="stream">The stream.</param>
-        void Deserialize(Stream stream);
+        void ReadBytes(Stream stream);
     }
 }

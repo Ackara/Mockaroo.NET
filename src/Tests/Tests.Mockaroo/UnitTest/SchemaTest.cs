@@ -26,14 +26,14 @@ namespace Tests.Mockaroo.UnitTest
 
         [TestMethod]
         [Owner(Dev.Ackara)]
-        public void WriteObject_should_serialize_a_schema_object_into_json()
+        public void ToBytes_should_serialize_a_schema_object_into_json()
         {
             // Arrange
             string serializedData;
             var sut = CreateSchema();
 
             // Act
-            var data = sut.Serialize();
+            var data = sut.ToBytes();
             serializedData = Encoding.Default.GetString(data);
 
             // Assert
@@ -42,7 +42,7 @@ namespace Tests.Mockaroo.UnitTest
 
         [TestMethod]
         [Owner(Dev.Ackara)]
-        public void ReadObject_should_create_a_schema_object_from_a_serialized_schema_object()
+        public void ReadBytes_should_create_a_schema_object_from_a_serialized_schema_object()
         {
             // Arrange
             var sut = CreateSchema();
@@ -50,11 +50,11 @@ namespace Tests.Mockaroo.UnitTest
             string serializedData1, serializedData2;
 
             // Act
-            serializedData1 = Encoding.Default.GetString(sut.Serialize());
+            serializedData1 = Encoding.Default.GetString(sut.ToBytes());
 
-            actual.Deserialize(Encoding.UTF8.GetBytes(serializedData1));
+            actual.ReadBytes(Encoding.UTF8.GetBytes(serializedData1));
 
-            serializedData2 = Encoding.Default.GetString(actual.Serialize());
+            serializedData2 = Encoding.Default.GetString(actual.ToBytes());
 
             // Assert
             Assert.AreEqual(serializedData1, serializedData2);
