@@ -11,21 +11,21 @@ namespace Gigobyte.Mockaroo.Fields
         public string[] Values { get; set; } = new string[0];
 
         /// <summary>
-        /// Gets or sets the whether the <see cref="Values"/> provided should be returned randomly
-        /// or sequentially.
+        /// Gets or sets the whether the <see cref="Values"/> provided should be returned randomly or sequentially.
         /// </summary>
         /// <value>The selection.</value>
-        public SelectionStyle Sequence { get; set; }
+        public Arrangement Sequence { get; set; }
 
         /// <summary>
-        /// Converts the value of this instance to its JSON representation.
+        /// Converts this instance into its equivalent json representation.
         /// </summary>
         /// <returns>
-        /// This instance JSON representation.
+        /// A json representation of the instance.
         /// </returns>
         public override string ToJson()
         {
-            return $"{BaseJson()}, \"values\": [{string.Join(", ", Values.Select(x => $"\"{x}\""))}], \"selectionStyle\": \"{(Sequence).ToString()}\"}}";
+            string part1 = base.ToJson().TrimEnd('}');
+            return $"{part1},\"selectionStyle\":\"{Sequence.ToString().ToLower()}\",\"values\":[{string.Join(",", Values.Select(x => $"\"{x}\""))}]}}";
         }
     }
 }

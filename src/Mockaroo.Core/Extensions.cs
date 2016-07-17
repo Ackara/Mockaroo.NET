@@ -1,22 +1,42 @@
-﻿using System;
-using System.Reflection;
-
-namespace Gigobyte.Mockaroo
+﻿namespace Gigobyte.Mockaroo
 {
     /// <summary>
-    /// Extensions methods in <see cref="Gigobyte.Mockaroo"/> name space.
+    /// Provides helper methods for the <see cref="Gigobyte.Mockaroo"/> namespace.
     /// </summary>
     public static partial class Extensions
     {
-        internal static bool IsBuiltInType(this Type type)
+        /// <summary>
+        /// Checks the value is between the specified minimum and maximum.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="minInclusive">The minimum inclusive.</param>
+        /// <param name="maxInclusive">The maximum inclusive.</param>
+        /// <returns></returns>
+        public static int Between(this int value, int minInclusive, int maxInclusive)
         {
-            return (typeof(string) == type || type.GetTypeInfo().IsPrimitive) || type == typeof(DateTime) || type == typeof(decimal);
+            if (value >= maxInclusive) return maxInclusive;
+            else if (value <= minInclusive) return minInclusive;
+            else return value;
         }
 
-        internal static void RemoveLastComma(this System.Text.StringBuilder builder)
+        /// <summary>
+        /// Get an instance of the item specified in the collection.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="collection">The collection.</param>
+        /// <returns>T.</returns>
+        /// <remarks>
+        /// This method was intended to be used when denoting the property name of a item in a
+        /// collection, when using the <see cref="Schema.Assign(string, DataType)"/> method.
+        /// </remarks>
+        /// <example>
+        /// <code>
+        /// sut.Assign(x =&gt; x.Writer.Reviews.Item().Rating, DataType.RowNumber);
+        /// </code>
+        /// </example>
+        public static T Item<T>(this System.Collections.Generic.IEnumerable<T> collection)
         {
-            int comma = builder.ToString().LastIndexOf(',');
-            builder.Remove(comma, 1);
+            return System.Activator.CreateInstance<T>();
         }
     }
 }

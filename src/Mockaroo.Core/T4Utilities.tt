@@ -1,0 +1,60 @@
+﻿<#+ 
+public const string EnumTypeName = "DataType";
+
+public string ToEnumName(string text)
+{
+	switch(text)
+	{
+		case "Gender (abbrev)":
+			text = "GenderAbbreviated";
+			break;
+
+		case "State (abbrev)":
+			text = "StateAbbreviated";
+			break;
+
+		case "Credit Card #":
+			text = "CreditCardNumber";
+			break;
+
+		case "Username":
+			text = "UserName";
+			break;
+	}
+
+	return ToPascalCase(text);
+}
+
+public IEnumerable<string> FetchDataTypes()
+{
+	string path = Path.Combine(Path.GetDirectoryName(Host.ResolveAssemblyReference("$(ProjectDir)").TrimEnd('\\')), "mockaroo data types.csv");
+	string[] lines = File.ReadAllLines(path);
+
+	for (int i = 0; i < lines.Length; i++)
+	{
+		string val = lines[i];
+		if(!string.IsNullOrWhiteSpace(val))
+		{
+			yield return val;
+		}
+	}
+}
+
+public string ToPascalCase(string text, params char[] separator)
+{
+	if (text.Length == 1) return text.ToUpper();
+	else
+	{
+		if (separator.Length == 0) separator = new char[] { ' ' };
+		string[] words = text.Split(separator, System.StringSplitOptions.RemoveEmptyEntries);
+		string pascal = "";
+		
+		foreach (var word in words)
+		{
+			pascal += char.ToUpper(word[0]) + word.Substring(1);
+		}
+		
+		return new System.Text.RegularExpressions.Regex("[^a-zA-Z0-9]").Replace(pascal, string.Empty);
+	}
+}
+#>

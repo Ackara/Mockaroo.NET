@@ -1,0 +1,49 @@
+﻿<#@ template hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ include file="T4Utilities.tt" #>
+<#@ output extension=".xsd" #>
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema targetNamespace="http://schema.gigobyte.com/v1/mockaroo.xsd"
+           xmlns="http://schema.gigobyte.com/v1/mockaroo.xsd"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           elementFormDefault="qualified">
+  <xs:element name="schema">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:any minOccurs="0" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="fieldBase">
+    <xs:attribute name="name"
+                  type="xs:string"
+                  use="required" />
+
+    <xs:attribute name="formula"
+                  type="xs:string"
+                  use="optional" />
+
+    <xs:attribute name="percentBlank"
+                  type="percentage"
+                  default="0"
+                  use="optional" />
+  </xs:complexType>
+
+  <xs:simpleType name="dataType">
+    <xs:restriction base="xs:string">
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="percentage">
+    <xs:restriction base="xs:int">
+      <xs:minInclusive value="0" />
+      <xs:maxInclusive value="99" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

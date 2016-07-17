@@ -1,106 +1,61 @@
 ﻿using Gigobyte.Mockaroo.Fields;
+using Gigobyte.Mockaroo.Fields.Factory;
+using Gigobyte.Mockaroo.Serialization;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Reflection;
 using System.Text.RegularExpressions;
+using System.Xml.Serialization;
 
 namespace Gigobyte.Mockaroo
 {
     /// <summary>
-    /// Represents a Mockaroo Schema.
+    /// Represents a Mockaroo schema.
     /// </summary>
-    public class Schema
+    /// <seealso cref="System.Collections.Generic.List{IField}"/>
+    /// <seealso cref="ISerializable"/>
+    public class Schema : List<IField>, ISerializable
     {
         #region Static Members
 
-        //public static Schema Load(Stream stream)
-        //{
-        //    using (var reader = new StreamReader(stream))
-        //    {
-        //        return Parse(reader.ReadToEnd());
-        //    }
-        //}
-
-        //public static Schema Parse(string json)
-        //{
-        //    return JsonConvert.DeserializeObject<Schema>(json);
-        //}
+        /// <summary>
+        /// Convert the string representation of a <see cref="Schema"/> object into its <see
+        /// cref="Schema"/> equivalent.
+        /// </summary>
+        /// <param name="json">The json string.</param>
+        /// <returns>A <see cref="Schema"/> instance.</returns>
+        public static Schema Parse(string json)
+        {
+            return Load(new MemoryStream(System.Text.Encoding.UTF8.GetBytes(json)));
+        }
 
         /// <summary>
-        /// Gets a list of <see cref="IField"/> based of the specified type.
+        /// Creates a new <see cref="Schema"/> instance from the specified <see cref="Stream"/>.
         /// </summary>
-        /// <param name="type">The type to generate the list of <see cref="IField"/> from.</param>
-        /// <returns>A list of <see cref="IField"/> based of the specified type.</returns>
-        public static IEnumerable<IField> GetFields(Type type)
+        /// <param name="stream">The stream.</param>
+        /// <returns>A <see cref="Schema"/> instance.</returns>
+        public static Schema Load(Stream stream)
         {
-            if (type.IsBuiltInType())
+            using (stream)
             {
-                yield return GetMockarooFieldMappedToDoNetType(type);
-            }
-            else
-            {
-                IField field;
-                foreach (var propertyInfo in type.GetRuntimeProperties())
-                    if (propertyInfo.CanRead && propertyInfo.CanWrite)
-                    {
-                        field = GetMockarooFieldMappedToDoNetType(propertyInfo.PropertyType);
-                        if (field != null)
-                        {
-                            field.Name = propertyInfo.Name;
-                            yield return field;
-                        }
-                    }
+                var schema = new Schema();
+                schema.ReadBytes(stream);
+                return schema;
             }
         }
 
-        private static IField GetMockarooFieldMappedToDoNetType(Type type)
+        /// <summary>
+        /// Gets all list of <see cref="IField"/> objects that represents the specified <see
+        /// cref="Type"/> properties.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>A list of <see cref="IField"/> based of the specified type.</returns>
+        public static IEnumerable<IField> GetFields(Type type)
         {
-            switch (type.Name)
-            {
-                case nameof(Byte):
-                    return new NumberField() { Name = type.Name, Min = byte.MinValue, Max = byte.MaxValue };
-
-                case nameof(SByte):
-                    return new NumberField() { Name = type.Name, Min = sbyte.MinValue, Max = sbyte.MaxValue };
-
-                case nameof(Int32):
-                case nameof(Int64):
-                    return new NumberField() { Name = type.Name, Min = int.MinValue, Max = int.MaxValue };
-
-                case nameof(UInt32):
-                case nameof(UInt64):
-                    return new NumberField() { Name = type.Name, Min = 0, Max = int.MaxValue };
-
-                case nameof(Int16):
-                    return new NumberField() { Name = type.Name, Min = short.MinValue, Max = short.MaxValue };
-
-                case nameof(UInt16):
-                    return new NumberField() { Name = type.Name, Min = ushort.MinValue, Max = ushort.MaxValue };
-
-                case nameof(Single):
-                case nameof(Double):
-                case nameof(Decimal):
-                    return new NumberField() { Name = type.Name, Min = int.MinValue, Max = int.MaxValue, Decimals = 2 };
-
-                case nameof(Char):
-                    return new CustomListField() { Name = type.Name, Sequence = SelectionStyle.Random, Values = new string[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" } };
-
-                case nameof(Boolean):
-                    return new BooleanField() { Name = type.Name };
-
-                case nameof(String):
-                    return new WordsField() { Name = type.Name };
-
-                case nameof(DateTime):
-                    return new DateField() { Name = type.Name };
-
-                default:
-                    return null;
-            }
+            return new ClrSchemaConverter().Convert(type);
         }
 
         #endregion Static Members
@@ -108,111 +63,171 @@ namespace Gigobyte.Mockaroo
         /// <summary>
         /// Initializes a new instance of the <see cref="Schema"/> class.
         /// </summary>
-        public Schema() : this(new IField[0])
+        public Schema() : this(new FieldFactory(), new IField[0])
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Schema"/> class.
         /// </summary>
-        /// <param name="type">The target type.</param>
-        public Schema(Type type) : this(Schema.GetFields(type)) { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Schema"/> class.
-        /// </summary>
-        /// <param name="mockarooFields">The Mockaroo fields.</param>
-        public Schema(IEnumerable<IField> mockarooFields) : this(mockarooFields.ToArray())
+        /// <param name="type">The type.</param>
+        public Schema(Type type) : this(new FieldFactory(), GetFields(type))
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Schema"/> class.
         /// </summary>
-        /// <param name="mockarooFields">The Mockaroo fields.</param>
-        public Schema(params IField[] mockarooFields)
+        /// <param name="fields">The fields.</param>
+        public Schema(params IField[] fields) : this(new FieldFactory(), fields)
         {
-            Fields = new List<IField>(mockarooFields);
         }
 
         /// <summary>
-        /// Gets or sets the Mockaroo fields.
+        /// Initializes a new instance of the <see cref="Schema"/> class.
         /// </summary>
-        /// <value>The fields.</value>
-        public IList<IField> Fields { get; set; }
-
-        /// <summary>
-        /// Removes the specified <see cref="IField"/> by it's name.
-        /// </summary>
-        /// <param name="fieldName">Name of the <see cref="IField"/>.</param>
-        public void Remove(string fieldName)
+        /// <param name="fields">The fields.</param>
+        public Schema(IEnumerable<IField> fields) : this(null, fields)
         {
-            for (int i = 0; i < Fields.Count; i++)
-                if (Fields[i].Name == fieldName)
-                {
-                    Fields.RemoveAt(i);
-                }
         }
 
         /// <summary>
-        /// Find and replace the specified <see cref="IField"/> by it's name.
+        /// Initializes a new instance of the <see cref="Schema"/> class.
+        /// </summary>
+        /// <param name="factory">The factory.</param>
+        /// <param name="fields">The fields.</param>
+        public Schema(IFieldFactory<DataType> factory, IEnumerable<IField> fields) : base(fields)
+        {
+            Factory = factory;
+        }
+
+        /// <summary>
+        /// An instance of a factory object used to create <see cref="IField"/> objects.
+        /// </summary>
+        protected readonly IFieldFactory<DataType> Factory;
+
+        /// <summary>
+        /// Replace the <see cref="IField"/> object within this instance with a <see cref="IField"/>
+        /// that is associated with the specified <see cref="DataType"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
-        /// <param name="dataType">The Mockaroo data type.</param>
+        /// <param name="dataType">Type of the data.</param>
         public void Assign(string fieldName, DataType dataType)
         {
-            Assign(fieldName, new FieldFactory().Create(dataType));
+            Assign(fieldName, Factory.CreateInstance(dataType));
         }
 
         /// <summary>
-        /// Find and replace the specified <see cref="IField"/> by it's name.
+        /// Replace the <see cref="IField"/> object within this instance with specified <see
+        /// cref="IField"/>. specified instance.
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
-        /// <param name="fieldInfo">The Mockaroo field.</param>
-        public void Assign(string fieldName, IField fieldInfo)
+        /// <param name="field">The field.</param>
+        public void Assign(string fieldName, IField field)
         {
-            fieldInfo.Name = fieldName;
-            for (int i = 0; i < Fields.Count; i++)
-                if (Fields[i].Name == fieldName)
+            field.Name = fieldName;
+            for (int i = 0; i < Count; i++)
+                if (this[i].Name == fieldName)
                 {
-                    Fields[i] = fieldInfo;
+                    this[i] = field;
                 }
         }
 
         /// <summary>
-        /// Converts the value of this instance to its JSON representation.
+        /// Removes a <see cref="IField"/> from this instance with the specified name.
         /// </summary>
-        /// <returns>This instance JSON representation.</returns>
+        /// <param name="fieldName">Name of the field.</param>
+        /// <returns><c>true</c> if item was found, <c>false</c> otherwise.</returns>
+        public bool Remove(string fieldName)
+        {
+            for (int i = 0; i < Count; i++)
+                if (this[i].Name == fieldName)
+                {
+                    base.RemoveAt(i);
+                    return true;
+                }
+            return false;
+        }
+
+        /// <summary>
+        /// Serializes this instance according to the https://mockaroo.com json schema specification.
+        /// </summary>
+        /// <returns>A System.Byte[].</returns>
+        public byte[] ToBytes()
+        {
+            using (var memory = new MemoryStream())
+            {
+                using (var writer = new StreamWriter(memory))
+                {
+                    var separator = string.Empty;
+                    writer.Write('[');
+                    for (int i = 0; i < Count; i++)
+                    {
+                        separator = (i < (Count - 1) ? "," : string.Empty);
+                        writer.Write(string.Format("{0}{1}", base[i].ToJson(), separator));
+                    }
+                    writer.Write(']');
+                    writer.Flush();
+
+                    return memory.ToArray();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Deserializes the specified data.
+        /// </summary>
+        /// <param name="data">The data.</param>
+        public void ReadBytes(byte[] data)
+        {
+            ReadBytes(new MemoryStream(data));
+        }
+
+        /// <summary>
+        /// Deserializes the specified stream.
+        /// </summary>
+        /// <param name="stream">The stream.</param>
+        public void ReadBytes(Stream stream)
+        {
+            Clear();
+            using (var reader = new JsonTextReader(new StreamReader(stream)))
+            {
+                foreach (var json in JArray.Load(reader))
+                {
+                    var type = Type.GetType($"{nameof(Gigobyte)}.{nameof(Gigobyte.Mockaroo)}.{nameof(Fields)}.{json["type"].Value<string>().ToDataType()}Field");
+                    IField field = (IField)JsonConvert.DeserializeObject(json.ToString(), type);
+                    Add(field);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Convert this instance to its JSON representation.
+        /// </summary>
+        /// <returns>The JSON representation of the instance.</returns>
         public string ToJson()
         {
-            var json = new System.Text.StringBuilder();
-            json.AppendLine("[");
-            foreach (var field in Fields)
-            {
-                json.AppendFormat("{0},\r\n", field.ToJson());
-            }
-
-            json.RemoveLastComma();
-            json.AppendLine("]");
-            return json.ToString();
+            byte[] bytes = ToBytes();
+            return System.Text.Encoding.UTF8.GetString(bytes, 0, bytes.Length);
         }
     }
 
     /// <summary>
-    /// Represents a Mockaroo Schema.
+    /// Represents a Mockaroo schema.
     /// </summary>
     /// <typeparam name="T"></typeparam>
+    /// <seealso cref="Gigobyte.Mockaroo.Schema"/>
     public class Schema<T> : Schema
     {
         #region Static Members
 
         /// <summary>
-        /// Gets a list of <see cref="IField"/> based of the specified type.
+        /// Gets all list of <see cref="IField"/> objects that represents the specified type properties.
         /// </summary>
         /// <returns>A list of <see cref="IField"/> based of the specified type.</returns>
         public static IEnumerable<IField> GetFields()
         {
-            return Schema.GetFields(typeof(T));
+            return GetFields(typeof(T));
         }
 
         #endregion Static Members
@@ -220,58 +235,52 @@ namespace Gigobyte.Mockaroo
         /// <summary>
         /// Initializes a new instance of the <see cref="Schema{T}"/> class.
         /// </summary>
-        public Schema() : base()
+        public Schema() : base(typeof(T))
         {
-            foreach (var field in GetFields())
-            {
-                Fields.Add(field);
-            }
         }
 
         /// <summary>
         /// Removes the specified <see cref="IField"/> by the property associated with it.
         /// </summary>
         /// <param name="property">The property associated to the <see cref="IField"/>.</param>
-        public void Remove(Expression<Func<T, object>> property)
+        public bool Remove(Expression<Func<T, object>> property)
         {
-            Match match = _lambdaPattern.Match(property.ToString());
+            Match match = _lambdaPattern.Match(property.ToString().Replace($"{nameof(Extensions.Item)}().", string.Empty));
             if (match.Success)
             {
-                Remove(match.Groups["property"].Value);
+                return Remove(match.Value.TrimStart('.'));
             }
+            else return false;
         }
 
         /// <summary>
-        /// Find and replace the specified <see cref="IField"/> by the property associated with it.
+        /// Replace the <see cref="IField"/> object within this instance with a <see cref="IField"/>
+        /// that is associated with the specified <see cref="DataType"/>.
         /// </summary>
         /// <param name="property">The property associated to the <see cref="IField"/>.</param>
         /// <param name="dataType">The Mockaroo data type.</param>
         public void Assign(Expression<Func<T, object>> property, DataType dataType)
         {
-            Match match = _lambdaPattern.Match(property.ToString());
-            if (match.Success)
-            {
-                Assign(match.Groups["property"].Value, new FieldFactory().Create(dataType));
-            }
+            Assign(property, Factory.CreateInstance(dataType));
         }
 
         /// <summary>
-        /// Find and replace the specified <see cref="IField"/> by the property associated with it.
+        /// Replace the <see cref="IField"/> object within this instance with specified <see cref="IField"/>.
         /// </summary>
         /// <param name="property">The property associated to the <see cref="IField"/>.</param>
-        /// <param name="fieldInfo">The Mockaroo field.</param>
-        public void Assign(Expression<Func<T, object>> property, IField fieldInfo)
+        /// <param name="field">The Mockaroo field.</param>
+        public void Assign(Expression<Func<T, object>> property, IField field)
         {
-            Match match = _lambdaPattern.Match(property.ToString());
+            Match match = _lambdaPattern.Match(property.ToString().Replace($"{nameof(Extensions.Item)}().", string.Empty));
             if (match.Success)
             {
-                Assign(match.Groups["property"].Value, fieldInfo);
+                Assign(match.Value.TrimStart('.'), field);
             }
         }
 
         #region Private Member
 
-        private Regex _lambdaPattern = new Regex(@"(?i)[_a-z0-9]+\.(?<property>[_a-z0-9]+)");
+        private readonly Regex _lambdaPattern = new Regex(@"(\.[a-zA-Z0-9]+)+");
 
         #endregion Private Member
     }

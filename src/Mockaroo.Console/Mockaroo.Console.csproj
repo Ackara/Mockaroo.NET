@@ -52,16 +52,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\CommandFactory.cs" />
-    <Compile Include="Commands\CommandTemplate.cs" />
-    <Compile Include="Commands\ExportClrVerbOptions.cs" />
-    <Compile Include="Commands\ExportCommand.cs" />
-    <Compile Include="Commands\ExportVerbOptionsBase.cs" />
-    <Compile Include="Commands\Extensions.cs" />
-    <Compile Include="Commands\ICommand.cs" />
-    <Compile Include="Commands\NullCommand.cs" />
-    <Compile Include="Commands\OptionsBindingAttribute.cs" />
-    <Compile Include="Commands\Verbs.cs" />
+    <Compile Include="Command\CommandFactory.cs" />
+    <Compile Include="Command\CommandTemplate.cs" />
+    <Compile Include="Command\ExportClrVerbOptions.cs" />
+    <Compile Include="Command\ExportCommand.cs" />
+    <Compile Include="Command\ExportVerbOptionsBase.cs" />
+    <Compile Include="Command\Extensions.cs" />
+    <Compile Include="Command\ICommand.cs" />
+    <Compile Include="Command\NullCommand.cs" />
+    <Compile Include="Command\OptionsBindingAttribute.cs" />
+    <Compile Include="Command\Verbs.cs" />
     <Compile Include="ExitCode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -75,9 +75,7 @@
       <Name>Mockaroo.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Serialization\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

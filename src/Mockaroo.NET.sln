@@ -7,16 +7,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{498F3AAF
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mockaroo.Core", "Mockaroo.Core\Mockaroo.Core.csproj", "{CEECB2C1-370C-4CD6-B030-2A316DE4A08F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Mockaroo", "Tests\Tests.Mockaroo\Tests.Mockaroo.csproj", "{A22355AA-E619-4F8B-82A6-D6855248E917}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{2BACA3C0-81E0-44A9-9D3F-AD8BF8530C03}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2BACA3C0-81E0-44A9-9D3F-AD8BF8530C03}"
 	ProjectSection(SolutionItems) = preProject
+		mockaroo data types.csv = mockaroo data types.csv
 		Mockaroo.Core\Mockaroo.Core.nuspec = Mockaroo.Core\Mockaroo.Core.nuspec
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mockaroo.Console", "Mockaroo.Console\Mockaroo.Console.csproj", "{F8D53A41-B440-4881-8437-268841F46558}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.ProjectWithNoDependencies", "Tests.ProjectWithNoDependencies\Tests.ProjectWithNoDependencies.csproj", "{78B66AD6-9601-4CDF-B4FD-ACAAE37FE829}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Mockaroo", "Tests.Mockaroo\Tests.Mockaroo.csproj", "{A22355AA-E619-4F8B-82A6-D6855248E917}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,10 +29,6 @@ Global
 		{CEECB2C1-370C-4CD6-B030-2A316DE4A08F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CEECB2C1-370C-4CD6-B030-2A316DE4A08F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEECB2C1-370C-4CD6-B030-2A316DE4A08F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A22355AA-E619-4F8B-82A6-D6855248E917}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A22355AA-E619-4F8B-82A6-D6855248E917}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A22355AA-E619-4F8B-82A6-D6855248E917}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A22355AA-E619-4F8B-82A6-D6855248E917}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F8D53A41-B440-4881-8437-268841F46558}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F8D53A41-B440-4881-8437-268841F46558}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8D53A41-B440-4881-8437-268841F46558}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -40,12 +37,16 @@ Global
 		{78B66AD6-9601-4CDF-B4FD-ACAAE37FE829}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78B66AD6-9601-4CDF-B4FD-ACAAE37FE829}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78B66AD6-9601-4CDF-B4FD-ACAAE37FE829}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A22355AA-E619-4F8B-82A6-D6855248E917}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A22355AA-E619-4F8B-82A6-D6855248E917}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A22355AA-E619-4F8B-82A6-D6855248E917}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A22355AA-E619-4F8B-82A6-D6855248E917}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{A22355AA-E619-4F8B-82A6-D6855248E917} = {498F3AAF-3EE9-4D7E-B2A5-7479987CB705}
 		{78B66AD6-9601-4CDF-B4FD-ACAAE37FE829} = {498F3AAF-3EE9-4D7E-B2A5-7479987CB705}
+		{A22355AA-E619-4F8B-82A6-D6855248E917} = {498F3AAF-3EE9-4D7E-B2A5-7479987CB705}
 	EndGlobalSection
 EndGlobal

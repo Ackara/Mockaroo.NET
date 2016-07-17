@@ -1,0 +1,97 @@
+﻿[
+    {
+        "name": "IntegerValue",
+        "type": "Number",
+        "percentageBlank": "0",
+        "formula": "",
+        "min": "-2147483648",
+        "max": "2147483647",
+        "decimals": "0"
+    },
+    {
+        "name": "DecimalValue",
+        "type": "Number",
+        "percentageBlank": "0",
+        "formula": "",
+        "min": "-2147483648",
+        "max": "2147483647",
+        "decimals": "2"
+    },
+    {
+        "name": "CharValue",
+        "type": "Custom List",
+        "percentageBlank": "0",
+        "formula": "",
+        "selectionStyle": "random",
+        "values": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f",
+            "g",
+            "h",
+            "i",
+            "j",
+            "k",
+            "l",
+            "m",
+            "n",
+            "o",
+            "p",
+            "q",
+            "r",
+            "s",
+            "t",
+            "u",
+            "v",
+            "w",
+            "x",
+            "y",
+            "z",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+        ]
+    },
+    {
+        "name": "StringValue",
+        "type": "Words",
+        "percentageBlank": "0",
+        "formula": "",
+        "min": "10",
+        "max": "20"
+    },
+    {
+        "name": "DateValue",
+        "type": "Date",
+        "percentageBlank": "0",
+        "formula": "",
+        "min": "01/01/0001",
+        "max": "12/31/9999"
+    },
+    {
+        "name": "Day",
+        "type": "Custom List",
+        "percentageBlank": "0",
+        "formula": "",
+        "selectionStyle": "random",
+        "values": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6"
+        ]
+    }
+]
