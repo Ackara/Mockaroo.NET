@@ -16,7 +16,7 @@ namespace Tests.Mockaroo.UnitTest
     [DeploymentItem(Test.Data.DirectoryName)]
     [UseApprovalSubdirectory(nameof(ApprovalTests))]
     [UseReporter(typeof(DiffReporter), typeof(ClipboardReporter))]
-    public class SchemaSerializerTest
+    public class SchemaTest
     {
         [ClassCleanup]
         public static void Cleanup()
@@ -94,7 +94,6 @@ namespace Tests.Mockaroo.UnitTest
             newTagType.ShouldBe(DataType.AppName);
             newRatingType.ShouldBe(DataType.RowNumber);
         }
-
 
         [TestMethod]
         [Owner(Dev.Ackara)]
