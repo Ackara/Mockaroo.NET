@@ -75,10 +75,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ApiKey.cs" />
-    <Compile Include="Fakes\ComplexObject.cs" />
-    <Compile Include="Fakes\MultiLevelObject.cs" />
-    <Compile Include="Fakes\Point.cs" />
-    <Compile Include="Fakes\SimpleObject.cs" />
     <Compile Include="Test.cs" />
     <Compile Include="Dev.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
