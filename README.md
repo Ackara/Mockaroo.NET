@@ -70,4 +70,4 @@ PM> Install-Package Gigobyte.Mockaroo.Core
 ```
 
 ## Copyright and License
-Mockaroo is Copyright © 2015 Ackara and other contributors under the [MIT License](https://opensource.org/licenses/MIT).
+**Mockaroo.NET** is Copyright © 2015 Ackara and other contributors under the [MIT License](https://opensource.org/licenses/MIT).
