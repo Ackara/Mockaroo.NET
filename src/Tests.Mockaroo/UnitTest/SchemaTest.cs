@@ -7,7 +7,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shouldly;
 using System;
 using System.Text;
-using Tests.Mockaroo.Fakes;
 
 namespace Tests.Mockaroo.UnitTest
 {
@@ -163,6 +162,26 @@ namespace Tests.Mockaroo.UnitTest
         public class Review
         {
             public int Rating { get; set; }
+        }
+
+        public class SimpleObject
+        {
+            public SimpleObject()
+            {
+
+            }
+
+            public int IntegerValue { get; set; }
+
+            public float DecimalValue { get; set; }
+
+            public char CharValue { get; set; }
+
+            public string StringValue { get; set; }
+
+            public DateTime DateValue { get; set; }
+
+            public DayOfWeek Day { get; set; }
         }
 
         #endregion Samples

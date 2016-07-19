@@ -11,7 +11,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Tests.Mockaroo.Fakes;
 
 namespace Tests.Mockaroo.IntegrationTest
 {
@@ -41,11 +40,11 @@ namespace Tests.Mockaroo.IntegrationTest
             var schema = CreateSchema();
             int records = Convert.ToInt32(TestContext.Properties[Test.Property.Records] ?? 1);
             var endpoint = Gigobyte.Mockaroo.Mockaroo.Endpoint(apiKey, records, Format.JSON);
-            
+
             // Act
             var data = await MockarooClient.FetchDataAsync(endpoint, schema);
             var json = JArray.Parse(Encoding.Default.GetString(data));
-            
+
             // Assert
             Assert.AreEqual(records, json.Count);
         }
@@ -156,6 +155,25 @@ namespace Tests.Mockaroo.IntegrationTest
                     yield return field;
                 }
             }
+        }
+
+        public class SimpleObject
+        {
+            public SimpleObject()
+            {
+            }
+
+            public int IntegerValue { get; set; }
+
+            public float DecimalValue { get; set; }
+
+            public char CharValue { get; set; }
+
+            public string StringValue { get; set; }
+
+            public DateTime DateValue { get; set; }
+
+            public DayOfWeek Day { get; set; }
         }
 
         #endregion Samples

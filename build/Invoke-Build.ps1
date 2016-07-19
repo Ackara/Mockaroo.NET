@@ -1,7 +1,7 @@
 <#
 
 .SYNOPSIS
-This script initiates the project build and deployment process.
+This script initiates the project's build and deployment process.
 
 .PARAMETER TaskList
 A collection of psake tasks to invoke.
@@ -12,11 +12,23 @@ This script depends on the psake module.
 #>
 
 Param(
-    [Parameter(Position=2)]
-    [string[]]$TaskList = @("default"),
+    [Parameter()]
+    [string]$NuGetSource = "https://www.nuget.org/api/v2/package",
+    
+    [Parameter()]
+    [string]$NuGetAPIKey = "ba2b3405-5416-4c78-addd-da65ef116c6c",
+    
+    [Parameter()]
+    [string]$Cloudinary_APIKey = "182668521722121",
 
-    [Parameter(Position=1)]
-    [string]$NuGetKey = $null
+    [Parameter()]
+    [string]$Cloudinary_Secret = "4zfbOlHTMBfo0Di_QNYXX6m01YE",
+
+    [Parameter()]
+    [string]$Cloudinary_CloudName = "ackara",
+
+    [Parameter()]
+    [string[]]$TaskList = @("default")
 )
 
 Clear-Host;
@@ -39,12 +51,17 @@ Push-Location (Split-Path $PSScriptRoot -Parent);
 
 # Start deployment
 Invoke-psake `
-    -buildFile "$PWD\build\build.ps1"  `
+    -buildFile "$PWD\build\build.ps1" `
     -taskList $TaskList `
     -framework 4.5.2 `
     -properties @{
         "NugetEXE" = $nuget;
-        "NuGetKey" = $NuGetKey
+        "NuGetKey" = $NuGetAPIKey;
+        "NuGetSource" = $NuGetSource;
+
+        "Cloudinary_APIKey" = $Cloudinary_APIKey;
+        "Cloudinary_Secret" = $Cloudinary_Secret;
+        "Cloudinary_CloudName" = $Cloudinary_CloudName;
     };
 
 Pop-Location;
