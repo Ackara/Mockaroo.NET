@@ -1,5 +1,5 @@
-<?xml version="1.0"?>
-<package >
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package>
   <metadata>
     <id>$id$</id>
     <version>$version$</version>
@@ -8,7 +8,7 @@
     <owners>$author$</owners>
     <licenseUrl>https://github.com/Ackara/Mockaroo.NET/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/Ackara/Mockaroo.NET</projectUrl>
-    <iconUrl>http://i777.photobucket.com/albums/yy53/xxxAckaraxxx/mockaroo.net_zpsuukyigws.png</iconUrl>
+    <iconUrl>https://res.cloudinary.com/ackara/image/upload/v1468971082/miscellaneous/mockaroo-net.png.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>Stable release.</releaseNotes>
