@@ -13,19 +13,19 @@ This script depends on the psake module.
 
 Param(
     [Parameter()]
-    [string]$NuGetSource = "https://www.nuget.org/api/v2/package",
+    [string]$NuGetSource = "",
     
     [Parameter()]
-    [string]$NuGetAPIKey = "ba2b3405-5416-4c78-addd-da65ef116c6c",
+    [string]$NuGetAPIKey = "",
     
     [Parameter()]
-    [string]$Cloudinary_APIKey = "182668521722121",
+    [string]$Cloudinary_APIKey = "",
 
     [Parameter()]
-    [string]$Cloudinary_Secret = "4zfbOlHTMBfo0Di_QNYXX6m01YE",
+    [string]$Cloudinary_Secret = "",
 
     [Parameter()]
-    [string]$Cloudinary_CloudName = "ackara",
+    [string]$Cloudinary_CloudName = "",
 
     [Parameter()]
     [string[]]$TaskList = @("default")
