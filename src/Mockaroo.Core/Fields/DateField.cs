@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace Gigobyte.Mockaroo.Fields
 {
@@ -23,7 +24,7 @@ namespace Gigobyte.Mockaroo.Fields
         public override string ToJson()
         {
             string firstHalf = base.ToJson().TrimEnd('}');
-            return $"{firstHalf},\"min\":\"{Min.Date.ToString(Mockaroo.DateFormat)}\",\"max\":\"{Max.ToString(Mockaroo.DateFormat)}\"}}";
+            return $"{firstHalf},\"min\":\"{Min.Date.ToString(Mockaroo.DateFormat, CultureInfo.InvariantCulture)}\",\"max\":\"{Max.ToString(Mockaroo.DateFormat, CultureInfo.InvariantCulture)}\"}}";
         }
     }
 }
