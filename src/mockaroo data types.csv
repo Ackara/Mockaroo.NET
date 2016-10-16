@@ -3,9 +3,12 @@ App Name
 App Version
 Avatar
 Base64 Image URL
+Binomial Distribution
 Bitcoin Address
 Blank
 Boolean
+Buzzword
+Catch Phrase
 City
 Color
 Company Name
@@ -23,8 +26,12 @@ Drug Company
 Drug Name (Brand)
 Drug Name (Generic)
 Dummy Image URL
+DUNS Number
+EIN
 Email Address
 Encrypt
+Exponential Distribution
+Fake Company Name
 Family Name (Chinese)
 FDA NDC Code
 File Name
@@ -37,10 +44,17 @@ Frequency
 Full Name
 Gender
 Gender (abbrev)
+Geometric Distribution
 Given Name (Chinese)
 GUID
 Hex Color
 IBAN
+ICD10 Diagnosis Code
+ICD10 Dx Desc (Long)
+ICD10 Dx Desc (Short)
+ICD10 Proc Desc (Long)
+ICD10 Proc Desc (Short)
+ICD10 Procedure Code
 ICD9 Diagnosis Code
 ICD9 Dx Desc (Long)
 ICD9 Dx Desc (Short)
@@ -82,6 +96,7 @@ SHA1
 SHA256
 Shirt Size
 Short Hex Color
+Slogan
 SQL Expression
 SSN
 State
