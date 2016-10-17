@@ -23,7 +23,7 @@ namespace Test.Mockaroo.IntegrationTest
     [UseReporter(typeof(DiffReporter), typeof(ClipboardReporter))]
     public class MockarooClientTest
     {
-        const string RecordsProperty = "records";
+        private const string RecordsProperty = "records";
 
         public TestContext TestContext { get; set; }
 
@@ -57,7 +57,7 @@ namespace Test.Mockaroo.IntegrationTest
         [Owner(Dev.Ackara)]
         [TestCategory(Trait.Integration)]
         [TestProperty(RecordsProperty, "1")]
-        [DataSource(Data.CsvProvider, "mockaroo_type_list.csv", "mockaroo_type_list#csv", DataAccessMethod.Sequential)]
+        [DataSource(DDTSettings.MockarooTypes)]
         public void FetchDataAsync_should_export_a_record_for_each_of_the_mockaroo_data_types()
         {
             // Arrange
@@ -76,7 +76,27 @@ namespace Test.Mockaroo.IntegrationTest
             // Assert
             json.Count.ShouldBeGreaterThanOrEqualTo(1);
         }
+        
+        [TestMethod]
+        [Owner(Dev.Ackara)]
+        [TestCategory(Trait.Integration)]
+        public void FetchDataAsync_should_export_a_record_containing_all_mockaroo_data_types()
+        {
+            // Arrange
+            var records = Convert.ToInt32(TestContext.Properties[RecordsProperty] ?? 1);
+            var endpoint = Gigobyte.Mockaroo.Mockaroo.Endpoint(ApiKey.GetValue(), records, Format.JSON);
 
+            var schema = new Schema(GetAllFieldTypes());
+
+            // Act
+
+            var data = MockarooClient.FetchDataAsync(endpoint, schema).Result;
+            var json = JArray.Parse(Encoding.Default.GetString(data));
+
+            // Assert
+            json.Count.ShouldBeGreaterThanOrEqualTo(1);
+        }
+        
         [TestMethod]
         [Owner(Dev.Ackara)]
         [TestCategory(Trait.Integration)]
