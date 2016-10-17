@@ -200,6 +200,9 @@ FakesAssemblies/
 # Approval Test files
 *.received.*
 
-# Solution specific files
-apikey.txt
+# Generated files
 *.exe
+
+# Sensitive files
+apikey.txt
+your_mockaroo_key.txt
