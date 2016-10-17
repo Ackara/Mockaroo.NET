@@ -1,0 +1,16 @@
+Data Type,Field,Value
+Byte,NumberField,79
+SByte,NumberField,10
+Int32,NumberField,83
+UInt32,NumberField,69
+Int16,NumberField,41
+UInt16,NumberField,18
+Int64,NumberField,12
+UInt64,NumberField,7
+Single,NumberField,7
+Double,NumberField,91
+Decimal,NumberField,38
+Char,CustomListField,A
+Boolean,BooleanField,True
+String,WordsField,mockaroo
+DateTime,DateField,2015-01-01 12:00:00
