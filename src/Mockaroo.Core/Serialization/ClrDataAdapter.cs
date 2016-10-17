@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Globalization;
 
 namespace Gigobyte.Mockaroo.Serialization
 {
@@ -86,7 +87,7 @@ namespace Gigobyte.Mockaroo.Serialization
                         case BuildPath.Basic:
                             propertyValue = property.PropertyType.GetTypeInfo().IsEnum ?
                                 propertyValue = Enum.Parse(property.PropertyType, json[property.Name].Value<string>()) :
-                                propertyValue = Convert.ChangeType(json[property.Name].Value<string>(), property.PropertyType);
+                                propertyValue = Convert.ChangeType(json[property.Name].Value<string>(), property.PropertyType, CultureInfo.InvariantCulture);
 
                             property.SetValue(instance, propertyValue);
                             break;

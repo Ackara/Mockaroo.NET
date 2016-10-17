@@ -82,6 +82,7 @@
     <Compile Include="Fields\JSONArrayField.cs" />
     <Compile Include="Fields\NumberField.cs" />
     <Compile Include="Arrangement.cs" />
+    <Compile Include="Fields\SQLExpressionField.cs" />
     <Compile Include="Fields\WordsField.cs" />
     <Compile Include="Mockaroo.cs" />
     <Compile Include="MockarooClient.cs" />
