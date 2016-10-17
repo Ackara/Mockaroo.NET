@@ -25,12 +25,18 @@
 					return new AvatarField();
 				case DataType.Base64ImageURL: 
 					return new Base64ImageURLField();
+				case DataType.BinomialDistribution: 
+					return new BinomialDistributionField();
 				case DataType.BitcoinAddress: 
 					return new BitcoinAddressField();
 				case DataType.Blank: 
 					return new BlankField();
 				case DataType.Boolean: 
 					return new BooleanField();
+				case DataType.Buzzword: 
+					return new BuzzwordField();
+				case DataType.CatchPhrase: 
+					return new CatchPhraseField();
 				case DataType.City: 
 					return new CityField();
 				case DataType.Color: 
@@ -65,10 +71,18 @@
 					return new DrugNameGenericField();
 				case DataType.DummyImageURL: 
 					return new DummyImageURLField();
+				case DataType.DUNSNumber: 
+					return new DUNSNumberField();
+				case DataType.EIN: 
+					return new EINField();
 				case DataType.EmailAddress: 
 					return new EmailAddressField();
 				case DataType.Encrypt: 
 					return new EncryptField();
+				case DataType.ExponentialDistribution: 
+					return new ExponentialDistributionField();
+				case DataType.FakeCompanyName: 
+					return new FakeCompanyNameField();
 				case DataType.FamilyNameChinese: 
 					return new FamilyNameChineseField();
 				case DataType.FDANDCCode: 
@@ -93,6 +107,8 @@
 					return new GenderField();
 				case DataType.GenderAbbreviated: 
 					return new GenderAbbreviatedField();
+				case DataType.GeometricDistribution: 
+					return new GeometricDistributionField();
 				case DataType.GivenNameChinese: 
 					return new GivenNameChineseField();
 				case DataType.GUID: 
@@ -101,6 +117,18 @@
 					return new HexColorField();
 				case DataType.IBAN: 
 					return new IBANField();
+				case DataType.ICD10DiagnosisCode: 
+					return new ICD10DiagnosisCodeField();
+				case DataType.ICD10DxDescLong: 
+					return new ICD10DxDescLongField();
+				case DataType.ICD10DxDescShort: 
+					return new ICD10DxDescShortField();
+				case DataType.ICD10ProcDescLong: 
+					return new ICD10ProcDescLongField();
+				case DataType.ICD10ProcDescShort: 
+					return new ICD10ProcDescShortField();
+				case DataType.ICD10ProcedureCode: 
+					return new ICD10ProcedureCodeField();
 				case DataType.ICD9DiagnosisCode: 
 					return new ICD9DiagnosisCodeField();
 				case DataType.ICD9DxDescLong: 
@@ -183,8 +211,8 @@
 					return new ShirtSizeField();
 				case DataType.ShortHexColor: 
 					return new ShortHexColorField();
-				case DataType.SQLExpression: 
-					return new SQLExpressionField();
+				case DataType.Slogan: 
+					return new SloganField();
 				case DataType.SSN: 
 					return new SSNField();
 				case DataType.State: 

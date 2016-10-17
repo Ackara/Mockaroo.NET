@@ -8,8 +8,8 @@
 namespace Gigobyte.Mockaroo
 {
 	/// <summary>
-    /// Represents a Mockaroo data type.
-    /// </summary>
+	/// Represents a Mockaroo data type.
+	/// </summary>
 	public enum <#= EnumTypeName #>
 	{
 <# 

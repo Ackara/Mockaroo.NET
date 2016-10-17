@@ -56,6 +56,17 @@
 		public override DataType Type { get { return DataType.Base64ImageURL; } }
 	}
 	/// <summary>
+	/// Represents a Mockaroo (Binomial Distribution) data type.
+	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
+	public partial class BinomialDistributionField : FieldBase
+	{
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.BinomialDistribution; } }
+	}
+	/// <summary>
 	/// Represents a Mockaroo (Bitcoin Address) data type.
 	/// </summary>
 	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
@@ -87,6 +98,28 @@
 		/// Get the data type.
 		/// </summary>
 		public override DataType Type { get { return DataType.Boolean; } }
+	}
+	/// <summary>
+	/// Represents a Mockaroo (Buzzword) data type.
+	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
+	public partial class BuzzwordField : FieldBase
+	{
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.Buzzword; } }
+	}
+	/// <summary>
+	/// Represents a Mockaroo (Catch Phrase) data type.
+	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
+	public partial class CatchPhraseField : FieldBase
+	{
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.CatchPhrase; } }
 	}
 	/// <summary>
 	/// Represents a Mockaroo (City) data type.
@@ -276,6 +309,28 @@
 		public override DataType Type { get { return DataType.DummyImageURL; } }
 	}
 	/// <summary>
+	/// Represents a Mockaroo (DUNS Number) data type.
+	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
+	public partial class DUNSNumberField : FieldBase
+	{
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.DUNSNumber; } }
+	}
+	/// <summary>
+	/// Represents a Mockaroo (EIN) data type.
+	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
+	public partial class EINField : FieldBase
+	{
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.EIN; } }
+	}
+	/// <summary>
 	/// Represents a Mockaroo (Email Address) data type.
 	/// </summary>
 	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
@@ -296,6 +351,28 @@
 		/// Get the data type.
 		/// </summary>
 		public override DataType Type { get { return DataType.Encrypt; } }
+	}
+	/// <summary>
+	/// Represents a Mockaroo (Exponential Distribution) data type.
+	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
+	public partial class ExponentialDistributionField : FieldBase
+	{
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.ExponentialDistribution; } }
+	}
+	/// <summary>
+	/// Represents a Mockaroo (Fake Company Name) data type.
+	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
+	public partial class FakeCompanyNameField : FieldBase
+	{
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.FakeCompanyName; } }
 	}
 	/// <summary>
 	/// Represents a Mockaroo (Family Name (Chinese)) data type.
@@ -430,6 +507,17 @@
 		public override DataType Type { get { return DataType.GenderAbbreviated; } }
 	}
 	/// <summary>
+	/// Represents a Mockaroo (Geometric Distribution) data type.
+	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
+	public partial class GeometricDistributionField : FieldBase
+	{
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.GeometricDistribution; } }
+	}
+	/// <summary>
 	/// Represents a Mockaroo (Given Name (Chinese)) data type.
 	/// </summary>
 	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
@@ -472,6 +560,72 @@
 		/// Get the data type.
 		/// </summary>
 		public override DataType Type { get { return DataType.IBAN; } }
+	}
+	/// <summary>
+	/// Represents a Mockaroo (ICD10 Diagnosis Code) data type.
+	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
+	public partial class ICD10DiagnosisCodeField : FieldBase
+	{
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.ICD10DiagnosisCode; } }
+	}
+	/// <summary>
+	/// Represents a Mockaroo (ICD10 Dx Desc (Long)) data type.
+	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
+	public partial class ICD10DxDescLongField : FieldBase
+	{
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.ICD10DxDescLong; } }
+	}
+	/// <summary>
+	/// Represents a Mockaroo (ICD10 Dx Desc (Short)) data type.
+	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
+	public partial class ICD10DxDescShortField : FieldBase
+	{
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.ICD10DxDescShort; } }
+	}
+	/// <summary>
+	/// Represents a Mockaroo (ICD10 Proc Desc (Long)) data type.
+	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
+	public partial class ICD10ProcDescLongField : FieldBase
+	{
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.ICD10ProcDescLong; } }
+	}
+	/// <summary>
+	/// Represents a Mockaroo (ICD10 Proc Desc (Short)) data type.
+	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
+	public partial class ICD10ProcDescShortField : FieldBase
+	{
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.ICD10ProcDescShort; } }
+	}
+	/// <summary>
+	/// Represents a Mockaroo (ICD10 Procedure Code) data type.
+	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
+	public partial class ICD10ProcedureCodeField : FieldBase
+	{
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.ICD10ProcedureCode; } }
 	}
 	/// <summary>
 	/// Represents a Mockaroo (ICD9 Diagnosis Code) data type.
@@ -925,15 +1079,15 @@
 		public override DataType Type { get { return DataType.ShortHexColor; } }
 	}
 	/// <summary>
-	/// Represents a Mockaroo (SQL Expression) data type.
+	/// Represents a Mockaroo (Slogan) data type.
 	/// </summary>
 	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
-	public partial class SQLExpressionField : FieldBase
+	public partial class SloganField : FieldBase
 	{
 		/// <summary>
 		/// Get the data type.
 		/// </summary>
-		public override DataType Type { get { return DataType.SQLExpression; } }
+		public override DataType Type { get { return DataType.Slogan; } }
 	}
 	/// <summary>
 	/// Represents a Mockaroo (SSN) data type.

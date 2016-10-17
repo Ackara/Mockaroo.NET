@@ -1,8 +1,8 @@
 ﻿namespace Gigobyte.Mockaroo
 {
 	/// <summary>
-    /// Represents a Mockaroo data type.
-    /// </summary>
+	/// Represents a Mockaroo data type.
+	/// </summary>
 	public enum DataType
 	{
 		/// <summary>
@@ -26,6 +26,10 @@
 		/// </summary>
 		Base64ImageURL,
 		/// <summary>
+		/// Binomial Distribution
+		/// </summary>
+		BinomialDistribution,
+		/// <summary>
 		/// Bitcoin Address
 		/// </summary>
 		BitcoinAddress,
@@ -37,6 +41,14 @@
 		/// Boolean
 		/// </summary>
 		Boolean,
+		/// <summary>
+		/// Buzzword
+		/// </summary>
+		Buzzword,
+		/// <summary>
+		/// Catch Phrase
+		/// </summary>
+		CatchPhrase,
 		/// <summary>
 		/// City
 		/// </summary>
@@ -106,6 +118,14 @@
 		/// </summary>
 		DummyImageURL,
 		/// <summary>
+		/// DUNS Number
+		/// </summary>
+		DUNSNumber,
+		/// <summary>
+		/// EIN
+		/// </summary>
+		EIN,
+		/// <summary>
 		/// Email Address
 		/// </summary>
 		EmailAddress,
@@ -113,6 +133,14 @@
 		/// Encrypt
 		/// </summary>
 		Encrypt,
+		/// <summary>
+		/// Exponential Distribution
+		/// </summary>
+		ExponentialDistribution,
+		/// <summary>
+		/// Fake Company Name
+		/// </summary>
+		FakeCompanyName,
 		/// <summary>
 		/// Family Name (Chinese)
 		/// </summary>
@@ -162,6 +190,10 @@
 		/// </summary>
 		GenderAbbreviated,
 		/// <summary>
+		/// Geometric Distribution
+		/// </summary>
+		GeometricDistribution,
+		/// <summary>
 		/// Given Name (Chinese)
 		/// </summary>
 		GivenNameChinese,
@@ -177,6 +209,30 @@
 		/// IBAN
 		/// </summary>
 		IBAN,
+		/// <summary>
+		/// ICD10 Diagnosis Code
+		/// </summary>
+		ICD10DiagnosisCode,
+		/// <summary>
+		/// ICD10 Dx Desc (Long)
+		/// </summary>
+		ICD10DxDescLong,
+		/// <summary>
+		/// ICD10 Dx Desc (Short)
+		/// </summary>
+		ICD10DxDescShort,
+		/// <summary>
+		/// ICD10 Proc Desc (Long)
+		/// </summary>
+		ICD10ProcDescLong,
+		/// <summary>
+		/// ICD10 Proc Desc (Short)
+		/// </summary>
+		ICD10ProcDescShort,
+		/// <summary>
+		/// ICD10 Procedure Code
+		/// </summary>
+		ICD10ProcedureCode,
 		/// <summary>
 		/// ICD9 Diagnosis Code
 		/// </summary>
@@ -342,9 +398,9 @@
 		/// </summary>
 		ShortHexColor,
 		/// <summary>
-		/// SQL Expression
+		/// Slogan
 		/// </summary>
-		SQLExpression,
+		Slogan,
 		/// <summary>
 		/// SSN
 		/// </summary>

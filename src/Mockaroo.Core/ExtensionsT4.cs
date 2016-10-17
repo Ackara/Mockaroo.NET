@@ -26,12 +26,18 @@
 					return "Avatar";
 				case DataType.Base64ImageURL:
 					return "Base64 Image URL";
+				case DataType.BinomialDistribution:
+					return "Binomial Distribution";
 				case DataType.BitcoinAddress:
 					return "Bitcoin Address";
 				case DataType.Blank:
 					return "Blank";
 				case DataType.Boolean:
 					return "Boolean";
+				case DataType.Buzzword:
+					return "Buzzword";
+				case DataType.CatchPhrase:
+					return "Catch Phrase";
 				case DataType.City:
 					return "City";
 				case DataType.Color:
@@ -66,10 +72,18 @@
 					return "Drug Name (Generic)";
 				case DataType.DummyImageURL:
 					return "Dummy Image URL";
+				case DataType.DUNSNumber:
+					return "DUNS Number";
+				case DataType.EIN:
+					return "EIN";
 				case DataType.EmailAddress:
 					return "Email Address";
 				case DataType.Encrypt:
 					return "Encrypt";
+				case DataType.ExponentialDistribution:
+					return "Exponential Distribution";
+				case DataType.FakeCompanyName:
+					return "Fake Company Name";
 				case DataType.FamilyNameChinese:
 					return "Family Name (Chinese)";
 				case DataType.FDANDCCode:
@@ -94,6 +108,8 @@
 					return "Gender";
 				case DataType.GenderAbbreviated:
 					return "Gender (abbrev)";
+				case DataType.GeometricDistribution:
+					return "Geometric Distribution";
 				case DataType.GivenNameChinese:
 					return "Given Name (Chinese)";
 				case DataType.GUID:
@@ -102,6 +118,18 @@
 					return "Hex Color";
 				case DataType.IBAN:
 					return "IBAN";
+				case DataType.ICD10DiagnosisCode:
+					return "ICD10 Diagnosis Code";
+				case DataType.ICD10DxDescLong:
+					return "ICD10 Dx Desc (Long)";
+				case DataType.ICD10DxDescShort:
+					return "ICD10 Dx Desc (Short)";
+				case DataType.ICD10ProcDescLong:
+					return "ICD10 Proc Desc (Long)";
+				case DataType.ICD10ProcDescShort:
+					return "ICD10 Proc Desc (Short)";
+				case DataType.ICD10ProcedureCode:
+					return "ICD10 Procedure Code";
 				case DataType.ICD9DiagnosisCode:
 					return "ICD9 Diagnosis Code";
 				case DataType.ICD9DxDescLong:
@@ -184,8 +212,8 @@
 					return "Shirt Size";
 				case DataType.ShortHexColor:
 					return "Short Hex Color";
-				case DataType.SQLExpression:
-					return "SQL Expression";
+				case DataType.Slogan:
+					return "Slogan";
 				case DataType.SSN:
 					return "SSN";
 				case DataType.State:
@@ -245,12 +273,18 @@
 					return DataType.Avatar;
 				case "Base64 Image URL":
 					return DataType.Base64ImageURL;
+				case "Binomial Distribution":
+					return DataType.BinomialDistribution;
 				case "Bitcoin Address":
 					return DataType.BitcoinAddress;
 				case "Blank":
 					return DataType.Blank;
 				case "Boolean":
 					return DataType.Boolean;
+				case "Buzzword":
+					return DataType.Buzzword;
+				case "Catch Phrase":
+					return DataType.CatchPhrase;
 				case "City":
 					return DataType.City;
 				case "Color":
@@ -285,10 +319,18 @@
 					return DataType.DrugNameGeneric;
 				case "Dummy Image URL":
 					return DataType.DummyImageURL;
+				case "DUNS Number":
+					return DataType.DUNSNumber;
+				case "EIN":
+					return DataType.EIN;
 				case "Email Address":
 					return DataType.EmailAddress;
 				case "Encrypt":
 					return DataType.Encrypt;
+				case "Exponential Distribution":
+					return DataType.ExponentialDistribution;
+				case "Fake Company Name":
+					return DataType.FakeCompanyName;
 				case "Family Name (Chinese)":
 					return DataType.FamilyNameChinese;
 				case "FDA NDC Code":
@@ -313,6 +355,8 @@
 					return DataType.Gender;
 				case "Gender (abbrev)":
 					return DataType.GenderAbbreviated;
+				case "Geometric Distribution":
+					return DataType.GeometricDistribution;
 				case "Given Name (Chinese)":
 					return DataType.GivenNameChinese;
 				case "GUID":
@@ -321,6 +365,18 @@
 					return DataType.HexColor;
 				case "IBAN":
 					return DataType.IBAN;
+				case "ICD10 Diagnosis Code":
+					return DataType.ICD10DiagnosisCode;
+				case "ICD10 Dx Desc (Long)":
+					return DataType.ICD10DxDescLong;
+				case "ICD10 Dx Desc (Short)":
+					return DataType.ICD10DxDescShort;
+				case "ICD10 Proc Desc (Long)":
+					return DataType.ICD10ProcDescLong;
+				case "ICD10 Proc Desc (Short)":
+					return DataType.ICD10ProcDescShort;
+				case "ICD10 Procedure Code":
+					return DataType.ICD10ProcedureCode;
 				case "ICD9 Diagnosis Code":
 					return DataType.ICD9DiagnosisCode;
 				case "ICD9 Dx Desc (Long)":
@@ -403,8 +459,8 @@
 					return DataType.ShirtSize;
 				case "Short Hex Color":
 					return DataType.ShortHexColor;
-				case "SQL Expression":
-					return DataType.SQLExpression;
+				case "Slogan":
+					return DataType.Slogan;
 				case "SSN":
 					return DataType.SSN;
 				case "State":
