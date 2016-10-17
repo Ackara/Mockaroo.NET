@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace Test.Mockaroo.Constants
+namespace Test.Mockaroo
 {
     public static class Data
     {
