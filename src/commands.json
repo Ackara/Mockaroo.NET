@@ -1,0 +1,9 @@
+{
+  "commands": {
+    "Update-VersionNumber": {
+      "fileName": "powershell.exe",
+      "workingDirectory": ".",
+      "arguments": "-ExecutionPolicy Bypass -NonInteractive -File ..\\tools\\Update-VersionNumber.ps1"
+    }
+  }
+}
