@@ -3,6 +3,7 @@ using ApprovalTests.Reporters;
 using Gigobyte.Mockaroo;
 using Gigobyte.Mockaroo.Exceptions;
 using Gigobyte.Mockaroo.Fields;
+using Gigobyte.Mockaroo.Fields.Factory;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 using Shouldly;
@@ -33,11 +34,11 @@ namespace Tests.Mockaroo.IntegrationTest
         [Owner(Dev.Ackara)]
         [TestCategory(Test.Trait.Integration)]
         [TestProperty(Test.Property.Records, "2")]
-        public async Task FetchDataAsync_should_export_data_from_the_mockaroo_restful_service()
+        public async Task FetchDataAsync_should_export_data_from_the_mockaroo_api()
         {
             // Arrange
             var apiKey = ApiKey.GetValue();
-            var schema = CreateSchema();
+            var schema = CreateSimpleSchema();
             int records = Convert.ToInt32(TestContext.Properties[Test.Property.Records] ?? 1);
             var endpoint = Gigobyte.Mockaroo.Mockaroo.Endpoint(apiKey, records, Format.JSON);
 
@@ -49,24 +50,28 @@ namespace Tests.Mockaroo.IntegrationTest
             Assert.AreEqual(records, json.Count);
         }
 
-        [TestMethod]
+        //[TestMethod]
         [Owner(Dev.Ackara)]
         [TestCategory(Test.Trait.Integration)]
-        [TestProperty(Test.Property.Records, "2")]
-        public async Task FetchDataAsync_should_export_data_contain_all_known_data_types_from_the_mockaroo_restful_service()
+        [TestProperty(Test.Property.Records, "1")]
+        [DataSource(Test.Data.CsvProvider, "mockaroo_type_list.csv", "mockaroo_type_list#csv", DataAccessMethod.Sequential)]
+        public void FetchDataAsync_should_export_a_record_for_each_of_the_mockaroo_data_types()
         {
             // Arrange
             var records = Convert.ToInt32(TestContext.Properties[Test.Property.Records] ?? 1);
             var endpoint = Gigobyte.Mockaroo.Mockaroo.Endpoint(ApiKey.GetValue(), records, Format.JSON);
 
-            var schema = new Schema(fields: GetAllFieldTypes());
+            var dataType = (DataType)Enum.Parse(typeof(DataType), Convert.ToString(TestContext.DataRow[0]));
+            var field = new FieldFactory().CreateInstance(dataType);
+            field.Name = "name";
 
             // Act
-            var data = await MockarooClient.FetchDataAsync(endpoint, schema);
+            TestContext.WriteLine("Context: {0}", dataType);
+            var data = MockarooClient.FetchDataAsync(endpoint, new Schema(field)).Result;
             var json = JArray.Parse(Encoding.Default.GetString(data));
 
             // Assert
-            json.Count.ShouldBe(records);
+            json.Count.ShouldBeGreaterThanOrEqualTo(1);
         }
 
         [TestMethod]
@@ -93,7 +98,7 @@ namespace Tests.Mockaroo.IntegrationTest
         public async Task FetchDataAsync_should_thrown_an_exception_when_an_error_occurs()
         {
             // Arrange
-            var schema = CreateSchema();
+            var schema = CreateSimpleSchema();
             var endpoint = Gigobyte.Mockaroo.Mockaroo.Endpoint(ApiKey.GetValue(), 1, Format.JSON);
 
             // Act
@@ -108,7 +113,7 @@ namespace Tests.Mockaroo.IntegrationTest
 
         #region Samples
 
-        public static Schema CreateSchema()
+        public static Schema CreateSimpleSchema()
         {
             return new Schema(
                  new NumberField()

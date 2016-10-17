@@ -104,6 +104,12 @@
     <None Include="SampleData\basic_server_response.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="SampleData\mockaroo_type_list.csv">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>mockaroo_type_list.tt</DependentUpon>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="SampleData\more_complex_server_response.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -124,6 +130,17 @@
       <Project>{ceecb2c1-370c-4cd6-b030-2a316de4a08f}</Project>
       <Name>Mockaroo.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Constants\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SampleData\mockaroo_type_list.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>mockaroo_type_list.csv</LastGenOutput>
+      <AutoT4RunOnBuild>Default</AutoT4RunOnBuild>
+    </Content>
+    <Content Include="your_mockaroo_key.txt" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
