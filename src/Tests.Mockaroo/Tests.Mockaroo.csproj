@@ -87,13 +87,16 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ApiKey.cs" />
+    <Compile Include="Constants\Data.cs" />
+    <Compile Include="Constants\Dev.cs" />
+    <Compile Include="Constants\KnownFile.cs" />
+    <Compile Include="Constants\Trait.cs" />
     <Compile Include="Test.cs" />
-    <Compile Include="Dev.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitTest\MockarooClientTest.cs" />
-    <Compile Include="UnitTest\ClrSchemaConverterTest.cs" />
-    <Compile Include="UnitTest\SchemaTest.cs" />
-    <Compile Include="UnitTest\ClrDataAdapterTest.cs" />
+    <Compile Include="Tests\MockarooClientTest.cs" />
+    <Compile Include="Tests\ClrSchemaConverterTest.cs" />
+    <Compile Include="Tests\SchemaTest.cs" />
+    <Compile Include="Tests\ClrDataAdapterTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -131,16 +134,16 @@
       <Name>Mockaroo.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Constants\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="SampleData\mockaroo_type_list.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>mockaroo_type_list.csv</LastGenOutput>
       <AutoT4RunOnBuild>Default</AutoT4RunOnBuild>
     </Content>
-    <Content Include="your_mockaroo_key.txt" />
+    <None Include="your_mockaroo_key.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

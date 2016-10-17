@@ -5,11 +5,12 @@ using Gigobyte.Mockaroo.Serialization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using Tests.Mockaroo.Constants;
 
 namespace Tests.Mockaroo.Tests
 {
     [TestClass]
-    [DeploymentItem(Test.Data.DirectoryName)]
+    [DeploymentItem(Data.DirectoryName)]
     [UseApprovalSubdirectory(nameof(ApprovalTests))]
     [UseReporter(typeof(DiffReporter), typeof(ClipboardReporter))]
     public class ClrSchemaConverterTest

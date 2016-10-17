@@ -7,11 +7,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shouldly;
 using System;
 using System.Text;
+using Tests.Mockaroo.Constants;
 
 namespace Tests.Mockaroo.Tests
 {
     [TestClass]
-    [DeploymentItem(Test.Data.DirectoryName)]
+    [DeploymentItem(Data.DirectoryName)]
     [UseApprovalSubdirectory(nameof(ApprovalTests))]
     [UseReporter(typeof(DiffReporter), typeof(ClipboardReporter))]
     public class SchemaTest

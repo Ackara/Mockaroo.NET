@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Tests.Mockaroo.Constants;
 
 namespace Tests.Mockaroo.Tests
 {
@@ -16,7 +17,7 @@ namespace Tests.Mockaroo.Tests
         {
             // Arrange
             var sut = new ClrDataAdapter();
-            var data = File.ReadAllBytes(Test.Data.GetFile(Test.File.BasicResponse).FullName);
+            var data = File.ReadAllBytes(Data.GetFile(KnownFile.BasicResponse).FullName);
 
             // Act
             var result = sut.Transform<SimpleObject>(data).First();
@@ -33,7 +34,7 @@ namespace Tests.Mockaroo.Tests
         {
             // Arrange
             var sut = new ClrDataAdapter();
-            var data = File.ReadAllBytes(Test.Data.GetFile(Test.File.VeryComplexResponse).FullName);
+            var data = File.ReadAllBytes(Data.GetFile(KnownFile.VeryComplexResponse).FullName);
 
             // Act
             var result = sut.Transform<ComplexObject>(data).First();

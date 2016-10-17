@@ -12,16 +12,19 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Tests.Mockaroo.Constants;
 
 namespace Tests.Mockaroo.IntegrationTest
 {
     [TestClass]
-    [DeploymentItem(Test.File.ApiKey)]
-    [DeploymentItem(Test.Data.DirectoryName)]
+    [DeploymentItem(KnownFile.ApiKey)]
+    [DeploymentItem(Data.DirectoryName)]
     [UseApprovalSubdirectory(nameof(ApprovalTests))]
     [UseReporter(typeof(DiffReporter), typeof(ClipboardReporter))]
     public class MockarooClientTest
     {
+        const string RecordsProperty = "records";
+
         public TestContext TestContext { get; set; }
 
         [ClassCleanup]
@@ -32,14 +35,14 @@ namespace Tests.Mockaroo.IntegrationTest
 
         [TestMethod]
         [Owner(Dev.Ackara)]
-        [TestCategory(Test.Trait.Integration)]
-        [TestProperty(Test.Property.Records, "2")]
+        [TestCategory(Trait.Integration)]
+        [TestProperty(RecordsProperty, "2")]
         public async Task FetchDataAsync_should_export_data_from_the_mockaroo_api()
         {
             // Arrange
             var apiKey = ApiKey.GetValue();
             var schema = CreateSimpleSchema();
-            int records = Convert.ToInt32(TestContext.Properties[Test.Property.Records] ?? 1);
+            int records = Convert.ToInt32(TestContext.Properties[RecordsProperty] ?? 1);
             var endpoint = Gigobyte.Mockaroo.Mockaroo.Endpoint(apiKey, records, Format.JSON);
 
             // Act
@@ -52,13 +55,13 @@ namespace Tests.Mockaroo.IntegrationTest
 
         //[TestMethod]
         [Owner(Dev.Ackara)]
-        [TestCategory(Test.Trait.Integration)]
-        [TestProperty(Test.Property.Records, "1")]
-        [DataSource(Test.Data.CsvProvider, "mockaroo_type_list.csv", "mockaroo_type_list#csv", DataAccessMethod.Sequential)]
+        [TestCategory(Trait.Integration)]
+        [TestProperty(RecordsProperty, "1")]
+        [DataSource(Data.CsvProvider, "mockaroo_type_list.csv", "mockaroo_type_list#csv", DataAccessMethod.Sequential)]
         public void FetchDataAsync_should_export_a_record_for_each_of_the_mockaroo_data_types()
         {
             // Arrange
-            var records = Convert.ToInt32(TestContext.Properties[Test.Property.Records] ?? 1);
+            var records = Convert.ToInt32(TestContext.Properties[RecordsProperty] ?? 1);
             var endpoint = Gigobyte.Mockaroo.Mockaroo.Endpoint(ApiKey.GetValue(), records, Format.JSON);
 
             var dataType = (DataType)Enum.Parse(typeof(DataType), Convert.ToString(TestContext.DataRow[0]));
@@ -76,13 +79,13 @@ namespace Tests.Mockaroo.IntegrationTest
 
         [TestMethod]
         [Owner(Dev.Ackara)]
-        [TestCategory(Test.Trait.Integration)]
-        [TestProperty(Test.Property.Records, "2")]
+        [TestCategory(Trait.Integration)]
+        [TestProperty(RecordsProperty, "2")]
         public void FetchData_should_export_data_from_mockaroo_and_deserialize_it_into_a_object()
         {
             // Arrange
             var sut = new MockarooClient(ApiKey.GetValue());
-            var records = Convert.ToInt32(TestContext.Properties[Test.Property.Records] ?? 1);
+            var records = Convert.ToInt32(TestContext.Properties[RecordsProperty] ?? 1);
 
             // Act
             var results = sut.FetchData<SimpleObject>(records);
@@ -93,7 +96,7 @@ namespace Tests.Mockaroo.IntegrationTest
 
         [TestMethod]
         [Owner(Dev.Ackara)]
-        [TestCategory(Test.Trait.Integration)]
+        [TestCategory(Trait.Integration)]
         [ExpectedException(typeof(MockarooException))]
         public async Task FetchDataAsync_should_thrown_an_exception_when_an_error_occurs()
         {

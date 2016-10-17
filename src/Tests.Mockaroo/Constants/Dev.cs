@@ -1,4 +1,4 @@
-﻿namespace Tests.Mockaroo
+﻿namespace Tests.Mockaroo.Constants
 {
     public struct Dev
     {

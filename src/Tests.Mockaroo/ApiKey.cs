@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using Tests.Mockaroo.Constants;
 
 namespace Tests.Mockaroo
 {
@@ -9,7 +10,7 @@ namespace Tests.Mockaroo
         {
             string key = null;
 
-            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Test.File.ApiKey);
+            var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, KnownFile.ApiKey);
             if (File.Exists(path)) key = File.ReadAllText(path).Trim();
             else throw new FileNotFoundException($"Cannot find '{path}'.");
 
