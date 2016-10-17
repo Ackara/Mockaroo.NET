@@ -216,6 +216,8 @@
 					return "Slogan";
 				case DataType.SSN:
 					return "SSN";
+				case DataType.SQLExpression:
+					return "SQL Expression";
 				case DataType.State:
 					return "State";
 				case DataType.StateAbbreviated:
@@ -463,6 +465,8 @@
 					return DataType.Slogan;
 				case "SSN":
 					return DataType.SSN;
+				case "SQL Expression":
+					return DataType.SQLExpression;
 				case "State":
 					return DataType.State;
 				case "State (abbrev)":

@@ -1101,6 +1101,17 @@
 		public override DataType Type { get { return DataType.SSN; } }
 	}
 	/// <summary>
+	/// Represents a Mockaroo (SQL Expression) data type.
+	/// </summary>
+	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />
+	public partial class SQLExpressionField : FieldBase
+	{
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.SQLExpression; } }
+	}
+	/// <summary>
 	/// Represents a Mockaroo (State) data type.
 	/// </summary>
 	/// <seealso cref="Gigobyte.Mockaroo.Fields.FieldBase" />

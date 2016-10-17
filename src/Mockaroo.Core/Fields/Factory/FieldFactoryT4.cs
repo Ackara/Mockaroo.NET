@@ -215,6 +215,8 @@
 					return new SloganField();
 				case DataType.SSN: 
 					return new SSNField();
+				case DataType.SQLExpression: 
+					return new SQLExpressionField();
 				case DataType.State: 
 					return new StateField();
 				case DataType.StateAbbreviated: 

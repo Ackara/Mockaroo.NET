@@ -406,6 +406,10 @@
 		/// </summary>
 		SSN,
 		/// <summary>
+		/// SQL Expression
+		/// </summary>
+		SQLExpression,
+		/// <summary>
 		/// State
 		/// </summary>
 		State,
