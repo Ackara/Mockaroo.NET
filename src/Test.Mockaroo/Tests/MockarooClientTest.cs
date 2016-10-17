@@ -53,11 +53,13 @@ namespace Test.Mockaroo.IntegrationTest
             Assert.AreEqual(records, json.Count);
         }
 
-        //[TestMethod]
+        [Ignore()]
+        [TestMethod]
         [Owner(Dev.Ackara)]
         [TestCategory(Trait.Integration)]
         [TestProperty(RecordsProperty, "1")]
         [DataSource(DDTSettings.MockarooTypes)]
+        /* This test will cosume 117/200 of your daily request. Use with caution */
         public void FetchDataAsync_should_export_a_record_for_each_of_the_mockaroo_data_types()
         {
             // Arrange
@@ -76,7 +78,7 @@ namespace Test.Mockaroo.IntegrationTest
             // Assert
             json.Count.ShouldBeGreaterThanOrEqualTo(1);
         }
-        
+
         [TestMethod]
         [Owner(Dev.Ackara)]
         [TestCategory(Trait.Integration)]
@@ -96,7 +98,7 @@ namespace Test.Mockaroo.IntegrationTest
             // Assert
             json.Count.ShouldBeGreaterThanOrEqualTo(1);
         }
-        
+
         [TestMethod]
         [Owner(Dev.Ackara)]
         [TestCategory(Trait.Integration)]
@@ -134,7 +136,7 @@ namespace Test.Mockaroo.IntegrationTest
             catch (MockarooException ex) { TestContext.WriteLine("message: {0}", ex.Message); throw; }
         }
 
-        #region Samples
+        #region Private Members
 
         public static Schema CreateSimpleSchema()
         {
@@ -187,10 +189,6 @@ namespace Test.Mockaroo.IntegrationTest
 
         public class SimpleObject
         {
-            public SimpleObject()
-            {
-            }
-
             public int IntegerValue { get; set; }
 
             public float DecimalValue { get; set; }
@@ -204,6 +202,6 @@ namespace Test.Mockaroo.IntegrationTest
             public DayOfWeek Day { get; set; }
         }
 
-        #endregion Samples
+        #endregion Private Members
     }
 }
