@@ -8,7 +8,7 @@ using Shouldly;
 using System;
 using System.Text;
 
-namespace Tests.Mockaroo.UnitTest
+namespace Tests.Mockaroo.Tests
 {
     [TestClass]
     [DeploymentItem(Test.Data.DirectoryName)]

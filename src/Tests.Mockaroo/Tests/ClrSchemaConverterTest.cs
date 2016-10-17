@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 
-namespace Tests.Mockaroo.UnitTest
+namespace Tests.Mockaroo.Tests
 {
     [TestClass]
     [DeploymentItem(Test.Data.DirectoryName)]

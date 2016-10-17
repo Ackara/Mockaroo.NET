@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Tests.Mockaroo.UnitTest
+namespace Tests.Mockaroo.Tests
 {
     [TestClass]
     public class ClrDataAdapterTest
