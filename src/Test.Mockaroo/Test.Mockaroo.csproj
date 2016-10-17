@@ -73,6 +73,7 @@
   <ItemGroup>
     <Compile Include="ApiKey.cs" />
     <Compile Include="Constants\Data.cs" />
+    <Compile Include="Constants\DDTSettings.cs" />
     <Compile Include="Constants\Dev.cs" />
     <Compile Include="Constants\KnownFile.cs" />
     <Compile Include="Constants\Trait.cs" />
@@ -106,9 +107,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="your_mockaroo_key.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="apikey.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <Content Include="SampleData\mockaroo_type_list.tt">
