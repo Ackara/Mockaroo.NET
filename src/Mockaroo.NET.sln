@@ -25,6 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{961D1B1E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tools", "tools", "{C1614D4F-E98E-4E69-9667-226BF26DDF5A}"
 	ProjectSection(SolutionItems) = preProject
+		..\tools\Add-MockarooKey.ps1 = ..\tools\Add-MockarooKey.ps1
 		..\tools\Update-VersionNumber.ps1 = ..\tools\Update-VersionNumber.ps1
 	EndProjectSection
 EndProject

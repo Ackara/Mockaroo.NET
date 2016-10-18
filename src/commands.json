@@ -4,6 +4,11 @@
       "fileName": "powershell.exe",
       "workingDirectory": ".",
       "arguments": "-ExecutionPolicy Bypass -NonInteractive -File ..\\tools\\Update-VersionNumber.ps1"
+    },
+    "Add-MockarooKey": {
+      "fileName": "powershell.exe",
+      "workingDirectory": ".",
+      "arguments": "-ExecutionPolicy Bypass -NonInteractive -File ..\\tools\\Add-MockarooKey.ps1"
     }
   }
 }
