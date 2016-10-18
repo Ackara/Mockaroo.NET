@@ -5,10 +5,10 @@
     <version>$version$</version>
     <title>Mockaroo.NET</title>
     <authors>$author$</authors>
-    <owners>$author$</owners>
+    <owners>Acklann</owners>
     <licenseUrl>https://github.com/Ackara/Mockaroo.NET/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/Ackara/Mockaroo.NET</projectUrl>
-    <iconUrl>https://res.cloudinary.com/ackara/image/upload/v1468971082/miscellaneous/mockaroo-net.png.png</iconUrl>
+    <iconUrl>http://static.acklann.com/images/mockaroo-net.jpg</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>Stable release.</releaseNotes>
