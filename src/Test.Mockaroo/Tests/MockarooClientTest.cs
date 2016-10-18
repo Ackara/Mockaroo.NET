@@ -59,7 +59,7 @@ namespace Test.Mockaroo.IntegrationTest
         [TestCategory(Trait.Integration)]
         [TestProperty(RecordsProperty, "1")]
         [DataSource(DDTSettings.MockarooTypes)]
-        /* This test will cosume 117/200 of your daily request. Use with caution */
+        /* This test will consume 117/200 of your daily request. Use with caution */
         public void FetchDataAsync_should_export_a_record_for_each_of_the_mockaroo_data_types()
         {
             // Arrange
