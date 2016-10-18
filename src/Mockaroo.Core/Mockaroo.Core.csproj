@@ -111,23 +111,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataType.tt">
+    <None Include="DataType.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DataType.cs</LastGenOutput>
-    </Content>
-    <Content Include="ExtensionsT4.tt">
+    </None>
+    <None Include="ExtensionsT4.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ExtensionsT4.cs</LastGenOutput>
-    </Content>
-    <Content Include="Fields\BaseTypes.tt">
+    </None>
+    <None Include="Fields\BaseTypes.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>BaseTypes.cs</LastGenOutput>
-    </Content>
-    <Content Include="mockaroo_schema.tt">
+    </None>
+    <None Include="mockaroo_schema.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>mockaroo_schema.xsd</LastGenOutput>
-    </Content>
-    <Content Include="T4Utilities.tt" />
+    </None>
+    <None Include="T4Utilities.tt" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
