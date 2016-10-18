@@ -1,71 +1,63 @@
 <#
 
-.SYNOPSIS
-This script initiates the project's build and deployment process.
+.SYSNOPSIS
+This script builds and publihes this project to a nuget feed.
 
-.PARAMETER TaskList
-A collection of psake tasks to invoke.
+.PARAMETER Tasks
+The list of tasks to invoke.
 
-.NOTES
-This script depends on the psake module.
+.PARAMETER NugetClient
+The download URL of the nuget client
+
+.PARAMETER NugetSource
+The address of the nuget feed in which packages will be publised to.
+
+.PARAMETER NugetKey
+The API key for the nuget feed.
 
 #>
 
+[CmdletBinding()]
 Param(
-    [Parameter()]
-    [string]$NugetUri = "https://dist.nuget.org/win-x86-commandline/v3.4.3/nuget.exe",
+	[string[]]$Tasks = @("default"),
 
-    [Parameter()]
-    [string]$NuGetSource = "",
-    
-    [Parameter()]
-    [string]$NuGetAPIKey = "",
-    
-    [Parameter()]
-    [string]$Cloudinary_APIKey = "",
+	[string]$NugetKey = "",
 
-    [Parameter()]
-    [string]$Cloudinary_Secret = "",
+	[string]$NugetSource = "https://api.nuget.org/v3/index.json",
 
-    [Parameter()]
-    [string]$Cloudinary_CloudName = "",
-
-    [Parameter()]
-    [string[]]$TaskList = @("default")
+	[string]$NugetClient = "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
 )
 
-Clear-Host;
-Push-Location (Split-Path $PSScriptRoot -Parent);
+$rootDirectory = (Split-Path $PSScriptRoot -Parent);
+$toolsDirectory = "$rootDirectory\tools";
+$nuget = "$toolsDirectory\nuget.exe";
 
-# Restore NuGet packages.
-    $nuget = "$PWD\tools\nuget.exe";
-    if(-not (Test-Path $nuget -PathType Leaf))
-    {
-        $toolsDir = "$PWD\tools";
-        if(-not (Test-Path $toolsDir -PathType Container)) { New-Item  $toolsDir -ItemType Directory | Out-Null; }
-        Invoke-WebRequest -Uri $NugetUri -OutFile $nuget;
-    }
-    & $nuget restore $(Get-ChildItem -Filter "*.sln" -Recurse | Select-Object -ExpandProperty FullName -First 1);
+# Download nuget client
+if(-not (Test-Path $toolsDirectory -PathType Container)) { New-Item $toolsDirectory -ItemType Directory | Out-Null; }
+if(-not (Test-Path $nuget -PathType Leaf))
+{
+	Write-Host "Downloading 'nuget.exe'...";
+	Invoke-WebRequest $NugetClient -OutFile $nuget;
+}
 
-# Import psake module
-    Remove-Module [p]sake;
-    $psakeModule = (Get-ChildItem "$PWD\src\[Pp]ackages\psake*\tools\psake.psm1").FullName | Sort-Object $_ | Select-Object -Last 1;
-    Import-Module $psakeModule;
+# Restore packages
+$solution = Get-ChildItem "$rootDirectory\src" -Filter "*.sln" -Recurse | Select-Object -ExpandProperty FullName -First 1;
+& $nuget restore $solution;
 
-# Start deployment
+# Import Psake module
+Remove-Module [p]sake;
+$psakeModule = (Get-ChildItem "$rootDirectory\src\[Pp]ackages\psake*\tools\psake.psm1").FullName | Sort-Object $_ | Select-Object -Last 1;
+Import-Module $psakeModule;
+
+# Run psake tasks
 Invoke-psake `
-    -buildFile "$PWD\build\build.ps1" `
-    -taskList $TaskList `
-    -framework 4.5.2 `
-    -properties @{
-        "NugetEXE" = $nuget;
-        "NuGetKey" = $NuGetAPIKey;
-        "NuGetSource" = $NuGetSource;
-
-        "Cloudinary_APIKey" = $Cloudinary_APIKey;
-        "Cloudinary_Secret" = $Cloudinary_Secret;
-        "Cloudinary_CloudName" = $Cloudinary_CloudName;
-    };
-
-Pop-Location;
+	-buildFile "$rootDirectory\build\tasks.ps1" `
+	-taskList $Tasks `
+	-framework 4.5.2 `
+	-properties @{
+		"Nuget"=$nuget;
+		"NugetKey"=$NugetKey;
+		"NugetSource"=$NugetSource;
+	};
+	
 if(-not $psake.build_success) { exit 1; }
