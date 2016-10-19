@@ -68,6 +68,9 @@ Task Create-Packages -description "Create all packages." `
 Task Publish-Packages -description "Publish all nuget packages." `
 -depends Init `
 -action {
+	Assert(-not [String]::IsNullOrEmpty($NugetKey)) "'NugetKey' is not assigned a value.";
+	Assert(-not [String]::IsNullOrEmpty($NugetSource)) "'NugetSource' is not assigned a value.";
+
 	foreach($nupkg in (Get-ChildItem $PackageDirectory -Filter "*.nupkg" | Select-Object -ExpandProperty FullName))
 	{
 		Exec { & $nuget push $nupkg $NugetKey -Source $NugetSource; }
