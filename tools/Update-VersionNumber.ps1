@@ -41,24 +41,24 @@ foreach($project in (Get-ChildItem "$rootDirectory\src" -Filter "*.csproj" -Recu
 {
 	$projectDir = (Split-Path $project -Parent);
 	$assemblyInfo = "$projectDir\Properties\AssemblyInfo.cs";
-    $regex = New-Object Regex('(?i)\[assembly:\s*assembly(\w+)?version\s*\("(?<version>(\d+\.){1,2}(\*|\d+)?(\.\d+)?)"\s*\)\s*\]');
+	$regex = New-Object Regex('(?i)\[assembly:\s*assembly(\w+)?version\s*\("(?<version>(\d+\.){1,2}(\*|\d+)?(\.\d+)?)"\s*\)\s*\]');
 
 	if(Test-Path $assemblyInfo -PathType Leaf)
 	{
-        [string]$content = [IO.File]::ReadAllText($assemblyInfo);
-        $matches = $regex.Matches($content);
+		[string]$content = [IO.File]::ReadAllText($assemblyInfo);
+		$matches = $regex.Matches($content);
 
-        for($i = 0; $i -lt $matches.Count; $i++)
-        {
-            $oldVersion = $matches[$i].Groups["version"];
-            
-            $content = $content.Remove($oldVersion.Index, $oldVersion.Length);
-            $content = $content.Insert($oldVersion.Index, $version);
-            Out-File $assemblyInfo -InputObject $content;
-            $matches = $regex.Matches($content);
-        }
+		for($i = 0; $i -lt $matches.Count; $i++)
+		{
+			$oldVersion = $matches[$i].Groups["version"];
+			
+			$content = $content.Remove($oldVersion.Index, $oldVersion.Length);
+			$content = $content.Insert($oldVersion.Index, $version);
+			Out-File $assemblyInfo -InputObject $content;
+			$matches = $regex.Matches($content);
+		}
 
-        & git add $assemblyInfo;
+		& git add $assemblyInfo;
 	}
 }
 
