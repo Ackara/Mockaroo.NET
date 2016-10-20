@@ -1,8 +1,21 @@
 <#
 
-.SYSNOPSIS
-This 
+.SYNOPSIS
+This script increments the version number for all projects within the solution.
 
+.DESCRIPTION
+This script updates the version number for all projects within the solution.
+In addition commit the update to source control, with that said GIT is required.
+
+.INPUTS
+None
+
+.OUTPUTS
+None
+
+Example
+.\Update-VersionNumber.ps1;
+This example increments the solution version number.
 
 #>
 
