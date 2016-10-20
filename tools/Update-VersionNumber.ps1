@@ -19,11 +19,6 @@ This example increments the solution version number.
 
 #>
 
-[CmdletBinding()]
-Param(
-
-)
-
 function GetRevisionNumber()
 {
 	$datePart = [DateTime]::UtcNow.ToString("yyMM");
@@ -42,7 +37,7 @@ function GetRevisionNumber()
 		return 1;
 	}
 }
-Clear-Host;
+
 $major = 1;
 $minor = 2;
 $build = [Convert]::ToInt32([DateTime]::UtcNow.ToString("yyMM"));
