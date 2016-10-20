@@ -72,8 +72,8 @@ foreach($project in (Get-ChildItem "$rootDirectory\src" -Filter "*.csproj" -Recu
 		}
 
 		& git add $assemblyInfo;
+        Write-Host "Updated '$(Split-Path $project -Leaf)' version number to $version." -ForegroundColor Green;
 	}
 }
 
 & git commit --message "Update version number to $version" | Out-Null;
-Write-Host "Updated '$(Split-Path $project -Leaf)' version number to $version." -ForegroundColor Green;
