@@ -4,7 +4,7 @@
 
 |   |Master|Development|
 |---|------|-----------|
-|**Build Status:**|![master](https://gigobyte.visualstudio.com/_apis/public/build/definitions/a2f0cdc6-0844-4f92-94e3-31763d79467f/26/badge)|![development](https://gigobyte.visualstudio.com/_apis/public/build/definitions/a2f0cdc6-0844-4f92-94e3-31763d79467f/27/badge)|
+|**Build Status:**|![master](https://acklann.visualstudio.com/_apis/public/build/definitions/e749c1ef-b004-4b3b-aed0-e32bf4806e73/5/badge)|![development](https://acklann.visualstudio.com/_apis/public/build/definitions/e749c1ef-b004-4b3b-aed0-e32bf4806e73/6/badge)|
 
 ----------
 
@@ -19,7 +19,7 @@ public class Employee
 	public int Id { get; set; }
 	public string Name { get; set; }
 	public string Phone { get; set; } 
-} 
+}
 ```
 
 Now you want to generate a collection Employee objects to do some testing. All you have to do is.
@@ -60,7 +60,7 @@ The results will look like the following.
 }]
 ```
 
-Currently there are over 85+ data types to choose from, check out the [Mockaroo Docs](https://www.mockaroo.com/api/docs) to see the full list. You can also try it at [https://www.mockaroo.com/](https://www.mockaroo.com/) 
+Currently there are over 85+ data types to choose from, check out the Mockaroo [documentation](https://www.mockaroo.com/api/docs) to see the full list. You can also try it at [https://www.mockaroo.com/](https://www.mockaroo.com/) 
 
 ## Available on NuGet
 [![version](https://img.shields.io/nuget/v/Gigobyte.Mockaroo.Core.svg?style=flat-square)](https://www.nuget.org/packages?q=Gigobyte.Mockaroo.Core) [![license](https://img.shields.io/badge/license-MIT%20License-blue.svg)](https://github.com/Ackara/Mockaroo.NET/blob/master/LICENSE)
@@ -68,6 +68,14 @@ Currently there are over 85+ data types to choose from, check out the [Mockaroo 
 ```
 PM> Install-Package Gigobyte.Mockaroo.Core
 ```
+
+# Contributing
+
+### Prequistes:
+* Visual Studio 2015
+* [Mockaroo API Key](https://mockaroo.com/users/sign_up)
+
+**Note:** 
 
 ## Copyright and License
 **Mockaroo.NET** is Copyright © 2015 Ackara and other contributors under the [MIT License](https://opensource.org/licenses/MIT).
