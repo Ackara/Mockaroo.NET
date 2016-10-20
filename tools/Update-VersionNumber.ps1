@@ -26,7 +26,7 @@ Param(
 
 function GetRevisionNumber()
 {
-	$datePart = [DateTime]::UtcNow.ToString("yyMMdd");
+	$datePart = [DateTime]::UtcNow.ToString("yyMM");
 	$revisionFile = [String]::Concat($env:TEMP, "\revision_", $datePart, "_.tmp");
 
 	if(Test-Path $revisionFile -PathType Leaf)
@@ -44,8 +44,8 @@ function GetRevisionNumber()
 }
 Clear-Host;
 $major = 1;
-$minor = 1;
-$build = [Convert]::ToInt32([DateTime]::UtcNow.ToString("MMdd"));
+$minor = 2;
+$build = [Convert]::ToInt32([DateTime]::UtcNow.ToString("yyMM"));
 $revision = GetRevisionNumber;
 $version = "$major.$minor.$build.$revision";
 
@@ -72,7 +72,7 @@ foreach($project in (Get-ChildItem "$rootDirectory\src" -Filter "*.csproj" -Recu
 		}
 
 		& git add $assemblyInfo;
-        Write-Host "Updated '$(Split-Path $project -Leaf)' version number to $version." -ForegroundColor Green;
+		Write-Host "Updated '$(Split-Path $project -Leaf)' version number to $version." -ForegroundColor Green;
 	}
 }
 
