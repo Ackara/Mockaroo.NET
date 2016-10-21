@@ -121,6 +121,7 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>mockaroo_schema.xsd</LastGenOutput>
     </None>
+    <None Include="project.json" />
     <None Include="T4Utilities.tt" />
   </ItemGroup>
   <ItemGroup />
