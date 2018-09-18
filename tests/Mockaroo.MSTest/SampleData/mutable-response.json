@@ -1,0 +1,21 @@
+[
+  {
+    "NumericArray":
+    [
+      1,
+      2,
+      3,
+      5,
+      8,
+      13
+    ],
+    "CharValue": "L",
+    "NumericValue": "125",
+    "DecimaValue": "12.5",
+    "StringValue": "this is some text.",
+    "BooleanValue": true,
+    "DayValue": "Monday",
+    "TimeValue": "3:00:00",
+    "DateValue": "2015-09-10 10:12:01"
+  }
+]
