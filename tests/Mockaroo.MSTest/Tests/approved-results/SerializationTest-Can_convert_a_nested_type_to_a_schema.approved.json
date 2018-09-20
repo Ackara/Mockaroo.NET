@@ -1,0 +1,29 @@
+[
+  {
+    "name": "NumericValue",
+    "type": "Number",
+    "percentageBlank": "0",
+    "formula": "",
+    "min": "0",
+    "max": "65535",
+    "decimals": "0"
+  },
+  {
+    "name": "Recursive.NumericValue",
+    "type": "Number",
+    "percentageBlank": "0",
+    "formula": "",
+    "min": "0",
+    "max": "65535",
+    "decimals": "0"
+  },
+  {
+    "name": "Recursive.Recursive.NumericValue",
+    "type": "Number",
+    "percentageBlank": "0",
+    "formula": "",
+    "min": "0",
+    "max": "65535",
+    "decimals": "0"
+  }
+]

@@ -4,9 +4,24 @@
     /// Base class for <see cref="IField"/>.
     /// </summary>
     /// <seealso cref="Acklann.Mockaroo.Fields.IField"/>
-    [System.Diagnostics.DebuggerDisplay("{ToDebuggerView()}")]
+    [System.Diagnostics.DebuggerDisplay("{ToDebuggerDisplay()}")]
     public abstract class FieldBase : IField
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FieldBase"/> class.
+        /// </summary>
+        protected FieldBase() : this(string.Empty)
+        { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FieldBase"/> class.
+        /// </summary>
+        /// <param name="name">The name of the field.</param>
+        protected FieldBase(string name)
+        {
+            Name = name;
+        }
+
         /// <summary>
         /// Gets or sets the identifier of this field.
         /// </summary>
@@ -26,7 +41,7 @@
         public int BlankPercentage
         {
             get { return _blankPercentage; }
-            set { _blankPercentage = value.Between(minInclusive: 0, maxInclusive: 99); }
+            set { _blankPercentage = Between(value, minInclusive: 0, maxInclusive: 99); }
         }
 
         /// <summary>
@@ -44,7 +59,14 @@
             return $"{{\"name\":\"{Name}\",\"type\":\"{Type.ToMockarooTypeName()}\",\"percentageBlank\":\"{_blankPercentage}\",\"formula\":\"{Formula}\"}}";
         }
 
-        internal string BaseJson()
+        internal static int Between(int value, int minInclusive, int maxInclusive)
+        {
+            if (value >= maxInclusive) return maxInclusive;
+            else if (value <= minInclusive) return minInclusive;
+            else return value;
+        }
+
+        protected internal string BaseJson()
         {
             return $"{{\"name\":\"{Name}\",\"type\":\"{Type.ToMockarooTypeName()}\",\"percentageBlank\":\"{_blankPercentage}\",\"formula\":\"{Formula}\"";
         }
@@ -53,10 +75,10 @@
         /// Get the string value that will represent this instance in the debugger window.
         /// </summary>
         /// <returns></returns>
-        protected virtual string ToDebuggerView()
+        private string ToDebuggerDisplay()
         {
-            string name = (string.IsNullOrEmpty(Name) ? "<Empty>" : Name);
-            return $"{{{name}: {Type.ToMockarooTypeName()}}}";
+            string name = (string.IsNullOrEmpty(Name) ? "[Empty]" : Name);
+            return $"{name}: <{Type}>";
         }
 
         #region Private Members

@@ -9,7 +9,7 @@
         public int Min
         {
             get { return _min; }
-            set { _min = value.Between(0, 100); }
+            set { _min = Between(value, 0, 100); }
         }
 
         /// <summary>
@@ -19,7 +19,7 @@
         public int Max
         {
             get { return _max; }
-            set { _max = value.Between(0, 100); }
+            set { _max = Between(value, 0, 100); }
         }
 
         /// <summary>
@@ -28,7 +28,7 @@
         /// <returns>A json representation of the instance.</returns>
         public override string ToJson()
         {
-            return $"{base.BaseJson()},\"minItems\":{Min},\"maxItems\":{Max}}}";
+            return $"{BaseJson()},\"minItems\":{Min},\"maxItems\":{Max}}}";
         }
 
         #region Private Members

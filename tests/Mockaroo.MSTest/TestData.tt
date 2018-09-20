@@ -1,0 +1,81 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.IO" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ assembly name="System.Text.RegularExpressions" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Xml" #>
+<#@ import namespace="System.Xml.Linq" #>
+<#@ import namespace="System.Xml.XPath" #>
+<#@ import namespace="System.Globalization" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ output extension=".cs" #>
+using System;
+using System.IO;
+using System.Linq;
+
+namespace <#= GetMSBuildProperty("//RootNamespace") #>
+{
+	public static partial class TestData
+	{
+		public const string FOLDER_NAME = "<#= FolderName #>";
+
+		public static string DirectoryName => Path.Combine(AppDomain.CurrentDomain.BaseDirectory, FOLDER_NAME);
+        
+		public static FileInfo GetFile(string fileName)
+        {
+            fileName = Path.GetFileName(fileName);
+            string searchPattern = $"*{Path.GetExtension(fileName)}";
+
+            string appDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, FOLDER_NAME);
+            return new DirectoryInfo(appDirectory).EnumerateFiles(searchPattern, SearchOption.AllDirectories)
+                .First(x => x.Name.Equals(fileName, StringComparison.CurrentCultureIgnoreCase));
+        }
+
+		<# GenerateMethods(); #>
+	}
+}
+<#+
+string FolderName = "test-data";
+
+void GenerateMethods()
+{
+	var directory = Path.Combine(Host.ResolveAssemblyReference("$(ProjectDir)"), FolderName);
+
+	if (Directory.Exists(directory))
+	{
+		PushIndent("\t\t");
+		foreach (var file in new DirectoryInfo(directory).GetFiles("*", SearchOption.AllDirectories))
+		{
+			string relativeDir = file.DirectoryName.Replace(directory, "").Trim('\\', ' ', '/');
+			string fileNameWithoutExtension = ToPascalCase(Path.GetFileNameWithoutExtension(file.Name));
+			string extension = Path.GetExtension(file.Name).ToUpper().Trim('.');
+			string path = Path.Combine(relativeDir, file.Name);
+
+			WriteLine($"public static FileInfo Get{fileNameWithoutExtension}() => GetFile(@\"{path}\");");
+			WriteLine("");
+		}
+		PopIndent();
+	}
+}
+
+public string GetMSBuildProperty(string xpath)
+{
+	XNamespace ns = "http://schemas.microsoft.com/developer/msbuild/2003";
+	var nsManager = new XmlNamespaceManager(new NameTable());
+	nsManager.AddNamespace("ms", ns.NamespaceName);
+	var doc = XDocument.Load(Directory.EnumerateFiles(Host.ResolveAssemblyReference("$(ProjectDir)"), "*.csproj").First());
+
+	return  doc.XPathSelectElement(xpath, nsManager)?.Value;
+}
+
+public string ToPascalCase(string text)
+{
+	text = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(text);
+	return System.Text.RegularExpressions.Regex.Replace(text, @"[- _]", "");
+}
+
+#>

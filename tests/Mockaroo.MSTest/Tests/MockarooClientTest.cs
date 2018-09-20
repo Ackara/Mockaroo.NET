@@ -1,156 +1,74 @@
-﻿using Acklann.Mockaroo;
-using Acklann.Mockaroo.Exceptions;
+﻿using Acklann.Diffa.Reporters;
+using Acklann.Mockaroo.Fakes;
 using Acklann.Mockaroo.Fields;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Shouldly;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
-using Acklann.Mockaroo.Constants;
 
-namespace Acklann.Mockaroo.IntegrationTest
+namespace Acklann.Mockaroo.Tests
 {
     [TestClass]
-    //[DeploymentItem(KnownFile.ApiKey)]
-    //[DeploymentItem(Data.DirectoryName)]
+    [Use(typeof(NotepadPlusPlusReporter))]
     public class MockarooClientTest
     {
-        private const string RecordsProperty = "records";
-
-        public TestContext TestContext { get; set; }
-
         [TestMethod]
-        [TestProperty(RecordsProperty, "2")]
-        public async Task FetchDataAsync_should_export_data_from_the_mockaroo_api()
+        public void Can_fetch_raw_data_from_server()
         {
             // Arrange
-            var apiKey = ApiKey.GetValue();
-            var schema = CreateSimpleSchema();
-            int records = Convert.ToInt32(TestContext.Properties[RecordsProperty] ?? 1);
-            var endpoint = Acklann.Mockaroo.Mockaroo.Endpoint(apiKey, records, Format.JSON);
+            var limit = 2;
+            var apiKey = Config.GetApikey();
+            var sut = new MockarooClient(apiKey);
+            var fields = GetAllFieldTypes().ToArray();
+
+            var schema = new Schema();
+            schema.AddRange(fields);
 
             // Act
-            var data = await MockarooClient.FetchDataAsync(endpoint, schema);
-            var json = JArray.Parse(Encoding.Default.GetString(data));
+            var data = sut.FetchDataAsync(schema, limit, Format.JSON).Result;
+            var result = JArray.Parse(Encoding.UTF8.GetString(data));
 
             // Assert
-            Assert.AreEqual(records, json.Count);
-        }
-
-        [Ignore()]
-        [TestMethod]
-        [TestProperty(RecordsProperty, "1")]
-        [DataSource(DDTSettings.MockarooTypes)]
-        /* This test will consume 117/200 of your daily request. Use with caution */
-        public void FetchDataAsync_should_export_a_record_for_each_of_the_mockaroo_data_types()
-        {
-            //// Arrange
-            //var records = Convert.ToInt32(TestContext.Properties[RecordsProperty] ?? 1);
-            //var endpoint = Gigobyte.Mockaroo.Mockaroo.Endpoint(ApiKey.GetValue(), records, Format.JSON);
-
-            //var dataType = (DataType)Enum.Parse(typeof(DataType), Convert.ToString(TestContext.DataRow[0]));
-            //var field = new FieldFactory().CreateInstance(dataType);
-            //field.Name = "name";
-
-            //// Act
-            //TestContext.WriteLine("Context: {0}", dataType);
-            //var data = MockarooClient.FetchDataAsync(endpoint, new Schema(field)).Result;
-            //var json = JArray.Parse(Encoding.Default.GetString(data));
-
-            //// Assert
-            //json.Count.ShouldBeGreaterThanOrEqualTo(1);
+            result.Count.ShouldBe(limit);
+            Console.WriteLine(result.ToString());
         }
 
         [TestMethod]
-        [TestProperty(RecordsProperty, "1")]
-        public void FetchDataAsync_should_export_a_record_containing_all_mockaroo_data_types()
+        public void Can_return_data_from_server_as_objects()
         {
             // Arrange
-            var records = Convert.ToInt32(TestContext.Properties[RecordsProperty] ?? 1);
-            var endpoint = Acklann.Mockaroo.Mockaroo.Endpoint(ApiKey.GetValue(), records, Format.JSON);
-
-            var schema = new Schema(GetAllFieldTypes());
+            var limit = 2;
+            var sut = new MockarooClient(Config.GetApikey());
 
             // Act
-
-            var data = MockarooClient.FetchDataAsync(endpoint, schema).Result;
-            var json = JArray.Parse(Encoding.Default.GetString(data));
+            var results = sut.FetchDataAsync<CompositeObject>(limit).Result;
+            Console.WriteLine(JsonConvert.SerializeObject(results));
 
             // Assert
-            json.Count.ShouldBeGreaterThanOrEqualTo(1);
+            results.Length.ShouldBe(limit);
+            results.ShouldAllBe(x => x.Id != 0);
         }
 
         [TestMethod]
-        [TestProperty(RecordsProperty, "2")]
-        public void FetchData_should_export_data_from_mockaroo_and_deserialize_it_into_a_object()
+        public void Should_throw_exception_when_schema_is_not_well_formed()
         {
-            // Arrange
-            var sut = new MockarooClient(ApiKey.GetValue());
-            var records = Convert.ToInt32(TestContext.Properties[RecordsProperty] ?? 1);
-
-            // Act
-            var results = sut.FetchData<SimpleObject>(records);
-
-            // Assert
-            results.ShouldNotBeEmpty();
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(MockarooException))]
-        public async Task FetchDataAsync_should_thrown_an_exception_when_an_error_occurs()
-        {
-            // Arrange
-            var schema = CreateSimpleSchema();
-            var endpoint = Acklann.Mockaroo.Mockaroo.Endpoint(ApiKey.GetValue(), 1, Format.JSON);
-
-            // Act
-            schema[0].Name = null;
-            try
+            Should.Throw<Exception>(() =>
             {
-                var data = await MockarooClient.FetchDataAsync(endpoint, schema);
-                Assert.Fail("'{0}' was not thrown.", nameof(MockarooException));
-            }
-            catch (MockarooException ex) { TestContext.WriteLine("message: {0}", ex.Message); throw; }
-        }
+                var schema = new Schema
+                {
+                    new RowNumberField("Id"),
+                    new RowNumberField("Id")
+                };
 
-        #region Private Members
+                var sut = new MockarooClient(Config.GetApikey());
 
-        public static Schema CreateSimpleSchema()
-        {
-            return new Schema(
-                 new NumberField()
-                 {
-                     Name = nameof(SimpleObject.IntegerValue),
-                     Min = 3,
-                     Max = 1000
-                 },
-                new NumberField()
-                {
-                    Name = nameof(SimpleObject.DecimalValue),
-                    Min = 10,
-                    Max = 100
-                },
-                new WordsField()
-                {
-                    Name = nameof(SimpleObject.StringValue),
-                    Min = 3,
-                    Max = 5
-                },
-
-                new CustomListField()
-                {
-                    Name = nameof(SimpleObject.CharValue),
-                    Values = new string[] { "a", "b", "c" }
-                },
-                new DateField()
-                {
-                    Name = nameof(SimpleObject.DateValue),
-                    Min = new DateTime(2000, 01, 01),
-                    Max = new DateTime(2010, 01, 01)
-                });
+                var result = sut.FetchDataAsync(schema).Result;
+            });
         }
 
         internal static IEnumerable<IField> GetAllFieldTypes()
@@ -166,22 +84,5 @@ namespace Acklann.Mockaroo.IntegrationTest
                 }
             }
         }
-
-        public class SimpleObject
-        {
-            public int IntegerValue { get; set; }
-
-            public float DecimalValue { get; set; }
-
-            public char CharValue { get; set; }
-
-            public string StringValue { get; set; }
-
-            public DateTime DateValue { get; set; }
-
-            public DayOfWeek Day { get; set; }
-        }
-
-        #endregion Private Members
     }
 }

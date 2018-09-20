@@ -1,0 +1,109 @@
+﻿[
+  {
+    "Capacity": -217713293,
+    "BasicObjectList": [
+      {
+        "BasicObject": {
+          "NumericValue": 857921939.13,
+          "StringValue": "est et tempus semper est quam pharetra magna ac consequat metus sapien",
+          "BooleanValue": false,
+          "DayValue": 6,
+          "TimeValue": "02:07:42",
+          "DateValue": "5481-04-12T04:57:00-04:00",
+          "StringCollection": [
+            {
+              "String": "amet lobortis sapien sapien non mi integer ac neque duis bibendum morbi non quam"
+            },
+            {
+              "String": "primis in faucibus orci luctus et ultrices posuere cubilia curae donec pharetra magna vestibulum aliquet ultrices erat tortor"
+            }
+          ],
+          "NumericArray": [
+            {
+              "Int32": 1421200696
+            }
+          ],
+          "CharValue": "4"
+        }
+      },
+      {
+        "BasicObject":
+        {
+          "NumericValue": -635417574.7,
+          "StringValue": "massa quis augue luctus tincidunt nulla mollis molestie lorem quisque ut erat curabitur gravida nisi",
+          "BooleanValue": true,
+          "DayValue": 6,
+          "TimeValue": "22:02:44",
+          "DateValue": "8705-08-16T09:09:28-04:00",
+          "StringCollection":
+          [
+            {
+              "String": "erat quisque erat eros viverra eget congue eget semper rutrum nulla nunc purus"
+            }
+          ],
+          "NumericArray":
+          [
+            {
+              "Int32": -247891574
+            },
+            {
+              "Int32": 1058400830
+            },
+            {
+              "Int32": 599663202
+            },
+            {
+              "Int32": 429557393
+            },
+            {
+              "Int32": -2019446362
+            }
+          ],
+          "CharValue": "h"
+        }
+      },
+      {
+        "BasicObject": {
+          "NumericValue": -610572594.13,
+          "StringValue": "curae nulla dapibus dolor vel est donec odio justo sollicitudin ut",
+          "BooleanValue": false,
+          "DayValue": 1,
+          "TimeValue": "14:32:09",
+          "DateValue": "4773-03-14T04:04:00-04:00",
+          "StringCollection": [
+            {
+              "String": "quis odio consequat varius integer ac leo pellentesque ultrices mattis"
+            },
+            {
+              "String": "ante vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam nulla integer"
+            },
+            {
+              "String": "eu magna vulputate luctus cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus"
+            },
+            {
+              "String": "augue vel accumsan tellus nisi eu orci mauris lacinia sapien quis libero nullam sit amet turpis elementum"
+            },
+            {
+              "String": "accumsan tortor quis turpis sed ante vivamus tortor duis mattis egestas metus"
+            }
+          ],
+          "NumericArray": [
+            {
+              "Int32": -703032924
+            },
+            {
+              "Int32": -387900220
+            },
+            {
+              "Int32": -1709716839
+            },
+            {
+              "Int32": -107288774
+            }
+          ],
+          "CharValue": "d"
+        }
+      }
+    ]
+  }
+]

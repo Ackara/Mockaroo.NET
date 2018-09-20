@@ -1,0 +1,13 @@
+[
+  {
+    "NumericValue": 111,
+    "Recursive":
+    {
+      "NumericValue": 222,
+      "Recursive":
+      {
+        "NumericValue": 333
+      }
+    }
+  }
+]

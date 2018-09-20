@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Id",
+    "type": "Number",
+    "percentageBlank": "0",
+    "formula": "",
+    "min": "-2147483648",
+    "max": "2147483647",
+    "decimals": "0"
+  },
+  {
+    "name": "Name",
+    "type": "Words",
+    "percentageBlank": "0",
+    "formula": "",
+    "min": "10",
+    "max": "20"
+  }
+]

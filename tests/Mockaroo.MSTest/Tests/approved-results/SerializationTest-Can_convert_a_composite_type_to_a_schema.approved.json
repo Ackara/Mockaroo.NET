@@ -1,0 +1,299 @@
+[
+  {
+    "name": "Id",
+    "type": "Number",
+    "percentageBlank": "0",
+    "formula": "",
+    "min": "0",
+    "max": "65535",
+    "decimals": "0"
+  },
+  {
+    "name": "Collection1",
+    "type": "JSON Array",
+    "percentageBlank": "0",
+    "formula": "",
+    "minItems": 1,
+    "maxItems": 5
+  },
+  {
+    "name": "Collection1.BasicObject.NumericValue",
+    "type": "Number",
+    "percentageBlank": "0",
+    "formula": "",
+    "min": "0",
+    "max": "65535",
+    "decimals": "2"
+  },
+  {
+    "name": "Collection1.BasicObject.StringValue",
+    "type": "Words",
+    "percentageBlank": "0",
+    "formula": "",
+    "min": "10",
+    "max": "20"
+  },
+  {
+    "name": "Collection1.BasicObject.BooleanValue",
+    "type": "Boolean",
+    "percentageBlank": "0",
+    "formula": ""
+  },
+  {
+    "name": "Collection1.BasicObject.DayValue",
+    "type": "Custom List",
+    "percentageBlank": "0",
+    "formula": "",
+    "selectionStyle": "random",
+    "values": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6"
+    ]
+  },
+  {
+    "name": "Collection1.BasicObject.TimeValue",
+    "type": "Time",
+    "percentageBlank": "0",
+    "formula": ""
+  },
+  {
+    "name": "Collection1.BasicObject.DateValue",
+    "type": "Date",
+    "percentageBlank": "0",
+    "formula": "",
+    "min": "01/01/0001",
+    "max": "12/31/9999"
+  },
+  {
+    "name": "Collection1.BasicObject.StringCollection",
+    "type": "JSON Array",
+    "percentageBlank": "0",
+    "formula": "",
+    "minItems": 1,
+    "maxItems": 5
+  },
+  {
+    "name": "Collection1.BasicObject.StringCollection.String",
+    "type": "Words",
+    "percentageBlank": "0",
+    "formula": "",
+    "min": "10",
+    "max": "20"
+  },
+  {
+    "name": "Collection1.BasicObject.NumericArray",
+    "type": "JSON Array",
+    "percentageBlank": "0",
+    "formula": "",
+    "minItems": 1,
+    "maxItems": 5
+  },
+  {
+    "name": "Collection1.BasicObject.NumericArray.Int32",
+    "type": "Number",
+    "percentageBlank": "0",
+    "formula": "",
+    "min": "0",
+    "max": "65535",
+    "decimals": "0"
+  },
+  {
+    "name": "Collection1.BasicObject.CharValue",
+    "type": "Custom List",
+    "percentageBlank": "0",
+    "formula": "",
+    "selectionStyle": "random",
+    "values": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "f",
+      "g",
+      "h",
+      "i",
+      "j",
+      "k",
+      "l",
+      "m",
+      "n",
+      "o",
+      "p",
+      "q",
+      "r",
+      "s",
+      "t",
+      "u",
+      "v",
+      "w",
+      "x",
+      "y",
+      "z",
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9"
+    ]
+  },
+  {
+    "name": "Basic.NumericValue",
+    "type": "Number",
+    "percentageBlank": "0",
+    "formula": "",
+    "min": "0",
+    "max": "65535",
+    "decimals": "2"
+  },
+  {
+    "name": "Basic.StringValue",
+    "type": "Words",
+    "percentageBlank": "0",
+    "formula": "",
+    "min": "10",
+    "max": "20"
+  },
+  {
+    "name": "Basic.BooleanValue",
+    "type": "Boolean",
+    "percentageBlank": "0",
+    "formula": ""
+  },
+  {
+    "name": "Basic.DayValue",
+    "type": "Custom List",
+    "percentageBlank": "0",
+    "formula": "",
+    "selectionStyle": "random",
+    "values": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6"
+    ]
+  },
+  {
+    "name": "Basic.TimeValue",
+    "type": "Time",
+    "percentageBlank": "0",
+    "formula": ""
+  },
+  {
+    "name": "Basic.DateValue",
+    "type": "Date",
+    "percentageBlank": "0",
+    "formula": "",
+    "min": "01/01/0001",
+    "max": "12/31/9999"
+  },
+  {
+    "name": "Basic.StringCollection",
+    "type": "JSON Array",
+    "percentageBlank": "0",
+    "formula": "",
+    "minItems": 1,
+    "maxItems": 5
+  },
+  {
+    "name": "Basic.StringCollection.String",
+    "type": "Words",
+    "percentageBlank": "0",
+    "formula": "",
+    "min": "10",
+    "max": "20"
+  },
+  {
+    "name": "Basic.NumericArray",
+    "type": "JSON Array",
+    "percentageBlank": "0",
+    "formula": "",
+    "minItems": 1,
+    "maxItems": 5
+  },
+  {
+    "name": "Basic.NumericArray.Int32",
+    "type": "Number",
+    "percentageBlank": "0",
+    "formula": "",
+    "min": "0",
+    "max": "65535",
+    "decimals": "0"
+  },
+  {
+    "name": "Basic.CharValue",
+    "type": "Custom List",
+    "percentageBlank": "0",
+    "formula": "",
+    "selectionStyle": "random",
+    "values": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "f",
+      "g",
+      "h",
+      "i",
+      "j",
+      "k",
+      "l",
+      "m",
+      "n",
+      "o",
+      "p",
+      "q",
+      "r",
+      "s",
+      "t",
+      "u",
+      "v",
+      "w",
+      "x",
+      "y",
+      "z",
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9"
+    ]
+  },
+  {
+    "name": "Nested.NumericValue",
+    "type": "Number",
+    "percentageBlank": "0",
+    "formula": "",
+    "min": "0",
+    "max": "65535",
+    "decimals": "0"
+  },
+  {
+    "name": "Nested.Recursive.NumericValue",
+    "type": "Number",
+    "percentageBlank": "0",
+    "formula": "",
+    "min": "0",
+    "max": "65535",
+    "decimals": "0"
+  }
+]

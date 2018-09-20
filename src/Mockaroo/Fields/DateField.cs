@@ -5,6 +5,8 @@ namespace Acklann.Mockaroo.Fields
 {
     public partial class DateField
     {
+        public static readonly string DateFormat = "MM/dd/yyyy";
+
         /// <summary>
         /// Gets or sets the minimum date.
         /// </summary>
@@ -24,7 +26,7 @@ namespace Acklann.Mockaroo.Fields
         public override string ToJson()
         {
             string firstHalf = base.ToJson().TrimEnd('}');
-            return $"{firstHalf},\"min\":\"{Min.Date.ToString(Mockaroo.DateFormat, CultureInfo.InvariantCulture)}\",\"max\":\"{Max.ToString(Mockaroo.DateFormat, CultureInfo.InvariantCulture)}\"}}";
+            return $"{firstHalf},\"min\":\"{Min.Date.ToString(DateFormat, CultureInfo.InvariantCulture)}\",\"max\":\"{Max.ToString(DateFormat, CultureInfo.InvariantCulture)}\"}}";
         }
     }
 }

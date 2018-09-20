@@ -1,0 +1,176 @@
+[
+  {
+    "Id": 123681059,
+    "Collection1":
+    [
+      {
+        "BasicObject":
+        {
+          "NumericValue": 1903022882.42,
+          "StringValue": "nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae mauris viverra diam vitae quam suspendisse",
+          "BooleanValue": false,
+          "DayValue": 2,
+          "TimeValue": "13:47:00",
+          "DateValue": "9947-11-06T03:30:37-04:00",
+          "StringCollection":
+          [
+            {
+              "String": "nisl aenean lectus pellentesque eget nunc donec quis orci eget orci vehicula"
+            },
+            {
+              "String": "odio odio elementum eu interdum eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla"
+            },
+            {
+              "String": "morbi non quam nec dui luctus rutrum nulla tellus in sagittis"
+            },
+            {
+              "String": "a libero nam dui proin leo odio porttitor id consequat in consequat ut nulla sed accumsan felis"
+            }
+          ],
+          "NumericArray":
+          [
+            {
+              "Int32": -735207150
+            }
+          ],
+          "CharValue": "i"
+        }
+      },
+      {
+        "BasicObject":
+        {
+          "NumericValue": -1640814506.47,
+          "StringValue": "volutpat eleifend donec ut dolor morbi vel lectus in quam fringilla rhoncus mauris enim",
+          "BooleanValue": false,
+          "DayValue": 1,
+          "TimeValue": "06:56:53",
+          "DateValue": "5212-08-10T03:47:48-04:00",
+          "StringCollection":
+          [
+            {
+              "String": "curae mauris viverra diam vitae quam suspendisse potenti nullam porttitor"
+            },
+            {
+              "String": "elit proin interdum mauris non ligula pellentesque ultrices phasellus id sapien in sapien"
+            },
+            {
+              "String": "enim sit amet nunc viverra dapibus nulla suscipit ligula in lacus curabitur at ipsum ac tellus"
+            },
+            {
+              "String": "justo aliquam quis turpis eget elit sodales scelerisque mauris sit amet eros suspendisse accumsan"
+            },
+            {
+              "String": "tempus vel pede morbi porttitor lorem id ligula suspendisse ornare"
+            }
+          ],
+          "NumericArray":
+          [
+            {
+              "Int32": -668067604
+            }
+          ],
+          "CharValue": "9"
+        }
+      },
+      {
+        "BasicObject":
+        {
+          "NumericValue": 333964844.7,
+          "StringValue": "blandit mi in porttitor pede justo eu massa donec dapibus duis at velit eu est congue elementum in",
+          "BooleanValue": false,
+          "DayValue": 1,
+          "TimeValue": "21:40:31",
+          "DateValue": "1652-06-17T20:20:17-04:00",
+          "StringCollection":
+          [
+            {
+              "String": "consequat lectus in est risus auctor sed tristique in tempus sit amet sem fusce consequat"
+            },
+            {
+              "String": "sapien sapien non mi integer ac neque duis bibendum morbi non quam nec dui luctus rutrum nulla"
+            },
+            {
+              "String": "molestie sed justo pellentesque viverra pede ac diam cras pellentesque volutpat dui maecenas tristique"
+            },
+            {
+              "String": "vel est donec odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce"
+            },
+            {
+              "String": "magna bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt eu felis fusce"
+            }
+          ],
+          "NumericArray":
+          [
+            {
+              "Int32": 1918275974
+            },
+            {
+              "Int32": -252491716
+            },
+            {
+              "Int32": -1932544551
+            },
+            {
+              "Int32": 1777993288
+            }
+          ],
+          "CharValue": "6"
+        }
+      }
+    ],
+    "Basic":
+    {
+      "NumericValue": -1139001183.7,
+      "StringValue": "odio consequat varius integer ac leo pellentesque ultrices mattis odio donec",
+      "BooleanValue": false,
+      "DayValue": 6,
+      "TimeValue": "14:00:32",
+      "DateValue": "4599-07-07T17:26:25-04:00",
+      "StringCollection":
+      [
+        {
+          "String": "tortor id nulla ultrices aliquet maecenas leo odio condimentum id luctus nec molestie"
+        },
+        {
+          "String": "justo morbi ut odio cras mi pede malesuada in imperdiet et commodo vulputate justo in blandit ultrices enim"
+        },
+        {
+          "String": "sem duis aliquam convallis nunc proin at turpis a pede posuere nonummy integer non velit donec diam neque vestibulum eget"
+        },
+        {
+          "String": "mauris ullamcorper purus sit amet nulla quisque arcu libero rutrum"
+        },
+        {
+          "String": "habitasse platea dictumst etiam faucibus cursus urna ut tellus nulla ut erat id mauris vulputate elementum"
+        }
+      ],
+      "NumericArray":
+      [
+        {
+          "Int32": -498182840
+        },
+        {
+          "Int32": -1726060122
+        },
+        {
+          "Int32": 442129783
+        },
+        {
+          "Int32": 1220177049
+        },
+        {
+          "Int32": -1345620788
+        }
+      ],
+      "CharValue": "k"
+    },
+    "Nested":
+    {
+      "NumericValue": -2006338947,
+      "Recursive":
+      {
+        "NumericValue": 880745439
+      }
+    }
+  }
+]

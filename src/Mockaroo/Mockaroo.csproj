@@ -27,7 +27,7 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Update="Fields\Factory\FieldFactoryT4.cs">
+    <Compile Update="Fields\FieldFactoryT4.cs">
       <DependentUpon>FieldFactoryT4.tt</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -47,7 +47,7 @@
       <LastGenOutput>BaseTypes.cs</LastGenOutput>
       <Generator>TextTemplatingFileGenerator</Generator>
     </None>
-    <None Update="Fields\Factory\FieldFactoryT4.tt">
+    <None Update="Fields\FieldFactoryT4.tt">
       <LastGenOutput>FieldFactoryT4.cs</LastGenOutput>
       <Generator>TextTemplatingFileGenerator</Generator>
     </None>

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
@@ -10,20 +10,14 @@
     <RootNamespace>Acklann.Mockaroo</RootNamespace>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Remove="Tests\approved-results\**" />
     <EmbeddedResource Remove="Tests\approved-results\**" />
     <None Remove="Tests\approved-results\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="SampleData\mockaroo_type_list.tt" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="SampleData\mockaroo_type_list.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -40,26 +34,23 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="SampleData.tt">
+    <None Update="test-data\basic-response.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="test-data\composite-response.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="test-data\immutable-response.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="test-data\nested-response.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SampleData.cs</LastGenOutput>
+      <LastGenOutput>TestData.cs</LastGenOutput>
     </None>
-    <None Update="SampleData\basic_schema.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SampleData\basic_server_response.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SampleData\complex_server_response.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="SampleData\mockaroo_type_list.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <DependentUpon>mockaroo_type_list.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </None>
-    <None Update="SampleData\more_complex_server_response.json">
+    <None Update="test-data\collection-response.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="your_mockaroo_key.txt">
@@ -72,10 +63,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="SampleData.cs">
+    <Compile Update="TestData.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>SampleData.tt</DependentUpon>
+      <DependentUpon>TestData.tt</DependentUpon>
     </Compile>
   </ItemGroup>
 

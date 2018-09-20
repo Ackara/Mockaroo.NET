@@ -1,0 +1,29 @@
+﻿<#@ include file="../T4Helper.ttinclude" #>
+<#@ output extension=".cs" #>
+namespace <#= GetMSBuildProperty("//RootNamespace") #>.Fields
+{
+	public partial class FieldFactory
+	{
+		/// <summary>
+		/// Creates a new <see cref="IField"/> instance.
+		/// </summary>
+		public static IField CreateInstance(<#= EnumTypeName #> dataType)
+		{
+			switch(dataType)
+			{
+				default:
+					throw new System.ArgumentException($"'{dataType}' is not a unknown data type.");
+
+<# 
+	PushIndent("\t\t\t\t");
+	foreach (var type in FetchDataTypes())
+	{
+		WriteLine("case {0}.{1}: ", EnumTypeName, ToEnumName(type));
+		WriteLine("\treturn new {0}Field();", ToEnumName(type));
+	}
+	PopIndent();
+#>
+			}
+		}
+	}
+}

@@ -1,14 +1,9 @@
 ﻿using Acklann.Mockaroo.Fields;
-using Acklann.Mockaroo.Fields.Factory;
-using Acklann.Mockaroo.Serialization;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq.Expressions;
+using System.Text;
 using System.Text.RegularExpressions;
-using System.Xml.Serialization;
 
 namespace Acklann.Mockaroo
 {
@@ -17,94 +12,33 @@ namespace Acklann.Mockaroo
     /// </summary>
     /// <seealso cref="System.Collections.Generic.List{IField}"/>
     /// <seealso cref="ISerializable"/>
-    public class Schema : List<IField>, ISerializable
+    public class Schema : List<IField>
     {
-        #region Static Members
-
-        /// <summary>
-        /// Convert the string representation of a <see cref="Schema"/> object into its <see
-        /// cref="Schema"/> equivalent.
-        /// </summary>
-        /// <param name="json">The json string.</param>
-        /// <returns>A <see cref="Schema"/> instance.</returns>
-        public static Schema Parse(string json)
-        {
-            return Load(new MemoryStream(System.Text.Encoding.UTF8.GetBytes(json)));
-        }
-
-        /// <summary>
-        /// Creates a new <see cref="Schema"/> instance from the specified <see cref="Stream"/>.
-        /// </summary>
-        /// <param name="stream">The stream.</param>
-        /// <returns>A <see cref="Schema"/> instance.</returns>
-        public static Schema Load(Stream stream)
-        {
-            using (stream)
-            {
-                var schema = new Schema();
-                schema.ReadBytes(stream);
-                return schema;
-            }
-        }
-
-        /// <summary>
-        /// Gets all list of <see cref="IField"/> objects that represents the specified <see
-        /// cref="Type"/> properties.
-        /// </summary>
-        /// <param name="type">The type.</param>
-        /// <returns>A list of <see cref="IField"/> based of the specified type.</returns>
-        public static IEnumerable<IField> GetFields(Type type)
-        {
-            return new ClrSchemaConverter().Convert(type);
-        }
-
-        #endregion Static Members
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Schema"/> class.
         /// </summary>
-        public Schema() : this(new FieldFactory(), new IField[0])
-        {
-        }
+        public Schema()
+        { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Schema"/> class.
         /// </summary>
         /// <param name="type">The type.</param>
-        public Schema(Type type) : this(new FieldFactory(), GetFields(type))
+        public Schema(Type type, int depth = DEFAULT_DEPTH)
         {
+            AddRange(Serialization.MockarooConvert.ConvertToSchema(type, 2));
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Schema"/> class.
         /// </summary>
         /// <param name="fields">The fields.</param>
-        public Schema(params IField[] fields) : this(new FieldFactory(), fields)
+        public Schema(params IField[] fields)
         {
+            base.AddRange(fields);
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Schema"/> class.
-        /// </summary>
-        /// <param name="fields">The fields.</param>
-        public Schema(IEnumerable<IField> fields) : this(null, fields)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Schema"/> class.
-        /// </summary>
-        /// <param name="factory">The factory.</param>
-        /// <param name="fields">The fields.</param>
-        public Schema(IFieldFactory<DataType> factory, IEnumerable<IField> fields) : base(fields)
-        {
-            Factory = factory;
-        }
-
-        /// <summary>
-        /// An instance of a factory object used to create <see cref="IField"/> objects.
-        /// </summary>
-        protected readonly IFieldFactory<DataType> Factory;
+        internal const int DEFAULT_DEPTH = 2;
 
         /// <summary>
         /// Replace the <see cref="IField"/> object within this instance with a <see cref="IField"/>
@@ -114,7 +48,7 @@ namespace Acklann.Mockaroo
         /// <param name="dataType">Type of the data.</param>
         public void Assign(string fieldName, DataType dataType)
         {
-            Assign(fieldName, Factory.CreateInstance(dataType));
+            Assign(fieldName, FieldFactory.CreateInstance(dataType));
         }
 
         /// <summary>
@@ -150,65 +84,26 @@ namespace Acklann.Mockaroo
         }
 
         /// <summary>
-        /// Serializes this instance according to the https://mockaroo.com json schema specification.
+        /// Returns a <see cref="System.String" /> that represents this instance.
         /// </summary>
-        /// <returns>A System.Byte[].</returns>
-        public byte[] ToBytes()
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
+        public override string ToString()
         {
-            using (var memory = new MemoryStream())
+            var json = new StringBuilder();
+
+            json.AppendLine("[");
+            for (int i = 0; i < Count; i++)
             {
-                using (var writer = new StreamWriter(memory))
-                {
-                    var separator = string.Empty;
-                    writer.Write('[');
-                    for (int i = 0; i < Count; i++)
-                    {
-                        separator = (i < (Count - 1) ? "," : string.Empty);
-                        writer.Write(string.Format("{0}{1}", base[i].ToJson(), separator));
-                    }
-                    writer.Write(']');
-                    writer.Flush();
-
-                    return memory.ToArray();
-                }
+                json.Append("  ");
+                json.Append(base[i].ToJson());
+                if (i < Count - 1) json.AppendLine(",");
             }
-        }
+            json.AppendLine();
+            json.AppendLine("]");
 
-        /// <summary>
-        /// Deserializes the specified data.
-        /// </summary>
-        /// <param name="data">The data.</param>
-        public void ReadBytes(byte[] data)
-        {
-            ReadBytes(new MemoryStream(data));
-        }
-
-        /// <summary>
-        /// Deserializes the specified stream.
-        /// </summary>
-        /// <param name="stream">The stream.</param>
-        public void ReadBytes(Stream stream)
-        {
-            Clear();
-            using (var reader = new JsonTextReader(new StreamReader(stream)))
-            {
-                foreach (var json in JArray.Load(reader))
-                {
-                    var type = Type.GetType($"{nameof(Acklann)}.{nameof(Acklann.Mockaroo)}.{nameof(Fields)}.{json["type"].Value<string>().ToDataType()}Field");
-                    IField field = (IField)JsonConvert.DeserializeObject(json.ToString(), type);
-                    Add(field);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Convert this instance to its JSON representation.
-        /// </summary>
-        /// <returns>The JSON representation of the instance.</returns>
-        public string ToJson()
-        {
-            byte[] bytes = ToBytes();
-            return System.Text.Encoding.UTF8.GetString(bytes, 0, bytes.Length);
+            return json.ToString();
         }
     }
 
@@ -219,25 +114,11 @@ namespace Acklann.Mockaroo
     /// <seealso cref="Acklann.Mockaroo.Schema"/>
     public class Schema<T> : Schema
     {
-        #region Static Members
-
-        /// <summary>
-        /// Gets all list of <see cref="IField"/> objects that represents the specified type properties.
-        /// </summary>
-        /// <returns>A list of <see cref="IField"/> based of the specified type.</returns>
-        public static IEnumerable<IField> GetFields()
-        {
-            return GetFields(typeof(T));
-        }
-
-        #endregion Static Members
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Schema{T}"/> class.
         /// </summary>
-        public Schema() : base(typeof(T))
-        {
-        }
+        public Schema(int depth = DEFAULT_DEPTH) : base(typeof(T), depth)
+        { }
 
         /// <summary>
         /// Removes the specified <see cref="IField"/> by the property associated with it.
@@ -261,7 +142,7 @@ namespace Acklann.Mockaroo
         /// <param name="dataType">The Mockaroo data type.</param>
         public void Assign(Expression<Func<T, object>> property, DataType dataType)
         {
-            Assign(property, Factory.CreateInstance(dataType));
+            Assign(property, FieldFactory.CreateInstance(dataType));
         }
 
         /// <summary>

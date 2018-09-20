@@ -1,0 +1,5 @@
+[
+  {"name":"Id","type":"Row Number","percentageBlank":"0","formula":""},
+  {"name":"Name","type":"Full Name","percentageBlank":"0","formula":""},
+  {"name":"DOB","type":"Date","percentageBlank":"0","formula":"","min":"01/01/0001","max":"12/31/9999"}
+]
