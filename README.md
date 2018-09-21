@@ -1,10 +1,9 @@
 # Mockaroo.NET
 
-[![license](https://img.shields.io/badge/license-MIT%20License-blue.svg)](https://github.com/Ackara/Mockaroo.NET/blob/master/LICENSE) [![version](https://img.shields.io/nuget/v/Gigobyte.Mockaroo.Core.svg?style=flat-square)](https://www.nuget.org/packages?q=Gigobyte.Mockaroo.Core)
+[![version](https://img.shields.io/nuget/v/Acklann.Mockaroo.svg?style=flat-square)](https://www.nuget.org/packages?q=Acklann.Mockaroo)
+[![NuGet](https://img.shields.io/nuget/dt/Acklann.Mockaroo.Net.svg)](https://www.nuget.org/packages/Acklann.Mockaroo/)
+[![license](https://img.shields.io/badge/license-MIT%20License-blue.svg)](https://github.com/Ackara/Mockaroo.NET/blob/master/LICENSE)
 
-|   |Master|Development|
-|---|------|-----------|
-|**Build Status:**|![master](https://acklann.visualstudio.com/_apis/public/build/definitions/e749c1ef-b004-4b3b-aed0-e32bf4806e73/5/badge)|![development](https://acklann.visualstudio.com/_apis/public/build/definitions/e749c1ef-b004-4b3b-aed0-e32bf4806e73/6/badge)|
 
 ----------
 
@@ -63,16 +62,14 @@ The results will look like the following.
 Currently there are over 85+ data types to choose from, check out the Mockaroo [documentation](https://www.mockaroo.com/api/docs) to see the full list. You can also try it at [https://www.mockaroo.com/](https://www.mockaroo.com/) 
 
 ## Available on NuGet
-[![version](https://img.shields.io/nuget/v/Gigobyte.Mockaroo.Core.svg?style=flat-square)](https://www.nuget.org/packages?q=Gigobyte.Mockaroo.Core) [![license](https://img.shields.io/badge/license-MIT%20License-blue.svg)](https://github.com/Ackara/Mockaroo.NET/blob/master/LICENSE)
-
 ```
-PM> Install-Package Gigobyte.Mockaroo.Core
+PM> Install-Package Acklann.Mockaroo
 ```
 
 # Contributing
 
 ### Prequistes:
-* Visual Studio 2015
+* Visual Studio 2015+
 * [Mockaroo API Key](https://mockaroo.com/users/sign_up)
 
 **Note:** 

@@ -32,4 +32,5 @@
       "arguments": "-ExecutionPolicy Bypass -NonInteractive -File build.ps1 publish"
     }
   }
+, "-vs-binding":{"ProjectOpened":["create mockaroo key"]}
 }
