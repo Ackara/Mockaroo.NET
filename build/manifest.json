@@ -1,0 +1,22 @@
+﻿{
+    "Id":  "C:\\Users\\Ackeem\\Projects\\Ackara\\Mockaroo.NET\\build/manifest.json",
+    "Version":  {
+                    "Major":  0,
+                    "Minor":  0,
+                    "Patch":  1
+                },
+    "Name":  "",
+    "Description":  "",
+    "Author":  "Ackeem",
+    "Company":  "",
+    "License":  "",
+    "Copyright":  "",
+    "Icon":  "",
+    "Website":  "",
+    "RepositoryUrl":  "",
+    "ReleaseNotes":  "",
+    "BranchSuffixMap":  {
+                            "master":  "",
+                            "*":  "rc"
+                        }
+}

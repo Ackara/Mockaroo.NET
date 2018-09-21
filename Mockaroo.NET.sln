@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".misc", ".misc", "{4A708A19
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{F5034706-568F-408A-B7B3-4D38C6DB8A32}") = "build", "build\build.pssproj", "{93B67093-1E05-4D21-BAE0-20B1A0C0C155}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{162434BE-36C5-4403-A0C4-8F5177D22A2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{162434BE-36C5-4403-A0C4-8F5177D22A2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{162434BE-36C5-4403-A0C4-8F5177D22A2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93B67093-1E05-4D21-BAE0-20B1A0C0C155}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93B67093-1E05-4D21-BAE0-20B1A0C0C155}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93B67093-1E05-4D21-BAE0-20B1A0C0C155}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93B67093-1E05-4D21-BAE0-20B1A0C0C155}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

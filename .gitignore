@@ -201,4 +201,5 @@ FakesAssemblies/
 [Tt]ools/
 
 # Sensitive files
+[Ss]ecrets*
 *key.*
