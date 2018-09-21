@@ -3,8 +3,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Acklann.Mockaroo.NET</AssemblyName>
     <RootNamespace>Acklann.Mockaroo</RootNamespace>
-    <AssemblyVersion>2.0.7</AssemblyVersion>
-    <PackageVersion>2.0.7</PackageVersion>
+    <AssemblyVersion>2.0.8</AssemblyVersion>
+    <PackageVersion>2.0.8</PackageVersion>
+    <Description>A library that allows you to generate sample data based on your object type using the Mockaroo API</Description>
   </PropertyGroup>
   <PropertyGroup>
     <Title>Mockaroo.NET</Title>
