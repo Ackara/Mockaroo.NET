@@ -11,7 +11,6 @@ namespace Acklann.Mockaroo
     /// Represents a Mockaroo schema.
     /// </summary>
     /// <seealso cref="System.Collections.Generic.List{IField}"/>
-    /// <seealso cref="ISerializable"/>
     public class Schema : List<IField>
     {
         /// <summary>

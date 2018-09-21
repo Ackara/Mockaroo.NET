@@ -5,7 +5,7 @@ namespace Acklann.Mockaroo.Fields
 {
     public partial class DateField
     {
-        public static readonly string DateFormat = "MM/dd/yyyy";
+        private static readonly string DateFormat = "MM/dd/yyyy";
 
         /// <summary>
         /// Gets or sets the minimum date.

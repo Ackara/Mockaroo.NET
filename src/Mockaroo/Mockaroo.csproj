@@ -1,16 +1,30 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Acklann.Mockaroo</AssemblyName>
     <RootNamespace>Acklann.Mockaroo</RootNamespace>
+    <AssemblyVersion>2.0.1</AssemblyVersion>
+    <PackageVersion>2.0.1</PackageVersion>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <Title>Mockaroo.NET</Title>
+    <Authors>Ackara</Authors>
+    <Company>Ackara</Company>
+    <Copyright>MIT License</Copyright>
+    <PackageIconUrl>https://raw.githubusercontent.com/Ackara/Mockaroo.NET/master/art/icon.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/Ackara/Mockaroo.NET</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/Ackara/Mockaroo.NET/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/Ackara/Mockaroo.NET.git</RepositoryUrl>
+    <Description>A portable class library that allows you to generate sample data based on your object type using the Mockaroo API</Description>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin/$(Configuration)/$(TargetFramework)/Acklann.Mockaroo.xml</DocumentationFile>
+  </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Acklann.NShellit" Version="0.0.15-rc" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
-
   <ItemGroup>
     <Compile Update="DataType.cs">
       <DependentUpon>DataType.tt</DependentUpon>
@@ -28,7 +42,6 @@
       <AutoGen>True</AutoGen>
     </Compile>
   </ItemGroup>
-
   <ItemGroup>
     <None Update="DataType.tt">
       <LastGenOutput>DataType.cs</LastGenOutput>
@@ -50,9 +63,7 @@
       <AutoGen>True</AutoGen>
     </None>
   </ItemGroup>
-
   <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
-
 </Project>

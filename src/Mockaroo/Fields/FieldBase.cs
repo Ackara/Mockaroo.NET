@@ -68,6 +68,10 @@
             else return value;
         }
 
+        /// <summary>
+        /// Bases the json.
+        /// </summary>
+        /// <returns></returns>
         protected internal string BaseJson()
         {
             return $"{{\"name\":\"{Name}\",\"type\":\"{FieldFactory.ToString(Type)}\",\"percentageBlank\":\"{_blankPercentage}\",\"formula\":\"{Formula}\"";
