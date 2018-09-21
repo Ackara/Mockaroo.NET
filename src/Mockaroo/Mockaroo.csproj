@@ -1,0 +1,68 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Acklann.Mockaroo.NET</AssemblyName>
+    <RootNamespace>Acklann.Mockaroo</RootNamespace>
+    <AssemblyVersion>2.0.8</AssemblyVersion>
+    <PackageVersion>2.0.8</PackageVersion>
+    <Description>A library that allows you to generate sample data based on your object type using the Mockaroo API</Description>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Title>Mockaroo.NET</Title>
+    <Authors>Ackara</Authors>
+    <Company>Ackara</Company>
+    <Copyright>MIT License</Copyright>
+    <PackageTags>mockaroo data generator rest client</PackageTags>
+    <PackageIconUrl>https://raw.githubusercontent.com/Ackara/Mockaroo.NET/master/art/icon.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/Ackara/Mockaroo.NET</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/Ackara/Mockaroo.NET/blob/master/LICENSE</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/Ackara/Mockaroo.NET.git</RepositoryUrl>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin/$(Configuration)/$(TargetFramework)/Acklann.Mockaroo.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="DataType.cs">
+      <DependentUpon>DataType.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Fields\BaseTypes.cs">
+      <DependentUpon>BaseTypes.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Fields\FieldFactoryT4.cs">
+      <DependentUpon>FieldFactoryT4.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="DataType.tt">
+      <LastGenOutput>DataType.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Update="Fields\BaseTypes.tt">
+      <LastGenOutput>BaseTypes.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Update="Fields\FieldFactoryT4.tt">
+      <LastGenOutput>FieldFactoryT4.cs</LastGenOutput>
+      <Generator>TextTemplatingFileGenerator</Generator>
+    </None>
+    <None Update="mockaroo_schema - Copy.xsd">
+      <DependentUpon>mockaroo_schema.tt</DependentUpon>
+      <LastGenOutput>mockaroo_schema.cs</LastGenOutput>
+      <DesignTime>True</DesignTime>
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <AutoGen>True</AutoGen>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+</Project>

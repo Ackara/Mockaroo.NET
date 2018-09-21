@@ -1,0 +1,29 @@
+[
+  {
+    "NumericValue": -1776463566,
+    "StringValue": "aliquam lacus morbi quis tortor id nulla ultrices aliquet maecenas",
+    "BooleanValue": true,
+    "DayValue": 6,
+    "TimeValue": "02:51:52",
+    "DateValue": "4091-08-24T14:16:34-04:00",
+    "StringCollection":
+    [
+      {
+        "_item_": "erat volutpat in congue etiam justo etiam pretium iaculis justo in hac habitasse platea dictumst etiam"
+      }
+    ],
+    "NumericArray":
+    [
+      {
+        "_item_": 1310390020
+      },
+      {
+        "_item_": 1112551393
+      },
+      {
+        "_item_": 1240085650
+      }
+    ],
+    "CharValue": "T"
+  }
+]

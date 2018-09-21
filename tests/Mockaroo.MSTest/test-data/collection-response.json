@@ -1,0 +1,83 @@
+﻿[
+  {
+    "BasicObjectList":
+    [
+      {
+        "_item_":
+        {
+          "NumericValue": 37200.8,
+          "StringValue": "magna at nunc commodo placerat praesent blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus vel pede morbi",
+          "BooleanValue": true,
+          "DayValue": 5,
+          "TimeValue": "00:17:33",
+          "DateValue": "7288-09-12T07:13:52-04:00",
+          "StringCollection":
+          [
+            {
+              "_item_": "sit amet nunc viverra dapibus nulla suscipit ligula in lacus curabitur at ipsum ac tellus semper interdum"
+            },
+            {
+              "_item_": "donec quis orci eget orci vehicula condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum"
+            },
+            {
+              "_item_": "orci nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti cras"
+            }
+          ],
+          "NumericArray":
+          [
+            {
+              "_item_": 23998
+            },
+            {
+              "_item_": 8350
+            },
+            {
+              "_item_": 34714
+            },
+            {
+              "_item_": 41158
+            }
+          ],
+          "CharValue": "m"
+        }
+      },
+      {
+        "_item_":
+        {
+          "NumericValue": 63970.98,
+          "StringValue": "vivamus vel nulla eget eros elementum pellentesque quisque porta volutpat erat quisque erat",
+          "BooleanValue": true,
+          "DayValue": 5,
+          "TimeValue": "16:18:09",
+          "DateValue": "8397-09-04T17:50:17-04:00",
+          "StringCollection":
+          [
+            {
+              "_item_": "ac nulla sed vel enim sit amet nunc viverra dapibus nulla suscipit"
+            },
+            {
+              "_item_": "non mi integer ac neque duis bibendum morbi non quam nec dui luctus rutrum"
+            }
+          ],
+          "NumericArray":
+          [
+            {
+              "_item_": 29877
+            },
+            {
+              "_item_": 52856
+            },
+            {
+              "_item_": 1200
+            },
+            {
+              "_item_": 10351
+            }
+          ],
+          "CharValue": "m"
+        }
+      }
+    ],
+    "Capacity": 40268
+  }
+]

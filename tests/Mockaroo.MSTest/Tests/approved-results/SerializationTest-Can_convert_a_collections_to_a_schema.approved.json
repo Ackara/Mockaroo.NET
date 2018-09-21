@@ -1,0 +1,150 @@
+[
+  {
+    "name": "BasicObjectList",
+    "type": "JSON Array",
+    "percentageBlank": "0",
+    "formula": "",
+    "minItems": 1,
+    "maxItems": 5
+  },
+  {
+    "name": "BasicObjectList._item_.NumericValue",
+    "type": "Number",
+    "percentageBlank": "0",
+    "formula": "",
+    "min": "0",
+    "max": "65535",
+    "decimals": "2"
+  },
+  {
+    "name": "BasicObjectList._item_.StringValue",
+    "type": "Words",
+    "percentageBlank": "0",
+    "formula": "",
+    "min": "10",
+    "max": "20"
+  },
+  {
+    "name": "BasicObjectList._item_.BooleanValue",
+    "type": "Boolean",
+    "percentageBlank": "0",
+    "formula": ""
+  },
+  {
+    "name": "BasicObjectList._item_.DayValue",
+    "type": "Custom List",
+    "percentageBlank": "0",
+    "formula": "",
+    "selectionStyle": "random",
+    "values": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6"
+    ]
+  },
+  {
+    "name": "BasicObjectList._item_.TimeValue",
+    "type": "Time",
+    "percentageBlank": "0",
+    "formula": ""
+  },
+  {
+    "name": "BasicObjectList._item_.DateValue",
+    "type": "Date",
+    "percentageBlank": "0",
+    "formula": "",
+    "min": "01/01/0001",
+    "max": "12/31/9999"
+  },
+  {
+    "name": "BasicObjectList._item_.StringCollection",
+    "type": "JSON Array",
+    "percentageBlank": "0",
+    "formula": "",
+    "minItems": 1,
+    "maxItems": 5
+  },
+  {
+    "name": "BasicObjectList._item_.StringCollection._item_",
+    "type": "Words",
+    "percentageBlank": "0",
+    "formula": "",
+    "min": "10",
+    "max": "20"
+  },
+  {
+    "name": "BasicObjectList._item_.NumericArray",
+    "type": "JSON Array",
+    "percentageBlank": "0",
+    "formula": "",
+    "minItems": 1,
+    "maxItems": 5
+  },
+  {
+    "name": "BasicObjectList._item_.NumericArray._item_",
+    "type": "Number",
+    "percentageBlank": "0",
+    "formula": "",
+    "min": "0",
+    "max": "65535",
+    "decimals": "0"
+  },
+  {
+    "name": "BasicObjectList._item_.CharValue",
+    "type": "Custom List",
+    "percentageBlank": "0",
+    "formula": "",
+    "selectionStyle": "random",
+    "values": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "f",
+      "g",
+      "h",
+      "i",
+      "j",
+      "k",
+      "l",
+      "m",
+      "n",
+      "o",
+      "p",
+      "q",
+      "r",
+      "s",
+      "t",
+      "u",
+      "v",
+      "w",
+      "x",
+      "y",
+      "z",
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9"
+    ]
+  },
+  {
+    "name": "Capacity",
+    "type": "Number",
+    "percentageBlank": "0",
+    "formula": "",
+    "min": "0",
+    "max": "65535",
+    "decimals": "0"
+  }
+]

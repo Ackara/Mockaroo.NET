@@ -1,0 +1,36 @@
+{
+  "commands":
+  {
+    "version: major":
+    {
+      "fileName": "powershell.exe",
+      "workingDirectory": ".",
+      "arguments": "-ExecutionPolicy Bypass -NonInteractive -File build.ps1 version -Major"
+    },
+    "version: minor":
+    {
+      "fileName": "powershell.exe",
+      "workingDirectory": ".",
+      "arguments": "-ExecutionPolicy Bypass -NonInteractive -File build.ps1 version -Minor"
+    },
+    "version: patch":
+    {
+      "fileName": "powershell.exe",
+      "workingDirectory": ".",
+      "arguments": "-ExecutionPolicy Bypass -NonInteractive -File build.ps1 version -Patch"
+    },
+    "create mockaroo key":
+    {
+      "fileName": "powershell.exe",
+      "workingDirectory": ".",
+      "arguments": "-ExecutionPolicy Bypass -NonInteractive -File build.ps1 configure"
+    },
+    "publish":
+    {
+      "fileName": "powershell.exe",
+      "workingDirectory": ".",
+      "arguments": "-ExecutionPolicy Bypass -NonInteractive -File build.ps1 publish"
+    }
+  }
+, "-vs-binding":{"ProjectOpened":["create mockaroo key"]}
+}

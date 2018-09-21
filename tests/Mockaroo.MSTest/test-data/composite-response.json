@@ -1,0 +1,167 @@
+[
+  {
+    "Id": 28573,
+    "Collection1":
+    [
+      {
+        "_item_":
+        {
+          "NumericValue": 47332.78,
+          "StringValue": "nisi nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue a suscipit",
+          "BooleanValue": true,
+          "DayValue": 3,
+          "TimeValue": "10:14:58",
+          "DateValue": "7073-06-08T12:56:07-04:00",
+          "StringCollection":
+          [
+            {
+              "_item_": "donec odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam"
+            },
+            {
+              "_item_": "nibh in lectus pellentesque at nulla suspendisse potenti cras in purus eu magna vulputate luctus cum"
+            },
+            {
+              "_item_": "dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum rutrum rutrum neque aenean auctor gravida sem"
+            },
+            {
+              "_item_": "vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae donec pharetra magna vestibulum aliquet ultrices erat"
+            },
+            {
+              "_item_": "porttitor id consequat in consequat ut nulla sed accumsan felis ut at"
+            }
+          ],
+          "NumericArray":
+          [
+            {
+              "_item_": 25053
+            },
+            {
+              "_item_": 199
+            },
+            {
+              "_item_": 45725
+            }
+          ],
+          "CharValue": "a"
+        }
+      },
+      {
+        "_item_":
+        {
+          "NumericValue": 37859.61,
+          "StringValue": "molestie lorem quisque ut erat curabitur gravida nisi at nibh in hac",
+          "BooleanValue": false,
+          "DayValue": 0,
+          "TimeValue": "11:06:30",
+          "DateValue": "2755-10-05T12:44:47-04:00",
+          "StringCollection":
+          [
+            {
+              "_item_": "sem sed sagittis nam congue risus semper porta volutpat quam pede lobortis"
+            },
+            {
+              "_item_": "sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus etiam vel augue vestibulum"
+            },
+            {
+              "_item_": "vitae consectetuer eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc"
+            }
+          ],
+          "NumericArray":
+          [
+            {
+              "_item_": 34596
+            },
+            {
+              "_item_": 38472
+            },
+            {
+              "_item_": 63849
+            },
+            {
+              "_item_": 6007
+            },
+            {
+              "_item_": 22662
+            }
+          ],
+          "CharValue": "y"
+        }
+      },
+      {
+        "_item_":
+        {
+          "NumericValue": 33901.33,
+          "StringValue": "ligula vehicula consequat morbi a ipsum integer a nibh in",
+          "BooleanValue": true,
+          "DayValue": 0,
+          "TimeValue": "11:01:16",
+          "DateValue": "1565-01-18T04:38:24-04:00",
+          "StringCollection":
+          [
+            {
+              "_item_": "erat nulla tempus vivamus in felis eu sapien cursus vestibulum proin eu mi nulla ac enim"
+            }
+          ],
+          "NumericArray":
+          [
+            {
+              "_item_": 65466
+            }
+          ],
+          "CharValue": "s"
+        }
+      }
+    ],
+    "Basic":
+    {
+      "NumericValue": 50519.31,
+      "StringValue": "eget eros elementum pellentesque quisque porta volutpat erat quisque erat eros viverra eget",
+      "BooleanValue": false,
+      "DayValue": 5,
+      "TimeValue": "17:32:56",
+      "DateValue": "5153-03-16T02:13:34-04:00",
+      "StringCollection":
+      [
+        {
+          "_item_": "morbi a ipsum integer a nibh in quis justo maecenas rhoncus aliquam lacus morbi quis tortor id nulla ultrices"
+        },
+        {
+          "_item_": "sit amet nunc viverra dapibus nulla suscipit ligula in lacus"
+        },
+        {
+          "_item_": "sed lacus morbi sem mauris laoreet ut rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed sagittis"
+        },
+        {
+          "_item_": "erat id mauris vulputate elementum nullam varius nulla facilisi cras non velit nec nisi vulputate nonummy maecenas tincidunt"
+        }
+      ],
+      "NumericArray":
+      [
+        {
+          "_item_": 2141
+        },
+        {
+          "_item_": 43342
+        },
+        {
+          "_item_": 59607
+        },
+        {
+          "_item_": 30731
+        },
+        {
+          "_item_": 62124
+        }
+      ],
+      "CharValue": "x"
+    },
+    "Nested":
+    {
+      "NumericValue": 38930,
+      "Recursive":
+      {
+        "NumericValue": 4349
+      }
+    }
+  }
+]

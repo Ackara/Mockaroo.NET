@@ -1,0 +1,58 @@
+﻿<#@ include file="../T4Helper.ttinclude" #>
+<#@ output extension=".cs" #>
+namespace <#= GetMSBuildProperty("//RootNamespace") #>.Fields
+{
+<# 
+	PushIndent("\t");
+	WriteLine(GenerateFieldBaseTypes());
+	ClearIndent();
+#>
+}
+<#+ 
+
+public string GenerateFieldBaseTypes()
+{
+	string ns = GetMSBuildProperty("//RootNamespace");
+	var text = new System.Text.StringBuilder();
+
+	foreach (var type in FetchDataTypes())
+	{
+		text.AppendLine("/// <summary>");
+		text.AppendLine($"/// Represents a mockaroo {type} data-type.");
+		text.AppendLine("/// </summary>");
+		text.AppendLine($"/// <seealso cref=\"{ns}.Fields.FieldBase\" />");
+		text.AppendLine($"public partial class {ToEnumName(type)}Field : FieldBase");
+		text.AppendLine("{");
+		
+		// Constructors
+
+			text.AppendLine("\t/// <summary>");
+			text.AppendLine($"\t/// Initializes a new instance of the <see cref=\"{ToEnumName(type)}Field\"/> class.");
+			text.AppendLine("\t/// </summary>");
+			text.AppendLine($"\tpublic {ToEnumName(type)}Field() : base(string.Empty)");
+			text.AppendLine("\t{ }");
+			text.AppendLine("");
+
+			text.AppendLine("\t/// <summary>");
+			text.AppendLine($"\t/// Initializes a new instance of the <see cref=\"{ToEnumName(type)}Field\"/> class.");
+			text.AppendLine("\t/// </summary>");
+			text.AppendLine("\t/// <param name=\"name\">The name of the field.</param>");
+			text.AppendLine($"\tpublic {ToEnumName(type)}Field(string name) : base(name)");
+			text.AppendLine("\t{ }");
+			text.AppendLine("");
+		
+		// Properties
+
+			text.AppendLine("\t/// <summary>");
+			text.AppendLine("\t/// Get the data type.");
+			text.AppendLine("\t/// </summary>");
+			text.AppendFormat("\tpublic override {0} Type {{ get {{ return {0}.{1}; }} }}", EnumTypeName, ToEnumName(type));
+		text.AppendLine();
+
+		text.AppendLine("}");
+	}
+
+	return text.ToString();
+}
+
+#>
