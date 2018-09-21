@@ -5,7 +5,7 @@
 
     <IsPackable>false</IsPackable>
 
-    <AssemblyName>Ackalnn.Mockaroo.MSTest</AssemblyName>
+    <AssemblyName>Ackalnn.Mockaroo.NET.MSTest</AssemblyName>
 
     <RootNamespace>Acklann.Mockaroo</RootNamespace>
   </PropertyGroup>

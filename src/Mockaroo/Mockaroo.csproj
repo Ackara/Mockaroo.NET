@@ -1,22 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>Acklann.Mockaroo</AssemblyName>
+    <AssemblyName>Acklann.Mockaroo.NET</AssemblyName>
     <RootNamespace>Acklann.Mockaroo</RootNamespace>
-    <AssemblyVersion>2.0.6</AssemblyVersion>
-    <PackageVersion>2.0.6</PackageVersion>
-    <PackageTags>mockaroo data generator rest client</PackageTags>
+    <AssemblyVersion>2.0.7</AssemblyVersion>
+    <PackageVersion>2.0.7</PackageVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Title>Mockaroo.NET</Title>
     <Authors>Ackara</Authors>
     <Company>Ackara</Company>
     <Copyright>MIT License</Copyright>
+    <PackageTags>mockaroo data generator rest client</PackageTags>
     <PackageIconUrl>https://raw.githubusercontent.com/Ackara/Mockaroo.NET/master/art/icon.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/Ackara/Mockaroo.NET</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/Ackara/Mockaroo.NET/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/Ackara/Mockaroo.NET.git</RepositoryUrl>
-    <Description>A portable class library that allows you to generate sample data based on your object type using the Mockaroo API</Description>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>bin/$(Configuration)/$(TargetFramework)/Acklann.Mockaroo.xml</DocumentationFile>
