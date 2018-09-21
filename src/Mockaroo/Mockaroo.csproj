@@ -3,8 +3,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Acklann.Mockaroo</AssemblyName>
     <RootNamespace>Acklann.Mockaroo</RootNamespace>
-    <AssemblyVersion>2.0.5</AssemblyVersion>
-    <PackageVersion>2.0.5</PackageVersion>
+    <AssemblyVersion>2.0.6</AssemblyVersion>
+    <PackageVersion>2.0.6</PackageVersion>
     <PackageTags>mockaroo data generator rest client</PackageTags>
   </PropertyGroup>
   <PropertyGroup>
