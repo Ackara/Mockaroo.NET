@@ -1,11 +1,8 @@
-﻿using Acklann.Diffa;
-using Acklann.Mockaroo;
+﻿using Acklann.Mockaroo.Fakes;
 using Acklann.Mockaroo.Fields;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shouldly;
 using System;
-using System.Text;
-using Acklann.Mockaroo.Constants;
 
 namespace Acklann.Mockaroo.Tests
 {
@@ -14,65 +11,36 @@ namespace Acklann.Mockaroo.Tests
     public class SchemaTest
     {
         [TestMethod]
-        public void Assign_should_override_a_field_instance_within_a_schema_when_invoked()
+        public void Can_reassign_a_schema_filed()
         {
+            string join(params string[] args) => string.Join('.', args);
+
             // Arrange
-            var sut = new Schema<Message>();
+            var s2 = new Schema<BasicObject>();
+            var s1 = new Schema<CompositeObject>();
 
             // Act
-
-            /// case 1: The property is one level down the member tree.
-            sut.Assign(x => x.Text, DataType.FullName);
-            var newTextType = sut[0].Type;
+            /// case 1: The property is on the 1st level.
+            s1.Reassign(x => x.Id, new RowNumberField());
+            var case1 = join(nameof(CompositeObject.Id));
 
             /// case 2: The property is two levels down the member tree.
-            sut.Assign(x => x.Writer.Name, DataType.FullName);
-            var newNameType = sut[2].Type;
+            s1.Reassign(x => x.Basic.NumericValue, DataType.SSN);
+            var case2 = join(nameof(CompositeObject.Basic), nameof(BasicObject.NumericValue));
 
             /// case 3: The property is a list of objects.
-            sut.Assign(x => x.Tags, DataType.AppName);
-            var newTagType = sut[5].Type;
+            s2.Reassign(x => x.NumericArray, DataType.Latitude);
+            var case3 = join(nameof(BasicObject.NumericArray), "_item_");
 
             /// case 4: The property is a list of objects.
-            sut.Assign(x => x.Writer.Reviews.Item().Rating, DataType.RowNumber);
-            var newRatingType = sut[4].Type;
+            s1.Reassign(x => x.Collection1[0].StringValue, DataType.AppName);
+            var case4 = join(nameof(CompositeObject.Collection1), "_item_", nameof(BasicObject.StringValue));
 
             // Assert
-            newTextType.ShouldBe(DataType.FullName);
-            newNameType.ShouldBe(DataType.FullName);
-            newTagType.ShouldBe(DataType.AppName);
-            newRatingType.ShouldBe(DataType.RowNumber);
+            s1[case1].Type.ShouldBe(DataType.RowNumber);
+            s1[case2].Type.ShouldBe(DataType.SSN);
+            s2[case3].Type.ShouldBe(DataType.Latitude);
+            s1[case4].Type.ShouldBe(DataType.AppName);
         }
-
-        #region Samples
-
-        
-
-        public class Message
-        {
-            public string Text { get; set; }
-
-            public Author Writer { get; set; }
-
-            public string[] Tags { get; set; }
-        }
-
-        public class Author
-        {
-            public int Id { get; set; }
-
-            public string Name { get; set; }
-
-            public Review[] Reviews { get; set; }
-        }
-
-        public class Review
-        {
-            public int Rating { get; set; }
-        }
-
-       
-
-        #endregion Samples
     }
 }

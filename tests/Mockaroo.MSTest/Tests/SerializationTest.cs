@@ -144,6 +144,7 @@ namespace Acklann.Mockaroo.Tests
             var schema = MockarooConvert.ToSchema<T>(depth);
             var json = JArray.Parse(schema.ToString()).ToString(Newtonsoft.Json.Formatting.Indented);
             Diff.Approve(json, ".json");
+            //Diff.Approve(schema, ".json");
         }
     }
 }

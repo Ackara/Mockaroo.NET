@@ -17,11 +17,6 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Update="ExtensionsT4.cs">
-      <DependentUpon>ExtensionsT4.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
     <Compile Update="Fields\BaseTypes.cs">
       <DependentUpon>BaseTypes.tt</DependentUpon>
       <DesignTime>True</DesignTime>
@@ -37,10 +32,6 @@
   <ItemGroup>
     <None Update="DataType.tt">
       <LastGenOutput>DataType.cs</LastGenOutput>
-      <Generator>TextTemplatingFileGenerator</Generator>
-    </None>
-    <None Update="ExtensionsT4.tt">
-      <LastGenOutput>ExtensionsT4.cs</LastGenOutput>
       <Generator>TextTemplatingFileGenerator</Generator>
     </None>
     <None Update="Fields\BaseTypes.tt">

@@ -17,15 +17,14 @@ namespace Acklann.Mockaroo.Fields
         public Arrangement Sequence { get; set; }
 
         /// <summary>
-        /// Converts this instance into its equivalent json representation.
+        /// Returns a <see cref="System.String" /> that represents this instance.
         /// </summary>
         /// <returns>
-        /// A json representation of the instance.
+        /// A <see cref="System.String" /> that represents this instance.
         /// </returns>
-        public override string ToJson()
+        public override string ToString()
         {
-            string part1 = base.ToJson().TrimEnd('}');
-            return $"{part1},\"selectionStyle\":\"{Sequence.ToString().ToLower()}\",\"values\":[{string.Join(",", Values.Select(x => $"\"{x}\""))}]}}";
+            return $"{BaseJson()},\"selectionStyle\":\"{Sequence.ToString().ToLower()}\",\"values\":[{string.Join(",", Values.Select(x => $"\"{x}\""))}]}}";
         }
     }
 }

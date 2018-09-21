@@ -48,15 +48,17 @@
         /// Gets or sets the Ruby script to generate data based on custom logic. see more at https://mockaroo.com/help/formulas
         /// </summary>
         /// <value>The formula.</value>
-        public string Formula { get; set; }
+        public string Formula { get; set; } = string.Empty;
 
         /// <summary>
-        /// Converts this instance into its equivalent json representation.
+        /// Returns a <see cref="System.String" /> that represents this instance.
         /// </summary>
-        /// <returns>A json representation of the instance.</returns>
-        public virtual string ToJson()
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
+        public override string ToString()
         {
-            return $"{{\"name\":\"{Name}\",\"type\":\"{Type.ToMockarooTypeName()}\",\"percentageBlank\":\"{_blankPercentage}\",\"formula\":\"{Formula}\"}}";
+            return string.Concat(BaseJson(), "}");
         }
 
         internal static int Between(int value, int minInclusive, int maxInclusive)
@@ -68,7 +70,7 @@
 
         protected internal string BaseJson()
         {
-            return $"{{\"name\":\"{Name}\",\"type\":\"{Type.ToMockarooTypeName()}\",\"percentageBlank\":\"{_blankPercentage}\",\"formula\":\"{Formula}\"";
+            return $"{{\"name\":\"{Name}\",\"type\":\"{FieldFactory.ToString(Type)}\",\"percentageBlank\":\"{_blankPercentage}\",\"formula\":\"{Formula}\"";
         }
 
         /// <summary>

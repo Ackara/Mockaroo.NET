@@ -17,7 +17,7 @@
     "maxItems": 5
   },
   {
-    "name": "Collection1.BasicObject.NumericValue",
+    "name": "Collection1._item_.NumericValue",
     "type": "Number",
     "percentageBlank": "0",
     "formula": "",
@@ -26,7 +26,7 @@
     "decimals": "2"
   },
   {
-    "name": "Collection1.BasicObject.StringValue",
+    "name": "Collection1._item_.StringValue",
     "type": "Words",
     "percentageBlank": "0",
     "formula": "",
@@ -34,13 +34,13 @@
     "max": "20"
   },
   {
-    "name": "Collection1.BasicObject.BooleanValue",
+    "name": "Collection1._item_.BooleanValue",
     "type": "Boolean",
     "percentageBlank": "0",
     "formula": ""
   },
   {
-    "name": "Collection1.BasicObject.DayValue",
+    "name": "Collection1._item_.DayValue",
     "type": "Custom List",
     "percentageBlank": "0",
     "formula": "",
@@ -56,13 +56,13 @@
     ]
   },
   {
-    "name": "Collection1.BasicObject.TimeValue",
+    "name": "Collection1._item_.TimeValue",
     "type": "Time",
     "percentageBlank": "0",
     "formula": ""
   },
   {
-    "name": "Collection1.BasicObject.DateValue",
+    "name": "Collection1._item_.DateValue",
     "type": "Date",
     "percentageBlank": "0",
     "formula": "",
@@ -70,7 +70,7 @@
     "max": "12/31/9999"
   },
   {
-    "name": "Collection1.BasicObject.StringCollection",
+    "name": "Collection1._item_.StringCollection",
     "type": "JSON Array",
     "percentageBlank": "0",
     "formula": "",
@@ -78,7 +78,7 @@
     "maxItems": 5
   },
   {
-    "name": "Collection1.BasicObject.StringCollection.String",
+    "name": "Collection1._item_.StringCollection._item_",
     "type": "Words",
     "percentageBlank": "0",
     "formula": "",
@@ -86,7 +86,7 @@
     "max": "20"
   },
   {
-    "name": "Collection1.BasicObject.NumericArray",
+    "name": "Collection1._item_.NumericArray",
     "type": "JSON Array",
     "percentageBlank": "0",
     "formula": "",
@@ -94,7 +94,7 @@
     "maxItems": 5
   },
   {
-    "name": "Collection1.BasicObject.NumericArray.Int32",
+    "name": "Collection1._item_.NumericArray._item_",
     "type": "Number",
     "percentageBlank": "0",
     "formula": "",
@@ -103,7 +103,7 @@
     "decimals": "0"
   },
   {
-    "name": "Collection1.BasicObject.CharValue",
+    "name": "Collection1._item_.CharValue",
     "type": "Custom List",
     "percentageBlank": "0",
     "formula": "",
@@ -209,7 +209,7 @@
     "maxItems": 5
   },
   {
-    "name": "Basic.StringCollection.String",
+    "name": "Basic.StringCollection._item_",
     "type": "Words",
     "percentageBlank": "0",
     "formula": "",
@@ -225,7 +225,7 @@
     "maxItems": 5
   },
   {
-    "name": "Basic.NumericArray.Int32",
+    "name": "Basic.NumericArray._item_",
     "type": "Number",
     "percentageBlank": "0",
     "formula": "",

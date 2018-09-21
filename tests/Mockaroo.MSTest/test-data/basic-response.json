@@ -9,19 +9,19 @@
     "StringCollection":
     [
       {
-        "String": "erat volutpat in congue etiam justo etiam pretium iaculis justo in hac habitasse platea dictumst etiam"
+        "_item_": "erat volutpat in congue etiam justo etiam pretium iaculis justo in hac habitasse platea dictumst etiam"
       }
     ],
     "NumericArray":
     [
       {
-        "Int32": 1310390020
+        "_item_": 1310390020
       },
       {
-        "Int32": 1112551393
+        "_item_": 1112551393
       },
       {
-        "Int32": 1240085650
+        "_item_": 1240085650
       }
     ],
     "CharValue": "T"

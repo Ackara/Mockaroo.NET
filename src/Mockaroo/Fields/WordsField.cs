@@ -1,6 +1,4 @@
-﻿using System.Xml.Serialization;
-
-namespace Acklann.Mockaroo.Fields
+﻿namespace Acklann.Mockaroo.Fields
 {
     public partial class WordsField
     {
@@ -17,10 +15,12 @@ namespace Acklann.Mockaroo.Fields
         public int Max { get; set; } = 20;
 
         /// <summary>
-        /// Converts this instance into its equivalent json representation.
+        /// Returns a <see cref="System.String" /> that represents this instance.
         /// </summary>
-        /// <returns>A json representation of the instance.</returns>
-        public override string ToJson()
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
+        public override string ToString()
         {
             return $"{BaseJson()},\"min\":\"{Min}\",\"max\":\"{Max}\"}}";
         }

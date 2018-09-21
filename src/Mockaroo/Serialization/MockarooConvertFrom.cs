@@ -47,7 +47,7 @@ namespace Acklann.Mockaroo.Serialization
 
                     case KindOfType.CollectionOfPrimitives:
                         object[] valueList = (from v in value.Children()
-                                              select v[elementType.Name].ToObject(elementType)).ToArray();
+                                              select v[Item].ToObject(elementType)).ToArray();
 
                         if (valueType.IsArray)
                             SetValue(member, instance, ToArray(valueList, elementType));
@@ -69,7 +69,7 @@ namespace Acklann.Mockaroo.Serialization
 
                         foreach (JObject record in ((JArray)value))
                         {
-                            CreateNew(ref item, elementType, (JObject)record.SelectToken(elementType.Name), temp);
+                            CreateNew(ref item, elementType, (JObject)record.SelectToken(Item), temp);
                             itemList.Push(item);
                         }
 

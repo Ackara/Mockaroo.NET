@@ -1,109 +1,83 @@
 ﻿[
   {
-    "Capacity": -217713293,
-    "BasicObjectList": [
+    "BasicObjectList":
+    [
       {
-        "BasicObject": {
-          "NumericValue": 857921939.13,
-          "StringValue": "est et tempus semper est quam pharetra magna ac consequat metus sapien",
-          "BooleanValue": false,
-          "DayValue": 6,
-          "TimeValue": "02:07:42",
-          "DateValue": "5481-04-12T04:57:00-04:00",
-          "StringCollection": [
-            {
-              "String": "amet lobortis sapien sapien non mi integer ac neque duis bibendum morbi non quam"
-            },
-            {
-              "String": "primis in faucibus orci luctus et ultrices posuere cubilia curae donec pharetra magna vestibulum aliquet ultrices erat tortor"
-            }
-          ],
-          "NumericArray": [
-            {
-              "Int32": 1421200696
-            }
-          ],
-          "CharValue": "4"
-        }
-      },
-      {
-        "BasicObject":
+        "_item_":
         {
-          "NumericValue": -635417574.7,
-          "StringValue": "massa quis augue luctus tincidunt nulla mollis molestie lorem quisque ut erat curabitur gravida nisi",
+          "NumericValue": 37200.8,
+          "StringValue": "magna at nunc commodo placerat praesent blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus vel pede morbi",
           "BooleanValue": true,
-          "DayValue": 6,
-          "TimeValue": "22:02:44",
-          "DateValue": "8705-08-16T09:09:28-04:00",
+          "DayValue": 5,
+          "TimeValue": "00:17:33",
+          "DateValue": "7288-09-12T07:13:52-04:00",
           "StringCollection":
           [
             {
-              "String": "erat quisque erat eros viverra eget congue eget semper rutrum nulla nunc purus"
+              "_item_": "sit amet nunc viverra dapibus nulla suscipit ligula in lacus curabitur at ipsum ac tellus semper interdum"
+            },
+            {
+              "_item_": "donec quis orci eget orci vehicula condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum"
+            },
+            {
+              "_item_": "orci nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti cras"
             }
           ],
           "NumericArray":
           [
             {
-              "Int32": -247891574
+              "_item_": 23998
             },
             {
-              "Int32": 1058400830
+              "_item_": 8350
             },
             {
-              "Int32": 599663202
+              "_item_": 34714
             },
             {
-              "Int32": 429557393
-            },
-            {
-              "Int32": -2019446362
+              "_item_": 41158
             }
           ],
-          "CharValue": "h"
+          "CharValue": "m"
         }
       },
       {
-        "BasicObject": {
-          "NumericValue": -610572594.13,
-          "StringValue": "curae nulla dapibus dolor vel est donec odio justo sollicitudin ut",
-          "BooleanValue": false,
-          "DayValue": 1,
-          "TimeValue": "14:32:09",
-          "DateValue": "4773-03-14T04:04:00-04:00",
-          "StringCollection": [
+        "_item_":
+        {
+          "NumericValue": 63970.98,
+          "StringValue": "vivamus vel nulla eget eros elementum pellentesque quisque porta volutpat erat quisque erat",
+          "BooleanValue": true,
+          "DayValue": 5,
+          "TimeValue": "16:18:09",
+          "DateValue": "8397-09-04T17:50:17-04:00",
+          "StringCollection":
+          [
             {
-              "String": "quis odio consequat varius integer ac leo pellentesque ultrices mattis"
+              "_item_": "ac nulla sed vel enim sit amet nunc viverra dapibus nulla suscipit"
             },
             {
-              "String": "ante vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam nulla integer"
-            },
-            {
-              "String": "eu magna vulputate luctus cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus"
-            },
-            {
-              "String": "augue vel accumsan tellus nisi eu orci mauris lacinia sapien quis libero nullam sit amet turpis elementum"
-            },
-            {
-              "String": "accumsan tortor quis turpis sed ante vivamus tortor duis mattis egestas metus"
+              "_item_": "non mi integer ac neque duis bibendum morbi non quam nec dui luctus rutrum"
             }
           ],
-          "NumericArray": [
+          "NumericArray":
+          [
             {
-              "Int32": -703032924
+              "_item_": 29877
             },
             {
-              "Int32": -387900220
+              "_item_": 52856
             },
             {
-              "Int32": -1709716839
+              "_item_": 1200
             },
             {
-              "Int32": -107288774
+              "_item_": 10351
             }
           ],
-          "CharValue": "d"
+          "CharValue": "m"
         }
       }
-    ]
+    ],
+    "Capacity": 40268
   }
 ]

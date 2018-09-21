@@ -21,7 +21,7 @@ namespace Acklann.Mockaroo
             _apiKey = apiKey;
         }
 
-        internal const int DEFAULT_LIMIT = 25, DEFAULT_DEPTH = 2;
+        internal const int DEFAULT_LIMIT = 25;
 
         /// <summary>
         /// Retrieve sample data from http://mockaroo.com.
@@ -87,7 +87,7 @@ namespace Acklann.Mockaroo
         /// <param name="records">The number of records to retrieve.</param>
         /// <param name="depth">The max-depth the serializer should traverse down the object tree.</param>
         /// <returns>The array of <paramref name="type"/> objects.</returns>
-        public async Task<object[]> FetchDataAsync(Type type, int records = DEFAULT_LIMIT, int depth = DEFAULT_DEPTH)
+        public async Task<object[]> FetchDataAsync(Type type, int records = DEFAULT_LIMIT, int depth = Schema.DEFAULT_DEPTH)
         {
             byte[] data = await FetchDataAsync(Endpoint(records), MockarooConvert.ToSchema(type, depth));
             return MockarooConvert.FromJson(Encoding.UTF8.GetString(data), type);
@@ -115,7 +115,7 @@ namespace Acklann.Mockaroo
         /// <param name="records">The number of records to retrieve.</param>
         /// <param name="depth">The max-depth the serializer should traverse down the object tree.</param>
         /// <returns> The array of <typeparamref name="T" /> objects.</returns>
-        public async Task<T[]> FetchDataAsync<T>(int records = DEFAULT_LIMIT, int depth = DEFAULT_DEPTH)
+        public async Task<T[]> FetchDataAsync<T>(int records = DEFAULT_LIMIT, int depth = Schema.DEFAULT_DEPTH)
         {
             byte[] data = await FetchDataAsync(Endpoint(records), MockarooConvert.ToSchema(typeof(T), depth));
             return MockarooConvert.FromJson<T>(Encoding.UTF8.GetString(data));

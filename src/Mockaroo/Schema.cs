@@ -1,9 +1,9 @@
 ﻿using Acklann.Mockaroo.Fields;
+using Acklann.Mockaroo.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
-using System.Text.RegularExpressions;
 
 namespace Acklann.Mockaroo
 {
@@ -21,12 +21,13 @@ namespace Acklann.Mockaroo
         { }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Schema"/> class.
+        /// Initializes a new instance of the <see cref="Schema" /> class.
         /// </summary>
         /// <param name="type">The type.</param>
+        /// <param name="depth">The max-depth the serializer should traverse down the object tree.</param>
         public Schema(Type type, int depth = DEFAULT_DEPTH)
         {
-            AddRange(Serialization.MockarooConvert.ConvertToSchema(type, 2));
+            AddRange(MockarooConvert.ConvertToSchema(type, 2));
         }
 
         /// <summary>
@@ -41,14 +42,37 @@ namespace Acklann.Mockaroo
         internal const int DEFAULT_DEPTH = 2;
 
         /// <summary>
+        /// Gets the <see cref="IField"/> with the specified name.
+        /// </summary>
+        /// <value>
+        /// The <see cref="IField"/>.
+        /// </value>
+        /// <param name="name">The name.</param>
+        /// <returns>A <see cref="IField"/></returns>
+        /// <exception cref="KeyNotFoundException">Occurs when the <paramref name="name"/> do not match <see cref="IField"/> in the collection.</exception>
+        public IField this[string name]
+        {
+            get
+            {
+                foreach (IField field in this)
+                    if (field.Name == name)
+                    {
+                        return field;
+                    }
+
+                throw new KeyNotFoundException($"A field with the name '{name}' do not exist.");
+            }
+        }
+
+        /// <summary>
         /// Replace the <see cref="IField"/> object within this instance with a <see cref="IField"/>
         /// that is associated with the specified <see cref="DataType"/>.
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="dataType">Type of the data.</param>
-        public void Assign(string fieldName, DataType dataType)
+        public void Reassign(string fieldName, DataType dataType)
         {
-            Assign(fieldName, FieldFactory.CreateInstance(dataType));
+            Reassign(fieldName, FieldFactory.CreateInstance(dataType));
         }
 
         /// <summary>
@@ -57,13 +81,14 @@ namespace Acklann.Mockaroo
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="field">The field.</param>
-        public void Assign(string fieldName, IField field)
+        public void Reassign(string fieldName, IField field)
         {
             field.Name = fieldName;
             for (int i = 0; i < Count; i++)
                 if (this[i].Name == fieldName)
                 {
                     this[i] = field;
+                    break;
                 }
         }
 
@@ -97,7 +122,7 @@ namespace Acklann.Mockaroo
             for (int i = 0; i < Count; i++)
             {
                 json.Append("  ");
-                json.Append(base[i].ToJson());
+                json.Append(this[i]);
                 if (i < Count - 1) json.AppendLine(",");
             }
             json.AppendLine();
@@ -126,12 +151,7 @@ namespace Acklann.Mockaroo
         /// <param name="property">The property associated to the <see cref="IField"/>.</param>
         public bool Remove(Expression<Func<T, object>> property)
         {
-            Match match = _lambdaPattern.Match(property.ToString().Replace($"{nameof(Extensions.Item)}().", string.Empty));
-            if (match.Success)
-            {
-                return Remove(match.Value.TrimStart('.'));
-            }
-            else return false;
+            return Remove(MockarooConvert.ToFieldName(property));
         }
 
         /// <summary>
@@ -140,9 +160,9 @@ namespace Acklann.Mockaroo
         /// </summary>
         /// <param name="property">The property associated to the <see cref="IField"/>.</param>
         /// <param name="dataType">The Mockaroo data type.</param>
-        public void Assign(Expression<Func<T, object>> property, DataType dataType)
+        public void Reassign(Expression<Func<T, object>> property, DataType dataType)
         {
-            Assign(property, FieldFactory.CreateInstance(dataType));
+            Reassign(MockarooConvert.ToFieldName(property), FieldFactory.CreateInstance(dataType));
         }
 
         /// <summary>
@@ -150,19 +170,9 @@ namespace Acklann.Mockaroo
         /// </summary>
         /// <param name="property">The property associated to the <see cref="IField"/>.</param>
         /// <param name="field">The Mockaroo field.</param>
-        public void Assign(Expression<Func<T, object>> property, IField field)
+        public void Reassign(Expression<Func<T, object>> property, IField field)
         {
-            Match match = _lambdaPattern.Match(property.ToString().Replace($"{nameof(Extensions.Item)}().", string.Empty));
-            if (match.Success)
-            {
-                Assign(match.Value.TrimStart('.'), field);
-            }
+            Reassign(MockarooConvert.ToFieldName(property), field);
         }
-
-        #region Private Member
-
-        private readonly Regex _lambdaPattern = new Regex(@"(\.[a-zA-Z0-9]+)+");
-
-        #endregion Private Member
     }
 }

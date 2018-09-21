@@ -3,7 +3,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace Acklann.Mockaroo.Serialization
 {
@@ -11,6 +13,9 @@ namespace Acklann.Mockaroo.Serialization
     /// ======================================================================
     partial class MockarooConvert
     {
+        internal const string Item = "_item_";
+        private static readonly Regex _pattern = new Regex(@"\.\w+");
+
         internal static IEnumerable<IField> ConvertToSchema(Type template, int maxDepth)
         {
             if (maxDepth < 1) maxDepth = 1;
@@ -23,6 +28,25 @@ namespace Acklann.Mockaroo.Serialization
                 return fields;
             else
                 throw new ArgumentOutOfRangeException(Exceptions.ExceptionMessage.NoFieldsWasAssigned(template));
+        }
+
+        internal static string ToFieldName<T>(Expression<Func<T, object>> property)
+        {
+            string tPath = null;
+            foreach (Match match in _pattern.Matches(property.ToString()))
+                foreach (Group group in match.Groups)
+                {
+                    tPath = string.Concat(tPath, group.Value == ".get_Item" ? $".{Item}" : group.Value);
+                }
+            if (string.IsNullOrEmpty(tPath)) throw new ArgumentException(Exceptions.ExceptionMessage.ExpressionWasNotAProperty(property.ToString()));
+
+            if (property.Body is MemberExpression member)
+                if (member.Type.IsArray)
+                {
+                    tPath = $"{tPath}.{Item}";
+                }
+
+            return tPath.TrimStart('.');
         }
 
         private static void PopulateFields(ICollection<IField> schema, Type template, string parentName, int currentDepth, int maxDepth)
@@ -52,7 +76,7 @@ namespace Acklann.Mockaroo.Serialization
                         schema.Add(field);
 
                         field = FieldFactory.CreateInstance(collectionElementType);
-                        field.Name = concat(parentName, member.Name, collectionElementType.Name);
+                        field.Name = concat(parentName, member.Name, Item);
                         schema.Add(field);
                         break;
 
@@ -66,7 +90,7 @@ namespace Acklann.Mockaroo.Serialization
                         field.Name = concat(parentName, member.Name);
                         schema.Add(field);
 
-                        temp = concat(parentName, member.Name, collectionElementType.Name);
+                        temp = concat(parentName, member.Name, Item);
                         PopulateFields(schema, collectionElementType, temp, (currentDepth + 1), maxDepth);
                         break;
                 }

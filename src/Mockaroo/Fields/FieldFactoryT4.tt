@@ -25,5 +25,28 @@ namespace <#= GetMSBuildProperty("//RootNamespace") #>.Fields
 #>
 			}
 		}
+
+		/// <summary>
+		/// Converts a <see cref="DataType" /> instance to its equivalent <see cref="string" /> representation.
+		/// </summary>
+		/// <param name="dataType">Type of the data.</param>
+		/// <returns>A <see cref="string" />.</returns>
+		public static string ToString(<#= EnumTypeName #> dataType)
+		{
+			switch (dataType)
+			{
+				default:
+					return string.Empty;
+<#
+	PushIndent("\t\t\t\t");
+	foreach (var type in FetchDataTypes())
+	{
+		WriteLine("case {1}.{0}:", ToEnumName(type), EnumTypeName);
+		WriteLine("\treturn \"{0}\";", type);
+	}
+	PopIndent();
+#>
+			}
+		}
 	}
 }

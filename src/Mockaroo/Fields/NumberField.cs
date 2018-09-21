@@ -21,10 +21,12 @@
         public int Decimals { get; set; }
 
         /// <summary>
-        /// Converts this instance into its equivalent json representation.
+        /// Returns a <see cref="System.String" /> that represents this instance.
         /// </summary>
-        /// <returns>A json representation of the instance.</returns>
-        public override string ToJson()
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
+        public override string ToString()
         {
             return $"{BaseJson()},\"min\":\"{Min}\",\"max\":\"{Max}\",\"decimals\":\"{Decimals}\"}}";
         }

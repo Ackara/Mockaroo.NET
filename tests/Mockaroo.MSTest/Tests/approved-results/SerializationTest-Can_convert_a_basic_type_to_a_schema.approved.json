@@ -61,7 +61,7 @@
     "maxItems": 5
   },
   {
-    "name": "StringCollection.String",
+    "name": "StringCollection._item_",
     "type": "Words",
     "percentageBlank": "0",
     "formula": "",
@@ -77,7 +77,7 @@
     "maxItems": 5
   },
   {
-    "name": "NumericArray.Int32",
+    "name": "NumericArray._item_",
     "type": "Number",
     "percentageBlank": "0",
     "formula": "",

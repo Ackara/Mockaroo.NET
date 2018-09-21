@@ -20,13 +20,14 @@ namespace Acklann.Mockaroo.Fields
         public DateTime Max { get; set; } = DateTime.MaxValue;
 
         /// <summary>
-        /// Converts this instance into its equivalent json representation.
+        /// Returns a <see cref="System.String" /> that represents this instance.
         /// </summary>
-        /// <returns>A json representation of the instance.</returns>
-        public override string ToJson()
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
+        public override string ToString()
         {
-            string firstHalf = base.ToJson().TrimEnd('}');
-            return $"{firstHalf},\"min\":\"{Min.Date.ToString(DateFormat, CultureInfo.InvariantCulture)}\",\"max\":\"{Max.ToString(DateFormat, CultureInfo.InvariantCulture)}\"}}";
+            return $"{BaseJson()},\"min\":\"{Min.Date.ToString(DateFormat, CultureInfo.InvariantCulture)}\",\"max\":\"{Max.ToString(DateFormat, CultureInfo.InvariantCulture)}\"}}";
         }
     }
 }
