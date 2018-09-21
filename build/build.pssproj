@@ -38,6 +38,9 @@
     <Compile Include="_.psake.ps1" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\commands.json">
+      <Link>commands.json</Link>
+    </Content>
     <Content Include="manifest.json" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

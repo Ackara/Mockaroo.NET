@@ -2,6 +2,54 @@
 namespace Acklann.Mockaroo.Fields
 {
 	/// <summary>
+	/// Represents a mockaroo Animal Common Name data-type.
+	/// </summary>
+	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
+	public partial class AnimalCommonNameField : FieldBase
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="AnimalCommonNameField"/> class.
+		/// </summary>
+		public AnimalCommonNameField() : base(string.Empty)
+		{ }
+	
+		/// <summary>
+		/// Initializes a new instance of the <see cref="AnimalCommonNameField"/> class.
+		/// </summary>
+		/// <param name="name">The name of the field.</param>
+		public AnimalCommonNameField(string name) : base(name)
+		{ }
+	
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.AnimalCommonName; } }
+	}
+	/// <summary>
+	/// Represents a mockaroo Animal Scientific Name data-type.
+	/// </summary>
+	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
+	public partial class AnimalScientificNameField : FieldBase
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="AnimalScientificNameField"/> class.
+		/// </summary>
+		public AnimalScientificNameField() : base(string.Empty)
+		{ }
+	
+		/// <summary>
+		/// Initializes a new instance of the <see cref="AnimalScientificNameField"/> class.
+		/// </summary>
+		/// <param name="name">The name of the field.</param>
+		public AnimalScientificNameField(string name) : base(name)
+		{ }
+	
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.AnimalScientificName; } }
+	}
+	/// <summary>
 	/// Represents a mockaroo App Bundle ID data-type.
 	/// </summary>
 	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
@@ -242,6 +290,102 @@ namespace Acklann.Mockaroo.Fields
 		public override DataType Type { get { return DataType.Buzzword; } }
 	}
 	/// <summary>
+	/// Represents a mockaroo Car Make data-type.
+	/// </summary>
+	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
+	public partial class CarMakeField : FieldBase
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CarMakeField"/> class.
+		/// </summary>
+		public CarMakeField() : base(string.Empty)
+		{ }
+	
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CarMakeField"/> class.
+		/// </summary>
+		/// <param name="name">The name of the field.</param>
+		public CarMakeField(string name) : base(name)
+		{ }
+	
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.CarMake; } }
+	}
+	/// <summary>
+	/// Represents a mockaroo Car Model data-type.
+	/// </summary>
+	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
+	public partial class CarModelField : FieldBase
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CarModelField"/> class.
+		/// </summary>
+		public CarModelField() : base(string.Empty)
+		{ }
+	
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CarModelField"/> class.
+		/// </summary>
+		/// <param name="name">The name of the field.</param>
+		public CarModelField(string name) : base(name)
+		{ }
+	
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.CarModel; } }
+	}
+	/// <summary>
+	/// Represents a mockaroo Car Model Year data-type.
+	/// </summary>
+	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
+	public partial class CarModelYearField : FieldBase
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CarModelYearField"/> class.
+		/// </summary>
+		public CarModelYearField() : base(string.Empty)
+		{ }
+	
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CarModelYearField"/> class.
+		/// </summary>
+		/// <param name="name">The name of the field.</param>
+		public CarModelYearField(string name) : base(name)
+		{ }
+	
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.CarModelYear; } }
+	}
+	/// <summary>
+	/// Represents a mockaroo Car VIN data-type.
+	/// </summary>
+	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
+	public partial class CarVINField : FieldBase
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CarVINField"/> class.
+		/// </summary>
+		public CarVINField() : base(string.Empty)
+		{ }
+	
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CarVINField"/> class.
+		/// </summary>
+		/// <param name="name">The name of the field.</param>
+		public CarVINField(string name) : base(name)
+		{ }
+	
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.CarVIN; } }
+	}
+	/// <summary>
 	/// Represents a mockaroo Catch Phrase data-type.
 	/// </summary>
 	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
@@ -264,6 +408,30 @@ namespace Acklann.Mockaroo.Fields
 		/// Get the data type.
 		/// </summary>
 		public override DataType Type { get { return DataType.CatchPhrase; } }
+	}
+	/// <summary>
+	/// Represents a mockaroo Character Sequence data-type.
+	/// </summary>
+	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
+	public partial class CharacterSequenceField : FieldBase
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CharacterSequenceField"/> class.
+		/// </summary>
+		public CharacterSequenceField() : base(string.Empty)
+		{ }
+	
+		/// <summary>
+		/// Initializes a new instance of the <see cref="CharacterSequenceField"/> class.
+		/// </summary>
+		/// <param name="name">The name of the field.</param>
+		public CharacterSequenceField(string name) : base(name)
+		{ }
+	
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.CharacterSequence; } }
 	}
 	/// <summary>
 	/// Represents a mockaroo City data-type.
@@ -552,6 +720,78 @@ namespace Acklann.Mockaroo.Fields
 		/// Get the data type.
 		/// </summary>
 		public override DataType Type { get { return DataType.Date; } }
+	}
+	/// <summary>
+	/// Represents a mockaroo Department (Corporate) data-type.
+	/// </summary>
+	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
+	public partial class DepartmentCorporateField : FieldBase
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="DepartmentCorporateField"/> class.
+		/// </summary>
+		public DepartmentCorporateField() : base(string.Empty)
+		{ }
+	
+		/// <summary>
+		/// Initializes a new instance of the <see cref="DepartmentCorporateField"/> class.
+		/// </summary>
+		/// <param name="name">The name of the field.</param>
+		public DepartmentCorporateField(string name) : base(name)
+		{ }
+	
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.DepartmentCorporate; } }
+	}
+	/// <summary>
+	/// Represents a mockaroo Department (Retail) data-type.
+	/// </summary>
+	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
+	public partial class DepartmentRetailField : FieldBase
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="DepartmentRetailField"/> class.
+		/// </summary>
+		public DepartmentRetailField() : base(string.Empty)
+		{ }
+	
+		/// <summary>
+		/// Initializes a new instance of the <see cref="DepartmentRetailField"/> class.
+		/// </summary>
+		/// <param name="name">The name of the field.</param>
+		public DepartmentRetailField(string name) : base(name)
+		{ }
+	
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.DepartmentRetail; } }
+	}
+	/// <summary>
+	/// Represents a mockaroo Digit Sequence data-type.
+	/// </summary>
+	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
+	public partial class DigitSequenceField : FieldBase
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="DigitSequenceField"/> class.
+		/// </summary>
+		public DigitSequenceField() : base(string.Empty)
+		{ }
+	
+		/// <summary>
+		/// Initializes a new instance of the <see cref="DigitSequenceField"/> class.
+		/// </summary>
+		/// <param name="name">The name of the field.</param>
+		public DigitSequenceField(string name) : base(name)
+		{ }
+	
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.DigitSequence; } }
 	}
 	/// <summary>
 	/// Represents a mockaroo Domain Name data-type.
@@ -1922,6 +2162,54 @@ namespace Acklann.Mockaroo.Fields
 		public override DataType Type { get { return DataType.MongoDBObjectID; } }
 	}
 	/// <summary>
+	/// Represents a mockaroo Movie Genres data-type.
+	/// </summary>
+	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
+	public partial class MovieGenresField : FieldBase
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="MovieGenresField"/> class.
+		/// </summary>
+		public MovieGenresField() : base(string.Empty)
+		{ }
+	
+		/// <summary>
+		/// Initializes a new instance of the <see cref="MovieGenresField"/> class.
+		/// </summary>
+		/// <param name="name">The name of the field.</param>
+		public MovieGenresField(string name) : base(name)
+		{ }
+	
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.MovieGenres; } }
+	}
+	/// <summary>
+	/// Represents a mockaroo Movie Title data-type.
+	/// </summary>
+	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
+	public partial class MovieTitleField : FieldBase
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="MovieTitleField"/> class.
+		/// </summary>
+		public MovieTitleField() : base(string.Empty)
+		{ }
+	
+		/// <summary>
+		/// Initializes a new instance of the <see cref="MovieTitleField"/> class.
+		/// </summary>
+		/// <param name="name">The name of the field.</param>
+		public MovieTitleField(string name) : base(name)
+		{ }
+	
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.MovieTitle; } }
+	}
+	/// <summary>
 	/// Represents a mockaroo Naughty String data-type.
 	/// </summary>
 	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
@@ -1944,6 +2232,30 @@ namespace Acklann.Mockaroo.Fields
 		/// Get the data type.
 		/// </summary>
 		public override DataType Type { get { return DataType.NaughtyString; } }
+	}
+	/// <summary>
+	/// Represents a mockaroo NHS Number data-type.
+	/// </summary>
+	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
+	public partial class NHSNumberField : FieldBase
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="NHSNumberField"/> class.
+		/// </summary>
+		public NHSNumberField() : base(string.Empty)
+		{ }
+	
+		/// <summary>
+		/// Initializes a new instance of the <see cref="NHSNumberField"/> class.
+		/// </summary>
+		/// <param name="name">The name of the field.</param>
+		public NHSNumberField(string name) : base(name)
+		{ }
+	
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.NHSNumber; } }
 	}
 	/// <summary>
 	/// Represents a mockaroo Normal Distribution data-type.
@@ -2066,6 +2378,78 @@ namespace Acklann.Mockaroo.Fields
 		public override DataType Type { get { return DataType.Phone; } }
 	}
 	/// <summary>
+	/// Represents a mockaroo Plant Common Name data-type.
+	/// </summary>
+	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
+	public partial class PlantCommonNameField : FieldBase
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="PlantCommonNameField"/> class.
+		/// </summary>
+		public PlantCommonNameField() : base(string.Empty)
+		{ }
+	
+		/// <summary>
+		/// Initializes a new instance of the <see cref="PlantCommonNameField"/> class.
+		/// </summary>
+		/// <param name="name">The name of the field.</param>
+		public PlantCommonNameField(string name) : base(name)
+		{ }
+	
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.PlantCommonName; } }
+	}
+	/// <summary>
+	/// Represents a mockaroo Plant Family data-type.
+	/// </summary>
+	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
+	public partial class PlantFamilyField : FieldBase
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="PlantFamilyField"/> class.
+		/// </summary>
+		public PlantFamilyField() : base(string.Empty)
+		{ }
+	
+		/// <summary>
+		/// Initializes a new instance of the <see cref="PlantFamilyField"/> class.
+		/// </summary>
+		/// <param name="name">The name of the field.</param>
+		public PlantFamilyField(string name) : base(name)
+		{ }
+	
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.PlantFamily; } }
+	}
+	/// <summary>
+	/// Represents a mockaroo Plant Scientific Name data-type.
+	/// </summary>
+	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
+	public partial class PlantScientificNameField : FieldBase
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="PlantScientificNameField"/> class.
+		/// </summary>
+		public PlantScientificNameField() : base(string.Empty)
+		{ }
+	
+		/// <summary>
+		/// Initializes a new instance of the <see cref="PlantScientificNameField"/> class.
+		/// </summary>
+		/// <param name="name">The name of the field.</param>
+		public PlantScientificNameField(string name) : base(name)
+		{ }
+	
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.PlantScientificName; } }
+	}
+	/// <summary>
 	/// Represents a mockaroo Poisson Distribution data-type.
 	/// </summary>
 	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
@@ -2114,6 +2498,30 @@ namespace Acklann.Mockaroo.Fields
 		public override DataType Type { get { return DataType.PostalCode; } }
 	}
 	/// <summary>
+	/// Represents a mockaroo Product (Grocery) data-type.
+	/// </summary>
+	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
+	public partial class ProductGroceryField : FieldBase
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="ProductGroceryField"/> class.
+		/// </summary>
+		public ProductGroceryField() : base(string.Empty)
+		{ }
+	
+		/// <summary>
+		/// Initializes a new instance of the <see cref="ProductGroceryField"/> class.
+		/// </summary>
+		/// <param name="name">The name of the field.</param>
+		public ProductGroceryField(string name) : base(name)
+		{ }
+	
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.ProductGrocery; } }
+	}
+	/// <summary>
 	/// Represents a mockaroo Race data-type.
 	/// </summary>
 	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
@@ -2160,6 +2568,30 @@ namespace Acklann.Mockaroo.Fields
 		/// Get the data type.
 		/// </summary>
 		public override DataType Type { get { return DataType.RegularExpression; } }
+	}
+	/// <summary>
+	/// Represents a mockaroo Repeating Element data-type.
+	/// </summary>
+	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
+	public partial class RepeatingElementField : FieldBase
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="RepeatingElementField"/> class.
+		/// </summary>
+		public RepeatingElementField() : base(string.Empty)
+		{ }
+	
+		/// <summary>
+		/// Initializes a new instance of the <see cref="RepeatingElementField"/> class.
+		/// </summary>
+		/// <param name="name">The name of the field.</param>
+		public RepeatingElementField(string name) : base(name)
+		{ }
+	
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.RepeatingElement; } }
 	}
 	/// <summary>
 	/// Represents a mockaroo Row Number data-type.
@@ -2378,30 +2810,6 @@ namespace Acklann.Mockaroo.Fields
 		public override DataType Type { get { return DataType.Slogan; } }
 	}
 	/// <summary>
-	/// Represents a mockaroo SSN data-type.
-	/// </summary>
-	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
-	public partial class SSNField : FieldBase
-	{
-		/// <summary>
-		/// Initializes a new instance of the <see cref="SSNField"/> class.
-		/// </summary>
-		public SSNField() : base(string.Empty)
-		{ }
-	
-		/// <summary>
-		/// Initializes a new instance of the <see cref="SSNField"/> class.
-		/// </summary>
-		/// <param name="name">The name of the field.</param>
-		public SSNField(string name) : base(name)
-		{ }
-	
-		/// <summary>
-		/// Get the data type.
-		/// </summary>
-		public override DataType Type { get { return DataType.SSN; } }
-	}
-	/// <summary>
 	/// Represents a mockaroo SQL Expression data-type.
 	/// </summary>
 	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
@@ -2424,6 +2832,30 @@ namespace Acklann.Mockaroo.Fields
 		/// Get the data type.
 		/// </summary>
 		public override DataType Type { get { return DataType.SQLExpression; } }
+	}
+	/// <summary>
+	/// Represents a mockaroo SSN data-type.
+	/// </summary>
+	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
+	public partial class SSNField : FieldBase
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="SSNField"/> class.
+		/// </summary>
+		public SSNField() : base(string.Empty)
+		{ }
+	
+		/// <summary>
+		/// Initializes a new instance of the <see cref="SSNField"/> class.
+		/// </summary>
+		/// <param name="name">The name of the field.</param>
+		public SSNField(string name) : base(name)
+		{ }
+	
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.SSN; } }
 	}
 	/// <summary>
 	/// Represents a mockaroo State data-type.
@@ -2472,6 +2904,150 @@ namespace Acklann.Mockaroo.Fields
 		/// Get the data type.
 		/// </summary>
 		public override DataType Type { get { return DataType.StateAbbreviated; } }
+	}
+	/// <summary>
+	/// Represents a mockaroo Stock Industry data-type.
+	/// </summary>
+	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
+	public partial class StockIndustryField : FieldBase
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="StockIndustryField"/> class.
+		/// </summary>
+		public StockIndustryField() : base(string.Empty)
+		{ }
+	
+		/// <summary>
+		/// Initializes a new instance of the <see cref="StockIndustryField"/> class.
+		/// </summary>
+		/// <param name="name">The name of the field.</param>
+		public StockIndustryField(string name) : base(name)
+		{ }
+	
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.StockIndustry; } }
+	}
+	/// <summary>
+	/// Represents a mockaroo Stock Market data-type.
+	/// </summary>
+	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
+	public partial class StockMarketField : FieldBase
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="StockMarketField"/> class.
+		/// </summary>
+		public StockMarketField() : base(string.Empty)
+		{ }
+	
+		/// <summary>
+		/// Initializes a new instance of the <see cref="StockMarketField"/> class.
+		/// </summary>
+		/// <param name="name">The name of the field.</param>
+		public StockMarketField(string name) : base(name)
+		{ }
+	
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.StockMarket; } }
+	}
+	/// <summary>
+	/// Represents a mockaroo Stock Market Cap data-type.
+	/// </summary>
+	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
+	public partial class StockMarketCapField : FieldBase
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="StockMarketCapField"/> class.
+		/// </summary>
+		public StockMarketCapField() : base(string.Empty)
+		{ }
+	
+		/// <summary>
+		/// Initializes a new instance of the <see cref="StockMarketCapField"/> class.
+		/// </summary>
+		/// <param name="name">The name of the field.</param>
+		public StockMarketCapField(string name) : base(name)
+		{ }
+	
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.StockMarketCap; } }
+	}
+	/// <summary>
+	/// Represents a mockaroo Stock Name data-type.
+	/// </summary>
+	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
+	public partial class StockNameField : FieldBase
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="StockNameField"/> class.
+		/// </summary>
+		public StockNameField() : base(string.Empty)
+		{ }
+	
+		/// <summary>
+		/// Initializes a new instance of the <see cref="StockNameField"/> class.
+		/// </summary>
+		/// <param name="name">The name of the field.</param>
+		public StockNameField(string name) : base(name)
+		{ }
+	
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.StockName; } }
+	}
+	/// <summary>
+	/// Represents a mockaroo Stock Sector data-type.
+	/// </summary>
+	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
+	public partial class StockSectorField : FieldBase
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="StockSectorField"/> class.
+		/// </summary>
+		public StockSectorField() : base(string.Empty)
+		{ }
+	
+		/// <summary>
+		/// Initializes a new instance of the <see cref="StockSectorField"/> class.
+		/// </summary>
+		/// <param name="name">The name of the field.</param>
+		public StockSectorField(string name) : base(name)
+		{ }
+	
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.StockSector; } }
+	}
+	/// <summary>
+	/// Represents a mockaroo Stock Symbol data-type.
+	/// </summary>
+	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
+	public partial class StockSymbolField : FieldBase
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="StockSymbolField"/> class.
+		/// </summary>
+		public StockSymbolField() : base(string.Empty)
+		{ }
+	
+		/// <summary>
+		/// Initializes a new instance of the <see cref="StockSymbolField"/> class.
+		/// </summary>
+		/// <param name="name">The name of the field.</param>
+		public StockSymbolField(string name) : base(name)
+		{ }
+	
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.StockSymbol; } }
 	}
 	/// <summary>
 	/// Represents a mockaroo Street Address data-type.
@@ -2712,6 +3288,30 @@ namespace Acklann.Mockaroo.Fields
 		/// Get the data type.
 		/// </summary>
 		public override DataType Type { get { return DataType.TopLevelDomain; } }
+	}
+	/// <summary>
+	/// Represents a mockaroo University data-type.
+	/// </summary>
+	/// <seealso cref="Acklann.Mockaroo.Fields.FieldBase" />
+	public partial class UniversityField : FieldBase
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="UniversityField"/> class.
+		/// </summary>
+		public UniversityField() : base(string.Empty)
+		{ }
+	
+		/// <summary>
+		/// Initializes a new instance of the <see cref="UniversityField"/> class.
+		/// </summary>
+		/// <param name="name">The name of the field.</param>
+		public UniversityField(string name) : base(name)
+		{ }
+	
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.University; } }
 	}
 	/// <summary>
 	/// Represents a mockaroo URL data-type.

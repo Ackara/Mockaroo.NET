@@ -1,3 +1,5 @@
+﻿Animal Common Name
+Animal Scientific Name
 App Bundle ID
 App Name
 App Version
@@ -8,7 +10,12 @@ Bitcoin Address
 Blank
 Boolean
 Buzzword
+Car Make
+Car Model
+Car Model Year
+Car VIN
 Catch Phrase
+Character Sequence
 City
 Color
 Company Name
@@ -21,6 +28,9 @@ Currency Code
 Custom List
 Dataset Column
 Date
+Department (Corporate)
+Department (Retail)
+Digit Sequence
 Domain Name
 Drug Company
 Drug Name (Brand)
@@ -78,16 +88,24 @@ MD5
 MIME Type
 Money
 MongoDB ObjectID
+Movie Genres
+Movie Title
 Naughty String
+NHS Number
 Normal Distribution
 Number
 Paragraphs
 Password
 Phone
+Plant Common Name
+Plant Family
+Plant Scientific Name
 Poisson Distribution
 Postal Code
+Product (Grocery)
 Race
 Regular Expression
+Repeating Element
 Row Number
 Scenario
 Sentences
@@ -97,10 +115,16 @@ SHA256
 Shirt Size
 Short Hex Color
 Slogan
-SSN
 SQL Expression
+SSN
 State
 State (abbrev)
+Stock Industry
+Stock Market
+Stock Market Cap
+Stock Name
+Stock Sector
+Stock Symbol
 Street Address
 Street Name
 Street Number
@@ -111,6 +135,7 @@ Time
 Time Zone
 Title
 Top Level Domain
+University
 URL
 User Agent
 Username

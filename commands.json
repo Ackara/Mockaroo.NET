@@ -1,14 +1,35 @@
 {
-  "commands": {
-    "Update-VersionNumber": {
+  "commands":
+  {
+    "version: major":
+    {
       "fileName": "powershell.exe",
       "workingDirectory": ".",
-      "arguments": "-ExecutionPolicy Bypass -NonInteractive -File ..\\tools\\Update-VersionNumber.ps1"
+      "arguments": "-ExecutionPolicy Bypass -NonInteractive -File build.ps1 version -Major"
     },
-    "Add-MockarooKey": {
+    "version: minor":
+    {
       "fileName": "powershell.exe",
       "workingDirectory": ".",
-      "arguments": "-ExecutionPolicy Bypass -NonInteractive -File ..\\tools\\Add-MockarooKey.ps1"
+      "arguments": "-ExecutionPolicy Bypass -NonInteractive -File build.ps1 version -Minor"
+    },
+    "version: patch":
+    {
+      "fileName": "powershell.exe",
+      "workingDirectory": ".",
+      "arguments": "-ExecutionPolicy Bypass -NonInteractive -File build.ps1 version -Patch"
+    },
+    "create mockaroo key":
+    {
+      "fileName": "powershell.exe",
+      "workingDirectory": ".",
+      "arguments": "-ExecutionPolicy Bypass -NonInteractive -File build.ps1 configure"
+    },
+    "publish":
+    {
+      "fileName": "powershell.exe",
+      "workingDirectory": ".",
+      "arguments": "-ExecutionPolicy Bypass -NonInteractive -File build.ps1 publish"
     }
   }
 }

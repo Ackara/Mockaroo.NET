@@ -7,6 +7,14 @@ namespace Acklann.Mockaroo
 	public enum DataType
 	{
 		/// <summary>
+		/// Animal Common Name
+		/// </summary>
+		AnimalCommonName,
+		/// <summary>
+		/// Animal Scientific Name
+		/// </summary>
+		AnimalScientificName,
+		/// <summary>
 		/// App Bundle ID
 		/// </summary>
 		AppBundleID,
@@ -47,9 +55,29 @@ namespace Acklann.Mockaroo
 		/// </summary>
 		Buzzword,
 		/// <summary>
+		/// Car Make
+		/// </summary>
+		CarMake,
+		/// <summary>
+		/// Car Model
+		/// </summary>
+		CarModel,
+		/// <summary>
+		/// Car Model Year
+		/// </summary>
+		CarModelYear,
+		/// <summary>
+		/// Car VIN
+		/// </summary>
+		CarVIN,
+		/// <summary>
 		/// Catch Phrase
 		/// </summary>
 		CatchPhrase,
+		/// <summary>
+		/// Character Sequence
+		/// </summary>
+		CharacterSequence,
 		/// <summary>
 		/// City
 		/// </summary>
@@ -98,6 +126,18 @@ namespace Acklann.Mockaroo
 		/// Date
 		/// </summary>
 		Date,
+		/// <summary>
+		/// Department (Corporate)
+		/// </summary>
+		DepartmentCorporate,
+		/// <summary>
+		/// Department (Retail)
+		/// </summary>
+		DepartmentRetail,
+		/// <summary>
+		/// Digit Sequence
+		/// </summary>
+		DigitSequence,
 		/// <summary>
 		/// Domain Name
 		/// </summary>
@@ -327,9 +367,21 @@ namespace Acklann.Mockaroo
 		/// </summary>
 		MongoDBObjectID,
 		/// <summary>
+		/// Movie Genres
+		/// </summary>
+		MovieGenres,
+		/// <summary>
+		/// Movie Title
+		/// </summary>
+		MovieTitle,
+		/// <summary>
 		/// Naughty String
 		/// </summary>
 		NaughtyString,
+		/// <summary>
+		/// NHS Number
+		/// </summary>
+		NHSNumber,
 		/// <summary>
 		/// Normal Distribution
 		/// </summary>
@@ -351,6 +403,18 @@ namespace Acklann.Mockaroo
 		/// </summary>
 		Phone,
 		/// <summary>
+		/// Plant Common Name
+		/// </summary>
+		PlantCommonName,
+		/// <summary>
+		/// Plant Family
+		/// </summary>
+		PlantFamily,
+		/// <summary>
+		/// Plant Scientific Name
+		/// </summary>
+		PlantScientificName,
+		/// <summary>
 		/// Poisson Distribution
 		/// </summary>
 		PoissonDistribution,
@@ -359,6 +423,10 @@ namespace Acklann.Mockaroo
 		/// </summary>
 		PostalCode,
 		/// <summary>
+		/// Product (Grocery)
+		/// </summary>
+		ProductGrocery,
+		/// <summary>
 		/// Race
 		/// </summary>
 		Race,
@@ -366,6 +434,10 @@ namespace Acklann.Mockaroo
 		/// Regular Expression
 		/// </summary>
 		RegularExpression,
+		/// <summary>
+		/// Repeating Element
+		/// </summary>
+		RepeatingElement,
 		/// <summary>
 		/// Row Number
 		/// </summary>
@@ -403,13 +475,13 @@ namespace Acklann.Mockaroo
 		/// </summary>
 		Slogan,
 		/// <summary>
-		/// SSN
-		/// </summary>
-		SSN,
-		/// <summary>
 		/// SQL Expression
 		/// </summary>
 		SQLExpression,
+		/// <summary>
+		/// SSN
+		/// </summary>
+		SSN,
 		/// <summary>
 		/// State
 		/// </summary>
@@ -418,6 +490,30 @@ namespace Acklann.Mockaroo
 		/// State (abbrev)
 		/// </summary>
 		StateAbbreviated,
+		/// <summary>
+		/// Stock Industry
+		/// </summary>
+		StockIndustry,
+		/// <summary>
+		/// Stock Market
+		/// </summary>
+		StockMarket,
+		/// <summary>
+		/// Stock Market Cap
+		/// </summary>
+		StockMarketCap,
+		/// <summary>
+		/// Stock Name
+		/// </summary>
+		StockName,
+		/// <summary>
+		/// Stock Sector
+		/// </summary>
+		StockSector,
+		/// <summary>
+		/// Stock Symbol
+		/// </summary>
+		StockSymbol,
 		/// <summary>
 		/// Street Address
 		/// </summary>
@@ -458,6 +554,10 @@ namespace Acklann.Mockaroo
 		/// Top Level Domain
 		/// </summary>
 		TopLevelDomain,
+		/// <summary>
+		/// University
+		/// </summary>
+		University,
 		/// <summary>
 		/// URL
 		/// </summary>

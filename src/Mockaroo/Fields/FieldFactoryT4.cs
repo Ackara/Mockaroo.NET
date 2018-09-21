@@ -13,6 +13,10 @@ namespace Acklann.Mockaroo.Fields
 				default:
 					throw new System.ArgumentException($"'{dataType}' is not a unknown data type.");
 
+				case DataType.AnimalCommonName: 
+					return new AnimalCommonNameField();
+				case DataType.AnimalScientificName: 
+					return new AnimalScientificNameField();
 				case DataType.AppBundleID: 
 					return new AppBundleIDField();
 				case DataType.AppName: 
@@ -33,8 +37,18 @@ namespace Acklann.Mockaroo.Fields
 					return new BooleanField();
 				case DataType.Buzzword: 
 					return new BuzzwordField();
+				case DataType.CarMake: 
+					return new CarMakeField();
+				case DataType.CarModel: 
+					return new CarModelField();
+				case DataType.CarModelYear: 
+					return new CarModelYearField();
+				case DataType.CarVIN: 
+					return new CarVINField();
 				case DataType.CatchPhrase: 
 					return new CatchPhraseField();
+				case DataType.CharacterSequence: 
+					return new CharacterSequenceField();
 				case DataType.City: 
 					return new CityField();
 				case DataType.Color: 
@@ -59,6 +73,12 @@ namespace Acklann.Mockaroo.Fields
 					return new DatasetColumnField();
 				case DataType.Date: 
 					return new DateField();
+				case DataType.DepartmentCorporate: 
+					return new DepartmentCorporateField();
+				case DataType.DepartmentRetail: 
+					return new DepartmentRetailField();
+				case DataType.DigitSequence: 
+					return new DigitSequenceField();
 				case DataType.DomainName: 
 					return new DomainNameField();
 				case DataType.DrugCompany: 
@@ -173,8 +193,14 @@ namespace Acklann.Mockaroo.Fields
 					return new MoneyField();
 				case DataType.MongoDBObjectID: 
 					return new MongoDBObjectIDField();
+				case DataType.MovieGenres: 
+					return new MovieGenresField();
+				case DataType.MovieTitle: 
+					return new MovieTitleField();
 				case DataType.NaughtyString: 
 					return new NaughtyStringField();
+				case DataType.NHSNumber: 
+					return new NHSNumberField();
 				case DataType.NormalDistribution: 
 					return new NormalDistributionField();
 				case DataType.Number: 
@@ -185,14 +211,24 @@ namespace Acklann.Mockaroo.Fields
 					return new PasswordField();
 				case DataType.Phone: 
 					return new PhoneField();
+				case DataType.PlantCommonName: 
+					return new PlantCommonNameField();
+				case DataType.PlantFamily: 
+					return new PlantFamilyField();
+				case DataType.PlantScientificName: 
+					return new PlantScientificNameField();
 				case DataType.PoissonDistribution: 
 					return new PoissonDistributionField();
 				case DataType.PostalCode: 
 					return new PostalCodeField();
+				case DataType.ProductGrocery: 
+					return new ProductGroceryField();
 				case DataType.Race: 
 					return new RaceField();
 				case DataType.RegularExpression: 
 					return new RegularExpressionField();
+				case DataType.RepeatingElement: 
+					return new RepeatingElementField();
 				case DataType.RowNumber: 
 					return new RowNumberField();
 				case DataType.Scenario: 
@@ -211,14 +247,26 @@ namespace Acklann.Mockaroo.Fields
 					return new ShortHexColorField();
 				case DataType.Slogan: 
 					return new SloganField();
-				case DataType.SSN: 
-					return new SSNField();
 				case DataType.SQLExpression: 
 					return new SQLExpressionField();
+				case DataType.SSN: 
+					return new SSNField();
 				case DataType.State: 
 					return new StateField();
 				case DataType.StateAbbreviated: 
 					return new StateAbbreviatedField();
+				case DataType.StockIndustry: 
+					return new StockIndustryField();
+				case DataType.StockMarket: 
+					return new StockMarketField();
+				case DataType.StockMarketCap: 
+					return new StockMarketCapField();
+				case DataType.StockName: 
+					return new StockNameField();
+				case DataType.StockSector: 
+					return new StockSectorField();
+				case DataType.StockSymbol: 
+					return new StockSymbolField();
 				case DataType.StreetAddress: 
 					return new StreetAddressField();
 				case DataType.StreetName: 
@@ -239,6 +287,8 @@ namespace Acklann.Mockaroo.Fields
 					return new TitleField();
 				case DataType.TopLevelDomain: 
 					return new TopLevelDomainField();
+				case DataType.University: 
+					return new UniversityField();
 				case DataType.URL: 
 					return new URLField();
 				case DataType.UserAgent: 
@@ -261,6 +311,10 @@ namespace Acklann.Mockaroo.Fields
 			{
 				default:
 					return string.Empty;
+				case DataType.AnimalCommonName:
+					return "Animal Common Name";
+				case DataType.AnimalScientificName:
+					return "Animal Scientific Name";
 				case DataType.AppBundleID:
 					return "App Bundle ID";
 				case DataType.AppName:
@@ -281,8 +335,18 @@ namespace Acklann.Mockaroo.Fields
 					return "Boolean";
 				case DataType.Buzzword:
 					return "Buzzword";
+				case DataType.CarMake:
+					return "Car Make";
+				case DataType.CarModel:
+					return "Car Model";
+				case DataType.CarModelYear:
+					return "Car Model Year";
+				case DataType.CarVIN:
+					return "Car VIN";
 				case DataType.CatchPhrase:
 					return "Catch Phrase";
+				case DataType.CharacterSequence:
+					return "Character Sequence";
 				case DataType.City:
 					return "City";
 				case DataType.Color:
@@ -307,6 +371,12 @@ namespace Acklann.Mockaroo.Fields
 					return "Dataset Column";
 				case DataType.Date:
 					return "Date";
+				case DataType.DepartmentCorporate:
+					return "Department (Corporate)";
+				case DataType.DepartmentRetail:
+					return "Department (Retail)";
+				case DataType.DigitSequence:
+					return "Digit Sequence";
 				case DataType.DomainName:
 					return "Domain Name";
 				case DataType.DrugCompany:
@@ -421,8 +491,14 @@ namespace Acklann.Mockaroo.Fields
 					return "Money";
 				case DataType.MongoDBObjectID:
 					return "MongoDB ObjectID";
+				case DataType.MovieGenres:
+					return "Movie Genres";
+				case DataType.MovieTitle:
+					return "Movie Title";
 				case DataType.NaughtyString:
 					return "Naughty String";
+				case DataType.NHSNumber:
+					return "NHS Number";
 				case DataType.NormalDistribution:
 					return "Normal Distribution";
 				case DataType.Number:
@@ -433,14 +509,24 @@ namespace Acklann.Mockaroo.Fields
 					return "Password";
 				case DataType.Phone:
 					return "Phone";
+				case DataType.PlantCommonName:
+					return "Plant Common Name";
+				case DataType.PlantFamily:
+					return "Plant Family";
+				case DataType.PlantScientificName:
+					return "Plant Scientific Name";
 				case DataType.PoissonDistribution:
 					return "Poisson Distribution";
 				case DataType.PostalCode:
 					return "Postal Code";
+				case DataType.ProductGrocery:
+					return "Product (Grocery)";
 				case DataType.Race:
 					return "Race";
 				case DataType.RegularExpression:
 					return "Regular Expression";
+				case DataType.RepeatingElement:
+					return "Repeating Element";
 				case DataType.RowNumber:
 					return "Row Number";
 				case DataType.Scenario:
@@ -459,14 +545,26 @@ namespace Acklann.Mockaroo.Fields
 					return "Short Hex Color";
 				case DataType.Slogan:
 					return "Slogan";
-				case DataType.SSN:
-					return "SSN";
 				case DataType.SQLExpression:
 					return "SQL Expression";
+				case DataType.SSN:
+					return "SSN";
 				case DataType.State:
 					return "State";
 				case DataType.StateAbbreviated:
 					return "State (abbrev)";
+				case DataType.StockIndustry:
+					return "Stock Industry";
+				case DataType.StockMarket:
+					return "Stock Market";
+				case DataType.StockMarketCap:
+					return "Stock Market Cap";
+				case DataType.StockName:
+					return "Stock Name";
+				case DataType.StockSector:
+					return "Stock Sector";
+				case DataType.StockSymbol:
+					return "Stock Symbol";
 				case DataType.StreetAddress:
 					return "Street Address";
 				case DataType.StreetName:
@@ -487,6 +585,8 @@ namespace Acklann.Mockaroo.Fields
 					return "Title";
 				case DataType.TopLevelDomain:
 					return "Top Level Domain";
+				case DataType.University:
+					return "University";
 				case DataType.URL:
 					return "URL";
 				case DataType.UserAgent:
