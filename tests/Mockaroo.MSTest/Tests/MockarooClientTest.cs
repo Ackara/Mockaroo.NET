@@ -1,4 +1,4 @@
-﻿using Acklann.Diffa.Reporters;
+﻿using Acklann.Diffa;
 using Acklann.Mockaroo.Fakes;
 using Acklann.Mockaroo.Fields;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -14,7 +14,6 @@ using System.Text;
 namespace Acklann.Mockaroo.Tests
 {
     [TestClass]
-    [Use(typeof(NotepadPlusPlusReporter))]
     public class MockarooClientTest
     {
         [TestMethod]
@@ -69,6 +68,25 @@ namespace Acklann.Mockaroo.Tests
 
                 var result = sut.FetchDataAsync(schema).Result;
             });
+        }
+
+        [TestMethod]
+        public void Can_return_persisted_data()
+        {
+            // Arrange
+            var sut = new MockarooClient(Config.GetApikey());
+
+            var sample = new Schema<User>();
+            sample.Reassign(x => x.Email, DataType.EmailAddress);
+            sample.Reassign(x => x.Username, DataType.FirstName);
+
+            // Act
+            var result1 = sut.FetchPesistedDataAsync<User>(sample, 5, 10).Result;
+            var result2 = sut.FetchPesistedDataAsync<BasicObject>(3, 10).Result;
+
+            // Assert
+            Diff.ApproveAll(result1);
+            Diff.ApproveAll(result2);
         }
 
         internal static IEnumerable<IField> GetAllFieldTypes()

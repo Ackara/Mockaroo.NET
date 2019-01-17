@@ -19,11 +19,17 @@
       "workingDirectory": ".",
       "arguments": "-ExecutionPolicy Bypass -NonInteractive -File build.ps1 version -Patch"
     },
-    "create mockaroo key":
+    "configure":
     {
       "fileName": "powershell.exe",
       "workingDirectory": ".",
       "arguments": "-ExecutionPolicy Bypass -NonInteractive -File build.ps1 configure"
+    },
+    "update":
+    {
+      "fileName": "powershell.exe",
+      "workingDirectory": ".",
+      "arguments": "-ExecutionPolicy Bypass -NonInteractive -File build.ps1 update"
     },
     "publish":
     {
@@ -31,6 +37,12 @@
       "workingDirectory": ".",
       "arguments": "-ExecutionPolicy Bypass -NonInteractive -File build.ps1 publish"
     }
+  },
+  "-vs-binding":
+  {
+    "ProjectOpened":
+    [
+      "configure"
+    ]
   }
-, "-vs-binding":{"ProjectOpened":["create mockaroo key"]}
 }

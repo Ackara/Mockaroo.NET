@@ -13,12 +13,12 @@ namespace Acklann.Mockaroo.Serialization
         internal static object[] Deserialize(string json, Type template)
         {
             int index = 0;
-            object instance = null;
             var dataset = JArray.Parse(json);
             var results = new object[dataset.Count];
 
             foreach (JObject record in dataset)
             {
+                object instance = null;
                 CreateNew(ref instance, template, record, string.Empty);
                 results[index++] = instance;
             }

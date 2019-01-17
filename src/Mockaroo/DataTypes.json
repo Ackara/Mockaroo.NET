@@ -1,0 +1,1134 @@
+{
+  "types": [
+    {
+      "name": "Animal Common Name",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Animal Scientific Name",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "App Bundle ID",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "App Name",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "App Version",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Avatar",
+      "type": "string",
+      "parameters": [
+        {
+          "name": "height",
+          "type": "integer",
+          "description": "the image height in pixels",
+          "default": null
+        },
+        {
+          "name": "width",
+          "type": "integer",
+          "description": "the image height in pixels",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "Base64 Image URL",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Binomial Distribution",
+      "type": "integer",
+      "parameters": []
+    },
+    {
+      "name": "Bitcoin Address",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Blank",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Boolean",
+      "type": "boolean",
+      "parameters": []
+    },
+    {
+      "name": "Buzzword",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Car Make",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Car Model",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Car Model Year",
+      "type": "integer",
+      "parameters": []
+    },
+    {
+      "name": "Car VIN",
+      "type": null,
+      "parameters": []
+    },
+    {
+      "name": "Catch Phrase",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Character Sequence",
+      "type": null,
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "description": "A string of characters, digits, and symbols",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "City",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Color",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Company Name",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Country",
+      "type": "string",
+      "parameters": [
+        {
+          "name": "countries",
+          "type": "array",
+          "description": "An array of countries to restrict the generated locations to",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "Country Code",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Credit Card #",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Credit Card Type",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Currency",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Currency Code",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Custom List",
+      "type": "string|integer|float",
+      "parameters": [
+        {
+          "name": "values",
+          "type": "array",
+          "description": "An array of values to pick from.  Each value should be a string.",
+          "default": null
+        },
+        {
+          "name": "selectionStyle",
+          "type": "string",
+          "description": "See <a href=\"/help/list\">list distribution types</a>.",
+          "values": [
+            "random",
+            "sequential",
+            "custom",
+            "cartesian"
+          ],
+          "default": "random"
+        },
+        {
+          "name": "distribution",
+          "type": "array",
+          "description": null,
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "Dataset Column",
+      "type": "string|integer|float",
+      "parameters": [
+        {
+          "name": "dataset",
+          "type": "string",
+          "description": "The name of a saved dataset",
+          "default": null
+        },
+        {
+          "name": "column",
+          "type": "string",
+          "description": "The name of the column in the saved dataset",
+          "default": null
+        },
+        {
+          "name": "selectionStyle",
+          "type": "string",
+          "description": "See <a href=\"/help/list\">list distribution types</a>.",
+          "values": [
+            "random",
+            "sequential",
+            "custom",
+            "cartesian"
+          ],
+          "default": "random"
+        }
+      ]
+    },
+    {
+      "name": "Date",
+      "type": "datetime",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "string",
+          "description": "The minimum date in mm/dd/yyyy format.",
+          "default": "1/17/2019"
+        },
+        {
+          "name": "max",
+          "type": "string",
+          "description": "The maximum date in mm/dd/yyyy format.",
+          "default": "1/17/2018"
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "description": "(optional) The format to output. This can be any format directive supported by ruby <a target=\"_blank\" href=\"http://www.ruby-doc.org/core-1.9.3/Time.html#method-i-strftime\">Time.strftime</a>.  Defaults to ISO 8601 format. Example value: \"2007-11-19T08:37:48-06:00\".",
+          "default": "%FT%T%:z"
+        }
+      ]
+    },
+    {
+      "name": "Department (Corporate)",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Department (Retail)",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Digit Sequence",
+      "type": null,
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "description": "A string of characters, digits, and symbols",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "Domain Name",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Drug Company",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Drug Name (Brand)",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Drug Name (Generic)",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Dummy Image URL",
+      "type": "string",
+      "parameters": [
+        {
+          "name": "minHeight",
+          "type": "integer",
+          "description": "the minimum height in pixels",
+          "default": null
+        },
+        {
+          "name": "maxHeight",
+          "type": "integer",
+          "description": "the maximum height in pixels",
+          "default": null
+        },
+        {
+          "name": "minWidth",
+          "type": "integer",
+          "description": "the minimum width in pixels",
+          "default": null
+        },
+        {
+          "name": "maxWidth",
+          "type": "integer",
+          "description": "the maximum width in pixels",
+          "default": null
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "description": "The image format",
+          "values": [
+            "random",
+            "png",
+            "gif",
+            "jpg"
+          ],
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "DUNS Number",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "EIN",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Email Address",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Encrypt",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Exponential Distribution",
+      "type": "float",
+      "parameters": [
+        {
+          "name": "lambda",
+          "type": "decimal",
+          "description": "The rate parameter",
+          "default": 1
+        }
+      ]
+    },
+    {
+      "name": "Fake Company Name",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Family Name (Chinese)",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "FDA NDC Code",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "File Name",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "First Name",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "First Name (European)",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "First Name (Female)",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "First Name (Male)",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Formula",
+      "type": "any",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "string",
+          "description": null,
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "Frequency",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Full Name",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Gender",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Gender (abbrev)",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Geometric Distribution",
+      "type": "integer",
+      "parameters": [
+        {
+          "name": "probability",
+          "type": "decimal",
+          "description": "The probability of success",
+          "default": 0.5
+        }
+      ]
+    },
+    {
+      "name": "Given Name (Chinese)",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "GUID",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Hex Color",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "IBAN",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "ICD10 Diagnosis Code",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "ICD10 Dx Desc (Long)",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "ICD10 Dx Desc (Short)",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "ICD10 Proc Desc (Long)",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "ICD10 Proc Desc (Short)",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "ICD10 Procedure Code",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "ICD9 Diagnosis Code",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "ICD9 Dx Desc (Long)",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "ICD9 Dx Desc (Short)",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "ICD9 Proc Desc (Long)",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "ICD9 Proc Desc (Short)",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "ICD9 Procedure Code",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "IP Address v4",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "IP Address v4 CIDR",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "IP Address v6",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "IP Address v6 CIDR",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "ISBN",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Job Title",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "JSON Array",
+      "type": "array",
+      "parameters": [
+        {
+          "name": "minItems",
+          "type": "integer",
+          "description": "The minimum number of items to generate (0 to 100).  <a href=\"/help/json_arrays\">Help with JSON Arrays...</a>",
+          "default": 1
+        },
+        {
+          "name": "maxItems",
+          "type": "integer",
+          "description": "The maximum number of items to generate (0 to 100)",
+          "default": 5
+        }
+      ]
+    },
+    {
+      "name": "Language",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Last Name",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Latitude",
+      "type": "float",
+      "parameters": []
+    },
+    {
+      "name": "LinkedIn Skill",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Longitude",
+      "type": "float",
+      "parameters": []
+    },
+    {
+      "name": "MAC Address",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "MD5",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "MIME Type",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Money",
+      "type": "string",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "integer",
+          "description": "The minimum value",
+          "default": 0
+        },
+        {
+          "name": "max",
+          "type": "integer",
+          "description": "The maximum value",
+          "default": 10
+        },
+        {
+          "name": "symbol",
+          "type": "string",
+          "description": "The currency symbol",
+          "values": [
+            "$",
+            "£",
+            "€",
+            "¥",
+            "random",
+            "none"
+          ],
+          "default": "$"
+        }
+      ]
+    },
+    {
+      "name": "MongoDB ObjectID",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Movie Genres",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Movie Title",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Naughty String",
+      "type": null,
+      "parameters": []
+    },
+    {
+      "name": "NHS Number",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Normal Distribution",
+      "type": "integer|float",
+      "parameters": [
+        {
+          "name": "mean",
+          "type": "decimal",
+          "description": "The mean value for the normal distribution",
+          "default": 0
+        },
+        {
+          "name": "sd",
+          "type": "decimal",
+          "description": "The standard deviation for the normal distribution",
+          "default": 1
+        },
+        {
+          "name": "decimals",
+          "type": "integer",
+          "description": "The number of decimals places for each generated value",
+          "default": 2
+        }
+      ]
+    },
+    {
+      "name": "Number",
+      "type": "integer|float",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "integer",
+          "description": "The minimum value",
+          "default": 1
+        },
+        {
+          "name": "max",
+          "type": "integer",
+          "description": "The maximum value",
+          "default": 100
+        },
+        {
+          "name": "decimals",
+          "type": "integer",
+          "description": "The number of decimals",
+          "default": 2
+        }
+      ]
+    },
+    {
+      "name": "Paragraphs",
+      "type": "string",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "integer",
+          "description": "The minimum number of paragraphs",
+          "default": 1
+        },
+        {
+          "name": "max",
+          "type": "integer",
+          "description": "The maximum number of paragraphs",
+          "default": 3
+        }
+      ]
+    },
+    {
+      "name": "Password",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Phone",
+      "type": "string",
+      "parameters": [
+        {
+          "name": "format",
+          "type": "string",
+          "description": "The phone number format",
+          "values": [
+            "###-###-####",
+            "(###) ###-####",
+            "### ### ####",
+            "+# ### ### ####",
+            "+# (###) ###-####",
+            "+#-###-###-####",
+            "#-(###)###-####",
+            "##########"
+          ],
+          "default": "#-(###)###-####"
+        }
+      ]
+    },
+    {
+      "name": "Plant Common Name",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Plant Family",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Plant Scientific Name",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Poisson Distribution",
+      "type": "integer",
+      "parameters": [
+        {
+          "name": "mean",
+          "type": "integer",
+          "description": "The mean value for the poisson distribution",
+          "default": 50
+        }
+      ]
+    },
+    {
+      "name": "Postal Code",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Product (Grocery)",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Race",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Regular Expression",
+      "type": "string",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "string",
+          "description": null,
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "Repeating Element",
+      "type": "any",
+      "parameters": [
+        {
+          "name": "minElements",
+          "type": "integer",
+          "description": "The minimum number of elements to generate (0 to 100).  <a href=\"/help/repeated_element\">Help with Repeated Elements...</a>",
+          "default": 1
+        },
+        {
+          "name": "maxElements",
+          "type": "integer",
+          "description": "The maximum number of elements to generate (0 to 100)",
+          "default": 5
+        }
+      ]
+    },
+    {
+      "name": "Row Number",
+      "type": "integer",
+      "parameters": []
+    },
+    {
+      "name": "Scenario",
+      "type": "integer|float",
+      "parameters": [
+        {
+          "name": "scenario",
+          "type": "string",
+          "description": "The name of a scenario",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "Sentences",
+      "type": "string",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "integer",
+          "description": "The minimum number of sentences",
+          "default": 1
+        },
+        {
+          "name": "max",
+          "type": "integer",
+          "description": "The maximum number of sentences",
+          "default": 10
+        }
+      ]
+    },
+    {
+      "name": "Sequence",
+      "type": "integer",
+      "parameters": [
+        {
+          "name": "start",
+          "type": "integer",
+          "description": "The first number in the sequence",
+          "default": 1
+        },
+        {
+          "name": "step",
+          "type": "integer",
+          "description": "The number to add to each subsequent value",
+          "default": 1
+        },
+        {
+          "name": "repeat",
+          "type": "integer",
+          "description": "The number of times each value should occur before the step amount is added.",
+          "default": 1
+        }
+      ]
+    },
+    {
+      "name": "SHA1",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "SHA256",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Shirt Size",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Short Hex Color",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Slogan",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "SQL Expression",
+      "type": "string",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "string",
+          "description": "SQL code to include verbatim in the generated output",
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "SSN",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "State",
+      "type": "string",
+      "parameters": [
+        {
+          "name": "onlyUSPlaces",
+          "type": "boolean",
+          "description": "True to restrict locations to the United States",
+          "default": false
+        }
+      ]
+    },
+    {
+      "name": "State (abbrev)",
+      "type": "string",
+      "parameters": [
+        {
+          "name": "onlyUSPlaces",
+          "type": "boolean",
+          "description": "True to restrict locations to the United States",
+          "default": false
+        }
+      ]
+    },
+    {
+      "name": "Stock Industry",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Stock Market",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Stock Market Cap",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Stock Name",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Stock Sector",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Stock Symbol",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Street Address",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Street Name",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Street Number",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Street Suffix",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Suffix",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Template",
+      "type": "string",
+      "parameters": [
+        {
+          "name": "value",
+          "type": "string",
+          "description": null,
+          "default": null
+        }
+      ]
+    },
+    {
+      "name": "Time",
+      "type": "string",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "string",
+          "description": "The minimum time in HH:MM AM/PM format.",
+          "default": "12:00 AM"
+        },
+        {
+          "name": "max",
+          "type": "string",
+          "description": "The maximum time in HH:MM AM/PM format.",
+          "default": "11:59 PM"
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "description": "(optional) The format to output. This can be any format directive supported by ruby <a target=\"_blank\" href=\"http://www.ruby-doc.org/core-1.9.3/Time.html#method-i-strftime\">Time.strftime</a>. Defaults to ISO 8601 format. Example value: \"08:37:48\".",
+          "default": "%T"
+        }
+      ]
+    },
+    {
+      "name": "Time Zone",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Title",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Top Level Domain",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "University",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "URL",
+      "type": "string",
+      "parameters": [
+        {
+          "name": "includeProtocol",
+          "type": "boolean",
+          "description": "True to include a protocol in the url",
+          "default": true
+        },
+        {
+          "name": "includeHost",
+          "type": "boolean",
+          "description": "True to include a hostname in the url",
+          "default": true
+        },
+        {
+          "name": "includePath",
+          "type": "boolean",
+          "description": "True to include a path in the url",
+          "default": true
+        },
+        {
+          "name": "includeQueryString",
+          "type": "boolean",
+          "description": "True to include a query string in the url",
+          "default": true
+        }
+      ]
+    },
+    {
+      "name": "User Agent",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Username",
+      "type": "string",
+      "parameters": []
+    },
+    {
+      "name": "Words",
+      "type": "string",
+      "parameters": [
+        {
+          "name": "min",
+          "type": "integer",
+          "description": "The minimum number of words",
+          "default": 10
+        },
+        {
+          "name": "max",
+          "type": "integer",
+          "description": "The maximum number of words",
+          "default": 20
+        }
+      ]
+    }
+  ]
+}

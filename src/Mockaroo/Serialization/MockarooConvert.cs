@@ -16,7 +16,7 @@ namespace Acklann.Mockaroo.Serialization
         /// <param name="type">The type.</param>
         /// <param name="depth">The max-depth the serializer should traverse down the object tree.</param>
         /// <returns></returns>
-        public static Schema ToSchema(Type type, int depth)
+        public static Schema ToSchema(this Type type, int depth)
         {
             return new Schema(ConvertToSchema(type, depth).ToArray());
         }

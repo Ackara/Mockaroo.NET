@@ -12,7 +12,7 @@ using System.Linq;
 namespace Acklann.Mockaroo.Tests
 {
     [TestClass]
-    //[Use(typeof(NotepadPlusPlusReporter), doNotPauseIfTestFails: true)]
+    //[Reporter(typeof(NotepadPlusPlusReporter), doNotPauseIfTestFails: true)]
     public class SerializationTest
     {
         //  Type  ::>  Schema
@@ -43,7 +43,7 @@ namespace Acklann.Mockaroo.Tests
         }
 
         [TestMethod]
-        [Use(typeof(NullReporter))]
+        [Reporter(typeof(NullReporter))]
         public void Should_throw_when_type_has_no_parameterless_constructor()
         {
             Should.Throw<ArgumentException>(() =>

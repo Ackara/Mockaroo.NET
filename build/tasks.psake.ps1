@@ -1,23 +1,12 @@
 # Project-Specific tasks.
 
-Properties {
-	[string]$MigrationDirectory = Join-Path $RootDir "src/*/*Migrations" | Resolve-Path;
-}
-
 Task "Deploy" -alias "publish" -description "This task compiles, test then publishes the solution." `
 -depends @("version", "build", "test", "pack", "push-nuget", "tag");
 
 # ===============
 
-Task "clean" -action {
-}
-
 Task "Setup-Project" -alias "configure" -description "This initializes the project." `
 -depends @("restore") -action {
-    [string]$sln = Resolve-Path "$RootDir/*.sln";
-    Write-Header "dotnet restore";
-    Exec { &dotnet restore $sln; }
-
 	[string]$projectDir = Join-Path $RootDir "tests/*mstest" | Resolve-Path;
 	[string]$apikey = Join-Path $projectDir "your_mockaroo_key.txt";
 	if (-not (Test-Path $apikey))

@@ -1,5 +1,5 @@
 ﻿using Acklann.Diffa;
 using Acklann.Diffa.Reporters;
 
-[assembly: SaveFilesAt("approved-results")]
-[assembly: Use(typeof(BeyondCompare4Reporter))]
+[assembly: ApprovedFolder("approved-results")]
+[assembly: Reporter(typeof(BeyondCompare4Reporter))]

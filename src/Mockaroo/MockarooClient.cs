@@ -1,7 +1,11 @@
 ﻿using Acklann.Mockaroo.Serialization;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.IO;
+using System.Linq;
 using System.Net.Http;
+
 using System.Text;
 using System.Threading.Tasks;
 
@@ -121,9 +125,57 @@ namespace Acklann.Mockaroo
             return MockarooConvert.FromJson<T>(Encoding.UTF8.GetString(data));
         }
 
+        // ==========
+
+        public async Task<T[]> FetchPesistedDataAsync<T>(int records = DEFAULT_LIMIT, int size = (DEFAULT_LIMIT * 2), int depth = Schema.DEFAULT_DEPTH)
+        {
+            var schema = new Schema<T>(depth);
+            return await FetchPesistedDataAsync<T>(schema, records, size);
+        }
+
+        public Task<T[]> FetchPesistedDataAsync<T>(Schema schema, int records = DEFAULT_LIMIT, int size = (DEFAULT_LIMIT * 2))
+        {
+            return FetchPesistedDataAsync<T>(schema, AppContext.BaseDirectory, records, size);
+        }
+
+        public async Task<T[]> FetchPesistedDataAsync<T>(Schema schema, string outputDirectory, int records = DEFAULT_LIMIT, int size = (DEFAULT_LIMIT * 2))
+        {
+            if (string.IsNullOrEmpty(outputDirectory)) throw new ArgumentNullException(nameof(outputDirectory));
+
+            string dataFilePath = Path.Combine(outputDirectory, GenerateFileName(schema));
+            if (File.Exists(dataFilePath))
+            {
+                T[] data = JsonConvert.DeserializeObject<T[]>(File.ReadAllText(dataFilePath));
+                return data;
+            }
+            else
+            {
+                T[] data = await FetchDataAsync<T>(schema, size);
+                string json = JsonConvert.SerializeObject(data, Formatting.Indented);
+                CreateDataFile(dataFilePath, json);
+                return data;
+            }
+        }
+
         #region Private Members
 
         private readonly string _apiKey;
+
+        private static string GenerateFileName(Schema schema)
+        {
+            var md5 = System.Security.Cryptography.MD5.Create();
+            byte[] hash = md5.ComputeHash(Encoding.UTF8.GetBytes(string.Concat(schema.Select(x => x.Name))));
+
+            return string.Concat(BitConverter.ToString(hash), ".json");
+        }
+
+        private static void CreateDataFile(string filePath, string data)
+        {
+            string dir = Path.GetDirectoryName(filePath);
+            if (Directory.Exists(dir) == false) Directory.CreateDirectory(dir);
+
+            File.WriteAllText(filePath, data);
+        }
 
         private string Endpoint(int records, Format format = Format.JSON)
         {
