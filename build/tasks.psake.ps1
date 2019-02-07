@@ -1,12 +1,21 @@
 # Project-Specific tasks.
+Properties {
+    $Packages = @("Ncrement");
+}
 
 Task "Deploy" -alias "publish" -description "This task compiles, test then publishes the solution." `
--depends @("version", "build", "test", "pack", "push-nuget", "tag");
+-depends @("version", "msbuild", "mstest", "pack", "push-nuget", "tag");
 
 # ===============
 
 Task "Setup-Project" -alias "configure" -description "This initializes the project." `
 -depends @("restore") -action {
+	# Create the 'secrets.json' file.
+    if (-not (Test-Path $SecretsJson))
+    {
+		'{ "nugetKey": null }' | Out-File $SecretsJson -Encoding utf8;
+    }
+
 	[string]$projectDir = Join-Path $RootDir "tests/*mstest" | Resolve-Path;
 	[string]$apikey = Join-Path $projectDir "your_mockaroo_key.txt";
 	if (-not (Test-Path $apikey))

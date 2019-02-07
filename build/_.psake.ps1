@@ -1,15 +1,14 @@
 ﻿# SYNOPSIS: This is a psake task file.
 
-$projectTasks = (Join-Path $PSScriptRoot "tasks.psake.ps1");
-if (Test-Path $projectTasks -PathType Leaf) { Include $projectTasks; }
+$psakeTaskFile = (Join-Path $PSScriptRoot "tasks.psake.ps1");
+if (Test-Path $psakeTaskFile -PathType Leaf) { Include $psakeTaskFile; }
 
 Properties {
 	# Constants
-    $RootDir = "$(Split-Path $PSScriptRoot -Parent)";
-	$ManifestJson = "$PSScriptRoot/manifest.json";
-	$SecretsJson = "$PSScriptRoot/secrets.json";
-	$ArtifactsDir = "$RootDir/artifacts";
-	$MigrationsDir = "";
+    $RootDir = (Split-Path $PSScriptRoot -Parent);
+    $ManifestJson = (Join-Path $PSScriptRoot "manifest.json");
+	$SecretsJson = (Join-Path $PSScriptRoot "secrets.json");
+	$ArtifactsDir = (Join-Path $RootDir "artifacts");
     $SolutionName = "";
     $ToolsDir = "";
     $TempDir = "";
@@ -19,22 +18,22 @@ Properties {
 	$FallbackBranch = "preview";
 	$SkipCompilation = $false;
 	$NonInteractive = $false;
+    $SkipClean = $false;
 	$Configuration = "";
     $Commit = $true;
 	$Debug = $false;
 	$Secrets = @{ };
 	$Major = $false;
 	$Minor = $false;
-	$Branch = "";
+    $Branch = "";
 }
-
-Task "Default" -depends @("configure", "build", "test", "pack");
 
 #region ----- COMPILATION -----
 
-Task "Import-Dependencies" -alias "restore" -description "This task imports all build dependencies." -action {
+Task "Import-Dependencies" -alias "restore" -description "This task imports all build dependencies." `
+-action {
 	#  Importing all required powershell modules.
-	foreach ($moduleId in @("Ncrement", "VSSetup", "Pester"))
+	foreach ($moduleId in $Packages)
 	{
 		$modulePath = "$ToolsDir/$moduleId/*/*.psd1";
 		if (-not (Test-Path $modulePath))
@@ -50,24 +49,11 @@ Task "Import-Dependencies" -alias "restore" -description "This task imports all 
     {
         New-NcrementManifest $ManifestJson -Author $([System.Environment]::UserName) | Save-NcrementManifest $ManifestJson;
     }
-
-    # Create the 'secrets.json' file
-    if (-not (Test-Path $SecretsJson))
-    {
-        $credentials = '{ "jdbcurl": "jdbc:mysql://{0}/{1}", "userStore": "server=;user=;password=;database=;", "database": "server=;user=;password=;database=;" }';
-        [string]::Format('{{ "nugetKey": null, "psGalleryKey": null, "local": {0}, "preview": {0} }}', $credentials) | Out-File $SecretsJson -Encoding utf8;
-    }
 }
 
 Task "Increment-VersionNumber" -alias "version" -description "This task increments the project's version numbers" `
 -depends @("restore") -action {
     $manifest = Get-NcrementManifest $ManifestJson;
-
-    $releaseNotes = Join-Path $RootDir "releaseNotes.txt";
-    if (Test-Path $releaseNotes)
-    {
-        $manifest.ReleaseNotes = Get-Content $releaseNotes | Out-String;
-    }
 
     $oldVersion = $manifest | Convert-NcrementVersionNumberToString;
 	$result = $manifest | Step-NcrementVersionNumber $Branch -Break:$Major -Feature:$Minor -Patch | Update-NcrementProjectFile "$RootDir/src" -Commit:$Commit;
@@ -80,89 +66,40 @@ Task "Increment-VersionNumber" -alias "version" -description "This task incremen
 	}
 }
 
-Task "Build-Solution" -alias "build" -description "This task compiles the solution." `
+Task "Build-Solution" -alias "msbuild" -description "This task builds the solution." `
 -depends @("restore") -precondition { return (-not $SkipCompilation); } -action {
 	Write-Header "dotnet: msbuild";
 	Exec { &dotnet msbuild $((Get-Item "$RootDir/*.sln").FullName) "/p:Configuration=$Configuration" "/verbosity:minimal"; }
 }
 
-Task "Run-Tests" -alias "test" -description "This task invoke all tests within the 'tests' folder." `
+Task "Run-Tests" -alias "mstest" -description "This task invoke all mstest tests." `
 -depends @("restore") -action {
 	try
 	{
         # Running all MSTest assemblies.
         Push-Location $RootDir;
-		foreach ($testFile in (Get-ChildItem "$RootDir/tests/*/bin/$Configuration" -Recurse -Filter "*Test.dll"))
+		foreach ($testFile in (Get-ChildItem "$RootDir/tests/*/bin/$Configuration" -Recurse -Filter "*$SolutionName*Test.dll"))
 		{
 			Write-Header "dotnet: vstest '$($testFile.BaseName)'";
 			Exec { &dotnet vstest $testFile.FullName; }
-		}
-
-		# Running all Pester scripts.
-		$testsFailed = 0;
-		foreach ($testFile in (Get-ChildItem "$RootDir/tests/*/" -Recurse -Filter "*tests.ps1" -ErrorAction Ignore))
-		{
-			Write-Header "Pester '$($testFile.BaseName)'";
-			$results = Invoke-Pester -Script $testFile.FullName -PassThru;
-			$testsFailed += $results.FailedCount;
-            if ($results.FailedCount -gt 0) { throw "'$($testFile.BaseName)' failed '$($results.FailedCount)' test(s)."; }
 		}
 	}
 	finally { Pop-Location; }
 }
 
-Task "Run-Benchmarks" -alias "benchmark" -description "This task runs all project benchmarks." `
+Task "Run-Pester" -alias "pester" -description "This task invokes all pester tests." `
 -depends @("restore") -action {
-	$benchmarkProject = Get-ChildItem "$RootDir/tests" -Recurse -Filter "*Benchmark.csproj" | Select-Object -First 1;
-
-	if (Test-Path $benchmarkProject.FullName)
+	try
 	{
-		Write-Header "dotnet: clean + build";
-        [string]$sln = Resolve-Path "$RootDir/*.sln";
-		Exec { &dotnet clean $sln; }
-		Exec { &dotnet build $sln --configuration Release; }
-
-		try
+        Push-Location $RootDir;
+		foreach ($testFile in (Get-ChildItem "$RootDir/tests/*/" -Recurse -Filter "*tests.ps1"))
 		{
-			$dll = Get-ChildItem "$($benchmarkProject.DirectoryName)/bin/Release" -Recurse -Filter "*Benchmark.dll" | Select-Object -First 1;
-			Push-Location $dll.DirectoryName;
-
-			Write-Header "dotnet: run benchmarks";
-			Exec { &dotnet $dll.FullName; }
-
-			# Copying benchmark results to report.
-			$reportFile = Get-Item "$($benchmarkProject.DirectoryName)/*.md";
-			if (Test-Path $reportFile)
-			{
-				$summary = Get-Item "$($dll.DirectoryName)/*artifacts*/*/*.md" | Get-Content | Out-String;
-				$report = $reportFile | Get-Content | Out-String;
-				$match = [Regex]::Match($report, '(?i)#+\s+(Summary|Results?|Report)');
-				$report = $report.Substring(0, ($match.Index + $match.Length));
-				"$report`r`n`r`n$summary" | Out-File $reportFile -Encoding utf8;
-				Get-Item "$($dll.DirectoryName)/*artifacts*/*/*.html" | Invoke-Item;
-			}
+			Write-Header "Pester '$($testFile.BaseName)'";
+			$results = Invoke-Pester -Script $testFile.FullName -PassThru;
+            if ($results.FailedCount -gt 0) { throw "'$($testFile.BaseName)' failed '$($results.FailedCount)' test(s)."; }
 		}
-		finally { Pop-Location; }
 	}
-    else { Write-Host " no benchmarks found." -ForegroundColor Yellow; }
-}
-
-#endregion
-
-#region ----- DB Migration -----
-
-Task "Rebuild-FlywayLocalDb" -alias "rebuild-db" -description "This task rebuilds the local database using flyway." `
--depends @("restore") -action{
-	[string]$flyway = Get-Flyway;
-	$credential = Get-Secret "local";
-	Assert (-not [string]::IsNullOrEmpty($credential.database)) "A connection string for your local database was not provided.";
-
-	$db = [ConnectionInfo]::new($credential, $credential.database);
-	Write-Header "flyway: clean ($($db.ToFlywayUrl()))";
-	Exec { &$flyway clean $db.ToFlywayUrl() $db.ToFlyUser() $db.ToFlyPassword(); }
-	Write-Header "flyway: migrate ($($db.ToFlywayUrl()))";
-	Exec { &$flyway migrate $db.ToFlywayUrl() $db.ToFlyUser() $db.ToFlyPassword() $([ConnectionInfo]::ConvertToFlywayLocation($MigrationDirectory)); }
-	Exec { &$flyway info $db.ToFlywayUrl() $db.ToFlyUser() $db.ToFlyPassword() $([ConnectionInfo]::ConvertToFlywayLocation($MigrationDirectory)); }
+	finally { Pop-Location; }
 }
 
 #endregion
@@ -208,19 +145,22 @@ Task "Publish-Database" -alias "push-db" -description "This task publishes the a
 	
     Write-Header "flyway: migrate ($($db.ToFlywayUrl()))";
 	[string]$flyway = Get-Flyway;
-	Exec { &$flyway migrate $db.ToFlywayUrl() $db.ToFlyUser() $db.ToFlyPassword() $([ConnectionInfo]::($MigrationDirectory)); }
+	Exec { &$flyway migrate $db.ToFlywayUrl() $db.ToFlyUser() $db.ToFlyPassword() $([ConnectionInfo]::ConvertToFlywayLocation($MigrationDirectory)); }
 	Exec { &$flyway info $db.ToFlywayUrl() $db.ToFlyUser() $db.ToFlyPassword() $([ConnectionInfo]::ConvertToFlywayLocation($MigrationDirectory)); }
 }
 
 Task "Publish-Websites" -alias "push-web" -description "This task publish all websites to their respective host." `
--precondition { return Test-Path $ArtifactsDir -PathType Container } `
 -depends @("restore")  -action {
-	foreach ($package in (Get-ChildItem $ArtifactsDir -Recurse -Filter "web-*"))
-	{
-		$id = $package.BaseName.TrimStart("web-");
+    Assert (Test-Path $ArtifactsDir -PathType Container) "No website packages have been generated; try invoking the 'pack' task first.";
 
+	foreach ($package in (Get-ChildItem $ArtifactsDir -Recurse -Filter "website-*"))
+	{
+		$id = $package.BaseName.TrimStart("website-");
+
+        $key = '';
 		$credentials = $null;
 		$errorMsg = "Unable to publish '$($package.Name)' because the web-host password was not defined. Verify the secrets.json.";
+
 		foreach ($key in @($Branch, $FallbackBranch))
 		{
 			$credentials = Get-Secret $key;
@@ -234,15 +174,15 @@ Task "Publish-Websites" -alias "push-web" -description "This task publish all we
 		else
 		{
             [string]$waws = Get-WAWSDeploy;
-            $del = $DeleteExistingFiles | CND "/deleteexistingfiles" "";
+            $del = $DeleteExistingFiles | CND "/deleteexistingfiles" '';
 			Exec { &$waws $package.FullName $publishData /password $webHost.Password /appoffline $del; }
 			if (-not $NonInteractive)
 			{
 				[xml]$doc = Get-Content $publishData;
-				$appUrl = $doc.SelectSingleNode("//publishProfile[@destinationAppUrl]").Attributes["destinationAppUrl"].Value;
-                if (-not [string]::IsNullOrEmpty($appUrl))
+				$websiteUrl = $doc.SelectSingleNode("//publishProfile[@destinationAppUrl]").Attributes["destinationAppUrl"].Value;
+                if (-not [string]::IsNullOrEmpty($websiteUrl))
                 {
-                    Start-Process $appUrl;
+                    Start-Process $websiteUrl;
                 }
 			}
 		}
@@ -252,6 +192,8 @@ Task "Publish-Websites" -alias "push-web" -description "This task publish all we
 Task "Tag-Release" -alias "tag" -description "This task tags the last commit with the version number." `
 -depends @("restore") -action {
     $version = Get-NcrementManifest $ManifestJson | Convert-NcrementVersionNumberToString;
+    Write-Header "git: push 'v$version'";
+    
     if ($Branch -ieq "master")
     {
         Exec { &git tag v$version | Out-Null; }
@@ -266,7 +208,7 @@ Task "Tag-Release" -alias "tag" -description "This task tags the last commit wit
 
 #endregion
 
-#region ----- HELPER FUNCTIONS -----
+#region ----- FUNCTIONS -----
 
 function Get-MSBuild([string]$version = "*")
 {
@@ -357,7 +299,7 @@ function Get-Secret([Parameter(ValueFromPipeline)][string]$key, [string]$customM
 	$value = $Secrets.ContainsKey($key) | CND $Secrets.$key $null;
 	if ([string]::IsNullOrEmpty($value) -and (Test-Path $SecretsJson))
 	{
-		$value = Get-Content $SecretsJson | Out-String | ConvertFrom-Json | Select-Object -ExpandProperty $key -ErrorAction Ignore;
+		$value = Get-Content $SecretsJson | Out-String | ConvertFrom-Json | Select-Object -ExpandProperty $key -ErrorAction SilentlyContinue;
 	}
 
 	if ($Assert) { Assert (-not [string]::IsNullOrEmpty($value)) ([string]::IsNullOrEmpty($customMsg) | CND "A '$key' property was not specified. Provided a value via the `$Secrets parameter eg. `$Secrets=@{'$key'='your_sercret_value'}" $customMsg); }

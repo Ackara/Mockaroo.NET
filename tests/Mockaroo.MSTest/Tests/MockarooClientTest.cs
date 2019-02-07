@@ -85,8 +85,9 @@ namespace Acklann.Mockaroo.Tests
             var result2 = sut.FetchPesistedDataAsync<BasicObject>(3, 10).Result;
 
             // Assert
-            Diff.ApproveAll(result1);
-            Diff.ApproveAll(result2);
+            result1.Length.ShouldBe(5);
+            Diff.ApproveAll(result1, ".txt", "a");
+            Diff.ApproveAll(result2, ".txt", "b");
         }
 
         internal static IEnumerable<IField> GetAllFieldTypes()

@@ -33,17 +33,13 @@ Param(
 	[string]$TaskFile = "$PSScriptRoot/build/_.psake.ps1",
     [switch]$DeleteExistingFiles,
 	[switch]$NonInteractive,
+    [switch]$SkipClean,
 	[switch]$Debug,
 	[switch]$Major,
 	[switch]$Minor
 )
 
 if ($Debug) { $Configuration = "Debug"; }
-
-# Resolve temporary directory.
-$tempDir = New-TemporaryFile | Select-Object -ExpandProperty FullName;
-Remove-Item $tempDir;
-$tempDir = Split-Path $tempDir -Parent;
 
 # Getting the current branch of source control.
 $branchName = $env:BUILD_SOURCEBRANCHNAME;
@@ -69,12 +65,12 @@ if ($Help)
 }
 else
 {
+    Write-Host -ForegroundColor DarkGray "OS:            $([Environment]::OSVersion.Platform)";
 	Write-Host -ForegroundColor DarkGray "User:          $([Environment]::UserName)@$([Environment]::MachineName)";
-	Write-Host -ForegroundColor DarkGray "Platform:      $([Environment]::OSVersion.Platform)";
-	Write-Host -ForegroundColor DarkGray "Branch:        $branchName";
-    Write-Host -ForegroundColor DarkGray "Configuration: $Configuration";
+    Write-Host -ForegroundColor DarkGray "Branch:        $branchName";
+    Write-Host -ForegroundColor DarkGray "Configuration: $Configuration | $Platform";
+
 	Invoke-psake $taskFile -nologo -taskList $Tasks -properties @{
-        "TempDir"=$tempDir;		
         "Secrets"=$Secrets;
 		"Branch"=$branchName;
         "Platform"=$Platform;
@@ -84,8 +80,10 @@ else
 		"Minor"=$Minor.IsPresent;
 		"Debug"=$Debug.IsPresent;
 		"Configuration"=$Configuration;
+        "SkipClean"=$SkipClean.IsPresent;
         "Commit"=(-not $NoCommit.IsPresent);
 		"NonInteractive"=$NonInteractive.IsPresent;
+        "TempDir"=([System.IO.Path]::GetTempPath());
 		"SkipCompilation"=$SkipCompilation.IsPresent;
         "SolutionName"=(Split-Path $PSScriptRoot -Leaf);
         "DeleteExistingFiles"=$DeleteExistingFiles.IsPresent;

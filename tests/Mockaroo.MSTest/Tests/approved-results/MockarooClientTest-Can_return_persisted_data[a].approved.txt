@@ -3,8 +3,3 @@
 [2] => { user: 'kvandermerwe2@hugedomains.com', rating: '28067', dob: '6/22/8724' }
 [3] => { user: 'bkuller3@epa.gov', rating: '43052', dob: '7/7/8717' }
 [4] => { user: 'cleppard4@edublogs.org', rating: '34135', dob: '7/7/4465' }
-[5] => { user: 'aspikins5@prlog.org', rating: '47567', dob: '3/5/2474' }
-[6] => { user: 'cseago6@feedburner.com', rating: '62112', dob: '7/18/1981' }
-[7] => { user: 'sfarnie7@cam.ac.uk', rating: '58693', dob: '5/29/2998' }
-[8] => { user: 'jmockett8@mozilla.org', rating: '57001', dob: '10/12/2810' }
-[9] => { user: 'draven9@printfriendly.com', rating: '18666', dob: '6/18/2216' }

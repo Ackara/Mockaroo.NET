@@ -1,0 +1,3 @@
+[0] => Acklann.Mockaroo.Fakes.BasicObject
+[1] => Acklann.Mockaroo.Fakes.BasicObject
+[2] => Acklann.Mockaroo.Fakes.BasicObject

@@ -22,7 +22,7 @@ namespace Acklann.Mockaroo
         /// <param name="apiKey">Your API key.</param>
         public MockarooClient(string apiKey)
         {
-            _apiKey = apiKey;
+            _apiKey = apiKey ?? _defaultApiKey;
         }
 
         internal const int DEFAULT_LIMIT = 25;
@@ -135,7 +135,7 @@ namespace Acklann.Mockaroo
 
         public Task<T[]> FetchPesistedDataAsync<T>(Schema schema, int records = DEFAULT_LIMIT, int size = (DEFAULT_LIMIT * 2))
         {
-            return FetchPesistedDataAsync<T>(schema, AppContext.BaseDirectory, records, size);
+            return FetchPesistedDataAsync<T>(schema, Path.GetTempPath(), records, size);
         }
 
         public async Task<T[]> FetchPesistedDataAsync<T>(Schema schema, string outputDirectory, int records = DEFAULT_LIMIT, int size = (DEFAULT_LIMIT * 2))
@@ -146,19 +146,20 @@ namespace Acklann.Mockaroo
             if (File.Exists(dataFilePath))
             {
                 T[] data = JsonConvert.DeserializeObject<T[]>(File.ReadAllText(dataFilePath));
-                return data;
+                return data.Take(records).ToArray();
             }
             else
             {
                 T[] data = await FetchDataAsync<T>(schema, size);
                 string json = JsonConvert.SerializeObject(data, Formatting.Indented);
                 CreateDataFile(dataFilePath, json);
-                return data;
+                return data.Take(records).ToArray();
             }
         }
 
         #region Private Members
 
+        private static string _defaultApiKey;
         private readonly string _apiKey;
 
         private static string GenerateFileName(Schema schema)
