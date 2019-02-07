@@ -16,6 +16,12 @@ namespace Acklann.Mockaroo.Tests
     [TestClass]
     public class MockarooClientTest
     {
+        [ClassInitialize]
+        public static void Setup(TestContext context)
+        {
+            MockarooClient.SetApiKey(Config.GetApikey());
+        }
+
         [TestMethod]
         public void Can_fetch_raw_data_from_server()
         {
@@ -74,7 +80,7 @@ namespace Acklann.Mockaroo.Tests
         public void Can_return_persisted_data()
         {
             // Arrange
-            var sut = new MockarooClient(Config.GetApikey());
+            var sut = new MockarooClient();
 
             var sample = new Schema<User>();
             sample.Reassign(x => x.Email, DataType.EmailAddress);

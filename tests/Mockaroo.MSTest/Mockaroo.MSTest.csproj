@@ -1,13 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
-
-    <IsPackable>false</IsPackable>
-
-    <AssemblyName>Ackalnn.Mockaroo.NET.MSTest</AssemblyName>
-
     <RootNamespace>Acklann.Mockaroo</RootNamespace>
+    <AssemblyName>Ackalnn.Mockaroo.NET.MSTest</AssemblyName>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -70,4 +66,7 @@
     </Compile>
   </ItemGroup>
 
+  <Target Name="AddMockarooKey" BeforeTargets="CoreCompile">
+    <WriteLinesToFile Condition="!Exists('your_mockaroo_key.txt')" File="your_mockaroo_key.txt" Lines="paste your api-key in this file, you can acquire one from https://mockaroo.com/." Overwrite="true" />
+  </Target>
 </Project>

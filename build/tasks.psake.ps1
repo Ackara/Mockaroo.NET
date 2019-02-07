@@ -1,50 +1,132 @@
-# Project-Specific tasks.
+# SYNOPSIS: This is a psake task file.
+Join-Path $PSScriptRoot "tools.psm1" | Import-Module -Force;
+FormatTaskName "$(Write-Header -ReturnAsString)`r`n  {0}`r`n$(Write-Header -ReturnAsString)";
+
 Properties {
-    $Packages = @("Ncrement");
+	$Dependencies = @("Ncrement");
+
+	# Files & Folders
+    $SolutionFolder = (Split-Path $PSScriptRoot -Parent);
+	$ManifestJson = (Join-Path $PSScriptRoot  "manifest.json");
+	$ArtifactsFolder = (Join-Path $SolutionFolder "artifacts");
+	$SecretsJson = (Join-Path $SolutionFolder "secrets.json");
+    $ToolsFolder = "";
+
+	# Arguments
+    $ShouldCommitChanges = $true;
+	$CurrentBranch = "";
+	$Configuration = "";
+    $SolutionName = "";
+	$Secrets = @{ };
+	$Major = $false;
+	$Minor = $false;
 }
 
-Task "Deploy" -alias "publish" -description "This task compiles, test then publishes the solution." `
--depends @("version", "msbuild", "mstest", "pack", "push-nuget", "tag");
+Task "Default" -depends @("configure", "build", "test", "pack");
 
-# ===============
+Task "Deploy" -alias "publish" -description "This task compiles, test then publish all packages to their respective destination." `
+-depends @("clean", "version", "build", "test", "pack", "push-nuget", "tag");
 
-Task "Setup-Project" -alias "configure" -description "This initializes the project." `
+# ======================================================================
+
+Task "Configure-Environment" -alias "configure" -description "This task generates all files required for development." `
 -depends @("restore") -action {
-	# Create the 'secrets.json' file.
-    if (-not (Test-Path $SecretsJson))
-    {
-		'{ "nugetKey": null }' | Out-File $SecretsJson -Encoding utf8;
-    }
+	# Generating the build manifest file.
+	if (-not (Test-Path $ManifestJson)) { New-NcrementManifest | ConvertTo-Json | Out-File $ManifestJson -Encoding utf8; }
+	Write-Host "  * added 'build/$(Split-Path $ManifestJson -Leaf)' to the solution.";
 
-	[string]$projectDir = Join-Path $RootDir "tests/*mstest" | Resolve-Path;
-	[string]$apikey = Join-Path $projectDir "your_mockaroo_key.txt";
-	if (-not (Test-Path $apikey))
+	# Generating a secrets file template to store sensitive information.
+	if (-not (Test-Path $SecretsJson))
 	{
-		New-Item $apikey -ItemType File | Out-Null;
-		"you need to get a key from https://mockaroo.com/" | Out-File -FilePath $apikey -Encoding utf8;
-		Invoke-Item $apikey;
+		$content = "{ nugetKey: null, mockarooKey: null }";
+		$content | ConvertTo-Json | Out-File $SecretsJson -Encoding utf8;
 	}
-}
-
-Task "Update-DataTypeList" -alias "update" -description "This task updates the list of know mockaroo data-types." `
--action {
-	[string]$projectDir = Join-Path $RootDir "tests/*mstest" | Resolve-Path;
-	[string]$knowTypesFiles = Join-Path $RootDir "src/*/knownTypes.txt" | Resolve-Path;
-	[string]$apikey = Get-Content (Join-Path $projectDir "*key.txt" | Resolve-Path) | Out-String;
-
-	[string]$doc = New-TemporaryFile;
-	Invoke-WebRequest "https://api.mockaroo.com/api/types.json?key=$apikey" -OutFile $doc;
-	$typeList = Get-Content $doc | ConvertFrom-Json;
-	$typeList.types | Select-Object -ExpandProperty name | Out-File -FilePath $knowTypesFiles -Encoding utf8;
+	Write-Host "  * added '$(Split-Path $SecretsJson -Leaf)' to the solution.";
 }
 
 Task "Package-Solution" -alias "pack" -description "This task generates all deployment packages." `
 -depends @("restore") -action {
-	if (Test-Path $ArtifactsDir) { Remove-Item $ArtifactsDir -Recurse -Force; }
-	New-Item $ArtifactsDir -ItemType Directory | Out-Null;
+	if (Test-Path $ArtifactsFolder) { Remove-Item $ArtifactsFolder -Recurse -Force; }
+	New-Item $ArtifactsFolder -ItemType Directory | Out-Null;
 
-	$proj = Get-Item "$RootDir\src\*\*.csproj";
-	Write-Header "dotnet: pack '$($proj.BaseName)'";
-    $version = Get-NcrementManifest $ManifestJson | Convert-NcrementVersionNumberToString $Branch -AppendSuffix;
-	Exec { &dotnet pack $proj.FullName --output $ArtifactsDir --configuration $Configuration /p:PackageVersion=$version; }
+	$version = ConvertTo-NcrementVersionNumber $ManifestJson $CurrentBranch;
+	Join-Path $SolutionFolder "src/*/*" | Get-ChildItem -File -Filter "*.*proj" | Invoke-NugetPack $ArtifactsFolder $Configuration $version.FullVersion;
 }
+
+Task "Update-MockarooTypeList" -alias "types" -description "This task updates the list of existing mockaroo data-types." `
+-action {
+	$tempFile = New-TemporaryFile;
+	$apikey = Get-Secret $SecretsJson "mockarooKey";
+	Invoke-WebRequest "https://api.mockaroo.com/api/types.json?key=$apikey" -OutFile $tempFile.FullName;
+	$results = Get-Content $tempFile.FullName | ConvertFrom-Json;
+
+	$targetFile = Join-Path $SolutionFolder "src/*/mockaroo_data_types.txt" | Get-Item;
+	$results.types | Select-Object -ExpandProperty name | Out-File $targetFile.FullName -Encoding utf8;
+	Write-Host "  * updated '$($targetFile.Name)'.";
+}
+
+#region ----- COMPILATION -----
+
+Task "Clean" -description "This task removes all generated files and folders from the solution." `
+-action {
+	$SolutionFolder | Remove-GeneratedSolutionItems -AdditionalItems @();
+	Get-ChildItem $SolutionFolder -Recurse -File -Filter "*.*proj" | Remove-GeneratedProjectItems -AdditionalItems @();
+}
+
+Task "Install-BuildDependencies" -alias "restore" -description "This task imports all build dependencies." `
+-action {
+	# Installing all required dependencies.
+	foreach ($moduleId in $Dependencies)
+	{
+		$modulePath = Join-Path $ToolsFolder "$moduleId/*/*.psd1";
+		if (-not (Test-Path $modulePath)) { Save-Module $moduleId -Path $ToolsFolder; }
+		Import-Module $modulePath -Force;
+		Write-Host "  * imported the '$moduleId.$(Split-Path (Get-Item $modulePath).DirectoryName -Leaf)' powershell module.";
+	}
+}
+
+Task "Increment-VersionNumber" -alias "version" -description "This task increments all of the projects version number." `
+-depends @("restore") -action {
+	$manifest = $ManifestJson | Step-NcrementVersionNumber -Major:$Major -Minor:$Minor -Patch;
+	$manifest | ConvertTo-Json | Out-File $ManifestJson -Encoding utf8;
+	#Exec { &git add $ManifestJson | Out-Null; }
+
+	Join-Path $SolutionFolder "src/*/*.*proj" | Get-ChildItem -File | Update-ProjectFile $manifest `
+		| Write-FormatedMessage "  * updated '{0}' version number to '$(ConvertTo-NcrementVersionNumber $manifest)'.";
+}
+
+Task "Build-Solution" -alias "build" -description "This task compiles projects in the solution." `
+-action {
+	Write-Header "dotnet: msbuild";
+	Exec { &dotnet msbuild $((Get-Item "$SolutionFolder/*.sln").FullName) "/p:Configuration=$Configuration" "/verbosity:minimal"; }
+}
+
+Task "Run-Tests" -alias "test" -description "This task invoke all tests within the 'tests' folder." `
+-action {
+	Join-Path $SolutionFolder "tests" | Get-ChildItem -Recurse -File -Filter "*.tests.ps1" | Invoke-PowershellTest $ToolsFolder;
+	Join-Path $SolutionFolder "tests" | Get-ChildItem -Recurse -File -Filter "*.*proj" | Invoke-MSTest $Configuration;
+}
+
+#endregion
+
+#region ----- PUBLISHING -----
+
+Task "Publish-NuGetPackages" -alias "push-nuget" -description "This task publish all nuget packages to nuget.org." `
+-precondition { return Test-Path $ArtifactsFolder -PathType Container } `
+-action { Get-ChildItem $ArtifactsFolder -Recurse -Filter "*.nupkg" | Publish-NugetPackage "nugetKey"; }
+
+Task "Tag-Release" -alias "tag" -description "This task tags the last commit with the version number." `
+-depends @("restore") -action {
+    $version = Get-NcrementManifest $ManifestJson | Convert-NcrementVersionNumberToString;
+    if ($Branch -ieq "master")
+    {
+        Exec { &git tag v$version | Out-Null; }
+        Exec { &git push "origin" --tags | Out-Null; }
+    }
+    else
+    {
+        Exec { &git push "origin" | Out-Null; }
+    }
+}
+
+#endregion

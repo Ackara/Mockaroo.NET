@@ -19,13 +19,30 @@ namespace Acklann.Mockaroo
         /// <summary>
         /// Initializes a new instance of the <see cref="MockarooClient"/> class.
         /// </summary>
+        public MockarooClient() : this(_defaultApiKey)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MockarooClient"/> class.
+        /// </summary>
         /// <param name="apiKey">Your API key.</param>
         public MockarooClient(string apiKey)
         {
+            if (string.IsNullOrEmpty(apiKey)) throw new ArgumentNullException(nameof(apiKey));
             _apiKey = apiKey ?? _defaultApiKey;
         }
 
         internal const int DEFAULT_LIMIT = 25;
+
+        /// <summary>
+        /// Sets the default api-key for all new instances of <see cref="MockarooClient"/>.
+        /// </summary>
+        /// <param name="secretKey">The secret key.</param>
+        public static void SetApiKey(string secretKey)
+        {
+            _defaultApiKey = secretKey;
+        }
 
         /// <summary>
         /// Retrieve sample data from http://mockaroo.com.
@@ -33,7 +50,6 @@ namespace Acklann.Mockaroo
         /// <param name="endpoint">The Mockaroo endpoint.</param>
         /// <param name="schema">The Mockaroo schema.</param>
         /// <returns>Task&lt;System.Byte[]&gt;.</returns>
-        /// <exception cref="Exceptions.MockarooException"></exception>
         public static async Task<byte[]> FetchDataAsync(string endpoint, Schema schema)
         {
             using (var http = new HttpClient())
@@ -127,18 +143,44 @@ namespace Acklann.Mockaroo
 
         // ==========
 
-        public async Task<T[]> FetchPesistedDataAsync<T>(int records = DEFAULT_LIMIT, int size = (DEFAULT_LIMIT * 2), int depth = Schema.DEFAULT_DEPTH)
+        /// <summary>
+        /// Retrieve sample data from http://mockaroo.com and save it to disk.
+        /// </summary>
+        /// <typeparam name="T">The return type.</typeparam>
+        /// <param name="schema">The schema.</param>
+        /// <param name="take">The number of records to return.</param>
+        /// <param name="records">The total number of records to retrieve and store on disk.</param>
+        /// <returns></returns>
+        public Task<T[]> FetchPesistedDataAsync<T>(Schema schema, int take = DEFAULT_LIMIT, int records = (DEFAULT_LIMIT * 2))
+        {
+            return FetchPesistedDataAsync<T>(schema, Path.GetTempPath(), take, records);
+        }
+
+        /// <summary>
+        /// Retrieve sample data from http://mockaroo.com and save it to disk.
+        /// </summary>
+        /// <typeparam name="T">The return type.</typeparam>
+        /// <param name="take">The number of records to return.</param>
+        /// <param name="records">The total number of records to retrieve and store on disk.</param>
+        /// <param name="depth">The max-depth the serializer should traverse down the object tree.</param>
+        /// <returns></returns>
+        public async Task<T[]> FetchPesistedDataAsync<T>(int take = DEFAULT_LIMIT, int records = (DEFAULT_LIMIT * 2), int depth = Schema.DEFAULT_DEPTH)
         {
             var schema = new Schema<T>(depth);
-            return await FetchPesistedDataAsync<T>(schema, records, size);
+            return await FetchPesistedDataAsync<T>(schema, take, records);
         }
 
-        public Task<T[]> FetchPesistedDataAsync<T>(Schema schema, int records = DEFAULT_LIMIT, int size = (DEFAULT_LIMIT * 2))
-        {
-            return FetchPesistedDataAsync<T>(schema, Path.GetTempPath(), records, size);
-        }
-
-        public async Task<T[]> FetchPesistedDataAsync<T>(Schema schema, string outputDirectory, int records = DEFAULT_LIMIT, int size = (DEFAULT_LIMIT * 2))
+        /// <summary>
+        /// Retrieve sample data from http://mockaroo.com and save it to disk.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="schema">The schema.</param>
+        /// <param name="outputDirectory">The output directory.</param>
+        /// <param name="take">The number of records to return.</param>
+        /// <param name="records">The total number of records to retrieve and store on disk.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException">outputDirectory</exception>
+        public async Task<T[]> FetchPesistedDataAsync<T>(Schema schema, string outputDirectory, int take = DEFAULT_LIMIT, int records = (DEFAULT_LIMIT * 2))
         {
             if (string.IsNullOrEmpty(outputDirectory)) throw new ArgumentNullException(nameof(outputDirectory));
 
@@ -146,14 +188,14 @@ namespace Acklann.Mockaroo
             if (File.Exists(dataFilePath))
             {
                 T[] data = JsonConvert.DeserializeObject<T[]>(File.ReadAllText(dataFilePath));
-                return data.Take(records).ToArray();
+                return data.Take(take).ToArray();
             }
             else
             {
-                T[] data = await FetchDataAsync<T>(schema, size);
+                T[] data = await FetchDataAsync<T>(schema, records);
                 string json = JsonConvert.SerializeObject(data, Formatting.Indented);
                 CreateDataFile(dataFilePath, json);
-                return data.Take(records).ToArray();
+                return data.Take(take).ToArray();
             }
         }
 

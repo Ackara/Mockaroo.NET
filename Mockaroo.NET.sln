@@ -10,7 +10,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".misc", ".misc", "{4A708A19-1632-4E2B-A277-498B8FABCA18}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		commands.json = commands.json
 		README.md = README.md
+		secrets.json = secrets.json
 	EndProjectSection
 EndProject
 Project("{F5034706-568F-408A-B7B3-4D38C6DB8A32}") = "build", "build\build.pssproj", "{93B67093-1E05-4D21-BAE0-20B1A0C0C155}"

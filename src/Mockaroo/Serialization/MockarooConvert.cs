@@ -22,7 +22,7 @@ namespace Acklann.Mockaroo.Serialization
         }
 
         /// <summary>
-        /// Converts the <paramref name="type"/> to a <see cref="Schema"/>.
+        /// Converts the <typeparamref name="T"/> to a <see cref="Schema"/>.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="depth">The max-depth the serializer should traverse down the object tree.</param>
@@ -61,7 +61,7 @@ namespace Acklann.Mockaroo.Serialization
         }
 
         /// <summary>
-        /// Deserialize mockaroo JSON data to the specified <paramref name="type"/>.
+        /// Deserialize mockaroo JSON data to the specified <typeparamref name="T"/>.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="json">The json.</param>
@@ -73,7 +73,7 @@ namespace Acklann.Mockaroo.Serialization
         }
 
         /// <summary>
-        /// Deserialize mockaroo JSON data to the specified <paramref name="type"/>.
+        /// Deserialize mockaroo JSON data to the specified <typeparamref name="T"/>.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="stream">The json stream.</param>
