@@ -1,4 +1,7 @@
-﻿function CND
+﻿
+
+
+function CND
 {
 	Param(
 		[Parameter(Mandatory, ValueFromPipeline)][bool]$Condition,
@@ -179,6 +182,28 @@ function Install-WAWSDeploy([Parameter(Mandatory)][string]$InstallationFolder, [
     return $waws;
 }
 
+function Invoke-MSBuild
+{
+	Param(
+		[Parameter(Mandatory)]
+		[string]$Configuration,
+
+		$PackageSources = @(),
+
+		[Parameter(Mandatory, ValueFromPipeline)]
+		[IO.FileInfo]$SolutionFile
+	)
+
+	PROCESS
+	{
+		Write-Header "dotnet: build '($SolutionFile.BaseName)'";
+		&dotnet restore $SolutionFile.FullName --verbosity minimal;
+		&dotnet build $SolutionFile.FullName --configuration $Configuration --verbosity minimal;
+		if ($LASTEXITCODE -ne 0) { throw "$($SolutionFile.Name) build failed."; }
+	}
+
+}
+
 function Invoke-MSTest
 {
 	Param(
@@ -244,24 +269,50 @@ function Invoke-PowershellTest
 	}
 }
 
+function New-GitTag
+{
+	Param(
+		[Parameter(Mandatory)]
+		[string]$CurrentBranch,
+
+		[Parameter(Mandatory, ValueFromPipeline)]
+		[string]$Version
+	)
+
+	if (($CurrentBranch -eq "master") -and (Test-Git))
+	{
+		Write-Header "git tag $Version";
+		&git tag v$Version;
+		if ($LASTEXITCODE -ne 0) { throw "git tag failed."; }
+	}
+	else { Write-Warning "The current branch ($CurrentBranch) is not master or the git is not installed on this machine."; }
+}
+
 function Publish-NugetPackage
 {
 	Param(
-		$ApiKey,
+		[Parameter(Mandatory)]
+		[string]$SecretsFilePath,
+
+		[Parameter(Mandatory)]
+		[string]$Key,
 
 		[Parameter(Mandatory, ValueFromPipeline)]
 		[IO.FileInfo]$PackageFile
 	)
-	BEGIN
-	{
-	}
 
+	BEGIN { $apikey = Get-Secret $SecretsFilePath $Key; }
 	PROCESS
 	{
 		Write-Header "dotnet: nuget-push '$($PackageFile.Name)'";
-		Write-Host "key: $ApiKey";
-		#Exec { &dotnet nuget push $PackageFile.FullName --source "https://api.nuget.org/v3/index.json" --api-key $ApiKey; }
+		&dotnet nuget push $PackageFile.FullName --source "https://api.nuget.org/v3/index.json" --api-key $apiKey;
+		if ($LASTEXITCODE -ne 0) { throw "nuget-push $($PackageFile.Name) failed."; }
 	}
+}
+
+function Test-Git
+{
+	return (&git version | Out-String) -match '(?i)(v|ver|version)\s*\d+\.\d+\.\d+';
 }
 
 function Write-FormatedMessage
@@ -280,7 +331,7 @@ function Write-FormatedMessage
 		{
 			$value = $InputObject;
 			if ($InputObject | Get-Member "Name") { $value = $InputObject.Name; }
-			Write-Host ([string]::Format($FormatString, $value));
+			Write-Host ([string]::Format($FormatString, @($value)));
 		}
 	}
 }

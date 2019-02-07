@@ -1,5 +1,5 @@
 # SYNOPSIS: This is a psake task file.
-Join-Path $PSScriptRoot "tools.psm1" | Import-Module -Force;
+Join-Path $PSScriptRoot "toolkit.psm1" | Import-Module -Force;
 FormatTaskName "$(Write-Header -ReturnAsString)`r`n  {0}`r`n$(Write-Header -ReturnAsString)";
 
 Properties {
@@ -8,15 +8,14 @@ Properties {
 	# Files & Folders
     $SolutionFolder = (Split-Path $PSScriptRoot -Parent);
 	$ManifestJson = (Join-Path $PSScriptRoot  "manifest.json");
-	$ArtifactsFolder = (Join-Path $SolutionFolder "artifacts");
 	$SecretsJson = (Join-Path $SolutionFolder "secrets.json");
+	$ArtifactsFolder = (Join-Path $SolutionFolder "artifacts");
     $ToolsFolder = "";
 
 	# Arguments
     $ShouldCommitChanges = $true;
 	$CurrentBranch = "";
 	$Configuration = "";
-    $SolutionName = "";
 	$Secrets = @{ };
 	$Major = $false;
 	$Minor = $false;
@@ -89,16 +88,15 @@ Task "Increment-VersionNumber" -alias "version" -description "This task incremen
 -depends @("restore") -action {
 	$manifest = $ManifestJson | Step-NcrementVersionNumber -Major:$Major -Minor:$Minor -Patch;
 	$manifest | ConvertTo-Json | Out-File $ManifestJson -Encoding utf8;
-	#Exec { &git add $ManifestJson | Out-Null; }
+	Exec { &git add $ManifestJson | Out-Null; }
 
-	Join-Path $SolutionFolder "src/*/*.*proj" | Get-ChildItem -File | Update-ProjectFile $manifest `
-		| Write-FormatedMessage "  * updated '{0}' version number to '$(ConvertTo-NcrementVersionNumber $manifest)'.";
+	Join-Path $SolutionFolder "src/*/*.*proj" | Get-ChildItem -File | Update-ProjectFile $manifest -Commit:$ShouldCommitChanges `
+		| Write-FormatedMessage "  * updated '{0}' version number to '$(ConvertTo-NcrementVersionNumber $manifest | Select-Object -ExpandProperty Version)'.";
 }
 
 Task "Build-Solution" -alias "build" -description "This task compiles projects in the solution." `
 -action {
-	Write-Header "dotnet: msbuild";
-	Exec { &dotnet msbuild $((Get-Item "$SolutionFolder/*.sln").FullName) "/p:Configuration=$Configuration" "/verbosity:minimal"; }
+	Get-Item "$SolutionFolder/*.sln" | Invoke-MSBuild $Configuration;
 }
 
 Task "Run-Tests" -alias "test" -description "This task invoke all tests within the 'tests' folder." `
@@ -113,20 +111,9 @@ Task "Run-Tests" -alias "test" -description "This task invoke all tests within t
 
 Task "Publish-NuGetPackages" -alias "push-nuget" -description "This task publish all nuget packages to nuget.org." `
 -precondition { return Test-Path $ArtifactsFolder -PathType Container } `
--action { Get-ChildItem $ArtifactsFolder -Recurse -Filter "*.nupkg" | Publish-NugetPackage "nugetKey"; }
+-action { Get-ChildItem $ArtifactsFolder -Recurse -Filter "*.nupkg" | Publish-NugetPackage $SecretsJson "nugetKey"; }
 
-Task "Tag-Release" -alias "tag" -description "This task tags the last commit with the version number." `
--depends @("restore") -action {
-    $version = Get-NcrementManifest $ManifestJson | Convert-NcrementVersionNumberToString;
-    if ($Branch -ieq "master")
-    {
-        Exec { &git tag v$version | Out-Null; }
-        Exec { &git push "origin" --tags | Out-Null; }
-    }
-    else
-    {
-        Exec { &git push "origin" | Out-Null; }
-    }
-}
+Task "Add-GitReleaseTag" -alias "tag" -description "This task tags the last commit with the version number." `
+-depends @("restore") -action { $ManifestJson | ConvertTo-NcrementVersionNumber | Select-Object -ExpandProperty Version | New-GitTag $CurrentBranch; }
 
 #endregion
