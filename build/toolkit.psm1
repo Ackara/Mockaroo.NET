@@ -1,7 +1,4 @@
-﻿
-
-
-function CND
+﻿function CND
 {
 	Param(
 		[Parameter(Mandatory, ValueFromPipeline)][bool]$Condition,
@@ -150,8 +147,8 @@ function Install-PSModules
 {
 	Param(
 		[Parameter(Mandatory)]
-		[string]$installationFolder, 
-		
+		[string]$installationFolder,
+
 		$modules = @()
 	)
 
@@ -201,7 +198,6 @@ function Invoke-MSBuild
 		&dotnet build $SolutionFile.FullName --configuration $Configuration --verbosity minimal;
 		if ($LASTEXITCODE -ne 0) { throw "$($SolutionFile.Name) build failed."; }
 	}
-
 }
 
 function Invoke-MSTest

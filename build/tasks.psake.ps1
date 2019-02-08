@@ -7,8 +7,8 @@ Properties {
 
 	# Files & Folders
     $SolutionFolder = (Split-Path $PSScriptRoot -Parent);
-	$ManifestJson = (Join-Path $PSScriptRoot  "manifest.json");
-	$SecretsJson = (Join-Path $SolutionFolder "secrets.json");
+	$ManifestFilePath = (Join-Path $PSScriptRoot  "manifest.json");
+	$SecretsFilePath = (Join-Path $SolutionFolder "secrets.json");
 	$ArtifactsFolder = (Join-Path $SolutionFolder "artifacts");
     $ToolsFolder = "";
 
@@ -31,16 +31,16 @@ Task "Deploy" -alias "publish" -description "This task compiles, test then publi
 Task "Configure-Environment" -alias "configure" -description "This task generates all files required for development." `
 -depends @("restore") -action {
 	# Generating the build manifest file.
-	if (-not (Test-Path $ManifestJson)) { New-NcrementManifest | ConvertTo-Json | Out-File $ManifestJson -Encoding utf8; }
-	Write-Host "  * added 'build/$(Split-Path $ManifestJson -Leaf)' to the solution.";
+	if (-not (Test-Path $ManifestFilePath)) { New-NcrementManifest | ConvertTo-Json | Out-File $ManifestFilePath -Encoding utf8; }
+	Write-Host "  * added 'build/$(Split-Path $ManifestFilePath -Leaf)' to the solution.";
 
 	# Generating a secrets file template to store sensitive information.
-	if (-not (Test-Path $SecretsJson))
+	if (-not (Test-Path $SecretsFilePath))
 	{
 		$content = "{ nugetKey: null, mockarooKey: null }";
-		$content | ConvertTo-Json | Out-File $SecretsJson -Encoding utf8;
+		$content | ConvertTo-Json | Out-File $SecretsFilePath -Encoding utf8;
 	}
-	Write-Host "  * added '$(Split-Path $SecretsJson -Leaf)' to the solution.";
+	Write-Host "  * added '$(Split-Path $SecretsFilePath -Leaf)' to the solution.";
 }
 
 Task "Package-Solution" -alias "pack" -description "This task generates all deployment packages." `
@@ -48,14 +48,14 @@ Task "Package-Solution" -alias "pack" -description "This task generates all depl
 	if (Test-Path $ArtifactsFolder) { Remove-Item $ArtifactsFolder -Recurse -Force; }
 	New-Item $ArtifactsFolder -ItemType Directory | Out-Null;
 
-	$version = ConvertTo-NcrementVersionNumber $ManifestJson $CurrentBranch;
+	$version = ConvertTo-NcrementVersionNumber $ManifestFilePath $CurrentBranch;
 	Join-Path $SolutionFolder "src/*/*" | Get-ChildItem -File -Filter "*.*proj" | Invoke-NugetPack $ArtifactsFolder $Configuration $version.FullVersion;
 }
 
 Task "Update-MockarooTypeList" -alias "types" -description "This task updates the list of existing mockaroo data-types." `
 -action {
 	$tempFile = New-TemporaryFile;
-	$apikey = Get-Secret $SecretsJson "mockarooKey";
+	$apikey = Get-Secret $SecretsFilePath "mockarooKey";
 	Invoke-WebRequest "https://api.mockaroo.com/api/types.json?key=$apikey" -OutFile $tempFile.FullName;
 	$results = Get-Content $tempFile.FullName | ConvertFrom-Json;
 
@@ -86,9 +86,9 @@ Task "Install-BuildDependencies" -alias "restore" -description "This task import
 
 Task "Increment-VersionNumber" -alias "version" -description "This task increments all of the projects version number." `
 -depends @("restore") -action {
-	$manifest = $ManifestJson | Step-NcrementVersionNumber -Major:$Major -Minor:$Minor -Patch;
-	$manifest | ConvertTo-Json | Out-File $ManifestJson -Encoding utf8;
-	Exec { &git add $ManifestJson | Out-Null; }
+	$manifest = $ManifestFilePath | Step-NcrementVersionNumber -Major:$Major -Minor:$Minor -Patch;
+	$manifest | ConvertTo-Json | Out-File $ManifestFilePath -Encoding utf8;
+	Exec { &git add $ManifestFilePath | Out-Null; }
 
 	Join-Path $SolutionFolder "src/*/*.*proj" | Get-ChildItem -File | Update-ProjectFile $manifest -Commit:$ShouldCommitChanges `
 		| Write-FormatedMessage "  * updated '{0}' version number to '$(ConvertTo-NcrementVersionNumber $manifest | Select-Object -ExpandProperty Version)'.";
@@ -111,9 +111,9 @@ Task "Run-Tests" -alias "test" -description "This task invoke all tests within t
 
 Task "Publish-NuGetPackages" -alias "push-nuget" -description "This task publish all nuget packages to nuget.org." `
 -precondition { return Test-Path $ArtifactsFolder -PathType Container } `
--action { Get-ChildItem $ArtifactsFolder -Recurse -Filter "*.nupkg" | Publish-NugetPackage $SecretsJson "nugetKey"; }
+-action { Get-ChildItem $ArtifactsFolder -Recurse -Filter "*.nupkg" | Publish-NugetPackage $SecretsFilePath "nugetKey"; }
 
 Task "Add-GitReleaseTag" -alias "tag" -description "This task tags the last commit with the version number." `
--depends @("restore") -action { $ManifestJson | ConvertTo-NcrementVersionNumber | Select-Object -ExpandProperty Version | New-GitTag $CurrentBranch; }
+-depends @("restore") -action { $ManifestFilePath | ConvertTo-NcrementVersionNumber | Select-Object -ExpandProperty Version | New-GitTag $CurrentBranch; }
 
 #endregion

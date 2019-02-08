@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".misc", ".misc", "{4A708A19-1632-4E2B-A277-498B8FABCA18}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		build.ps1 = build.ps1
 		commands.json = commands.json
 		README.md = README.md
 		secrets.json = secrets.json

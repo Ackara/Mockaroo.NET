@@ -64,7 +64,7 @@ else
 		"Configuration"=$Configuration;
         "SolutionFolder"=$PSScriptRoot;
         "SolutionName"=(Split-Path $PSScriptRoot -Leaf);
-        "ShouldCommitChanges"=(-not $NoCommit.IsPresent);
+        "ShouldCommitChanges"=(-not $SkipCommit.IsPresent);
 	}
 	if (-not $psake.build_success) { exit 1; }
 }

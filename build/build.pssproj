@@ -28,7 +28,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="tasks.psake.ps1" />
-    <Compile Include="tools.psm1" />
+    <Compile Include="toolkit.psm1" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="manifest.json" />
