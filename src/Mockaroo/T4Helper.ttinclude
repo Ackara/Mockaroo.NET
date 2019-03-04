@@ -12,7 +12,7 @@
 <#+ 
 public const string EnumTypeName = "DataType";
 
-public IEnumerable<string> FetchDataTypes()
+public IEnumerable<string> EnumerateDataTypes()
 {
 	string path = Path.Combine(Host.ResolveAssemblyReference("$(ProjectDir)"), "mockaroo_data_types.txt");
 	string[] lines = File.ReadAllLines(path);
@@ -22,7 +22,7 @@ public IEnumerable<string> FetchDataTypes()
 		string val = lines[i];
 		if(!string.IsNullOrWhiteSpace(val))
 		{
-			yield return val;
+			yield return val.Trim();
 		}
 	}
 }

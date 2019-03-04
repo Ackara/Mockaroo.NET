@@ -1,32 +1,23 @@
 ﻿<#@ include file="T4Helper.ttinclude" #>
 <#@ output extension=".cs" #>
-namespace <#= GetMSBuildProperty("//RootNamespace") #>
+namespace <#= Host.ResolveAssemblyReference("$(RootNamespace)") #>
 {
 	/// <summary>
-	/// A Mockaroo data type.
+	/// Represents a Mockaroo data-type.
 	/// </summary>
 	public enum <#= EnumTypeName #>
 	{
 <# 
 	PushIndent("\t\t");
-	WriteLine(GenerateTypeCodes());
+	foreach (var type in EnumerateDataTypes())
+	{
+		WriteLine("/// <summary>");
+		WriteLine($"/// {type}");
+		WriteLine("/// </summary>");
+		WriteLine($"{ToEnumName(type)},");
+		WriteLine("");
+	}
 	ClearIndent();
 #>
 	}
 }
-<#+ 
-public string GenerateTypeCodes()
-{
-	var text = new System.Text.StringBuilder();
-
-	foreach (var type in FetchDataTypes())
-	{
-		text.AppendLine("/// <summary>");
-		text.AppendFormat("/// {0}\r\n", type);
-		text.AppendLine("/// </summary>");
-		text.AppendFormat("{0},", ToEnumName(type));
-		text.AppendLine();
-	}
-	return text.ToString().Trim(' ', ',', '\n', '\r');
-}
-#>

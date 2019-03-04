@@ -1,6 +1,6 @@
 ﻿<#@ include file="../T4Helper.ttinclude" #>
 <#@ output extension=".cs" #>
-namespace <#= GetMSBuildProperty("//RootNamespace") #>.Fields
+namespace <#= Host.ResolveAssemblyReference("$(RootNamespace)") #>.Fields
 {
 	public partial class FieldFactory
 	{
@@ -16,7 +16,7 @@ namespace <#= GetMSBuildProperty("//RootNamespace") #>.Fields
 
 <# 
 	PushIndent("\t\t\t\t");
-	foreach (var type in FetchDataTypes())
+	foreach (var type in EnumerateDataTypes())
 	{
 		WriteLine("case {0}.{1}: ", EnumTypeName, ToEnumName(type));
 		WriteLine("\treturn new {0}Field();", ToEnumName(type));
@@ -39,7 +39,7 @@ namespace <#= GetMSBuildProperty("//RootNamespace") #>.Fields
 					return string.Empty;
 <#
 	PushIndent("\t\t\t\t");
-	foreach (var type in FetchDataTypes())
+	foreach (var type in EnumerateDataTypes())
 	{
 		WriteLine("case {1}.{0}:", ToEnumName(type), EnumTypeName);
 		WriteLine("\treturn \"{0}\";", type);
