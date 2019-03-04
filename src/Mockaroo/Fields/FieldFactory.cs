@@ -62,13 +62,14 @@ namespace Acklann.Mockaroo.Fields
                         return new WordsField();
 
                     case nameof(DateTime):
+                    case nameof(DateTimeOffset):
                         return new DateField();
 
                     case nameof(TimeSpan):
                         return new TimeField();
 
                     default:
-                        throw new ArgumentException(Exceptions.ExceptionMessage.CannotMapToDataType(type));
+                        throw new ArgumentException($"Cannot mock a member of type <{type.Name}>.");
                 }
         }
     }

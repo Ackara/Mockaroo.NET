@@ -151,9 +151,9 @@ namespace Acklann.Mockaroo
         /// <param name="take">The number of records to return.</param>
         /// <param name="records">The total number of records to retrieve and store on disk.</param>
         /// <returns></returns>
-        public Task<T[]> FetchPesistedDataAsync<T>(Schema schema, int take = DEFAULT_LIMIT, int records = (DEFAULT_LIMIT * 2))
+        public Task<T[]> FetchThenSaveDataAsync<T>(Schema schema, int take = DEFAULT_LIMIT, int records = (DEFAULT_LIMIT * 2))
         {
-            return FetchPesistedDataAsync<T>(schema, Path.GetTempPath(), take, records);
+            return FetchThenSaveDataAsync<T>(schema, _defaultDirectory, take, records);
         }
 
         /// <summary>
@@ -164,10 +164,10 @@ namespace Acklann.Mockaroo
         /// <param name="records">The total number of records to retrieve and store on disk.</param>
         /// <param name="depth">The max-depth the serializer should traverse down the object tree.</param>
         /// <returns></returns>
-        public async Task<T[]> FetchPesistedDataAsync<T>(int take = DEFAULT_LIMIT, int records = (DEFAULT_LIMIT * 2), int depth = Schema.DEFAULT_DEPTH)
+        public async Task<T[]> FetchThenSaveDataAsync<T>(int take = DEFAULT_LIMIT, int records = (DEFAULT_LIMIT * 2), int depth = Schema.DEFAULT_DEPTH)
         {
             var schema = new Schema<T>(depth);
-            return await FetchPesistedDataAsync<T>(schema, take, records);
+            return await FetchThenSaveDataAsync<T>(schema, _defaultDirectory, take, records);
         }
 
         /// <summary>
@@ -180,7 +180,7 @@ namespace Acklann.Mockaroo
         /// <param name="records">The total number of records to retrieve and store on disk.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">outputDirectory</exception>
-        public async Task<T[]> FetchPesistedDataAsync<T>(Schema schema, string outputDirectory, int take = DEFAULT_LIMIT, int records = (DEFAULT_LIMIT * 2))
+        public async Task<T[]> FetchThenSaveDataAsync<T>(Schema schema, string outputDirectory, int take = DEFAULT_LIMIT, int records = (DEFAULT_LIMIT * 2))
         {
             if (string.IsNullOrEmpty(outputDirectory)) throw new ArgumentNullException(nameof(outputDirectory));
 
@@ -202,20 +202,18 @@ namespace Acklann.Mockaroo
         #region Private Members
 
         private static string _defaultApiKey;
+        private readonly string _defaultDirectory = Path.Combine(Path.GetTempPath(), nameof(Mockaroo));
         private readonly string _apiKey;
 
         private static string GenerateFileName(Schema schema)
         {
-            var md5 = System.Security.Cryptography.MD5.Create();
-            byte[] hash = md5.ComputeHash(Encoding.UTF8.GetBytes(string.Concat(schema.Select(x => x.Name))));
-
-            return string.Concat(BitConverter.ToString(hash), ".json");
+            return $"{schema.ComputeChecksum()}.json";
         }
 
         private static void CreateDataFile(string filePath, string data)
         {
-            string dir = Path.GetDirectoryName(filePath);
-            if (Directory.Exists(dir) == false) Directory.CreateDirectory(dir);
+            string folder = Path.GetDirectoryName(filePath);
+            if (Directory.Exists(folder) == false) Directory.CreateDirectory(folder);
 
             File.WriteAllText(filePath, data);
         }

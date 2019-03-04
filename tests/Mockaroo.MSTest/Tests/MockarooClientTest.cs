@@ -83,12 +83,12 @@ namespace Acklann.Mockaroo.Tests
             var sut = new MockarooClient();
 
             var sample = new Schema<User>();
-            sample.Reassign(x => x.Email, DataType.EmailAddress);
-            sample.Reassign(x => x.Username, DataType.FirstName);
+            sample.Replace(x => x.Email, DataType.EmailAddress);
+            sample.Replace(x => x.Username, DataType.FirstName);
 
             // Act
-            var result1 = sut.FetchPesistedDataAsync<User>(sample, 5, 10).Result;
-            var result2 = sut.FetchPesistedDataAsync<BasicObject>(3, 10).Result;
+            var result1 = sut.FetchThenSaveDataAsync<User>(sample, 5, 10).Result;
+            var result2 = sut.FetchThenSaveDataAsync<BasicObject>(3, 10).Result;
 
             // Assert
             result1.Length.ShouldBe(5);

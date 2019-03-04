@@ -4,7 +4,7 @@
     /// Base class for <see cref="IField"/>.
     /// </summary>
     /// <seealso cref="Acklann.Mockaroo.Fields.IField"/>
-    [System.Diagnostics.DebuggerDisplay("{ToDebuggerDisplay()}")]
+    [System.Diagnostics.DebuggerDisplay("{GetDebuggerDisplay()}")]
     public abstract class FieldBase : IField
     {
         /// <summary>
@@ -81,7 +81,7 @@
         /// Get the string value that will represent this instance in the debugger window.
         /// </summary>
         /// <returns></returns>
-        private string ToDebuggerDisplay()
+        private string GetDebuggerDisplay()
         {
             string name = (string.IsNullOrEmpty(Name) ? "[Empty]" : Name);
             return $"{name}: <{Type}>";

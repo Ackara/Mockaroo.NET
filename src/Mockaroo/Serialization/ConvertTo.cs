@@ -27,7 +27,7 @@ namespace Acklann.Mockaroo.Serialization
             if (fields.Count > 0)
                 return fields;
             else
-                throw new ArgumentOutOfRangeException(Exceptions.ExceptionMessage.NoFieldsWasAssigned(template));
+                throw new ArgumentOutOfRangeException($"Cannot convert {template.Name} to {nameof(Schema)} because {template.Name} do not have any public properties or fields.");
         }
 
         internal static string ToFieldName<T>(Expression<Func<T, object>> property)
@@ -38,7 +38,7 @@ namespace Acklann.Mockaroo.Serialization
                 {
                     tPath = string.Concat(tPath, group.Value == ".get_Item" ? $".{Item}" : group.Value);
                 }
-            if (string.IsNullOrEmpty(tPath)) throw new ArgumentException(Exceptions.ExceptionMessage.ExpressionWasNotAProperty(property.ToString()));
+            if (string.IsNullOrEmpty(tPath)) throw new ArgumentException($"Expression '{property.ToString()}' must refer to a field or property.");
 
             if (property.Body is MemberExpression member)
                 if (member.Type.IsArray)
@@ -152,7 +152,7 @@ namespace Acklann.Mockaroo.Serialization
             if (type.IsClass)
             {
                 bool doNotHaveParameterLessConstructor = type.GetConstructors().Where(x => x.GetParameters().Length == 0).Count() == 0;
-                if (doNotHaveParameterLessConstructor) throw new ArgumentException(Exceptions.ExceptionMessage.HaveNoConstructor(type));
+                if (doNotHaveParameterLessConstructor) throw new ArgumentException($"Cannot convert {type.Name} to {nameof(Schema)} because {type.Name} do not have a constructor with zero parameters.");
             }
 
             var list = new LinkedList<MemberInfo>();

@@ -69,9 +69,9 @@ namespace Acklann.Mockaroo
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="dataType">Type of the data.</param>
-        public void Reassign(string fieldName, DataType dataType)
+        public IField Replace(string fieldName, DataType dataType)
         {
-            Reassign(fieldName, FieldFactory.CreateInstance(dataType));
+            return Replace(fieldName, FieldFactory.CreateInstance(dataType));
         }
 
         /// <summary>
@@ -80,15 +80,17 @@ namespace Acklann.Mockaroo
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
         /// <param name="field">The field.</param>
-        public void Reassign(string fieldName, IField field)
+        public IField Replace(string fieldName, IField field)
         {
             field.Name = fieldName;
             for (int i = 0; i < Count; i++)
                 if (this[i].Name == fieldName)
                 {
                     this[i] = field;
-                    break;
+                    return field;
                 }
+
+            return null;
         }
 
         /// <summary>
@@ -96,15 +98,29 @@ namespace Acklann.Mockaroo
         /// </summary>
         /// <param name="fieldName">Name of the field.</param>
         /// <returns><c>true</c> if item was found, <c>false</c> otherwise.</returns>
-        public bool Remove(string fieldName)
+        public IField Remove(string fieldName)
         {
             for (int i = 0; i < Count; i++)
                 if (this[i].Name == fieldName)
                 {
-                    base.RemoveAt(i);
-                    return true;
+                    IField removedField = this[i];
+                    RemoveAt(i);
+                    return removedField;
                 }
-            return false;
+
+            return null;
+        }
+
+        /// <summary>
+        /// Computes the checksum.
+        /// </summary>
+        /// <returns></returns>
+        public string ComputeChecksum()
+        {
+            var md5 = System.Security.Cryptography.MD5.Create();
+            byte[] hash = md5.ComputeHash(Encoding.UTF8.GetBytes(ToString()));
+
+            return BitConverter.ToString(hash);
         }
 
         /// <summary>
@@ -141,14 +157,22 @@ namespace Acklann.Mockaroo
         /// <summary>
         /// Initializes a new instance of the <see cref="Schema{T}"/> class.
         /// </summary>
-        public Schema(int depth = DEFAULT_DEPTH) : base(typeof(T), depth)
+        public Schema() : this(DEFAULT_DEPTH)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Schema{T}" /> class.
+        /// </summary>
+        /// <param name="depth">The max-depth the serializer should traverse down the object tree.</param>
+        public Schema(int depth) : base(typeof(T), depth)
         { }
 
         /// <summary>
         /// Removes the specified <see cref="IField"/> by the property associated with it.
         /// </summary>
         /// <param name="property">The property associated to the <see cref="IField"/>.</param>
-        public bool Remove(Expression<Func<T, object>> property)
+        public IField Remove(Expression<Func<T, object>> property)
         {
             return Remove(MockarooConvert.ToFieldName(property));
         }
@@ -159,9 +183,9 @@ namespace Acklann.Mockaroo
         /// </summary>
         /// <param name="property">The property associated to the <see cref="IField"/>.</param>
         /// <param name="dataType">The Mockaroo data type.</param>
-        public void Reassign(Expression<Func<T, object>> property, DataType dataType)
+        public IField Replace(Expression<Func<T, object>> property, DataType dataType)
         {
-            Reassign(MockarooConvert.ToFieldName(property), FieldFactory.CreateInstance(dataType));
+            return Replace(MockarooConvert.ToFieldName(property), FieldFactory.CreateInstance(dataType));
         }
 
         /// <summary>
@@ -169,9 +193,9 @@ namespace Acklann.Mockaroo
         /// </summary>
         /// <param name="property">The property associated to the <see cref="IField"/>.</param>
         /// <param name="field">The Mockaroo field.</param>
-        public void Reassign(Expression<Func<T, object>> property, IField field)
+        public IField Replace(Expression<Func<T, object>> property, IField field)
         {
-            Reassign(MockarooConvert.ToFieldName(property), field);
+            return Replace(MockarooConvert.ToFieldName(property), field);
         }
     }
 }
