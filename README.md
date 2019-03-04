@@ -1,15 +1,16 @@
 # Mockaroo.NET
 
 [![version](https://img.shields.io/nuget/v/Acklann.Mockaroo.NET.svg?style=flat-square)](https://www.nuget.org/packages?q=Acklann.Mockaroo.NET)
-[![NuGet](https://img.shields.io/nuget/dt/Acklann.Mockaroo.Net.svg)](https://www.nuget.org/packages/Acklann.Mockaroo.NET/)
-[![license](https://img.shields.io/badge/license-MIT%20License-blue.svg)](https://github.com/Ackara/Mockaroo.NET/blob/master/LICENSE)
 
+## The Problem
 
-----------
+You are working on a .NET project and you have to do some testing, but first you need load data into your program. Creating data by hand can be tedious, especially when you are at the phase where refactoring is frequent.
 
-Mockaroo.NET is a portable class library that allows you to generate sample data based on C# objects using the [Mockaroo REST API](https://mockaroo.com/api/docs).
+## The Solution
 
-## How it works
+**Mockaroo.NET** is a netstandard library that allows you to generate sample data based on your classes using the [Mockaroo REST API](https://mockaroo.com/api/docs). 
+
+### Usage
 Lets say you have the following class.
 
 ```csharp
@@ -28,7 +29,7 @@ var client = new MockarooClient(your_api_key);
 IEnumerable<Employee> data = await client.FetchDataAsync<Employee>(records: 100);
 ```
 
-This will examine the Employee class properties, then generate random sample objects using the data fetched from the [Mockaroo Rest API](https://www.mockaroo.com/api/docs). The data returned will look something like the following.
+The method will examine the `Employee` class properties, then generate objects using the data fetched from the [Mockaroo Rest API](https://www.mockaroo.com/api/docs). The data returned will look something like the following.
 
 ```json
 [{
@@ -42,8 +43,8 @@ If Lorem Ipsum text is not to your liking, you can fine-tune the data by using t
 
 ```csharp
 var schema = new Schema<Employee>();
-schema.Reassign(x=> x.Name, DataType.FullName);
-schema.Reassign(x=> x.Phone, new PhoneField() { BlankPercentage = 50 });
+schema.Replace(x=> x.Name, DataType.FullName);
+schema.Replace(x=> x.Phone, new PhoneField() { BlankPercentage = 50 });
 
 var client = new MockarooClient(your_api_key);
 IEnumerable<Employee> data = await client.FetchDataAsync<Employee>(schema, records: 1000);
@@ -59,12 +60,11 @@ The results will look like the following.
 }]
 ```
 
-Currently there are over 140+ data types to choose from, check out the Mockaroo [documentation](https://www.mockaroo.com/api/docs) to see the full list. You can also try it at [https://www.mockaroo.com/](https://www.mockaroo.com/) 
+Currently there are over 140+ data types to choose from, check out the Mockaroo [documentation](https://www.mockaroo.com/api/docs) to see the full list. You can also try it at [mockaroo.com](https://www.mockaroo.com/) .
 
-## Available on NuGet
-```
-PM> Install-Package Acklann.Mockaroo.NET
-```
+#### Reusing Data
+
+The number of calls one can make to [Mockaroo](https://www.mockaroo.com/api/docs) is limited, therefore it is a good idea to save and reuse the data retrieved from previous calls. The `FetchThenSaveDataAsync` method enables you to do just that. In addition, reusing data also means that the returned objects will be consistent instead of returning fresh data for each call. However keep in mind that if the `Schema` changes a new dataset will be retrieved.
 
 ## Contributing
 
