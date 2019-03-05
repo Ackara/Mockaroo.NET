@@ -27,8 +27,7 @@ namespace Acklann.Mockaroo.Tests
         {
             // Arrange
             var limit = 2;
-            var apiKey = Config.GetApikey();
-            var sut = new MockarooClient(apiKey);
+            var sut = new MockarooClient();
             var fields = GetAllFieldTypes().ToArray();
 
             var schema = new Schema();
@@ -48,7 +47,7 @@ namespace Acklann.Mockaroo.Tests
         {
             // Arrange
             var limit = 2;
-            var sut = new MockarooClient(Config.GetApikey());
+            var sut = new MockarooClient();
 
             // Act
             var results = sut.FetchDataAsync<CompositeObject>(limit).Result;
@@ -94,6 +93,31 @@ namespace Acklann.Mockaroo.Tests
             result1.Length.ShouldBe(5);
             Diff.ApproveAll(result1, ".txt", "a");
             Diff.ApproveAll(result2, ".txt", "b");
+        }
+
+        //[TestMethod]
+        public void Can_handle_speacial_data_types()
+        {
+            // Arrange
+            var schema = new Schema();
+            schema.AddRange(new IField[]
+            {
+                new AvatarField("avatar"),
+                new TemplateField("tempate"){ Value = "{avatar}"},
+                new DummyImageURLField("dummy image"),
+                new DigitSequenceField("digit sequence") { Format = "###-@@@"},
+            });
+
+            var sut = new MockarooClient();
+
+            // Act
+            var data = sut.FetchDataAsync(schema, 1).Result;
+            var results = JArray.Parse(Encoding.UTF8.GetString(data)).ToString(Formatting.Indented);
+
+            // Assert
+            results.ShouldNotBeNullOrEmpty();
+            Diff.Approve(schema, ".json");
+            //Diff.Approve(results, ".json", "result");
         }
 
         internal static IEnumerable<IField> GetAllFieldTypes()

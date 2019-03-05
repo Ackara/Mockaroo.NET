@@ -30,8 +30,8 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Update="Fields\BaseTypes.cs">
-      <DependentUpon>BaseTypes.tt</DependentUpon>
+    <Compile Update="Fields\PartialTypes.cs">
+      <DependentUpon>PartialTypes.tt</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
@@ -46,8 +46,8 @@
       <LastGenOutput>DataType.cs</LastGenOutput>
       <Generator>TextTemplatingFileGenerator</Generator>
     </None>
-    <None Update="Fields\BaseTypes.tt">
-      <LastGenOutput>BaseTypes.cs</LastGenOutput>
+    <None Update="Fields\PartialTypes.tt">
+      <LastGenOutput>PartialTypes.cs</LastGenOutput>
       <Generator>TextTemplatingFileGenerator</Generator>
     </None>
     <None Update="Fields\FieldFactoryT4.tt">

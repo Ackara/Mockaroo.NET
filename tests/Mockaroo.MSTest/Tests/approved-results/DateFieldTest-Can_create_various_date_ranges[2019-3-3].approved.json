@@ -1,0 +1,7 @@
+{
+  "Input": "2019-3-3",
+  "Today": "Sunday, 03 March 2019 12:00:00 AM => Sunday, 03 March 2019 11:59:59 PM",
+  "ThisWeek": "Monday, 25 February 2019 12:00:00 AM => Sunday, 03 March 2019 11:59:59 PM",
+  "ThisMonth": "Friday, 01 March 2019 12:00:00 AM => Sunday, 31 March 2019 11:59:59 PM",
+  "ThisYear": "Tuesday, 01 January 2019 12:00:00 AM => Tuesday, 31 December 2019 11:59:59 PM"
+}
