@@ -64,7 +64,7 @@ Currently there are over 140+ data types to choose from, check out the Mockaroo 
 
 #### Reusing Data
 
-The number of calls one can make to [Mockaroo](https://www.mockaroo.com/api/docs) is limited, therefore it is a good idea to save and reuse the data retrieved from previous calls. The `FetchThenSaveDataAsync` method enables you to do just that. In addition, reusing data also means that the returned objects will be consistent instead of returning fresh data for each call. However keep in mind that if the `Schema` changes a new dataset will be retrieved.
+The number of calls one can make to [Mockaroo](https://www.mockaroo.com/api/docs) is limited, therefore it is a good idea to save and reuse the data retrieved from previous calls. The `FetchAndSaveDataAsync` method enables you to do just that. In addition, reusing data also means that the returned objects will be consistent instead of returning fresh data for each call. However keep in mind that if the `Schema` changes a new dataset will be retrieved.
 
 ## Contributing
 

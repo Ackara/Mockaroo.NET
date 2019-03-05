@@ -86,8 +86,8 @@ namespace Acklann.Mockaroo.Tests
             sample.Replace(x => x.Username, DataType.FirstName);
 
             // Act
-            var result1 = sut.FetchThenSaveDataAsync<User>(sample, 5, 10).Result;
-            var result2 = sut.FetchThenSaveDataAsync<BasicObject>(3, 10).Result;
+            var result1 = sut.FetchAndSaveDataAsync<User>(sample, 5, 10).Result;
+            var result2 = sut.FetchAndSaveDataAsync<BasicObject>(3, 10).Result;
 
             // Assert
             result1.Length.ShouldBe(5);

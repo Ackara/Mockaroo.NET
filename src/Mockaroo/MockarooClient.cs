@@ -151,9 +151,9 @@ namespace Acklann.Mockaroo
         /// <param name="take">The number of records to return.</param>
         /// <param name="records">The total number of records to retrieve and store on disk.</param>
         /// <returns></returns>
-        public Task<T[]> FetchThenSaveDataAsync<T>(Schema schema, int take = DEFAULT_LIMIT, int records = (DEFAULT_LIMIT * 2))
+        public Task<T[]> FetchAndSaveDataAsync<T>(Schema schema, int take = DEFAULT_LIMIT, int records = (DEFAULT_LIMIT * 2))
         {
-            return FetchThenSaveDataAsync<T>(schema, _defaultDirectory, take, records);
+            return FetchAndSaveDataAsync<T>(schema, _defaultDirectory, take, records);
         }
 
         /// <summary>
@@ -164,10 +164,10 @@ namespace Acklann.Mockaroo
         /// <param name="records">The total number of records to retrieve and store on disk.</param>
         /// <param name="depth">The max-depth the serializer should traverse down the object tree.</param>
         /// <returns></returns>
-        public async Task<T[]> FetchThenSaveDataAsync<T>(int take = DEFAULT_LIMIT, int records = (DEFAULT_LIMIT * 2), int depth = Schema.DEFAULT_DEPTH)
+        public async Task<T[]> FetchAndSaveDataAsync<T>(int take = DEFAULT_LIMIT, int records = (DEFAULT_LIMIT * 2), int depth = Schema.DEFAULT_DEPTH)
         {
             var schema = new Schema<T>(depth);
-            return await FetchThenSaveDataAsync<T>(schema, _defaultDirectory, take, records);
+            return await FetchAndSaveDataAsync<T>(schema, _defaultDirectory, take, records);
         }
 
         /// <summary>
@@ -180,7 +180,7 @@ namespace Acklann.Mockaroo
         /// <param name="records">The total number of records to retrieve and store on disk.</param>
         /// <returns></returns>
         /// <exception cref="ArgumentNullException">outputDirectory</exception>
-        public async Task<T[]> FetchThenSaveDataAsync<T>(Schema schema, string outputDirectory, int take = DEFAULT_LIMIT, int records = (DEFAULT_LIMIT * 2))
+        public async Task<T[]> FetchAndSaveDataAsync<T>(Schema schema, string outputDirectory, int take = DEFAULT_LIMIT, int records = (DEFAULT_LIMIT * 2))
         {
             if (string.IsNullOrEmpty(outputDirectory)) throw new ArgumentNullException(nameof(outputDirectory));
 
