@@ -1,6 +1,6 @@
 # Mockaroo.NET
 
-[![version](https://img.shields.io/nuget/v/Acklann.Mockaroo.NET.svg?style=flat-square)](https://www.nuget.org/packages?q=Acklann.Mockaroo.NET)
+[![version](https://img.shields.io/nuget/v/Mockaroo.NET.svg?style=flat-square)](https://www.nuget.org/packages?q=Mockaroo.NET)
 
 ## The Problem
 
