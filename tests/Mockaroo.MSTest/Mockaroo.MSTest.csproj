@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <RootNamespace>Acklann.Mockaroo</RootNamespace>
-    <AssemblyName>Ackalnn.Mockaroo.NET.MSTest</AssemblyName>
+    <AssemblyName>Mockaroo.NET.MSTest</AssemblyName>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <IsPackable>false</IsPackable>
   </PropertyGroup>

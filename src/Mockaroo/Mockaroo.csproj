@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>Acklann.Mockaroo.NET</AssemblyName>
+    <AssemblyName>Mockaroo.NET</AssemblyName>
     <RootNamespace>Acklann.Mockaroo</RootNamespace>
     <AssemblyVersion>3.0.2</AssemblyVersion>
   </PropertyGroup>
