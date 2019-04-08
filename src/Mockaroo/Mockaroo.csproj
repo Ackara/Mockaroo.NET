@@ -3,10 +3,10 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Mockaroo.NET</AssemblyName>
     <RootNamespace>Acklann.Mockaroo</RootNamespace>
-    <AssemblyVersion>3.0.2</AssemblyVersion>
+    <AssemblyVersion>3.0.3</AssemblyVersion>
   </PropertyGroup>
   <PropertyGroup>
-    <PackageVersion>3.0.2</PackageVersion>
+    <PackageVersion>3.0.3</PackageVersion>
     <Title>Mockaroo.NET</Title>
     <Authors>Ackara</Authors>
     <Description>A library that allows you to generate sample data based on your object type using the Mockaroo API</Description>
