@@ -561,6 +561,21 @@ function Merge-DllDocumentationWithXSD
 	return $XSDFilePath;
 }
 
+function New-ConnectionInfo
+{
+	Param(
+		[ValidateNotNull()]
+		[Parameter(Mandatory)]
+		$Node,
+
+		[ValidateNotNullOrEmpty()]
+		[Parameter(Mandatory)]
+		[string]$ConnectionString
+	)
+
+	return [ConnectionInfo]::new($Node, $ConnectionString);
+}
+
 function New-GitTag
 {
 	Param(

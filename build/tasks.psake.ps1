@@ -6,11 +6,11 @@ Properties {
 	$Dependencies = @("Ncrement");
 
 	# Files & Folders
-    $SolutionFolder = (Split-Path $PSScriptRoot -Parent);
+	$SolutionFolder = (Split-Path $PSScriptRoot -Parent);
 	$ManifestFilePath = (Join-Path $PSScriptRoot  "manifest.json");
 	$SecretsFilePath = (Join-Path $SolutionFolder "secrets.json");
 	$ArtifactsFolder = (Join-Path $SolutionFolder "artifacts");
-    $ToolsFolder = "";
+	$ToolsFolder = "";
 
 	# Arguments
     $ShouldCommitChanges = $true;
@@ -39,7 +39,7 @@ Task "Configure-Environment" -alias "configure" -description "This task generate
 	if (-not (Test-Path $SecretsFilePath))
 	{
 		$content = '{ "nugetKey": null, "mockarooKey": null }';
-		$content | ConvertTo-Json | Out-File $SecretsFilePath -Encoding utf8;
+		$content | ConvertFrom-Json | ConvertTo-Json | Out-File $SecretsFilePath -Encoding utf8;
 	}
 	Write-Host "  * added '$(Split-Path $SecretsFilePath -Leaf)' to the solution.";
 }
