@@ -2,6 +2,7 @@
 using Acklann.Mockaroo.Serialization;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq.Expressions;
 using System.Text;
 
@@ -121,6 +122,19 @@ namespace Acklann.Mockaroo
             byte[] hash = md5.ComputeHash(Encoding.UTF8.GetBytes(ToString()));
 
             return BitConverter.ToString(hash);
+        }
+
+        /// <summary>
+        /// Write this instance to the specified file path.
+        /// </summary>
+        /// <param name="filePath">An absolute file path.</param>
+        /// <exception cref="ArgumentNullException">filePath</exception>
+        public void Save(string filePath)
+        {
+            if (string.IsNullOrEmpty(filePath)) throw new ArgumentNullException(nameof(filePath));
+
+            Helper.CreateDirectory(filePath);
+            File.WriteAllText(filePath, ToString());
         }
 
         /// <summary>
