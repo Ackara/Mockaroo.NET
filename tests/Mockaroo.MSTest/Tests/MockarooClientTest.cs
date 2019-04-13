@@ -75,7 +75,7 @@ namespace Acklann.Mockaroo.Tests
             });
         }
 
-        //[TestMethod]
+        [TestMethod]
         public void Can_handle_speacial_data_types()
         {
             // Arrange
@@ -86,6 +86,10 @@ namespace Acklann.Mockaroo.Tests
                 new TemplateField("tempate"){ Value = "{avatar}"},
                 new DummyImageURLField("dummy image"),
                 new DigitSequenceField("digit sequence") { Format = "###-@@@"},
+                new StateField("state"),
+                new ParagraphsField("paragraph"),
+                new NatoPhoneticField("nato"),
+                new FormulaField("formula", "2+2")
             });
 
             var sut = new MockarooClient();

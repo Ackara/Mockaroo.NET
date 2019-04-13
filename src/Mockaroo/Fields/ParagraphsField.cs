@@ -1,30 +1,30 @@
 ﻿namespace Acklann.Mockaroo.Fields
 {
-    public partial class WordsField
+    public partial class ParagraphsField
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="WordsField"/> class.
+        /// Initializes a new instance of the <see cref="ParagraphsField"/> class.
         /// </summary>
         /// <param name="name">The name.</param>
-        /// <param name="min">The minimum of words.</param>
-        /// <param name="max">The maximum of words.</param>
-        public WordsField(string name, int min, int max) : base(name)
+        /// <param name="min">The minimum number of words.</param>
+        /// <param name="max">The maximum number of words.</param>
+        public ParagraphsField(string name, int min, int max) : base(name)
         {
             Min = min;
             Max = max;
         }
 
         /// <summary>
-        /// Gets or sets the minimum number of words to generate.
+        /// Gets or sets the minimum number of paragraphs to generate.
         /// </summary>
         /// <value>The minimum.</value>
-        public int Min { get; set; } = 10;
+        public int Min { get; set; } = 1;
 
         /// <summary>
-        /// Gets or sets the maximum number of words to generate.
+        /// Gets or sets the maximum number of paragraphs to generate.
         /// </summary>
         /// <value>The maximum.</value>
-        public int Max { get; set; } = 20;
+        public int Max { get; set; } = 3;
 
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.

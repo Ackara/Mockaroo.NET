@@ -197,6 +197,8 @@ namespace Acklann.Mockaroo.Fields
 					return new MovieGenresField();
 				case DataType.MovieTitle: 
 					return new MovieTitleField();
+				case DataType.NatoPhonetic: 
+					return new NatoPhoneticField();
 				case DataType.NaughtyString: 
 					return new NaughtyStringField();
 				case DataType.NHSNumber: 
@@ -495,6 +497,8 @@ namespace Acklann.Mockaroo.Fields
 					return "Movie Genres";
 				case DataType.MovieTitle:
 					return "Movie Title";
+				case DataType.NatoPhonetic:
+					return "Nato Phonetic";
 				case DataType.NaughtyString:
 					return "Naughty String";
 				case DataType.NHSNumber:

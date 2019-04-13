@@ -467,6 +467,11 @@ namespace Acklann.Mockaroo
 		MovieTitle,
 
 		/// <summary>
+		/// Nato Phonetic
+		/// </summary>
+		NatoPhonetic,
+
+		/// <summary>
 		/// Naughty String
 		/// </summary>
 		NaughtyString,

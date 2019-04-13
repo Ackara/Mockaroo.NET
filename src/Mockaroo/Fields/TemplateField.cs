@@ -3,6 +3,17 @@
     public partial class TemplateField
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="TemplateField"/> class.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="value">The value.</param>
+        /// <exception cref="System.ArgumentNullException">value</exception>
+        public TemplateField(string name, string value) : base(name)
+        {
+            Value = value ?? throw new System.ArgumentNullException(nameof(value));
+        }
+
+        /// <summary>
         /// Gets or sets the value.
         /// </summary>
         /// <remarks>
