@@ -16,7 +16,7 @@ namespace Acklann.Mockaroo
         /// Initializes a new instance of the <see cref="MockarooRepository{T}"/> class.
         /// </summary>
         /// <param name="records">The number of records to download.</param>
-        public MockarooRepository(int records) : this(null, records, null, true, Mockaroo.Schema.DEFAULT_DEPTH)
+        public MockarooRepository(int records) : this(null, records, null, true)
         {
         }
 
