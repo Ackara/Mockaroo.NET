@@ -13,15 +13,15 @@ namespace Acklann.Mockaroo.Tests
         public void Can_fetch_and_save_data_to_disk()
         {
             // Arrange
-            string file = Path.Combine(Path.GetTempPath(), "basic.json");
-            var sut = new MockarooRepository<BasicObject>(Config.GetApikey(), 100, file);
+            string folder = Path.Combine(Path.GetTempPath(), "basic");
+            var sut = new MockarooRepository<BasicObject>(Config.GetApikey(), 10, folder, true);
 
             // Act
             var result1 = sut.First().StringValue;
             var result2 = sut.First().StringValue;
 
             // Assert
-            File.Exists(file).ShouldBeTrue();
+            Directory.Exists(folder).ShouldBeTrue();
             result1.ShouldNotBeNullOrEmpty();
             result2.ShouldNotBeNullOrEmpty();
             result1.ShouldBe(result2);
@@ -31,12 +31,12 @@ namespace Acklann.Mockaroo.Tests
         public void Can_fetch_new_data()
         {
             // Arrange
-            string file = Path.Combine(Path.GetTempPath(), "freshdata.json");
-            var sut = new MockarooRepository<BasicObject>(Config.GetApikey(), 10, file);
+            string folder = Path.Combine(Path.GetTempPath(), "freshdata");
+            var sut = new MockarooRepository<BasicObject>(Config.GetApikey(), 10, folder, true);
 
             // Act
             var result1 = sut.First().StringValue;
-            var dead = sut.RefreshAsync().Result;
+            sut.Refresh();
             var result2 = sut.First().StringValue;
 
             // Assert
@@ -49,8 +49,8 @@ namespace Acklann.Mockaroo.Tests
         public void Should_load_new_data_when_the_schema_changes()
         {
             // Arrange
-            var filePath = Path.Combine(Path.GetTempPath(), "autochanges.json");
-            var sut = new MockarooRepository<BasicObject>(Config.GetApikey(), 10, filePath);
+            var folder = Path.Combine(Path.GetTempPath(), "autochanges");
+            var sut = new MockarooRepository<BasicObject>(Config.GetApikey(), 10, folder, true);
 
             // Act
             var result1 = sut.Sync().First().StringValue;

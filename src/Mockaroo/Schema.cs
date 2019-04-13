@@ -113,18 +113,6 @@ namespace Acklann.Mockaroo
         }
 
         /// <summary>
-        /// Computes the checksum.
-        /// </summary>
-        /// <returns></returns>
-        public string ComputeChecksum()
-        {
-            var md5 = System.Security.Cryptography.MD5.Create();
-            byte[] hash = md5.ComputeHash(Encoding.UTF8.GetBytes(ToString()));
-
-            return BitConverter.ToString(hash);
-        }
-
-        /// <summary>
         /// Write this instance to the specified file path.
         /// </summary>
         /// <param name="filePath">An absolute file path.</param>

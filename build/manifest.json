@@ -1,24 +1,21 @@
 ﻿{
-    "Version":  {
-                    "Major":  3,
-                    "Minor":  0,
-                    "Patch":  4
-                },
-    "Name":  "Mockaroo.NET",
-    "Author":  "Ackara",
-    "Company":  "Ackara",
-    "Copyright":  "MIT License",
-    "Website":  "https://github.com/Ackara/Mockaroo.NET",
-    "RepositoryUrl":  "https://github.com/Ackara/Mockaroo.NET.git",
-    "License":  "https://github.com/Ackara/Mockaroo.NET/blob/master/LICENSE",
-    "Icon":  "https://raw.githubusercontent.com/Ackara/Mockaroo.NET/master/art/icon.png",
-    "Tags":  "mockaroo data generator rest client",
-    "Description":  "A library that allows you to generate sample data based on your object type using the Mockaroo API",
-    "ReleaseNotes":  "",
-    "Summary":  "",
-    "Id":  "",
-    "BranchSuffixMap":  {
-                            "master":  "",
-                            "*":  "rc"
-                        }
+  "Description": "A library that allows you to generate sample data based on your object type using the Mockaroo API",
+  "Version": {
+    "Major": 3,
+    "Minor": 0,
+    "Patch": 4
+  },
+  "Name": "Mockaroo.NET",
+  "Author": "Ackara",
+  "Company": "Ackara",
+  "Copyright": "MIT License",
+  "Website": "https://github.com/Ackara/Mockaroo.NET",
+  "RepositoryUrl": "https://github.com/Ackara/Mockaroo.NET.git",
+  "License": "https://github.com/Ackara/Mockaroo.NET/blob/master/LICENSE",
+  "Icon": "https://raw.githubusercontent.com/Ackara/Mockaroo.NET/master/art/icon.png",
+  "Tags": "mockaroo data generator rest client",
+  "BranchSuffixMap": {
+    "master": "",
+    "*": "beta"
+  }
 }

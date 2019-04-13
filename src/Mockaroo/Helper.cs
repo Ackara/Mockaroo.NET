@@ -5,22 +5,25 @@ using System.Text;
 
 namespace Acklann.Mockaroo
 {
-    internal static class Helper
+    public static class Helper
     {
-        public static bool IsNullOrEmpty(this ICollection list)
+        public static string ComputeHash(this Schema schema)
         {
-            return list == null || list.Count < 0;
+            var md5 = System.Security.Cryptography.MD5.Create();
+            byte[] hash = md5.ComputeHash(Encoding.UTF8.GetBytes(schema.ToString()));
+
+            return BitConverter.ToString(hash);
         }
 
-        public static string CreateDirectory(string filePath)
+        internal static string ComputeHash(byte[] data)
         {
-            string dir = Path.GetDirectoryName(filePath);
-            if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
+            var md5 = System.Security.Cryptography.MD5.Create();
+            byte[] hash = md5.ComputeHash(data);
 
-            return filePath;
+            return BitConverter.ToString(hash);
         }
 
-        public static string ComputeHash(string filePath)
+        internal static string ComputeHash(string filePath)
         {
             if (!File.Exists(filePath)) return string.Empty;
 
@@ -30,20 +33,17 @@ namespace Acklann.Mockaroo
             return BitConverter.ToString(hash);
         }
 
-        public static string ComputeHash(Schema schema)
+        internal static bool IsNullOrEmpty(this ICollection list)
         {
-            var md5 = System.Security.Cryptography.MD5.Create();
-            byte[] hash = md5.ComputeHash(Encoding.UTF8.GetBytes(schema.ToString()));
-
-            return BitConverter.ToString(hash);
+            return list == null || list.Count < 0;
         }
 
-        public static string ComputeHash(byte[] data)
+        internal static string CreateDirectory(string filePath)
         {
-            var md5 = System.Security.Cryptography.MD5.Create();
-            byte[] hash = md5.ComputeHash(data);
+            string dir = Path.GetDirectoryName(filePath);
+            if (!Directory.Exists(dir)) Directory.CreateDirectory(dir);
 
-            return BitConverter.ToString(hash);
+            return filePath;
         }
     }
 }
