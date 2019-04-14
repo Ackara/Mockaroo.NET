@@ -5,8 +5,16 @@ using System.Text;
 
 namespace Acklann.Mockaroo
 {
+    /// <summary>
+    /// Provides extension methods.
+    /// </summary>
     public static class Helper
     {
+        /// <summary>
+        /// Returns a MD5 hash of the specified <see cref="Schema"/>.
+        /// </summary>
+        /// <param name="schema">The schema.</param>
+        /// <returns></returns>
         public static string ComputeHash(this Schema schema)
         {
             var md5 = System.Security.Cryptography.MD5.Create();
