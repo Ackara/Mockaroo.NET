@@ -6,6 +6,15 @@
         /// Initializes a new instance of the <see cref="ParagraphsField"/> class.
         /// </summary>
         /// <param name="name">The name.</param>
+        /// <param name="numberOfParagraphs">The number of paragraphs.</param>
+        public ParagraphsField(string name, int numberOfParagraphs) : this(name, numberOfParagraphs, numberOfParagraphs)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ParagraphsField"/> class.
+        /// </summary>
+        /// <param name="name">The name.</param>
         /// <param name="min">The minimum number of words.</param>
         /// <param name="max">The maximum number of words.</param>
         public ParagraphsField(string name, int min, int max) : base(name)

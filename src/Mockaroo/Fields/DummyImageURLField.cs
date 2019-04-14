@@ -7,7 +7,7 @@
         /// </summary>
         /// <param name="height">The height in pixels.</param>
         /// <param name="width">The width pixels.</param>
-        public DummyImageURLField(int height, int width)
+        public DummyImageURLField(string name, int height, int width) : base(name)
         {
             MinWidth = width;
             MaxWidth = width;

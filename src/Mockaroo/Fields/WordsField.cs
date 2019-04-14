@@ -6,6 +6,15 @@
         /// Initializes a new instance of the <see cref="WordsField"/> class.
         /// </summary>
         /// <param name="name">The name.</param>
+        /// <param name="numberOfWords">The number of words.</param>
+        public WordsField(string name, int numberOfWords) : this(name, numberOfWords, numberOfWords)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WordsField"/> class.
+        /// </summary>
+        /// <param name="name">The name.</param>
         /// <param name="min">The minimum of words.</param>
         /// <param name="max">The maximum of words.</param>
         public WordsField(string name, int min, int max) : base(name)

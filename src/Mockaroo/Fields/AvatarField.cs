@@ -3,6 +3,27 @@
     public partial class AvatarField
     {
         /// <summary>
+        /// Initializes a new instance of the <see cref="AvatarField"/> class.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="size">The size in pixels.</param>
+        public AvatarField(string name, int size) : this(name, size, size)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AvatarField"/> class.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="width">The width in pixels.</param>
+        /// <param name="height">The height in pixels.</param>
+        public AvatarField(string name, int width, int height) : base(name)
+        {
+            Width = width;
+            Height = height;
+        }
+
+        /// <summary>
         /// Gets or sets the image height in pixels.
         /// </summary>
         /// <value>
