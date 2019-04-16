@@ -610,14 +610,17 @@ function Publish-PackageToNuget
 
 		[Parameter(Mandatory, ValueFromPipeline)]
 		[ValidateScript({Test-Path $_.FullName})]
-		[IO.FileInfo]$PackageFile
+		[IO.FileInfo]$PackageFile,
+
+		[ValidateNotNullOrEmpty()]
+		[string]$Source = "https://api.nuget.org/v3/index.json"
 	)
 
 	BEGIN { $apikey = Get-Secret $SecretsFilePath $Key; }
 	PROCESS
 	{
 		Write-Header "dotnet: nuget-push '$($PackageFile.Name)'";
-		Invoke-Tool { &dotnet nuget push $PackageFile.FullName --source "https://api.nuget.org/v3/index.json" --api-key $apiKey; }
+		Invoke-Tool { &dotnet nuget push $PackageFile.FullName --source $Source --api-key $apiKey; }
 	}
 }
 
