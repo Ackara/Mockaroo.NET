@@ -12,11 +12,12 @@ using System.Linq;
 namespace Acklann.Mockaroo.Tests
 {
     [TestClass]
-    //[Reporter(typeof(NotepadPlusPlusReporter), doNotPauseIfTestFails: true)]
     public class SerializationTest
     {
         //  Type  ::>  Schema
         // ==================================================
+        
+
 
         [TestMethod]
         public void Can_convert_a_basic_type_to_a_schema()
@@ -60,6 +61,12 @@ namespace Acklann.Mockaroo.Tests
                 var schema = MockarooConvert.ToSchema<ImmutableObject>(0);
                 var json = JArray.Parse(schema.ToString()).ToString(Newtonsoft.Json.Formatting.Indented);
             });
+        }
+
+        [TestMethod]
+        public void Can_convert_a_type_with_constant_to_a_schema()
+        {
+            RunTypeToSchemaTest<Client>();
         }
 
         // Server-Response  ::>  Object

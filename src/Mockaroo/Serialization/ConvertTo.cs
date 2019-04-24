@@ -160,7 +160,7 @@ namespace Acklann.Mockaroo.Serialization
             foreach (PropertyInfo member in type.GetRuntimeProperties().Where(x => x.CanWrite))
                 list.AddLast(member);
 
-            foreach (FieldInfo member in type.GetRuntimeFields().Where(x => x.IsPublic && x.IsInitOnly == false))
+            foreach (FieldInfo member in type.GetRuntimeFields().Where(x => x.IsPublic && !x.IsInitOnly && !x.IsLiteral))
                 list.AddLast(member);
 
             return list;
