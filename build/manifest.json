@@ -2,8 +2,8 @@
     "Description":  "A library that allows you to generate sample data based on your object type using the Mockaroo API",
     "Version":  {
                     "Major":  4,
-                    "Minor":  0,
-                    "Patch":  4
+                    "Minor":  1,
+                    "Patch":  0
                 },
     "Name":  "Mockaroo.NET",
     "Author":  "Ackara",
