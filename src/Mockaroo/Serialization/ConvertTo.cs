@@ -166,7 +166,7 @@ namespace Acklann.Mockaroo.Serialization
 
             foreach (PropertyInfo member in type.GetRuntimeProperties().Where(x => x.CanWrite))
                 yield return member;
-
+            
             foreach (FieldInfo member in type.GetRuntimeFields().Where(x => x.IsPublic && !x.IsLiteral && !x.IsStatic))
                 yield return member;
         }

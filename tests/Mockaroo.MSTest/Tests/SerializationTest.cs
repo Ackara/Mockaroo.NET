@@ -60,6 +60,13 @@ namespace Acklann.Mockaroo.Tests
             RunTypeToSchemaTest<DictionaryCollection>(3);
         }
 
+        [TestMethod]
+        [TestCategory("now")]
+        public void Should_ignore_special_members()
+        {
+            RunTypeToSchemaTest<SpecialObject>();
+        }
+
         // ==================== Server-Response  ::>  Object ==================== //
 
         [TestMethod]
