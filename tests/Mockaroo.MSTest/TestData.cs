@@ -26,6 +26,8 @@ namespace Acklann.Mockaroo
 
 		public static FileInfo GetCompositeResponse() => GetFile(@"composite-response.json");
 
+		public static FileInfo GetDictonaryResponse() => GetFile(@"dictonary-response.json");
+
 		public static FileInfo GetImmutableResponse() => GetFile(@"immutable-response.json");
 
 		public static FileInfo GetNestedResponse() => GetFile(@"nested-response.json");

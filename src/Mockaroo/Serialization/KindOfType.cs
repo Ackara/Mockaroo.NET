@@ -5,6 +5,6 @@
         Object,
         Primitive,
         CollectionOfObjects,
-        CollectionOfPrimitives,
+        CollectionOfPrimitives
     }
 }

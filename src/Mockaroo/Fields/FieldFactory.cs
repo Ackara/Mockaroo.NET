@@ -28,17 +28,16 @@ namespace Acklann.Mockaroo.Fields
             else switch (type.Name)
                 {
                     case nameof(Byte):
-                        return new NumberField(type.Name);
+                        return new NumberField() { Max = byte.MaxValue };
 
                     case nameof(SByte):
                         return new NumberField() { Max = sbyte.MaxValue };
 
                     case nameof(Int32):
                     case nameof(Int64):
-                        return new NumberField();
-
                     case nameof(UInt32):
                     case nameof(UInt64):
+                    case nameof(Object):
                         return new NumberField();
 
                     case nameof(Int16):
@@ -61,6 +60,9 @@ namespace Acklann.Mockaroo.Fields
                     case nameof(String):
                         return new WordsField();
 
+                    case nameof(Guid):
+                        return new GUIDField();
+
                     case nameof(DateTime):
                     case nameof(DateTimeOffset):
                         return new DateField();
@@ -71,6 +73,14 @@ namespace Acklann.Mockaroo.Fields
                     default:
                         throw new ArgumentException($"Cannot mock a member of type <{type.Name}>.");
                 }
+        }
+
+        internal static IField CreateInstance(Type elementType, Type template)
+        {
+            if (template != null && typeof(Serialization.IKVSubstitue).IsAssignableFrom(template) && (elementType == typeof(object) || elementType == typeof(string)))
+                return new WordsField() { Min = 1, Max = 1 };
+            else
+                return CreateInstance(elementType);
         }
     }
 }

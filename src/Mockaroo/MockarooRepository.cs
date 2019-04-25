@@ -1,7 +1,10 @@
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace Acklann.Mockaroo
 {
@@ -136,8 +139,9 @@ namespace Acklann.Mockaroo
         {
             var client = new MockarooClient(_apiKey);
             byte[] data = client.FetchDataAsync(_schema, _records).Result;
+            string json = JArray.Parse(Encoding.UTF8.GetString(data)).ToString(Formatting.Indented);
             Helper.CreateDirectory(_dataPath);
-            File.WriteAllBytes(_dataPath, data);
+            File.WriteAllText(_dataPath, json);
 
             _schema.Save(_schemaPath);
             _fileHash = Helper.ComputeHash(_schema);

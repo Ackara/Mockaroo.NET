@@ -65,7 +65,7 @@ namespace Acklann.Mockaroo.Serialization
                 switch (GetKindOfType(valueType, out Type collectionElementType))
                 {
                     case KindOfType.Primitive:
-                        field = FieldFactory.CreateInstance(valueType);
+                        field = FieldFactory.CreateInstance(valueType, template);
                         field.Name = concat(parentName, member.Name);
                         schema.Add(field);
                         break;
@@ -104,6 +104,14 @@ namespace Acklann.Mockaroo.Serialization
             collectionElementType = null;
 
             if (valueType.IsEnum) return KindOfType.Primitive;
+            else if (typeof(IDictionary).IsAssignableFrom(valueType))
+            {
+                isaCollection = true;
+                Type k = valueType.GenericTypeArguments[0];
+                Type v = valueType.GenericTypeArguments[1];
+                collectionElementType = typeof(KVSubstitue<,>).MakeGenericType(k, v);
+                valueType = collectionElementType;
+            }
             else if (valueType != typeof(string) && (valueType.IsArray || typeof(IEnumerable).IsAssignableFrom(valueType)))
             {
                 isaCollection = true;
@@ -127,6 +135,7 @@ namespace Acklann.Mockaroo.Serialization
 
                 case nameof(Int32):
                 case nameof(UInt32):
+                case nameof(Object):
 
                 case nameof(Int64):
                 case nameof(UInt64):
@@ -147,23 +156,19 @@ namespace Acklann.Mockaroo.Serialization
             return kind;
         }
 
-        private static ICollection<MemberInfo> GetPublicFieldsAndPropertiesFrom(Type type)
+        private static IEnumerable<MemberInfo> GetPublicFieldsAndPropertiesFrom(Type type)
         {
             if (type.IsClass)
             {
                 bool doNotHaveParameterLessConstructor = type.GetConstructors().Where(x => x.GetParameters().Length == 0).Count() == 0;
-                if (doNotHaveParameterLessConstructor) throw new ArgumentException($"Cannot convert {type.Name} to {nameof(Schema)} because {type.Name} do not have a constructor with zero parameters.");
+                if (doNotHaveParameterLessConstructor) yield break;
             }
 
-            var list = new LinkedList<MemberInfo>();
-
             foreach (PropertyInfo member in type.GetRuntimeProperties().Where(x => x.CanWrite))
-                list.AddLast(member);
+                yield return member;
 
-            foreach (FieldInfo member in type.GetRuntimeFields().Where(x => x.IsPublic && !x.IsInitOnly && !x.IsLiteral && !x.IsStatic))
-                list.AddLast(member);
-
-            return list;
+            foreach (FieldInfo member in type.GetRuntimeFields().Where(x => x.IsPublic && !x.IsLiteral && !x.IsStatic))
+                yield return member;
         }
 
         private static Type GetValueType(MemberInfo member)

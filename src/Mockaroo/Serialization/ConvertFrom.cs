@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -63,12 +64,12 @@ namespace Acklann.Mockaroo.Serialization
                         break;
 
                     case KindOfType.CollectionOfObjects:
-                        object item = null;
                         var itemList = new Stack();
                         temp = jpath(parent, member.Name, elementType.Name);
 
                         foreach (JObject record in ((JArray)value))
                         {
+                            object item = null;
                             CreateNew(ref item, elementType, (JObject)record.SelectToken(Item), temp);
                             itemList.Push(item);
                         }
@@ -101,7 +102,22 @@ namespace Acklann.Mockaroo.Serialization
 
         private static object ToEnumerable(object[] values, Type elementType)
         {
-            return typeof(Enumerable).GetMethod(nameof(Enumerable.Cast)).MakeGenericMethod(elementType)
+            if (typeof(IKVSubstitue).IsAssignableFrom(elementType))
+            {
+                Type k = elementType.GenericTypeArguments[0];
+                Type v = elementType.GenericTypeArguments[1];
+                Type kv = typeof(KeyValuePair<,>).MakeGenericType(k, v);
+                IDictionary dic = (IDictionary)Activator.CreateInstance(typeof(Dictionary<,>).MakeGenericType(k, v));
+
+                IKVSubstitue item;
+                for (int i = 0; i < values.Length; i++)
+                {
+                    item = (IKVSubstitue)values[i];
+                    dic[item.Key] = item.Value;
+                }
+                return dic;
+            }
+            else return typeof(Enumerable).GetMethod(nameof(Enumerable.Cast)).MakeGenericMethod(elementType)
                 .Invoke(null, new object[] { values });
         }
     }
