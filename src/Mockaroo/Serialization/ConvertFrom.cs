@@ -40,6 +40,7 @@ namespace Acklann.Mockaroo.Serialization
 #if DEBUG
                 System.Diagnostics.Debug.WriteLine($"{jpath(parent, member.Name)}: <{valueType.Name}>");
 #endif
+                if (value == null) continue;
                 switch (GetKindOfType(valueType, out Type elementType))
                 {
                     case KindOfType.Primitive:

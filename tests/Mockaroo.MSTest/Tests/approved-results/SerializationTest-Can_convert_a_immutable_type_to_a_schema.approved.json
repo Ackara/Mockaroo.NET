@@ -1,5 +1,13 @@
 [
   {
+    "name": "Name",
+    "type": "Words",
+    "percentageBlank": "0",
+    "formula": "",
+    "min": "10",
+    "max": "20"
+  },
+  {
     "name": "Id",
     "type": "Number",
     "percentageBlank": "0",
@@ -7,13 +15,5 @@
     "min": "0",
     "max": "65535",
     "decimals": "0"
-  },
-  {
-    "name": "Name",
-    "type": "Words",
-    "percentageBlank": "0",
-    "formula": "",
-    "min": "10",
-    "max": "20"
   }
 ]

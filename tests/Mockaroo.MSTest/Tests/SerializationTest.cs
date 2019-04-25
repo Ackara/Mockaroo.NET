@@ -167,6 +167,21 @@ namespace Acklann.Mockaroo.Tests
             result.Name.ShouldNotBeNullOrEmpty();
         }
 
+        [TestMethod]
+        public void Can_deserialize_a_partial_response()
+        {
+            // Arrange + Act
+            ImmutableObject result;
+            using (var stream = TestData.GetPartialResponse().OpenRead())
+            {
+                result = MockarooConvert.FromJson<ImmutableObject>(stream).First();
+            }
+
+            // Assert
+            result.Id.ShouldBe(22);
+            result.Name.ShouldBeNullOrEmpty();
+        }
+
         private static void RunTypeToSchemaTest<T>(int depth = 1)
         {
             var schema = MockarooConvert.ToSchema<T>(depth);

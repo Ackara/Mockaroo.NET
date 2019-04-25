@@ -32,5 +32,7 @@ namespace Acklann.Mockaroo
 
 		public static FileInfo GetNestedResponse() => GetFile(@"nested-response.json");
 
+		public static FileInfo GetPartialResponse() => GetFile(@"partial-response.json");
+
 	}
 }
