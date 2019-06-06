@@ -1,7 +1,7 @@
 # Mockaroo.NET
 
-[![version](https://img.shields.io/nuget/v/Acklann.Mockaroo.NET.svg?style=flat-square)](https://www.nuget.org/packages?q=Acklann.Mockaroo.NET)
-[![NuGet](https://img.shields.io/nuget/dt/Acklann.Mockaroo.Net.svg)](https://www.nuget.org/packages/Acklann.Mockaroo.NET/)
+[![version](https://img.shields.io/nuget/v/Mockaroo.NET.svg?style=flat-square)](https://www.nuget.org/packages?q=Mockaroo.NET)
+[![NuGet](https://img.shields.io/nuget/dt/Mockaroo.Net.svg)](https://www.nuget.org/packages/Mockaroo.NET/)
 [![license](https://img.shields.io/badge/license-MIT%20License-blue.svg)](https://github.com/Ackara/Mockaroo.NET/blob/master/LICENSE)
 
 
