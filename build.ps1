@@ -12,7 +12,7 @@ Param(
 	[string[]]$Tasks = @("default"),
 
 	[Alias('f')]
-	[string]$Filter = $null,
+	[string]$Filter = "*",
 
 	[Alias('no-commit')]
 	[switch]$SkipCommit,
@@ -25,7 +25,8 @@ Param(
 
 	[switch]$Debug,
 	[switch]$Major,
-	[switch]$Minor
+	[switch]$Minor,
+	[switch]$Force
 )
 
 # Initializing required variables.
@@ -63,6 +64,7 @@ else
 		"Filter"=$Filter;
 		"Major"=$Major.IsPresent;
 		"Minor"=$Minor.IsPresent;
+		"Force"=$Force.IsPresent;
 		"DryRun"=$DryRun.IsPresent;
 		"ToolsFolder"=$toolsFolder;
 		"CurrentBranch"=$branchName;

@@ -8,7 +8,7 @@
     "max": "20"
   },
   {
-    "name": "Id",
+    "name": "Item",
     "type": "Number",
     "percentageBlank": "0",
     "formula": "",

@@ -3,11 +3,12 @@
     public partial class DummyImageURLField
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DummyImageURLField"/> class.
+        /// Initializes a new instance of the <see cref="DummyImageURLField" /> class.
         /// </summary>
+        /// <param name="name">The name.</param>
         /// <param name="height">The height in pixels.</param>
         /// <param name="width">The width pixels.</param>
-        public DummyImageURLField(int height, int width)
+        public DummyImageURLField(string name, int height, int width) : base(name)
         {
             MinWidth = width;
             MaxWidth = width;

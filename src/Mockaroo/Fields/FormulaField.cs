@@ -1,25 +1,24 @@
-﻿namespace Acklann.Mockaroo.Fields
+namespace Acklann.Mockaroo.Fields
 {
-    public partial class TemplateField
+    public partial class FormulaField
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TemplateField"/> class.
+        /// Initializes a new instance of the <see cref="FormulaField"/> class. see &quot;https://mockaroo.com/api/docs#type_formula&quot;
         /// </summary>
         /// <param name="name">The name.</param>
-        /// <param name="value">The value.</param>
+        /// <param name="value">The Ruby code.</param>
         /// <exception cref="System.ArgumentNullException">value</exception>
-        public TemplateField(string name, string value) : base(name)
+        public FormulaField(string name, string value) : base(name)
         {
             Value = value ?? throw new System.ArgumentNullException(nameof(value));
         }
 
         /// <summary>
-        /// Gets or sets the value.
+        /// Gets or sets the Ruby code to generate data based on custom logic
         /// </summary>
-        /// <remarks>
-        /// Templates allow you to incorporate values from other fields by surrounding field names with {braces}.
-        /// For example, let's say you have a "first_name" field and a "last_name" field. The following template will generate a formatted name where last name comes first: {last_name}, {first_name}
-        /// </remarks>
+        /// <value>
+        /// The value.
+        /// </value>
         public string Value { get; set; }
 
         /// <summary>

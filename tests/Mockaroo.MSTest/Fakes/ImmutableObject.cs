@@ -9,6 +9,6 @@
         }
 
         public readonly int Id;
-        public readonly string Name;
+        public string Name { get; private set; }
     }
 }

@@ -50,15 +50,15 @@ namespace Acklann.Mockaroo.Tests
             var schema2 = TestData.CreateSchema();
 
             // Act
-            var case0 = schema1.ComputeChecksum();
-            var case1 = schema2.ComputeChecksum();
+            var case0 = schema1.ComputeHash();
+            var case1 = schema2.ComputeHash();
 
             var field = new NumberField() { Name = "Foo", Min = 10, Max = 100 };
             schema1.Add(field);
-            var case2 = schema1.ComputeChecksum();
+            var case2 = schema1.ComputeHash();
 
             field.Max = 1000;
-            var case3 = schema1.ComputeChecksum();
+            var case3 = schema1.ComputeHash();
 
             // Assert
             case0.ShouldNotBeNullOrWhiteSpace();

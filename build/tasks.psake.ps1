@@ -6,11 +6,11 @@ Properties {
 	$Dependencies = @("Ncrement");
 
 	# Files & Folders
-    $SolutionFolder = (Split-Path $PSScriptRoot -Parent);
+	$SolutionFolder = (Split-Path $PSScriptRoot -Parent);
 	$ManifestFilePath = (Join-Path $PSScriptRoot  "manifest.json");
 	$SecretsFilePath = (Join-Path $SolutionFolder "secrets.json");
 	$ArtifactsFolder = (Join-Path $SolutionFolder "artifacts");
-    $ToolsFolder = "";
+	$ToolsFolder = "";
 
 	# Arguments
     $ShouldCommitChanges = $true;
@@ -22,10 +22,10 @@ Properties {
 	$Minor = $false;
 }
 
-Task "Default" -depends @("configure", "build", "test", "pack");
+Task "Default" -depends @("configure", "compile", "test", "pack");
 
 Task "Deploy" -alias "publish" -description "This task compiles, test then publish all packages to their respective destination." `
--depends @("clean", "version", "build", "test", "pack", "push-nuget", "tag");
+-depends @("clean", "version", "compile", "test", "pack", "push-nuget", "tag");
 
 # ======================================================================
 
@@ -39,7 +39,7 @@ Task "Configure-Environment" -alias "configure" -description "This task generate
 	if (-not (Test-Path $SecretsFilePath))
 	{
 		$content = '{ "nugetKey": null, "mockarooKey": null }';
-		$content | ConvertTo-Json | Out-File $SecretsFilePath -Encoding utf8;
+		$content | ConvertFrom-Json | ConvertTo-Json | Out-File $SecretsFilePath -Encoding utf8;
 	}
 	Write-Host "  * added '$(Split-Path $SecretsFilePath -Leaf)' to the solution.";
 }
@@ -105,7 +105,7 @@ Task "Increment-VersionNumber" -alias "version" -description "This task incremen
 		| Write-FormatedMessage "  * updated '{0}' version number to '$(ConvertTo-NcrementVersionNumber $manifest | Select-Object -ExpandProperty Version)'.";
 }
 
-Task "Build-Solution" -alias "build" -description "This task compiles projects in the solution." `
+Task "Build-Solution" -alias "compile" -description "This task compiles projects in the solution." `
 -action {
 	Get-Item "$SolutionFolder/*.sln" | Invoke-MSBuild15 $ToolsFolder $Configuration;
 }

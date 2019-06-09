@@ -24,5 +24,7 @@ namespace Acklann.Mockaroo.Fakes
         public List<string> StringCollection { get; set; }
 
         public string GeneratedValue => "ReadOnly";
+
+        public const string Fixed = "Barry";
     }
 }

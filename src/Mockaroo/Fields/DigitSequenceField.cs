@@ -1,7 +1,21 @@
-﻿namespace Acklann.Mockaroo.Fields
+﻿using System;
+
+namespace Acklann.Mockaroo.Fields
 {
     public partial class DigitSequenceField
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DigitSequenceField"/> class.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="format">The format of the sequence.</param>
+        /// <exception cref="ArgumentNullException">format</exception>
+        public DigitSequenceField(string name, string format) : base(name)
+        {
+            if (string.IsNullOrEmpty(format)) throw new ArgumentNullException(nameof(format));
+            Format = format;
+        }
+
         /// <summary>
         /// Gets or sets the string of characters, digits, and symbols to generate.
         /// <list type="bullet">

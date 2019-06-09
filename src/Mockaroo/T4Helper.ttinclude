@@ -16,11 +16,14 @@ public IEnumerable<string> EnumerateDataTypes()
 {
 	string path = Path.Combine(Host.ResolveAssemblyReference("$(ProjectDir)"), "mockaroo_data_types.txt");
 	string[] lines = File.ReadAllLines(path);
+	string[] exclusions = new string[]
+	{
+	};
 
 	for (int i = 0; i < lines.Length; i++)
 	{
 		string val = lines[i];
-		if(!string.IsNullOrWhiteSpace(val))
+		if(!string.IsNullOrWhiteSpace(val) && !exclusions.Contains(val))
 		{
 			yield return val.Trim();
 		}

@@ -2302,6 +2302,31 @@ namespace Acklann.Mockaroo.Fields
 
 	}
 	/// <summary>
+	/// Represents a mockaroo Nato Phonetic data-type.
+	/// </summary>
+	/// <seealso cref="FieldBase" />
+	public partial class NatoPhoneticField : FieldBase
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="NatoPhoneticField"/> class.
+		/// </summary>
+		public NatoPhoneticField() : base(string.Empty)
+		{ }
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="NatoPhoneticField"/> class.
+		/// </summary>
+		/// <param name="name">The name of the field.</param>
+		public NatoPhoneticField(string name) : base(name)
+		{ }
+
+		/// <summary>
+		/// Get the data type.
+		/// </summary>
+		public override DataType Type { get { return DataType.NatoPhonetic; } }
+
+	}
+	/// <summary>
 	/// Represents a mockaroo Naughty String data-type.
 	/// </summary>
 	/// <seealso cref="FieldBase" />

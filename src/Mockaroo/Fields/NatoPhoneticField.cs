@@ -1,23 +1,23 @@
 ﻿namespace Acklann.Mockaroo.Fields
 {
-    public partial class WordsField
+    public partial class NatoPhoneticField
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="WordsField"/> class.
+        /// Initializes a new instance of the <see cref="NatoPhoneticField"/> class.
         /// </summary>
         /// <param name="name">The name.</param>
         /// <param name="numberOfWords">The number of words.</param>
-        public WordsField(string name, int numberOfWords) : this(name, numberOfWords, numberOfWords)
+        public NatoPhoneticField(string name, int numberOfWords) : this(name, numberOfWords, numberOfWords)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="WordsField"/> class.
+        /// Initializes a new instance of the <see cref="NatoPhoneticField"/> class.
         /// </summary>
         /// <param name="name">The name.</param>
-        /// <param name="min">The minimum of words.</param>
-        /// <param name="max">The maximum of words.</param>
-        public WordsField(string name, int min, int max) : base(name)
+        /// <param name="min">The minimum number of words.</param>
+        /// <param name="max">The maximum number of words.</param>
+        public NatoPhoneticField(string name, int min, int max) : base(name)
         {
             Min = min;
             Max = max;

@@ -2,6 +2,7 @@
 using Acklann.Mockaroo.Serialization;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq.Expressions;
 using System.Text;
 
@@ -112,15 +113,16 @@ namespace Acklann.Mockaroo
         }
 
         /// <summary>
-        /// Computes the checksum.
+        /// Write this instance to the specified file path.
         /// </summary>
-        /// <returns></returns>
-        public string ComputeChecksum()
+        /// <param name="filePath">An absolute file path.</param>
+        /// <exception cref="ArgumentNullException">filePath</exception>
+        public void Save(string filePath)
         {
-            var md5 = System.Security.Cryptography.MD5.Create();
-            byte[] hash = md5.ComputeHash(Encoding.UTF8.GetBytes(ToString()));
+            if (string.IsNullOrEmpty(filePath)) throw new ArgumentNullException(nameof(filePath));
 
-            return BitConverter.ToString(hash);
+            Helper.CreateDirectory(filePath);
+            File.WriteAllText(filePath, ToString());
         }
 
         /// <summary>

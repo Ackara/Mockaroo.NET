@@ -1,0 +1,68 @@
+[
+  {
+    "Properties": [
+      {
+        "_item_": {
+          "Key": "currency",
+          "Value": "usd"
+        }
+      },
+      {
+        "_item_": {
+          "Key": "viverra",
+          "Value": "morbi"
+        }
+      },
+      {
+        "_item_": {
+          "Key": "elit",
+          "Value": "quisque"
+        }
+      },
+      {
+        "_item_": {
+          "Key": "pretium",
+          "Value": "lorem"
+        }
+      }
+    ],
+    "HashTable": [
+      {
+        "_item_": {
+          "Key": 4743,
+          "Value": {
+            "NumericValue": 48861.31,
+            "StringValue": "arcu libero rutrum ac lobortis vel dapibus at diam nam tristique tortor eu pede",
+            "BooleanValue": false,
+            "DayValue": 5,
+            "TimeValue": "03:15:58",
+            "DateValue": "0422-04-09T15:22:46+00:00",
+            "StringCollection": [
+              {
+                "_item_": "enim sit amet nunc viverra dapibus nulla suscipit ligula in lacus curabitur at ipsum ac tellus semper interdum mauris"
+              },
+              {
+                "_item_": "sed nisl nunc rhoncus dui vel sem sed sagittis nam congue risus semper porta volutpat quam"
+              }
+            ],
+            "NumericArray": [
+              {
+                "_item_": 55589
+              },
+              {
+                "_item_": 25096
+              },
+              {
+                "_item_": 15754
+              },
+              {
+                "_item_": 29841
+              }
+            ],
+            "CharValue": "v"
+          }
+        }
+      }
+    ]
+  }
+]
