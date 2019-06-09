@@ -165,7 +165,7 @@ namespace Acklann.Mockaroo
                 if (_autoSync) Sync();
                 if (!File.Exists(_dataPath)) Refresh();
 
-                using (var stream = File.OpenRead(_dataPath))
+                using (var stream = new FileStream(_dataPath, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
                     _data = new List<T>(Serialization.MockarooConvert.FromJson<T>(stream));
                 }
