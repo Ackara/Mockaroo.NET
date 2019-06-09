@@ -107,7 +107,7 @@ Task "Increment-VersionNumber" -alias "version" -description "This task incremen
 
 Task "Build-Solution" -alias "compile" -description "This task compiles projects in the solution." `
 -action {
-	Get-Item "$SolutionFolder/*.sln" | Invoke-MSBuild15 $ToolsFolder $Configuration;
+	Get-Item "$SolutionFolder/*.sln" | Invoke-MSBuild $Configuration;
 }
 
 Task "Run-Tests" -alias "test" -description "This task invoke all tests within the 'tests' folder." `
